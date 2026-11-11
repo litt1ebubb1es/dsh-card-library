@@ -1,0 +1,35 @@
+{
+  "id": "pose_sock_cafe_crossed",
+  "kind": "pose",
+  "name": "咖啡馆 · 交叠的连裤袜",
+  "group": "sfw",
+  "group_title": "🏙 全年龄场景搭配",
+  "description": "窗边卡座交叠双腿，毛衣短裙 + 玛丽珍鞋，连裤袜在 socks 里随机。",
+  "pose_tags": "crossed legs, smile, looking to the side, parted lips, mary janes",
+  "pose_nl": "she sits at the cafe window seat with her legs crossed and one hand around the cup. seen from the side so the long line of her legs and the window light both show. she looks to the side.",
+  "camera": {
+    "viewpoint": "from side",
+    "shot_size": "cowboy shot",
+    "dof": "depth of field, blurry background"
+  },
+  "suggest_place": "cafe",
+  "aspect": "portrait",
+  "level": 0,
+  "theme": "丝袜",
+  "count_lock": "1girl, solo",
+  "env_ref": "sc_sock_cafe_crossed",
+  "source_id": "sc_sock_cafe_crossed",
+  "clean_note": {
+    "version": 3,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [
+      "window seat",
+      "cafe table"
+    ],
+    "removed_camera": [],
+    "removed_cloth": [
+      "sweater and skirt"
+    ]
+  },
+  "thumb": "thumbs/pose_sock_cafe_crossed.jpg"
+}

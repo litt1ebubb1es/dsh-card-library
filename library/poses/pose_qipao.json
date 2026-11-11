@@ -1,0 +1,22 @@
+{
+  "id": "pose_qipao",
+  "kind": "pose",
+  "name": "中华旗袍",
+  "version": 1,
+  "group": "from_look",
+  "group_title": "来自造型卡",
+  "description": "景别：cowboy shot；动作：standing, hand on hip, looking to the side, subtle smile, closed mouth, cowboy shot。",
+  "pose_tags": "standing, hand on hip, looking to the side, subtle smile, closed mouth, cowboy shot",
+  "pose_nl": "",
+  "camera": {
+    "shot_size": "cowboy shot",
+    "viewpoint": "from front"
+  },
+  "suggest_place": "alley",
+  "aspect": "portrait",
+  "thumb": "thumbs/pose_qipao.jpg",
+  "env_ref": null,
+  "source": "look_pose_v1",
+  "legacy_look": "look_qipao",
+  "notes": "由 random36 挑图反推（v4）。动作卡只讲做什么，穿什么归造型卡。"
+}

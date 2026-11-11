@@ -1,0 +1,31 @@
+{
+  "id": "pose_cam_med_high_kneel",
+  "kind": "pose",
+  "name": "中景俯视 · 跪趴朝镜头（擦边）",
+  "group": "pose",
+  "group_title": "🏙 全年龄场景搭配",
+  "description": "镜头×姿势模板（不带地点，地点由随机抽取）",
+  "pose_tags": "all fours, arched back, embarrassed, blush, looking back, ",
+  "pose_nl": "she is on all fours with her back arched. seen from behind and slightly above. she looks back over her shoulder at the viewer. her face is flushed.",
+  "camera": {
+    "viewpoint": "from behind",
+    "shot_size": "cowboy shot"
+  },
+  "suggest_place": "",
+  "aspect": "landscape",
+  "level": 1,
+  "theme": "镜头实验",
+  "count_lock": "1girl, solo",
+  "env_ref": "",
+  "source_id": "sc_cam_med_high_kneel",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": [],
+    "removed_v5": [
+      "from above"
+    ]
+  },
+  "thumb": "thumbs/pose_cam_med_high_kneel.jpg"
+}

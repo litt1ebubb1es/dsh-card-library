@@ -1,0 +1,30 @@
+{
+  "id": "pose_offshoulder_night",
+  "kind": "pose",
+  "name": "露肩 · 夜窗（擦边）",
+  "group": "sfw",
+  "group_title": "🏙 全年龄场景搭配",
+  "description": "擦边档的露肩夜景：月光 + 侧拍",
+  "pose_tags": "against wall, expressionless, silk, off shoulder, starlight, bare shoulder",
+  "pose_nl": "she leans against the bedroom wall by the window with one shoulder bare under the moonlight. the curtain moves beside her and starlight falls on her skin. her face is calm.",
+  "camera": {
+    "viewpoint": "from side",
+    "shot_size": "cowboy shot"
+  },
+  "suggest_place": "bedroom",
+  "aspect": "portrait",
+  "level": 1,
+  "theme": "夜景",
+  "count_lock": "1girl, solo",
+  "env_ref": "sc_offshoulder_night",
+  "source_id": "sc_offshoulder_night",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [
+      "curtain"
+    ],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_offshoulder_night.jpg"
+}

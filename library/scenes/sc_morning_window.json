@@ -1,0 +1,40 @@
+{
+ "id": "sc_morning_window",
+ "kind": "scene",
+ "name": "卧室 · 大窗",
+ "group": "sfw",
+ "group_title": "🏙 全年龄场景搭配",
+ "description": "地点：卧室；光线：morning light；道具：large window；景物：lace curtain, dust motes；相机：from side / depth of field, blurry background。（纯环境，不含动作/服装/表情）",
+ "tags": {
+  "place": "bedroom",
+  "light_fx": "morning light",
+  "prop": "large window"
+ },
+ "camera": {
+  "viewpoint": "from side",
+  "dof": "depth of field, blurry background"
+ },
+ "extra": "lace curtain, dust motes",
+ "extra_camera": "",
+ "env_nl": "bedroom, morning light, large window, lace curtain, dust motes, from side.",
+ "level": 0,
+ "theme": "室内",
+ "count_lock": "1girl, solo",
+ "aspect": "portrait",
+ "thumb": null,
+ "env_hint": "bedroom, morning light, large window, from side, depth of field, blurry background, lace curtain, dust motes",
+ "pose_ref": "pose_morning_window",
+ "cleaned": {
+  "version": 4,
+  "policy": "env/pose split",
+  "note": "动作/服装/表情已移入 poses/pose_morning_window.json",
+  "removed_tag_keys": [
+   "accessory",
+   "cloth_mat",
+   "emotion",
+   "mouth",
+   "pose_base"
+  ],
+  "removed_extra": []
+ }
+}

@@ -1,0 +1,27 @@
+{
+  "id": "pose_near_eye_single",
+  "kind": "pose",
+  "name": "单眼极特写",
+  "group": "near",
+  "group_title": "🔍 特写搭配",
+  "description": "只拍一只眼的极限特写，睫毛与虹膜占满画面",
+  "pose_tags": "half-closed eyes, eye, iris, pupil, eyelashes, eyebrows, catchlight, skin",
+  "pose_nl": "one eye fills the frame with light rays falling across the iris. the pupil is sharp and the lashes curve up. the eye is half closed.",
+  "camera": {
+    "shot_size": "extreme close-up"
+  },
+  "suggest_place": "",
+  "aspect": "both",
+  "level": 0,
+  "theme": "眼与唇",
+  "count_lock": "1girl, solo",
+  "env_ref": "",
+  "source_id": "sc_near_eye_single",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_near_eye_single.jpg"
+}

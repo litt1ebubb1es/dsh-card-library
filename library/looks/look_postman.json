@@ -1,0 +1,52 @@
+{
+  "id": "look_postman",
+  "kind": "look",
+  "name": "邮差",
+  "version": "1.0",
+  "description": "蓝色邮差制服 + 大檐帽 + 斜挎邮包 + 短裤 + 中筒袜 + 运动鞋，手拿信件回头笑",
+  "nsfw": false,
+  "tags": "postman uniform, blue uniform, peaked cap, satchel, shorts, socks, sneakers, letter, ",
+  "fields": {
+    "outfit": "postman uniform",
+    "top": "blue uniform shirt",
+    "bottom": "shorts",
+    "socks": "socks",
+    "shoes": "sneakers",
+    "accessory": "peaked cap, satchel, letter",
+    "cloth_color": "blue",
+    "cloth_mat": "cotton",
+    "cloth_state_sfw": "buttoned up"
+  },
+  "body_decor": {},
+  "look_notes": {},
+  "artist_segment": "@wlop, @minaba_hideo, ",
+  "style_label": "柔光半写实 (wlop+minaba)",
+  "negative_extra": "",
+  "params": {
+    "model": "miaomiaoHarem_anima8Step10.safetensors",
+    "lora": "anima-turbo-lora-v0.1.safetensors @ 0.4",
+    "clip": "qwen_3_06b_base.safetensors (type=qwen_image)",
+    "vae": "qwen_image_vae.safetensors",
+    "steps": 12,
+    "cfg": 2.0,
+    "sampler": "euler",
+    "scheduler": "simple",
+    "resolution": "832x1216"
+  },
+  "thumb": "thumbs/look_postman.jpg",
+  "source_dir": "",
+  "look_tags": "postman uniform, blue uniform, peaked cap, satchel, shorts, socks, sneakers, letter, ",
+  "pose_tags": "",
+  "tag_split": {
+    "version": 3,
+    "cloth": 8,
+    "pose": 0,
+    "moved_pose": [],
+    "migrated_to": "pose_postman"
+  },
+  "legacy_pose_ref": "pose_postman",
+  "clean_note": {
+    "version": 11,
+    "source": "random36b picked by user"
+  }
+}

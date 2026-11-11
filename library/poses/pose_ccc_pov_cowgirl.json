@@ -1,0 +1,27 @@
+{
+  "id": "pose_ccc_pov_cowgirl",
+  "kind": "pose",
+  "name": "第一人称 · 骑乘",
+  "group": "nsfw",
+  "group_title": "🔞 NSFW 跨槽位配方",
+  "description": "第一人称骑乘：全裸仅留配饰、赤足（可穿袜），胸部乳夹垂链 + 胸绳缚",
+  "pose_tags": "covering own mouth, straddling, nude with accessories only, aroused, bare feet, first-person view, looking down at viewer, nipple clamps with chain, chain between nipple clamps, chest harness, rope around breasts",
+  "pose_nl": "she looks down at the viewer while riding him. the chain between her nipple clamps swings with each movement. her hair falls around her face.",
+  "camera": {
+    "viewpoint": "pov, cowgirl position"
+  },
+  "suggest_place": "",
+  "aspect": "landscape",
+  "level": 3,
+  "theme": "第一人称",
+  "count_lock": "1girl, 1boy, hetero",
+  "env_ref": "",
+  "source_id": "sc_ccc_pov_cowgirl",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_ccc_pov_cowgirl.jpg"
+}

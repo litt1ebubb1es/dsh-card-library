@@ -1,0 +1,16 @@
+{
+ "id": "prop_notebook",
+ "kind": "prop",
+ "name": "笔记本",
+ "version": "1.0",
+ "group": "stationery",
+ "group_title": "文具纸品",
+ "description": "笔记本，记录/学习。",
+ "prop_tags": "notebook, holding notebook, writing",
+ "prop_nl": "She writes in a small notebook.",
+ "hold": true,
+ "suggest_pose": "writing, holding notebook",
+ "aspect": "both",
+ "thumb": null,
+ "notes": "道具卡只写物，不写持有者/场景/服装；hold=true 时拼配方要配 holding 动词。"
+}

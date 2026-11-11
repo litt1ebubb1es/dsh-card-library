@@ -1,0 +1,28 @@
+{
+  "id": "pose_les_sm_anal_beads",
+  "kind": "pose",
+  "name": "束缚肛珠 · 背后珠串",
+  "group": "nsfw",
+  "group_title": "🔞 NSFW 跨槽位配方",
+  "description": "第三人称背后视角：她跪伏在床上、双手被反绑在身后、腰被压得下沉；一串肛珠一半塞在肛门里，剩下的珠子与拉环垂在臀间轻轻晃；背上沁出一层薄汗，身体随呼吸微微发抖",
+  "pose_tags": "all fours, bottomless, orgasm, trembling, anus, slave, shibari, bound wrists, anal beads, beads, sweat",
+  "pose_nl": "she is on all fours with her wrists bound and a string of beads pulled halfway out of her anus. sweat runs down her lower back. the bed behind her is rumpled.",
+  "camera": {
+    "viewpoint": "from behind",
+    "shot_size": "cowboy shot"
+  },
+  "suggest_place": "bedroom",
+  "aspect": "landscape",
+  "level": 4,
+  "theme": "BDSM",
+  "count_lock": "1girl, solo",
+  "env_ref": "sc_les_sm_anal_beads",
+  "source_id": "sc_les_sm_anal_beads",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_les_sm_anal_beads.jpg"
+}

@@ -1,0 +1,48 @@
+{
+ "id": "sc_ccc_rbq_after",
+ "kind": "scene",
+ "name": "卧室 · 凌乱床铺",
+ "group": "nsfw",
+ "group_title": "🔞 NSFW 跨槽位配方",
+ "description": "地点：卧室；相机：from above。（纯环境，不含动作/服装/表情）",
+ "tags": {
+  "place": "bedroom"
+ },
+ "camera": {
+  "viewpoint": "from above"
+ },
+ "extra": "",
+ "extra_camera": "",
+ "env_nl": "bedroom, from above.",
+ "level": 4,
+ "theme": "RBQ",
+ "count_lock": "1girl, solo",
+ "aspect": "landscape",
+ "thumb": null,
+ "env_hint": "bedroom, from above",
+ "pose_ref": "pose_ccc_rbq_after",
+ "cleaned": {
+  "version": 4,
+  "policy": "env/pose split",
+  "note": "动作/服装/表情已移入 poses/pose_ccc_rbq_after.json",
+  "removed_tag_keys": [
+   "emotion",
+   "n_cum",
+   "n_orgasm",
+   "pose_base",
+   "shoes"
+  ],
+  "removed_extra": [
+   "cum pool",
+   "exhausted",
+   "broken",
+   "lying limp",
+   "alone",
+   "afterglow",
+   "nipple clamps with chain",
+   "chain between nipple clamps",
+   "chest harness",
+   "rope around breasts"
+  ]
+ }
+}

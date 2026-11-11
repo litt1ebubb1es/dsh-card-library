@@ -1,0 +1,32 @@
+{
+  "id": "pose_near_foot_heel",
+  "kind": "pose",
+  "name": "鞋跟特写",
+  "group": "near",
+  "group_title": "🔍 特写搭配",
+  "description": "侧向机位的高跟鞋与脚踝特写，轮廓光（画面内不出现上身与脸；10 款高跟随机）",
+  "pose_tags": "standing, ankle, feet, heel, feet focus",
+  "pose_nl": "the frame is filled by her high heeled shoes and the bare ankles above them. the crop ends just above the ankle. rim light runs down the heel and along the arch. the floor below is out of focus.",
+  "camera": {
+    "viewpoint": "from side",
+    "shot_size": "extreme close-up"
+  },
+  "suggest_place": "",
+  "aspect": "both",
+  "level": 0,
+  "theme": "脚部",
+  "count_lock": "1girl, solo",
+  "env_ref": "",
+  "source_id": "sc_near_foot_heel",
+  "clean_note": {
+    "version": 3,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": [],
+    "removed_cloth": [
+      "high heels",
+      "shoes"
+    ]
+  },
+  "thumb": "thumbs/pose_near_foot_heel.jpg"
+}

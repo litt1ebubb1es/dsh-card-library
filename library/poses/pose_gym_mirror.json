@@ -1,0 +1,33 @@
+{
+  "id": "pose_gym_mirror",
+  "kind": "pose",
+  "name": "健身房 · 镜前深蹲（擦边）",
+  "group": "sfw",
+  "group_title": "🏙 全年龄场景搭配",
+  "description": "镜面与运动装的贴合",
+  "pose_tags": "squatting, hands on own thighs, embarrassed, blush, dumbbell, sweat",
+  "pose_nl": "she squats in front of the gym mirror holding a dumbbell. sweat runs down her neck. her eyes are fixed on the floor.",
+  "camera": {
+    "viewpoint": "from behind"
+  },
+  "suggest_place": "fitting room",
+  "aspect": "both",
+  "level": 1,
+  "theme": "日常",
+  "count_lock": "1girl, solo",
+  "env_ref": "sc_gym_mirror",
+  "source_id": "sc_gym_mirror",
+  "clean_note": {
+    "version": 3,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [
+      "mirror"
+    ],
+    "removed_camera": [],
+    "removed_cloth": [
+      "sports bra",
+      "bike shorts"
+    ]
+  },
+  "thumb": "thumbs/pose_gym_mirror.jpg"
+}

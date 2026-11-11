@@ -1,0 +1,33 @@
+{
+  "id": "pose_les_sm_suspension_twine",
+  "kind": "pose",
+  "name": "悬吊缚 · 手套握鞭",
+  "group": "nsfw",
+  "group_title": "🔞 NSFW 跨槽位配方",
+  "description": "她被绳吊起、双臂上举、脚尖将离地，背与腰侧留着交错的红色鞭痕；一只戴黑色皮手套的女性手从画面右下伸入，五指紧扣皮鞭握柄，鞭梢垂在她背后；她翻白眼大张着嘴哭喊，眼角挂着泪",
+  "pose_tags": "standing, open mouth, completely nude, ahegao, rolled back eyes, suspension, shibari, bound wrists, whip marks, red welts, holding whip, leather whip, female hand, pov, tears",
+  "pose_nl": "the bound woman hangs from ropes with her wrists tied above her head. a hand in a black leather glove holds a whip in front of her. red welts cross her skin.",
+  "camera": {
+    "viewpoint": "pov hands",
+    "shot_size": "cowboy shot"
+  },
+  "suggest_place": "ruins",
+  "aspect": "portrait",
+  "level": 4,
+  "theme": "BDSM",
+  "count_lock": "1girl, solo",
+  "env_ref": "sc_les_sm_suspension_twine",
+  "source_id": "sc_les_sm_suspension_twine",
+  "clean_note": {
+    "version": 3,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": [],
+    "removed_cloth": [
+      "black leather gloves",
+      "black gloves",
+      "leather gloves"
+    ]
+  },
+  "thumb": "thumbs/pose_les_sm_suspension_twine.jpg"
+}

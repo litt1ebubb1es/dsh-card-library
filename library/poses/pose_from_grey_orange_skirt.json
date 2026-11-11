@@ -1,0 +1,21 @@
+{
+  "id": "pose_from_grey_orange_skirt",
+  "kind": "pose",
+  "name": "抱臂侧目",
+  "version": 1,
+  "group": "from_look",
+  "group_title": "来自造型卡",
+  "description": "景别：full body；动作：crossed arms, frown, looking to the side, sleepy, standing, walking。",
+  "pose_tags": "crossed arms, frown, looking to the side, sleepy, standing, walking",
+  "pose_nl": "",
+  "camera": {
+    "shot_size": "full body"
+  },
+  "suggest_place": "",
+  "aspect": "portrait",
+  "thumb": "thumbs/pose_from_grey_orange_skirt.jpg",
+  "env_ref": null,
+  "source": "look_pose_v1",
+  "legacy_look": "look_grey_orange_skirt",
+  "notes": "由造型卡的 pose_tags 迁出（v4）。动作卡只讲做什么，穿什么归造型卡。"
+}

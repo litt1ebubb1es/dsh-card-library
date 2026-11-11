@@ -1,0 +1,31 @@
+{
+  "id": "pose_pose_indian",
+  "kind": "pose",
+  "name": "盘腿坐 · 平视",
+  "group": "pose",
+  "group_title": "🧎 姿势场景",
+  "description": "盘腿席地，俯拍略高的机位，松弛感",
+  "pose_tags": "indian style, smile, sitting",
+  "pose_nl": "she sits cross legged with her hands loose on her knees. seen from above so her lap and the fold of her skirt fill the lower frame. she smiles at the viewer.",
+  "camera": {
+    "viewpoint": "from above",
+    "shot_size": "cowboy shot"
+  },
+  "suggest_place": "",
+  "aspect": "portrait",
+  "level": 0,
+  "theme": "姿势·盘腿",
+  "count_lock": "1girl, solo",
+  "env_ref": "",
+  "source_id": "sc_pose_indian",
+  "clean_note": {
+    "version": 4,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": [],
+    "from_nl": [
+      "sitting"
+    ]
+  },
+  "thumb": "thumbs/pose_pose_indian.jpg"
+}

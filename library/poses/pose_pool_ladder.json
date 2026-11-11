@@ -1,0 +1,27 @@
+{
+  "id": "pose_pool_ladder",
+  "kind": "pose",
+  "name": "泳池阶梯 · 出水瞬间（擦边）",
+  "group": "sfw",
+  "group_title": "🏙 全年龄场景搭配",
+  "description": "水珠沿腿滑落的慢镜",
+  "pose_tags": "standing, hair flip, bare feet, wet hair",
+  "pose_nl": "she climbs out of the pool on the ladder with her swimsuit dripping and her wet hair flipped back. soft focus softens the water behind her. morning light glitters on the surface.",
+  "camera": {},
+  "suggest_place": "poolside",
+  "aspect": "portrait",
+  "level": 1,
+  "theme": "夏",
+  "count_lock": "1girl, solo",
+  "env_ref": "sc_pool_ladder",
+  "source_id": "sc_pool_ladder",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [
+      "pool ladder"
+    ],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_pool_ladder.jpg"
+}

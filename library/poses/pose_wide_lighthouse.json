@@ -1,0 +1,40 @@
+{
+  "id": "pose_wide_lighthouse",
+  "kind": "pose",
+  "name": "灯塔 · 海崖",
+  "group": "sfw",
+  "group_title": "🏙 全年龄场景搭配",
+  "description": "真远景：海崖上的灯塔，人物侧身站在崖边，画面右侧留白给海",
+  "pose_tags": "standing",
+  "pose_nl": "she stands on the cliff below the lighthouse. the ocean throws white spray against the rocks far below. the horizon runs flat and gray to the edge of the frame.",
+  "camera": {
+    "viewpoint": "from side",
+    "shot_size": "wide shot",
+    "comp": "negative space"
+  },
+  "suggest_place": "lighthouse",
+  "aspect": "landscape",
+  "level": 0,
+  "theme": "远景",
+  "count_lock": "1girl, solo",
+  "env_ref": "sc_wide_lighthouse",
+  "source_id": "sc_wide_lighthouse",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [
+      "scenery",
+      "cliff",
+      "ocean waves",
+      "distant horizon"
+    ],
+    "removed_camera": [
+      "wide shot",
+      "full body",
+      "small figure",
+      "vast landscape",
+      "sense of scale"
+    ]
+  },
+  "thumb": "thumbs/pose_wide_lighthouse.jpg"
+}

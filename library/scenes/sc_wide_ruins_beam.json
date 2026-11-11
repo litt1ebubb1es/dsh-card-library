@@ -1,0 +1,37 @@
+{
+ "id": "sc_wide_ruins_beam",
+ "kind": "scene",
+ "name": "废墟 · 光束",
+ "group": "sfw",
+ "group_title": "🏙 全年龄场景搭配",
+ "description": "地点：废墟；天气：sunbeam；光线：god rays；景物：scenery, broken walls, dust motes, rubble；相机：from behind / wide shot / landscape / wide shot, full body, small figure, vast landscape, sense of scale。（纯环境，不含动作/服装/表情）",
+ "tags": {
+  "place": "ruins",
+  "weather": "sunbeam",
+  "light_fx": "god rays"
+ },
+ "camera": {
+  "viewpoint": "from behind",
+  "shot_size": "wide shot",
+  "comp": "landscape"
+ },
+ "extra": "scenery, broken walls, dust motes, rubble",
+ "extra_camera": "wide shot, full body, small figure, vast landscape, sense of scale",
+ "env_nl": "ruins, sunbeam, god rays, scenery, broken walls, dust motes, rubble, wide shot, full body, small figure, vast landscape, sense of scale, from behind.",
+ "level": 0,
+ "theme": "远景",
+ "count_lock": "1girl, solo",
+ "aspect": "landscape",
+ "thumb": null,
+ "env_hint": "ruins, sunbeam, god rays, wide shot, from behind, landscape, scenery, broken walls, dust motes, rubble, wide shot, full body, small figure, vast landscape, sense of scale",
+ "pose_ref": "pose_wide_ruins_beam",
+ "cleaned": {
+  "version": 4,
+  "policy": "env/pose split",
+  "note": "动作/服装/表情已移入 poses/pose_wide_ruins_beam.json",
+  "removed_tag_keys": [
+   "pose_base"
+  ],
+  "removed_extra": []
+ }
+}

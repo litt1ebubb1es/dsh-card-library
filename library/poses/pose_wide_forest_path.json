@@ -1,0 +1,43 @@
+{
+  "id": "pose_wide_forest_path",
+  "kind": "pose",
+  "name": "森林 · 晨光小径",
+  "group": "sfw",
+  "group_title": "🏙 全年龄场景搭配",
+  "description": "真远景：林间小径，晨雾里透进光柱，人物在林道尽头",
+  "pose_tags": "standing, walking",
+  "pose_nl": "she walks the forest path in the fog. the light comes down through the tall trunks in clear shafts. the path leads her away into the trees.",
+  "camera": {
+    "viewpoint": "from behind",
+    "shot_size": "wide shot",
+    "comp": "landscape"
+  },
+  "suggest_place": "forest",
+  "aspect": "landscape",
+  "level": 0,
+  "theme": "远景",
+  "count_lock": "1girl, solo",
+  "env_ref": "sc_wide_forest_path",
+  "source_id": "sc_wide_forest_path",
+  "clean_note": {
+    "version": 4,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [
+      "scenery",
+      "forest path",
+      "tall trees",
+      "light shafts"
+    ],
+    "removed_camera": [
+      "wide shot",
+      "full body",
+      "small figure",
+      "vast landscape",
+      "sense of scale"
+    ],
+    "from_nl": [
+      "walking"
+    ]
+  },
+  "thumb": "thumbs/pose_wide_forest_path.jpg"
+}

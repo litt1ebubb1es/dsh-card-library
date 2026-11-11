@@ -1,0 +1,38 @@
+{
+ "id": "sc_flower_field",
+ "kind": "scene",
+ "name": "花田 · 樱吹雪",
+ "group": "sfw",
+ "group_title": "🏙 全年龄场景搭配",
+ "description": "地点：花田；天气：cherry blossoms；光线：god rays；景物：petals in air, sunlight；相机：from below。（纯环境，不含动作/服装/表情）",
+ "tags": {
+  "place": "flower field",
+  "weather": "cherry blossoms",
+  "light_fx": "god rays"
+ },
+ "camera": {
+  "viewpoint": "from below"
+ },
+ "extra": "petals in air, sunlight",
+ "extra_camera": "",
+ "env_nl": "flower field, cherry blossoms, god rays, petals in air, sunlight, from below.",
+ "level": 0,
+ "theme": "户外",
+ "count_lock": "1girl, solo",
+ "aspect": "portrait",
+ "thumb": null,
+ "env_hint": "flower field, cherry blossoms, god rays, from below, petals in air, sunlight",
+ "pose_ref": "pose_flower_field",
+ "cleaned": {
+  "version": 4,
+  "policy": "env/pose split",
+  "note": "动作/服装/表情已移入 poses/pose_flower_field.json",
+  "removed_tag_keys": [
+   "action",
+   "emotion",
+   "outfit",
+   "pose_base"
+  ],
+  "removed_extra": []
+ }
+}

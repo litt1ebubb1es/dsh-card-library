@@ -1,0 +1,45 @@
+{
+ "id": "sc_ccc_bdsm_pillory",
+ "kind": "scene",
+ "name": "小巷 · 暗场",
+ "group": "nsfw",
+ "group_title": "🔞 NSFW 跨槽位配方",
+ "description": "地点：小巷；光线：dark background；相机：from behind。（纯环境，不含动作/服装/表情）",
+ "tags": {
+  "place": "alley",
+  "light_fx": "dark background"
+ },
+ "camera": {
+  "viewpoint": "from behind"
+ },
+ "extra": "",
+ "extra_camera": "",
+ "env_nl": "alley, dark background, from behind.",
+ "level": 4,
+ "theme": "BDSM",
+ "count_lock": "1girl, multiple boys, group sex",
+ "aspect": "landscape",
+ "thumb": null,
+ "env_hint": "alley, dark background, from behind",
+ "pose_ref": "pose_ccc_bdsm_pillory",
+ "cleaned": {
+  "version": 4,
+  "policy": "env/pose split",
+  "note": "动作/服装/表情已移入 poses/pose_ccc_bdsm_pillory.json",
+  "removed_tag_keys": [
+   "arms_hands",
+   "emotion",
+   "n_fluid",
+   "n_state",
+   "n_theme",
+   "pose_base"
+  ],
+  "removed_extra": [
+   "pillory",
+   "public display",
+   "humiliation",
+   "audience",
+   "rope marks"
+  ]
+ }
+}

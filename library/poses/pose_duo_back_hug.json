@@ -1,0 +1,28 @@
+{
+  "id": "pose_duo_back_hug",
+  "kind": "pose",
+  "name": "双女 · 背后环抱",
+  "group": "sfw",
+  "group_title": "🏙 全年龄场景搭配",
+  "description": "一个女孩从背后环住另一个的腰，脸贴着脸（全年龄）",
+  "pose_tags": "standing, smile, affectionate, back hug, embrace from behind, arms around waist, cheek to cheek",
+  "pose_nl": "one girl stands behind the other and wraps both arms around her waist. the girl in front rests her hands on those arms. their cheeks are close together. seen from the side with both faces in frame.",
+  "camera": {
+    "viewpoint": "from side",
+    "shot_size": "upper body"
+  },
+  "suggest_place": "park",
+  "aspect": "both",
+  "level": 0,
+  "theme": "双女",
+  "count_lock": "2girls",
+  "env_ref": "sc_duo_back_hug",
+  "source_id": "sc_duo_back_hug",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_duo_back_hug.jpg"
+}

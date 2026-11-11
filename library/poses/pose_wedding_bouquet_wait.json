@@ -1,0 +1,35 @@
+{
+  "id": "pose_wedding_bouquet_wait",
+  "kind": "pose",
+  "name": "白色婚纱 · 捧花等待",
+  "group": "sfw",
+  "group_title": "🏙 全年龄场景搭配",
+  "description": "白色婚纱礼服，双手捧一束花站在那儿，像在等某个人出现",
+  "pose_tags": "standing, smile, looking away, expectant expression",
+  "pose_nl": "she stands in a white wedding dress with a bouquet of flowers in her hands. she keeps glancing into the distance as if waiting for someone to appear. the lace and the veil stay still around her.",
+  "camera": {
+    "shot_size": "full body"
+  },
+  "suggest_place": "",
+  "aspect": "portrait",
+  "level": 0,
+  "theme": "婚礼",
+  "count_lock": "1girl, solo",
+  "env_ref": "",
+  "source_id": "sc_wedding_bouquet_wait",
+  "clean_note": {
+    "version": 4,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [
+      "waiting for someone"
+    ],
+    "removed_camera": [],
+    "removed_cloth": [
+      "wedding dress",
+      "white wedding dress",
+      "bridal veil",
+      "lace details"
+    ]
+  },
+  "thumb": "thumbs/pose_wedding_bouquet_wait.jpg"
+}

@@ -1,0 +1,30 @@
+{
+  "id": "pose_near_towel_after",
+  "kind": "pose",
+  "name": "浴后浴巾",
+  "group": "near",
+  "group_title": "🔍 特写搭配",
+  "description": "浴室水汽里裹着浴巾，湿发贴颈",
+  "pose_tags": "wet hair, towel, collarbone",
+  "pose_nl": "a towel is wrapped around her chest and water drops still sit on her collarbone. steam rises around her shoulders. bathroom light ripples on her skin.",
+  "camera": {
+    "shot_size": "upper body"
+  },
+  "suggest_place": "bathroom",
+  "aspect": "both",
+  "level": 0,
+  "theme": "上半身与胸",
+  "count_lock": "1girl, solo",
+  "env_ref": "sc_near_towel_after",
+  "source_id": "sc_near_towel_after",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [
+      "steam",
+      "water drop"
+    ],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_near_towel_after.jpg"
+}

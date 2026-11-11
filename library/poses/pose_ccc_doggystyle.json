@@ -1,0 +1,27 @@
+{
+  "id": "pose_ccc_doggystyle",
+  "kind": "pose",
+  "name": "后入跪位",
+  "group": "nsfw",
+  "group_title": "🔞 NSFW 跨槽位配方",
+  "description": "文档 §9.3.4：四肢着地被进入",
+  "pose_tags": "doggystyle, covering own mouth, all fours, sex, moaning, pussy juice, sex from behind, arched back, grip on hips",
+  "pose_nl": "she is on all fours with her back arched and her hips pushed back to meet him. one of her hands covers her mouth. fluid runs down her inner thigh.",
+  "camera": {
+    "viewpoint": "from behind"
+  },
+  "suggest_place": "",
+  "aspect": "landscape",
+  "level": 3,
+  "theme": "双人正戏",
+  "count_lock": "1girl, 1boy, hetero",
+  "env_ref": "",
+  "source_id": "sc_ccc_doggystyle",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_ccc_doggystyle.jpg"
+}

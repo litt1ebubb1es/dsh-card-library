@@ -1,0 +1,34 @@
+{
+  "id": "pose_sock_home_sofa",
+  "kind": "pose",
+  "name": "客厅沙发 · 珠光袜蜷坐",
+  "group": "sfw",
+  "group_title": "🏙 全年龄场景搭配",
+  "description": "居家沙发蜷坐，卫衣短裤 + 拖鞋，亮丝星点连裤袜在 socks 里随机。",
+  "pose_tags": "crossed legs, sleepy, half-closed eyes, closed mouth, sitting on couch, knees together",
+  "pose_nl": "she curls up on the couch with her knees together and her feet tucked under her. the glittery tights catch the warm lamp light. seen from above with her face half turned into the cushion.",
+  "camera": {
+    "viewpoint": "from above",
+    "shot_size": "full body",
+    "comp": "portrait"
+  },
+  "suggest_place": "apartment",
+  "aspect": "portrait",
+  "level": 0,
+  "theme": "丝袜",
+  "count_lock": "1girl, solo",
+  "env_ref": "sc_sock_home_sofa",
+  "source_id": "sc_sock_home_sofa",
+  "clean_note": {
+    "version": 3,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": [],
+    "removed_cloth": [
+      "hoodie and shorts",
+      "slippers",
+      "glittery tights"
+    ]
+  },
+  "thumb": "thumbs/pose_sock_home_sofa.jpg"
+}

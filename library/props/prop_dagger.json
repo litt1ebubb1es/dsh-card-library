@@ -1,0 +1,16 @@
+{
+ "id": "prop_dagger",
+ "kind": "prop",
+ "name": "短剑",
+ "version": "1.0",
+ "group": "weapon",
+ "group_title": "武器",
+ "description": "短剑/匕首，刺客/盗贼。",
+ "prop_tags": "dagger, holding dagger, knife",
+ "prop_nl": "She holds a short dagger in a reverse grip.",
+ "hold": true,
+ "suggest_pose": "holding dagger",
+ "aspect": "both",
+ "thumb": null,
+ "notes": "道具卡只写物，不写持有者/场景/服装；hold=true 时拼配方要配 holding 动词。"
+}

@@ -1,0 +1,16 @@
+{
+ "id": "prop_doll",
+ "kind": "prop",
+ "name": "人偶",
+ "version": "1.0",
+ "group": "tech",
+ "group_title": "电子乐器",
+ "description": "人偶，哥特/怀旧。",
+ "prop_tags": "doll, holding doll, porcelain doll",
+ "prop_nl": "She cradles a porcelain doll.",
+ "hold": true,
+ "suggest_pose": "holding doll",
+ "aspect": "both",
+ "thumb": null,
+ "notes": "道具卡只写物，不写持有者/场景/服装；hold=true 时拼配方要配 holding 动词。"
+}

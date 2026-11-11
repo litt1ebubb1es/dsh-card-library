@@ -1,0 +1,43 @@
+{
+ "id": "sc_msb_clothed",
+ "kind": "scene",
+ "name": "更衣室 · 侧视",
+ "group": "nsfw",
+ "group_title": "🔞 NSFW 跨槽位配方",
+ "description": "地点：更衣室；相机：from side。（纯环境，不含动作/服装/表情）",
+ "tags": {
+  "place": "changing room"
+ },
+ "camera": {
+  "viewpoint": "from side"
+ },
+ "extra": "",
+ "extra_camera": "",
+ "env_nl": "changing room, from side.",
+ "level": 2,
+ "theme": "挖矿",
+ "count_lock": "1girl, solo",
+ "aspect": "portrait",
+ "thumb": null,
+ "env_hint": "changing room, from side",
+ "pose_ref": "pose_msb_clothed",
+ "cleaned": {
+  "version": 4,
+  "policy": "env/pose split",
+  "note": "动作/服装/表情已移入 poses/pose_msb_clothed.json",
+  "removed_tag_keys": [
+   "emotion",
+   "leg",
+   "n_act",
+   "n_orgasm",
+   "n_state",
+   "outfit",
+   "pose_base"
+  ],
+  "removed_extra": [
+   "solo",
+   "through clothes",
+   "hand on own thigh"
+  ]
+ }
+}

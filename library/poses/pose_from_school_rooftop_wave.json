@@ -1,0 +1,21 @@
+{
+  "id": "pose_from_school_rooftop_wave",
+  "kind": "pose",
+  "name": "挥手打招呼",
+  "version": 1,
+  "group": "from_look",
+  "group_title": "来自造型卡",
+  "description": "景别：full body；动作：hand up, happy, holding bag, looking at viewer, looking back, open mouth, smile, standing, waving。",
+  "pose_tags": "hand up, happy, holding bag, looking at viewer, looking back, open mouth, smile, standing, waving",
+  "pose_nl": "",
+  "camera": {
+    "shot_size": "full body"
+  },
+  "suggest_place": "",
+  "aspect": "portrait",
+  "thumb": "thumbs/pose_from_school_rooftop_wave.jpg",
+  "env_ref": null,
+  "source": "look_pose_v1",
+  "legacy_look": "look_school_rooftop_wave",
+  "notes": "由造型卡的 pose_tags 迁出（v4）。动作卡只讲做什么，穿什么归造型卡。"
+}

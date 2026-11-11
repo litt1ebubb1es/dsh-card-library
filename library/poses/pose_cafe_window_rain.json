@@ -1,0 +1,32 @@
+{
+  "id": "pose_cafe_window_rain",
+  "kind": "pose",
+  "name": "咖啡馆 · 窗边落雨",
+  "group": "sfw",
+  "group_title": "🏙 全年龄场景搭配",
+  "description": "大落地窗 + 雨，手托脸颊望外",
+  "pose_tags": "against wall, hand on own cheek, sad",
+  "pose_nl": "she sits by the cafe window with her cheek resting on her hand. rain runs down the glass and turns the street outside into soft shapes. steam rises from the cup beside her.",
+  "camera": {
+    "shot_size": "cowboy shot",
+    "dof": "depth of field, blurry background"
+  },
+  "suggest_place": "cafe",
+  "aspect": "portrait",
+  "level": 0,
+  "theme": "日常",
+  "count_lock": "1girl, solo",
+  "env_ref": "sc_cafe_window_rain",
+  "source_id": "sc_cafe_window_rain",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [
+      "rain on glass",
+      "steam",
+      "warm interior"
+    ],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_cafe_window_rain.jpg"
+}

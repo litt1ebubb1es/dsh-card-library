@@ -1,0 +1,43 @@
+{
+ "id": "sc_near_leg_sit_floor",
+ "kind": "scene",
+ "name": "卧室 · 侧视特写",
+ "group": "near",
+ "group_title": "🔍 特写搭配",
+ "description": "地点：卧室；光线：soft lighting；相机：from side / extreme close-up。（纯环境，不含动作/服装/表情）",
+ "tags": {
+  "place": "bedroom",
+  "light_fx": "soft lighting"
+ },
+ "camera": {
+  "viewpoint": "from side",
+  "shot_size": "extreme close-up"
+ },
+ "extra": "",
+ "extra_camera": "",
+ "env_nl": "bedroom, soft lighting, from side.",
+ "level": 0,
+ "theme": "腿部",
+ "count_lock": "1girl, solo",
+ "aspect": "both",
+ "thumb": null,
+ "env_hint": "bedroom, soft lighting, extreme close-up, from side",
+ "pose_ref": "pose_near_leg_sit_floor",
+ "cleaned": {
+  "version": 4,
+  "policy": "env/pose split",
+  "note": "动作/服装/表情已移入 poses/pose_near_leg_sit_floor.json",
+  "removed_tag_keys": [
+   "pose_base"
+  ],
+  "removed_extra": [
+   "knees up",
+   "thighs",
+   "calves",
+   "knees",
+   "head out of frame",
+   "legs focus",
+   "lower body"
+  ]
+ }
+}

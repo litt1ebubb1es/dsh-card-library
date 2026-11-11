@@ -1,0 +1,31 @@
+{
+  "id": "pose_rooftop_stretch",
+  "kind": "pose",
+  "name": "天台黄昏 · 伸懒腰",
+  "group": "sfw",
+  "group_title": "🏙 全年龄场景搭配",
+  "description": "逆光的仰拍，栏杆边伸展身体",
+  "pose_tags": "stretching, sleepy, stretching arms up",
+  "pose_nl": "she stretches both arms above her head on the rooftop at sunset. her shadow stretches long across the concrete. the low sun behind her rims her body.",
+  "camera": {
+    "viewpoint": "from side",
+    "shot_size": "full body",
+    "comp": "portrait"
+  },
+  "suggest_place": "rooftop",
+  "aspect": "portrait",
+  "level": 1,
+  "theme": "户外",
+  "count_lock": "1girl, solo",
+  "env_ref": "sc_rooftop_stretch",
+  "source_id": "sc_rooftop_stretch",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [
+      "long shadow"
+    ],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_rooftop_stretch.jpg"
+}

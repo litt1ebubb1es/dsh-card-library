@@ -1,0 +1,22 @@
+{
+  "id": "pose_maid",
+  "kind": "pose",
+  "name": "女仆",
+  "version": 1,
+  "group": "from_look",
+  "group_title": "来自造型卡",
+  "description": "景别：cowboy shot；动作：standing, holding tray, looking at viewer, polite smile, both hands on tray, cowboy shot。",
+  "pose_tags": "standing, holding tray, looking at viewer, polite smile, both hands on tray",
+  "pose_nl": "",
+  "camera": {
+    "shot_size": "cowboy shot",
+    "viewpoint": "from front"
+  },
+  "suggest_place": "kitchen",
+  "aspect": "portrait",
+  "thumb": "thumbs/pose_maid.jpg",
+  "env_ref": null,
+  "source": "look_pose_v1",
+  "legacy_look": "look_maid",
+  "notes": "由 random36b 挑图反推（v4）。动作卡只讲做什么，穿什么归造型卡。"
+}

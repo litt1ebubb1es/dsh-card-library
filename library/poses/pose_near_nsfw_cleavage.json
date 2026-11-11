@@ -1,0 +1,31 @@
+{
+  "id": "pose_near_nsfw_cleavage",
+  "kind": "pose",
+  "name": "胸沟俯视",
+  "group": "near",
+  "group_title": "🔍 特写搭配",
+  "description": "俯拍胸沟与锁骨，领口低垂",
+  "pose_tags": "visible collarbone, cleavage, breasts, collarbone, chest",
+  "pose_nl": "seen from above into her cleavage and the neckline cuts across her chest. soft light sits between her breasts. her collarbone shows above.",
+  "camera": {
+    "viewpoint": "from above",
+    "shot_size": "close-up"
+  },
+  "suggest_place": "",
+  "aspect": "both",
+  "level": 1,
+  "theme": "🔞 成人向",
+  "count_lock": "1girl, solo",
+  "env_ref": "",
+  "source_id": "sc_near_nsfw_cleavage",
+  "clean_note": {
+    "version": 4,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": [],
+    "removed_cloth": [
+      "neckline"
+    ]
+  },
+  "thumb": "thumbs/pose_near_nsfw_cleavage.jpg"
+}

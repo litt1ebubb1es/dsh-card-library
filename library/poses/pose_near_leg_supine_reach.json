@@ -1,0 +1,28 @@
+{
+  "id": "pose_near_leg_supine_reach",
+  "kind": "pose",
+  "name": "仰卧抬腿伸向镜头",
+  "group": "near",
+  "group_title": "🔍 特写搭配",
+  "description": "仰卧把一条腿伸向镜头，脚掌贴近镜头（不穿鞋）",
+  "pose_tags": "on back, leg up, foot, soles, toes, thighs, head out of frame, legs focus, lower body",
+  "pose_nl": "she lies on her back and lifts one leg toward the viewer so the sole fills the frame. her toes are spread. the first person view puts the viewer at her feet.",
+  "camera": {
+    "viewpoint": "first-person view, pov",
+    "shot_size": "extreme close-up"
+  },
+  "suggest_place": "",
+  "aspect": "both",
+  "level": 1,
+  "theme": "腿部",
+  "count_lock": "1girl, solo",
+  "env_ref": "",
+  "source_id": "sc_near_leg_supine_reach",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_near_leg_supine_reach.jpg"
+}

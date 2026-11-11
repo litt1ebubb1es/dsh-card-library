@@ -1,0 +1,22 @@
+{
+  "id": "pose_detective",
+  "kind": "pose",
+  "name": "侦探",
+  "version": 1,
+  "group": "from_look",
+  "group_title": "来自造型卡",
+  "description": "景别：cowboy shot；动作：standing, hand in pocket, looking to the side, serious, closed mouth, hat brim shadow, cowboy shot。",
+  "pose_tags": "standing, hand in pocket, looking to the side, serious, closed mouth, hat brim shadow, cowboy shot",
+  "pose_nl": "",
+  "camera": {
+    "shot_size": "cowboy shot",
+    "viewpoint": "from front_right"
+  },
+  "suggest_place": "alley",
+  "aspect": "portrait",
+  "thumb": "thumbs/pose_detective.jpg",
+  "env_ref": null,
+  "source": "look_pose_v1",
+  "legacy_look": "look_detective",
+  "notes": "由 random36 挑图反推（v4）。动作卡只讲做什么，穿什么归造型卡。"
+}

@@ -1,0 +1,57 @@
+{
+  "id": "pose_wide_snow_field",
+  "kind": "pose",
+  "name": "雪原 · 一行足迹",
+  "group": "sfw",
+  "group_title": "🏙 全年龄场景搭配",
+  "description": "真远景：茫茫雪原上一行人足迹，人物在远处小小的背影；冬季叠穿（长外套/羽绒服 + 高领内搭 + 长裙 + 厚连裤袜 + 长靴 + 围巾，不露腿）",
+  "pose_tags": "standing, walking, walking away",
+  "pose_nl": "she walks away across the snowy plain leaving one line of footprints. her breath and the loose snow blow sideways in the wind. the white ground runs unbroken to the horizon.",
+  "camera": {
+    "viewpoint": "from behind",
+    "shot_size": "wide shot",
+    "comp": "negative space"
+  },
+  "suggest_place": "field",
+  "aspect": "landscape",
+  "level": 0,
+  "theme": "远景",
+  "count_lock": "1girl, solo",
+  "env_ref": "sc_wide_snow_field",
+  "source_id": "sc_wide_snow_field",
+  "clean_note": {
+    "version": 4,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [
+      "scenery",
+      "footprints in snow",
+      "snowy plain",
+      "breath vapor"
+    ],
+    "removed_camera": [
+      "wide shot",
+      "full body",
+      "small figure",
+      "vast landscape",
+      "sense of scale"
+    ],
+    "removed_cloth": [
+      "long skirt",
+      "knee boots",
+      "pantyhose",
+      "scarf",
+      "knitwear",
+      "winter clothes",
+      "layered clothes",
+      "turtleneck",
+      "long coat",
+      "maxi skirt",
+      "thick tights",
+      "long sleeves"
+    ],
+    "from_nl": [
+      "walking"
+    ]
+  },
+  "thumb": "thumbs/pose_wide_snow_field.jpg"
+}

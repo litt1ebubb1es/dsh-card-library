@@ -1,0 +1,44 @@
+{
+ "id": "sc_sock_office_elevator",
+ "kind": "scene",
+ "name": "电梯 · 柔光",
+ "group": "sfw",
+ "group_title": "🏙 全年龄场景搭配",
+ "description": "地点：电梯；光线：soft lighting；相机：from side / full body。（纯环境，不含动作/服装/表情）",
+ "tags": {
+  "place": "elevator",
+  "light_fx": "soft lighting"
+ },
+ "camera": {
+  "viewpoint": "from side",
+  "shot_size": "full body"
+ },
+ "extra": "",
+ "extra_camera": "",
+ "env_nl": "elevator, soft lighting, from side.",
+ "level": 0,
+ "theme": "丝袜",
+ "count_lock": "1girl, solo",
+ "aspect": "portrait",
+ "thumb": null,
+ "env_hint": "elevator, soft lighting, full body, from side",
+ "pose_ref": "pose_sock_office_elevator",
+ "cleaned": {
+  "version": 4,
+  "policy": "env/pose split",
+  "note": "动作/服装/表情已移入 poses/pose_sock_office_elevator.json",
+  "removed_tag_keys": [
+   "emotion",
+   "eye_gaze",
+   "mouth",
+   "outfit",
+   "pose_base",
+   "shoes"
+  ],
+  "removed_extra": [
+   "pencil skirt",
+   "standing in elevator",
+   "tights"
+  ]
+ }
+}

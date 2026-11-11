@@ -1,0 +1,28 @@
+{
+  "id": "pose_pose_squat",
+  "kind": "pose",
+  "name": "蹲姿 · 仰拍",
+  "group": "pose",
+  "group_title": "🧎 姿势场景",
+  "description": "低蹲、仰拍，腿部折叠与地面接触关系清楚",
+  "pose_tags": "squatting, serious",
+  "pose_nl": "she squats low with her elbows resting on her knees. seen from below so her knees and the ground line sit at the bottom of the frame. she looks down at the viewer.",
+  "camera": {
+    "viewpoint": "from below",
+    "shot_size": "full body"
+  },
+  "suggest_place": "",
+  "aspect": "portrait",
+  "level": 0,
+  "theme": "姿势·蹲姿",
+  "count_lock": "1girl, solo",
+  "env_ref": "",
+  "source_id": "sc_pose_squat",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_pose_squat.jpg"
+}

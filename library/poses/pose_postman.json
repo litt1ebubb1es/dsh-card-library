@@ -1,0 +1,22 @@
+{
+  "id": "pose_postman",
+  "kind": "pose",
+  "name": "邮差",
+  "version": 1,
+  "group": "from_look",
+  "group_title": "来自造型卡",
+  "description": "景别：full body；动作：standing, holding letter, looking back, looking over shoulder, looking at viewer, cheerful smile, full body。",
+  "pose_tags": "standing, holding letter, looking back, looking over shoulder, looking at viewer, cheerful smile",
+  "pose_nl": "",
+  "camera": {
+    "shot_size": "full body",
+    "viewpoint": "from behind"
+  },
+  "suggest_place": "street",
+  "aspect": "portrait",
+  "thumb": "thumbs/pose_postman.jpg",
+  "env_ref": null,
+  "source": "look_pose_v1",
+  "legacy_look": "look_postman",
+  "notes": "由 random36b 挑图反推（v4）。动作卡只讲做什么，穿什么归造型卡。"
+}

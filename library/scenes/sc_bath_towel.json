@@ -1,0 +1,39 @@
+{
+ "id": "sc_bath_towel",
+ "kind": "scene",
+ "name": "浴室 · 蒸汽",
+ "group": "sfw",
+ "group_title": "🏙 全年龄场景搭配",
+ "description": "地点：浴室；天气：steam；氛围：soft focus；景物：water drops。（纯环境，不含动作/服装/表情）",
+ "tags": {
+  "place": "bathroom",
+  "weather": "steam",
+  "texture_fx": "soft focus"
+ },
+ "camera": {},
+ "extra": "water drops",
+ "extra_camera": "",
+ "env_nl": "bathroom, steam, soft focus, water drops.",
+ "level": 1,
+ "theme": "日常",
+ "count_lock": "1girl, solo",
+ "aspect": "portrait",
+ "thumb": null,
+ "env_hint": "bathroom, steam, soft focus, water drops",
+ "pose_ref": "pose_bath_towel",
+ "cleaned": {
+  "version": 4,
+  "policy": "env/pose split",
+  "note": "动作/服装/表情已移入 poses/pose_bath_towel.json",
+  "removed_tag_keys": [
+   "arms_hands",
+   "cloth_state_sfw",
+   "emotion",
+   "pose_base"
+  ],
+  "removed_extra": [
+   "towel",
+   "wet hair"
+  ]
+ }
+}

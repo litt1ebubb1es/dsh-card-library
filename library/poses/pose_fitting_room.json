@@ -1,0 +1,33 @@
+{
+  "id": "pose_fitting_room",
+  "kind": "pose",
+  "name": "试衣间 · 镜前",
+  "group": "sfw",
+  "group_title": "🏙 全年龄场景搭配",
+  "description": "镜前打量，微微嘟嘴",
+  "pose_tags": "standing, hand in own hair, pout, tags",
+  "pose_nl": "she stands in the fitting room with one hand in her hair and the curtain half drawn. the camisole dress hangs loose on her. she pouts at herself.",
+  "camera": {
+    "dof": "focus on face"
+  },
+  "suggest_place": "fitting room",
+  "aspect": "portrait",
+  "level": 0,
+  "theme": "日常",
+  "count_lock": "1girl, solo",
+  "env_ref": "sc_fitting_room",
+  "source_id": "sc_fitting_room",
+  "clean_note": {
+    "version": 3,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [
+      "curtain",
+      "mirror as backdrop"
+    ],
+    "removed_camera": [],
+    "removed_cloth": [
+      "camisole dress"
+    ]
+  },
+  "thumb": "thumbs/pose_fitting_room.jpg"
+}

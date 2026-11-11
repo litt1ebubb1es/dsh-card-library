@@ -1,0 +1,16 @@
+{
+ "id": "prop_sunglasses",
+ "kind": "prop",
+ "name": "墨镜",
+ "version": "1.0",
+ "group": "accessory",
+ "group_title": "配饰",
+ "description": "墨镜，街拍/夏日。",
+ "prop_tags": "sunglasses, wearing sunglasses",
+ "prop_nl": "She wears sunglasses.",
+ "hold": false,
+ "suggest_pose": "standing",
+ "aspect": "both",
+ "thumb": null,
+ "notes": "道具卡只写物，不写持有者/场景/服装；hold=true 时拼配方要配 holding 动词。"
+}

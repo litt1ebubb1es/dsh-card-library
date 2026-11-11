@@ -1,0 +1,46 @@
+{
+ "id": "sc_les_sm_enema_bound",
+ "kind": "scene",
+ "name": "卧室 · 背后半身",
+ "group": "nsfw",
+ "group_title": "🔞 NSFW 跨槽位配方",
+ "description": "地点：卧室；光线：soft lighting；相机：from behind / cowboy shot。（纯环境，不含动作/服装/表情）",
+ "tags": {
+  "place": "bedroom",
+  "light_fx": "soft lighting"
+ },
+ "camera": {
+  "viewpoint": "from behind",
+  "shot_size": "cowboy shot"
+ },
+ "extra": "",
+ "extra_camera": "",
+ "env_nl": "bedroom, soft lighting, from behind.",
+ "level": 4,
+ "theme": "BDSM",
+ "count_lock": "1girl, solo",
+ "aspect": "landscape",
+ "thumb": null,
+ "env_hint": "bedroom, soft lighting, cowboy shot, from behind",
+ "pose_ref": "pose_les_sm_enema_bound",
+ "cleaned": {
+  "version": 4,
+  "policy": "env/pose split",
+  "note": "动作/服装/表情已移入 poses/pose_les_sm_enema_bound.json",
+  "removed_tag_keys": [
+   "n_body",
+   "n_orgasm",
+   "n_state",
+   "pose_base"
+  ],
+  "removed_extra": [
+   "slave",
+   "shibari",
+   "bound wrists",
+   "anal enema",
+   "enema tube",
+   "bulb syringe",
+   "sweat"
+  ]
+ }
+}

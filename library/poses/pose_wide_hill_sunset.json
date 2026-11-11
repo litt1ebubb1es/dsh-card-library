@@ -1,0 +1,41 @@
+{
+  "id": "pose_wide_hill_sunset",
+  "kind": "pose",
+  "name": "山丘 · 日落剪影",
+  "group": "sfw",
+  "group_title": "🏙 全年龄场景搭配",
+  "description": "真远景：人物站在山丘边缘背对镜头，落日把全身压成剪影，画面大部分留给天空与山谷",
+  "pose_tags": "standing",
+  "pose_nl": "she stands on the ridge of the hill against the sunset. the grass bends in the wind and the valley drops away below. her silhouette is tiny in the wide empty frame.",
+  "camera": {
+    "viewpoint": "from behind",
+    "shot_size": "wide shot",
+    "comp": "negative space"
+  },
+  "suggest_place": "hill",
+  "aspect": "landscape",
+  "level": 0,
+  "theme": "远景",
+  "count_lock": "1girl, solo",
+  "env_ref": "sc_wide_hill_sunset",
+  "source_id": "sc_wide_hill_sunset",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [
+      "scenery",
+      "silhouette",
+      "wind",
+      "grass",
+      "overlooking the valley"
+    ],
+    "removed_camera": [
+      "wide shot",
+      "full body",
+      "small figure",
+      "vast landscape",
+      "sense of scale"
+    ]
+  },
+  "thumb": "thumbs/pose_wide_hill_sunset.jpg"
+}

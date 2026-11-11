@@ -1,0 +1,31 @@
+{
+  "id": "pose_near_back_shoulder",
+  "kind": "pose",
+  "name": "背影肩胛",
+  "group": "near",
+  "group_title": "🔍 特写搭配",
+  "description": "背后视角的肩胛与脊柱线，轮廓光勾边",
+  "pose_tags": "back, shoulder blades, upper back, ",
+  "pose_nl": "her bare back and shoulder blades fill the frame. rim light runs along the edge of her shoulder. her skin is smooth and warm.",
+  "camera": {
+    "viewpoint": "from behind",
+    "shot_size": "upper body"
+  },
+  "suggest_place": "",
+  "aspect": "both",
+  "level": 0,
+  "theme": "上半身与胸",
+  "count_lock": "1girl, solo",
+  "env_ref": "",
+  "source_id": "sc_near_back_shoulder",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": [],
+    "removed_v5": [
+      "smooth skin"
+    ]
+  },
+  "thumb": "thumbs/pose_near_back_shoulder.jpg"
+}

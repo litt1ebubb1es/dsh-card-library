@@ -1,0 +1,41 @@
+{
+ "id": "sc_wide_river_lookback",
+ "kind": "scene",
+ "name": "河畔 · 暮色",
+ "group": "sfw",
+ "group_title": "🏙 全年龄场景搭配",
+ "description": "地点：河畔；天气：twilight；光线：warm lighting；景物：scenery, river bank, still water；相机：from behind / wide shot / negative space / wide shot, full body, small figure, vast landscape, sense of scale。（纯环境，不含动作/服装/表情）",
+ "tags": {
+  "place": "river",
+  "weather": "twilight",
+  "light_fx": "warm lighting"
+ },
+ "camera": {
+  "viewpoint": "from behind",
+  "shot_size": "wide shot",
+  "comp": "negative space"
+ },
+ "extra": "scenery, river bank, still water",
+ "extra_camera": "wide shot, full body, small figure, vast landscape, sense of scale",
+ "env_nl": "river, twilight, warm lighting, scenery, river bank, still water, wide shot, full body, small figure, vast landscape, sense of scale, from behind.",
+ "level": 0,
+ "theme": "远景",
+ "count_lock": "1girl, solo",
+ "aspect": "landscape",
+ "thumb": null,
+ "env_hint": "river, twilight, warm lighting, wide shot, from behind, negative space, scenery, river bank, still water, wide shot, full body, small figure, vast landscape, sense of scale",
+ "pose_ref": "pose_wide_river_lookback",
+ "cleaned": {
+  "version": 4,
+  "policy": "env/pose split",
+  "note": "动作/服装/表情已移入 poses/pose_wide_river_lookback.json",
+  "removed_tag_keys": [
+   "action",
+   "eye_gaze",
+   "pose_base"
+  ],
+  "removed_extra": [
+   "looking back over shoulder"
+  ]
+ }
+}

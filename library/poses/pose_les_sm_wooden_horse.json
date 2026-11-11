@@ -1,0 +1,27 @@
+{
+  "id": "pose_les_sm_wooden_horse",
+  "kind": "pose",
+  "name": "木马骑罚 · 高吊骑坐",
+  "group": "nsfw",
+  "group_title": "🔞 NSFW 跨槽位配方",
+  "description": "第三人称：她骑坐在木马的棱脊上、双手被举过头顶吊在上方、脚尖勉强点地，体重全压在棱上；胸前有调教道具，她翻白眼大张着嘴哭喊",
+  "pose_tags": "sitting, open mouth, bottomless, ahegao, rolled back eyes, wooden horse, slave, bound arms, wrists bound above her head, suspension, arms up, tears",
+  "pose_nl": "she sits on a wooden horse with her arms bound high above her head. her toes barely touch the stage and tears run down her face. candlelight comes from one side.",
+  "camera": {
+    "shot_size": "cowboy shot"
+  },
+  "suggest_place": "stage",
+  "aspect": "portrait",
+  "level": 4,
+  "theme": "BDSM",
+  "count_lock": "1girl, solo",
+  "env_ref": "sc_les_sm_wooden_horse",
+  "source_id": "sc_les_sm_wooden_horse",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_les_sm_wooden_horse.jpg"
+}

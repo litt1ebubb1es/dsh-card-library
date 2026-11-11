@@ -1,0 +1,16 @@
+{
+ "id": "prop_crown",
+ "kind": "prop",
+ "name": "王冠",
+ "version": "1.0",
+ "group": "accessory",
+ "group_title": "配饰",
+ "description": "王冠，王族/奇幻。",
+ "prop_tags": "crown, wearing crown, gold crown",
+ "prop_nl": "A gold crown rests on her head.",
+ "hold": false,
+ "suggest_pose": "standing",
+ "aspect": "both",
+ "thumb": null,
+ "notes": "道具卡只写物，不写持有者/场景/服装；hold=true 时拼配方要配 holding 动词。"
+}

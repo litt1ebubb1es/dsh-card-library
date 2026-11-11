@@ -1,0 +1,39 @@
+{
+  "id": "pose_wide_mountain_lookback",
+  "kind": "pose",
+  "name": "山道 · 回眸",
+  "group": "sfw",
+  "group_title": "🏙 全年龄场景搭配",
+  "description": "真远景：山道走到一半回头，身后是层叠山脊与云海",
+  "pose_tags": "standing, looking back, looking back over shoulder",
+  "pose_nl": "she turns to look back over her shoulder from the mountain path. the ridge falls away into a sea of clouds below her. the wind pulls at her hair and coat.",
+  "camera": {
+    "viewpoint": "from behind",
+    "shot_size": "wide shot",
+    "comp": "negative space"
+  },
+  "suggest_place": "mountain",
+  "aspect": "landscape",
+  "level": 0,
+  "theme": "远景",
+  "count_lock": "1girl, solo",
+  "env_ref": "sc_wide_mountain_lookback",
+  "source_id": "sc_wide_mountain_lookback",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [
+      "scenery",
+      "mountain ridge",
+      "sea of clouds"
+    ],
+    "removed_camera": [
+      "wide shot",
+      "full body",
+      "small figure",
+      "vast landscape",
+      "sense of scale"
+    ]
+  },
+  "thumb": "thumbs/pose_wide_mountain_lookback.jpg"
+}

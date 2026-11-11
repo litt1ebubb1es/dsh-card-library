@@ -1,0 +1,73 @@
+{
+  "id": "look_tomb_raider",
+  "kind": "look",
+  "name": "盗墓者",
+  "version": "1.0",
+  "description": "兜帽斗篷 + 紧身甲衣 + 多重皮带 + 露指手套 + 过膝靴 + 匕首",
+  "nsfw": false,
+  "tags": "hooded cloak, multiple belts, fingerless gloves, thigh boots, dagger, armored bodysuit, navy blue hooded cloak, glossy lips, red nail polish, fully clothed, wearing clothes, covered chest, covered torso, long sleeves, fantasy, intricate details, ",
+  "fields": {
+    "outfit": "tomb raider",
+    "pieces": "hooded cloak, multiple belts, fingerless gloves, thigh boots, dagger, armored bodysuit",
+    "cloth_color": "navy blue"
+  },
+  "body_decor": {
+    "makeup": "glossy lips",
+    "nails": "red nail polish",
+    "skin_detail": "mole under eye"
+  },
+  "look_notes": {},
+  "artist_segment": "minaba_hideo, liduke, piromizu, nonco,",
+  "style_label": "柔光半写实 (基准)",
+  "negative_extra": "modern city, cars, electric lights, crowd, many people, multiple girls, 2girls, t-shirt, jeans, hoodie, sneakers, casual clothes, nude, naked, topless, bottomless, no bra, bare breasts, exposed breasts, nipples, pussy, exposed pussy, underwear, panties only, undressing, torn clothes, clothing cutout, breast cutout, sideboob, underboob, cleavage window, open clothes, unbuttoned, ",
+  "params": {
+    "model": "miaomiaoHarem_anima8Step10.safetensors",
+    "lora": "anima-turbo-lora-v0.1.safetensors @ 0.4",
+    "clip": "qwen_3_06b_base.safetensors (type=qwen_image)",
+    "vae": "qwen_image_vae.safetensors",
+    "steps": 12,
+    "cfg": 2.0,
+    "sampler": "euler",
+    "scheduler": "simple",
+    "resolution": "832x1216",
+    "seed": 114002
+  },
+  "thumb": "thumbs/look_tomb_raider.jpg",
+  "source_dir": "_assets/characters/look_tomb_raider",
+  "look_tags": "hooded cloak, multiple belts, fingerless gloves, thigh boots, dagger, armored bodysuit, navy blue hooded cloak, glossy lips, red nail polish, fully clothed, wearing clothes, covered chest, covered torso, long sleeves, fantasy, intricate details, ",
+  "pose_tags": "",
+  "tag_split": {
+    "version": 3,
+    "cloth": 18,
+    "pose": 0,
+    "moved_pose": [
+      "arms at sides"
+    ],
+    "migrated_to": "pose_from_tomb_raider"
+  },
+  "legacy_pose_ref": "pose_from_tomb_raider",
+  "fields_legacy_pose": {
+    "emotion": "serious",
+    "eye_gaze": "looking away",
+    "mouth": "parted lips",
+    "pose_base": "standing",
+    "arms_hands": "arms at sides",
+    "action": "looking back, standing",
+    "prop": "dagger",
+    "shot_size": "full body"
+  },
+  "clean_note": {
+    "version": 6.1,
+    "removed_look": [
+      "mole under eye"
+    ],
+    "removed_v6": [
+      "tomb_raider"
+    ],
+    "color_bound_v6": [],
+    "fixed_v6b": [],
+    "color_bound_v6b": [
+      "navy blue -> navy blue hooded cloak"
+    ]
+  }
+}

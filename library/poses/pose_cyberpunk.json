@@ -1,0 +1,22 @@
+{
+  "id": "pose_cyberpunk",
+  "kind": "pose",
+  "name": "赛博朋克",
+  "version": 1,
+  "group": "from_look",
+  "group_title": "来自造型卡",
+  "description": "景别：cowboy shot；动作：standing, hands in pockets, looking at viewer, cool, closed mouth, head tilt, cowboy shot。",
+  "pose_tags": "standing, hands in pockets, looking at viewer, cool, closed mouth, head tilt, cowboy shot",
+  "pose_nl": "",
+  "camera": {
+    "shot_size": "cowboy shot",
+    "viewpoint": "from front"
+  },
+  "suggest_place": "street",
+  "aspect": "portrait",
+  "thumb": "thumbs/pose_cyberpunk.jpg",
+  "env_ref": null,
+  "source": "look_pose_v1",
+  "legacy_look": "look_cyberpunk",
+  "notes": "由 random36 挑图反推（v4）。动作卡只讲做什么，穿什么归造型卡。"
+}

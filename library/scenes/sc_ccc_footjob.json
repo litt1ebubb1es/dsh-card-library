@@ -1,0 +1,41 @@
+{
+ "id": "sc_ccc_footjob",
+ "kind": "scene",
+ "name": "卧室 · 低角床沿",
+ "group": "nsfw",
+ "group_title": "🔞 NSFW 跨槽位配方",
+ "description": "地点：卧室；相机：from below。（纯环境，不含动作/服装/表情）",
+ "tags": {
+  "place": "bedroom"
+ },
+ "camera": {
+  "viewpoint": "from below"
+ },
+ "extra": "",
+ "extra_camera": "",
+ "env_nl": "bedroom, from below.",
+ "level": 2,
+ "theme": "前戏",
+ "count_lock": "1girl, 1boy, hetero",
+ "aspect": "landscape",
+ "thumb": null,
+ "env_hint": "bedroom, from below",
+ "pose_ref": "pose_ccc_footjob",
+ "cleaned": {
+  "version": 4,
+  "policy": "env/pose split",
+  "note": "动作/服装/表情已移入 poses/pose_ccc_footjob.json",
+  "removed_tag_keys": [
+   "leg",
+   "n_act",
+   "n_orgasm",
+   "n_shoes_keep",
+   "socks"
+  ],
+  "removed_extra": [
+   "feet focus",
+   "soles",
+   "toes"
+  ]
+ }
+}

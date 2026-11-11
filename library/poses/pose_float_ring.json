@@ -1,0 +1,27 @@
+{
+  "id": "pose_float_ring",
+  "kind": "pose",
+  "name": "浮床 · 仰面漂流水（擦边）",
+  "group": "sfw",
+  "group_title": "🏙 全年龄场景搭配",
+  "description": "水面上慵懒的日光浴",
+  "pose_tags": "on back, hand on own cheek, embarrassed, blush, bare feet, float, sunbathing, sunscreen",
+  "pose_nl": "she floats on her back on an inflatable ring in the pool with sunscreen on her skin. one hand rests on her cheek and her eyes are half closed. the water shimmers around her.",
+  "camera": {
+    "viewpoint": "from above"
+  },
+  "suggest_place": "poolside",
+  "aspect": "landscape",
+  "level": 1,
+  "theme": "夏",
+  "count_lock": "1girl, solo",
+  "env_ref": "sc_float_ring",
+  "source_id": "sc_float_ring",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_float_ring.jpg"
+}

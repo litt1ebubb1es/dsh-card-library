@@ -1,0 +1,68 @@
+{
+  "id": "look_alchemist",
+  "kind": "look",
+  "name": "炼金术士",
+  "version": "1.0",
+  "description": "青绿长风衣敞开 + 皮围裙 + 护目镜 + 腰挂药剂瓶，持长柄勺搅拌炼金锅",
+  "nsfw": false,
+  "tags": "1girl, solo, long coat, leather apron, goggles around neck, brown pants, loose pants, leather boots, lace-up boots, utility belt, multiple belts, belt pouch, leather gloves, vials, potion, worn leather, canvas, stained fabric, open coat, open apron, cleavage, sideboob, bare sides, bare chest sides, standing, leaning forward, holding ladle, stirring pot, one hand on pot, both hands occupied, no hands free, focused, looking down, serious, closed mouth, ladle, cauldron, alchemy pot, potion, cowboy shot, detailed skin texture, skin pores, fine skin detail, natural skin tone, soft shadow on skin, ",
+  "fields": {
+    "clothes": "long coat, leather apron, goggles around neck, brown pants, loose pants, leather boots, lace-up boots, utility belt, multiple belts, belt pouch, leather gloves, vials, potion, worn leather, canvas, stained fabric, open coat, open apron, cleavage, sideboob, bare sides, bare chest sides"
+  },
+  "body_decor": {},
+  "look_notes": {},
+  "artist_segment": "minaba_hideo, liduke, piromizu, nonco,",
+  "style_label": "柔光半写实 (基准)",
+  "negative_extra": "worst quality, low quality, score_1, score_2, score_3, lowres, jpeg artifacts, cel shading, flat colors, painterly, 3d render, deformed body, bad proportions, big head, bad hands, extra fingers, missing fingers, extra limbs, watermark, signature, text, logo, artist name, cat ears, animal ear fluff, tail, male, 1boy, multiple boys, multiple girls, 2girls, crowd, nude, naked, topless, bottomless, no bra, bare breasts, exposed breasts, nipples, panties, underwear, covered crotch, pantyhose, tights, stockings, white shirt, white undershirt, undershirt, camisole, white fabric, inner lining, white top, white cloth, white collar, white chest fabric, cleavage window, breast cutout, keyhole, chest window, cutout clothing, chest hole, boob window, closed coat, buttoned up, turtleneck, metal armor, breastplate, plate armor, steel, chrome, shiny metal, metallic, iron, polished armor, cup, mug, white cup, paper cup, holding cup, holding mug, drinking, thermos, bottle, holding phone, holding book, holding bag, bow, arrow, quiver, sword, modern clothes, jeans, sneakers, city, buildings, cars, ",
+  "params": {
+    "model": "miaomiaoHarem_anima8Step10.safetensors",
+    "lora": "anima-turbo-lora-v0.1.safetensors @ 0.4",
+    "clip": "qwen_3_06b_base.safetensors (type=qwen_image)",
+    "vae": "qwen_image_vae.safetensors",
+    "steps": 12,
+    "cfg": 2.0,
+    "sampler": "euler",
+    "scheduler": "simple",
+    "resolution": "832x1216",
+    "seed": 650000
+  },
+  "thumb": "thumbs/look_alchemist.jpg",
+  "source_dir": "_assets/characters/look_alchemist",
+  "look_tags": "1girl, solo, long coat, leather apron, goggles around neck, brown pants, loose pants, leather boots, lace-up boots, utility belt, multiple belts, belt pouch, leather gloves, vials, potion, worn leather, canvas, stained fabric, open coat, open apron, cleavage, sideboob, bare sides, bare chest sides, ladle, cauldron, alchemy pot, potion, detailed skin texture, skin pores, fine skin detail, natural skin tone, soft shadow on skin, ",
+  "pose_tags": "",
+  "tag_split": {
+    "version": 3,
+    "cloth": 49,
+    "pose": 0,
+    "moved_pose": [],
+    "migrated_to": "pose_from_alchemist"
+  },
+  "legacy_pose_ref": "pose_from_alchemist",
+  "fields_legacy_pose": {
+    "pose": "standing, leaning forward, holding ladle, stirring pot, one hand on pot, both hands occupied, no hands free",
+    "expr": "focused, looking down, serious, closed mouth",
+    "prop": "ladle, cauldron, alchemy pot, potion",
+    "shot": "cowboy shot"
+  },
+  "clean_note": {
+    "version": 5,
+    "removed_look": [
+      "tooth_necklace",
+      "vampire",
+      "fang_out",
+      "white hair",
+      "heterochromia",
+      "mole_under_eye",
+      "close-set eyes",
+      "short_hair",
+      "blue_eyes",
+      "pointy_ears",
+      "fang",
+      "symbol-shaped_pupils",
+      "round face",
+      "red eyes",
+      "Long nails",
+      "subsurface scattering"
+    ]
+  }
+}

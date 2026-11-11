@@ -1,0 +1,27 @@
+{
+  "id": "pose_msb_office_night",
+  "kind": "pose",
+  "name": "自慰 · 加班夜桌前",
+  "group": "nsfw",
+  "group_title": "🔞 NSFW 跨槽位配方",
+  "description": "深夜办公室，隔着衣服摸",
+  "pose_tags": "embarrassed, blush, biting own lip, clothes pull, panties aside, office lady, solo, overtime, hand on own thigh, under skirt",
+  "pose_nl": "she sits at her office desk after midnight with her skirt pushed up and her panties pulled aside. one hand works under the desk and her face is flushed. the desk lamp is the only light.",
+  "camera": {
+    "viewpoint": "from side"
+  },
+  "suggest_place": "office",
+  "aspect": "portrait",
+  "level": 2,
+  "theme": "挖矿",
+  "count_lock": "1girl, solo",
+  "env_ref": "sc_msb_office_night",
+  "source_id": "sc_msb_office_night",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_msb_office_night.jpg"
+}

@@ -1,0 +1,16 @@
+{
+ "id": "prop_sword",
+ "kind": "prop",
+ "name": "长剑",
+ "version": "1.0",
+ "group": "weapon",
+ "group_title": "武器",
+ "description": "长剑/太刀，奇幻/战斗。",
+ "prop_tags": "sword, holding sword, katana",
+ "prop_nl": "She holds a long sword at her side.",
+ "hold": true,
+ "suggest_pose": "holding sword, standing",
+ "aspect": "both",
+ "thumb": null,
+ "notes": "道具卡只写物，不写持有者/场景/服装；hold=true 时拼配方要配 holding 动词。"
+}

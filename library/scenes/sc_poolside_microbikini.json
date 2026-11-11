@@ -1,0 +1,40 @@
+{
+ "id": "sc_poolside_microbikini",
+ "kind": "scene",
+ "name": "泳池边 · 光柱",
+ "group": "sfw",
+ "group_title": "🏙 全年龄场景搭配",
+ "description": "地点：泳池边；光线：god rays；景物：water surface；相机：from above。（纯环境，不含动作/服装/表情）",
+ "tags": {
+  "place": "poolside",
+  "light_fx": "god rays"
+ },
+ "camera": {
+  "viewpoint": "from above"
+ },
+ "extra": "water surface",
+ "extra_camera": "",
+ "env_nl": "poolside, god rays, water surface, from above.",
+ "level": 1,
+ "theme": "夏",
+ "count_lock": "1girl, solo",
+ "aspect": "portrait",
+ "thumb": null,
+ "env_hint": "poolside, god rays, from above, water surface",
+ "pose_ref": "pose_poolside_microbikini",
+ "cleaned": {
+  "version": 4,
+  "policy": "env/pose split",
+  "note": "动作/服装/表情已移入 poses/pose_poolside_microbikini.json",
+  "removed_tag_keys": [
+   "arms_hands",
+   "emotion",
+   "pose_base",
+   "shoes"
+  ],
+  "removed_extra": [
+   "sunbathing",
+   "sunscreen"
+  ]
+ }
+}

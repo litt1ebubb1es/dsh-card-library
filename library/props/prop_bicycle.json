@@ -1,0 +1,16 @@
+{
+ "id": "prop_bicycle",
+ "kind": "prop",
+ "name": "自行车",
+ "version": "1.0",
+ "group": "daily",
+ "group_title": "日常",
+ "description": "自行车，通勤/河堤。",
+ "prop_tags": "bicycle, riding bicycle, holding bicycle",
+ "prop_nl": "She walks beside a bicycle.",
+ "hold": true,
+ "suggest_pose": "riding bicycle, standing with bicycle",
+ "aspect": "both",
+ "thumb": null,
+ "notes": "道具卡只写物，不写持有者/场景/服装；hold=true 时拼配方要配 holding 动词。"
+}

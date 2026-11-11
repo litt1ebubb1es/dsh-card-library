@@ -1,0 +1,32 @@
+{
+  "id": "pose_pose_crossed_ankles",
+  "kind": "pose",
+  "name": "脚踝交叉 · 坐",
+  "group": "pose",
+  "group_title": "🧎 姿势场景",
+  "description": "坐姿脚踝交叠，低机位拍脚部细节与小腿线条",
+  "pose_tags": "crossed ankles, sitting on chair, sitting",
+  "pose_nl": "she sits on the chair with her ankles crossed and her hands in her lap. seen from the side so the long line of her legs leads down to her feet. the room behind her is out of focus.",
+  "camera": {
+    "viewpoint": "from side",
+    "shot_size": "full body",
+    "dof": "depth of field, blurry background"
+  },
+  "suggest_place": "",
+  "aspect": "portrait",
+  "level": 0,
+  "theme": "姿势·脚踝交叉",
+  "count_lock": "1girl, solo",
+  "env_ref": "",
+  "source_id": "sc_pose_crossed_ankles",
+  "clean_note": {
+    "version": 4,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": [],
+    "from_nl": [
+      "sitting"
+    ]
+  },
+  "thumb": "thumbs/pose_pose_crossed_ankles.jpg"
+}

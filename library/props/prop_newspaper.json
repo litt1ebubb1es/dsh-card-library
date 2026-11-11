@@ -1,0 +1,16 @@
+{
+ "id": "prop_newspaper",
+ "kind": "prop",
+ "name": "报纸",
+ "version": "1.0",
+ "group": "stationery",
+ "group_title": "文具纸品",
+ "description": "报纸，早晨/年代感。",
+ "prop_tags": "newspaper, holding newspaper, reading newspaper",
+ "prop_nl": "She reads a folded newspaper.",
+ "hold": true,
+ "suggest_pose": "reading newspaper",
+ "aspect": "both",
+ "thumb": null,
+ "notes": "道具卡只写物，不写持有者/场景/服装；hold=true 时拼配方要配 holding 动词。"
+}

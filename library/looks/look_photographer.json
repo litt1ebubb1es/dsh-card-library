@@ -1,0 +1,53 @@
+{
+  "id": "look_photographer",
+  "kind": "look",
+  "name": "摄影师",
+  "version": "1.0",
+  "description": "风衣 + 高领毛衣 + 牛仔裤 + 手套，脖子上挂相机，举机取景",
+  "nsfw": false,
+  "tags": "trench coat, beige trench coat, turtleneck, black turtleneck, jeans, boots, fingerless gloves, camera around neck, camera strap, belt, ",
+  "fields": {
+    "outfit": "trench coat",
+    "top": "turtleneck",
+    "bottom": "jeans",
+    "shoes": "boots",
+    "accessory": "camera around neck, fingerless gloves",
+    "cloth_color": "beige",
+    "cloth_mat": "wool",
+    "cloth_state_sfw": "collar up"
+  },
+  "body_decor": {
+    "nails": "nail polish"
+  },
+  "look_notes": {},
+  "artist_segment": "@wlop, @minaba_hideo, ",
+  "style_label": "柔光半写实 (wlop+minaba)",
+  "negative_extra": "",
+  "params": {
+    "model": "miaomiaoHarem_anima8Step10.safetensors",
+    "lora": "anima-turbo-lora-v0.1.safetensors @ 0.4",
+    "clip": "qwen_3_06b_base.safetensors (type=qwen_image)",
+    "vae": "qwen_image_vae.safetensors",
+    "steps": 12,
+    "cfg": 2.0,
+    "sampler": "euler",
+    "scheduler": "simple",
+    "resolution": "832x1216"
+  },
+  "thumb": "thumbs/look_photographer.jpg",
+  "source_dir": "",
+  "look_tags": "trench coat, beige trench coat, turtleneck, black turtleneck, jeans, boots, fingerless gloves, camera around neck, camera strap, belt, ",
+  "pose_tags": "",
+  "tag_split": {
+    "version": 3,
+    "cloth": 10,
+    "pose": 0,
+    "moved_pose": [],
+    "migrated_to": "pose_photographer"
+  },
+  "legacy_pose_ref": "pose_photographer",
+  "clean_note": {
+    "version": 8,
+    "source": "random36 picked by user"
+  }
+}

@@ -1,0 +1,39 @@
+{
+ "id": "sc_maid_serving",
+ "kind": "scene",
+ "name": "咖啡馆 · 鸟瞰",
+ "group": "sfw",
+ "group_title": "🏙 全年龄场景搭配",
+ "description": "地点：咖啡馆；景物：cafe；相机：bird's eye view。（纯环境，不含动作/服装/表情）",
+ "tags": {
+  "place": "cafe"
+ },
+ "camera": {
+  "viewpoint": "bird's eye view"
+ },
+ "extra": "cafe",
+ "extra_camera": "",
+ "env_nl": "cafe, cafe, seen bird's eye view.",
+ "level": 1,
+ "theme": "职场",
+ "count_lock": "1girl, solo",
+ "aspect": "portrait",
+ "thumb": null,
+ "env_hint": "cafe, bird's eye view, cafe",
+ "pose_ref": "pose_maid_serving",
+ "cleaned": {
+  "version": 4,
+  "policy": "env/pose split",
+  "note": "动作/服装/表情已移入 poses/pose_maid_serving.json",
+  "removed_tag_keys": [
+   "arms_hands",
+   "emotion",
+   "outfit",
+   "pose_risque"
+  ],
+  "removed_extra": [
+   "teacup",
+   "frills"
+  ]
+ }
+}

@@ -1,0 +1,27 @@
+{
+  "id": "pose_bath_towel",
+  "kind": "pose",
+  "name": "浴后 · 裹巾湿发（擦边）",
+  "group": "sfw",
+  "group_title": "🏙 全年龄场景搭配",
+  "description": "浴巾与蒸汽,肩颈线条",
+  "pose_tags": "standing, hand in own hair, embarrassed, blush, off shoulder, towel, wet hair",
+  "pose_nl": "she stands in the steamy bathroom wrapped in a towel with water still on her skin. one hand pushes her wet hair back. the mirror behind her is fogged.",
+  "camera": {},
+  "suggest_place": "bathroom",
+  "aspect": "portrait",
+  "level": 1,
+  "theme": "日常",
+  "count_lock": "1girl, solo",
+  "env_ref": "sc_bath_towel",
+  "source_id": "sc_bath_towel",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [
+      "water drops"
+    ],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_bath_towel.jpg"
+}

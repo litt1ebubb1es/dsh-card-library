@@ -1,0 +1,40 @@
+{
+ "id": "sc_poolside_summer",
+ "kind": "scene",
+ "name": "泳池边 · 晴",
+ "group": "sfw",
+ "group_title": "🏙 全年龄场景搭配",
+ "description": "地点：泳池边；天气：clear sky；光线：god rays；景物：water surface, caustics；相机：full body。（纯环境，不含动作/服装/表情）",
+ "tags": {
+  "place": "poolside",
+  "weather": "clear sky",
+  "light_fx": "god rays"
+ },
+ "camera": {
+  "shot_size": "full body"
+ },
+ "extra": "water surface, caustics",
+ "extra_camera": "",
+ "env_nl": "poolside, clear sky, god rays, water surface, caustics, seen full body.",
+ "level": 0,
+ "theme": "夏",
+ "count_lock": "1girl, solo",
+ "aspect": "both",
+ "thumb": null,
+ "env_hint": "poolside, clear sky, god rays, full body, water surface, caustics",
+ "pose_ref": "pose_poolside_summer",
+ "cleaned": {
+  "version": 4,
+  "policy": "env/pose split",
+  "note": "动作/服装/表情已移入 poses/pose_poolside_summer.json",
+  "removed_tag_keys": [
+   "arms_hands",
+   "emotion",
+   "pose_base",
+   "shoes"
+  ],
+  "removed_extra": [
+   "towel"
+  ]
+ }
+}

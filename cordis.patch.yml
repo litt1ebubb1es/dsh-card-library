@@ -1,0 +1,7 @@
+# dsh-card-library — bundle patch layer
+#
+# 单行：把本包的宿主半端挂进 DSH profile。client 半端由 manifest 的
+# `dsh.client` 自动加载，不在这里登记。
+- insert:
+    - id: card-library-plugin
+      name: dsh-card-library

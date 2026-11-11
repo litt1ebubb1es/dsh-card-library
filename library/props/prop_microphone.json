@@ -1,0 +1,16 @@
+{
+ "id": "prop_microphone",
+ "kind": "prop",
+ "name": "麦克风",
+ "version": "1.0",
+ "group": "tech",
+ "group_title": "电子乐器",
+ "description": "麦克风，演出/直播。",
+ "prop_tags": "microphone, holding microphone, singing",
+ "prop_nl": "She sings into a microphone.",
+ "hold": true,
+ "suggest_pose": "singing, holding microphone",
+ "aspect": "both",
+ "thumb": null,
+ "notes": "道具卡只写物，不写持有者/场景/服装；hold=true 时拼配方要配 holding 动词。"
+}

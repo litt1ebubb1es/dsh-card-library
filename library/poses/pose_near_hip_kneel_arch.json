@@ -1,0 +1,28 @@
+{
+  "id": "pose_near_hip_kneel_arch",
+  "kind": "pose",
+  "name": "跪姿弓背",
+  "group": "pose",
+  "group_title": "🔍 特写搭配",
+  "description": "跪姿弓背，臀部与后腰一起入画",
+  "pose_tags": "kneeling, arched back, ass, hips, lower back, thighs, head out of frame, lower body, ass focus",
+  "pose_nl": "she kneels with her back arched and her hips pushed back toward the viewer. the frame holds only her lower back and thighs. the side light traces her spine.",
+  "camera": {
+    "viewpoint": "from side, from behind",
+    "shot_size": "extreme close-up"
+  },
+  "suggest_place": "",
+  "aspect": "both",
+  "level": 1,
+  "theme": "臀部",
+  "count_lock": "1girl, solo",
+  "env_ref": "",
+  "source_id": "sc_near_hip_kneel_arch",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_near_hip_kneel_arch.jpg"
+}

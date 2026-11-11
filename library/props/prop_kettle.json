@@ -1,0 +1,16 @@
+{
+ "id": "prop_kettle",
+ "kind": "prop",
+ "name": "水壶",
+ "version": "1.0",
+ "group": "home",
+ "group_title": "家居",
+ "description": "水壶，厨房。",
+ "prop_tags": "kettle, holding kettle, pouring",
+ "prop_nl": "She lifts a kettle off the stove.",
+ "hold": true,
+ "suggest_pose": "pouring, holding kettle",
+ "aspect": "both",
+ "thumb": null,
+ "notes": "道具卡只写物，不写持有者/场景/服装；hold=true 时拼配方要配 holding 动词。"
+}

@@ -1,0 +1,31 @@
+{
+  "id": "pose_near_face_rain",
+  "kind": "pose",
+  "name": "雨中湿脸",
+  "group": "near",
+  "group_title": "🔍 特写搭配",
+  "description": "霓虹雨夜，脸颊带雨珠的面部特写",
+  "pose_tags": "damp skin, raindrops on face, damp hair, parted lips, shoulders, ",
+  "pose_nl": "raindrops sit on her damp skin and her hair is wet against her cheek. neon light from the street colors one side of her face. her lips are parted.",
+  "camera": {
+    "shot_size": "extreme close-up",
+    "dof": "focus on face"
+  },
+  "suggest_place": "street",
+  "aspect": "both",
+  "level": 0,
+  "theme": "面部",
+  "count_lock": "1girl, solo",
+  "env_ref": "sc_near_face_rain",
+  "source_id": "sc_near_face_rain",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": [],
+    "removed_v5": [
+      "glistening skin"
+    ]
+  },
+  "thumb": "thumbs/pose_near_face_rain.jpg"
+}

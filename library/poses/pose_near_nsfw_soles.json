@@ -1,0 +1,28 @@
+{
+  "id": "pose_near_nsfw_soles",
+  "kind": "pose",
+  "name": "足底特写",
+  "group": "pose",
+  "group_title": "🔍 特写搭配",
+  "description": "仰躺抬腿，脚掌正对镜头",
+  "pose_tags": "on back, leg up, bare feet, barefoot, soles, foot, toes, feet focus, head out of frame, lower body",
+  "pose_nl": "her raised bare soles fill the frame from below with the toes spread. the leg is lifted toward the viewer. only feet and ankle are shown.",
+  "camera": {
+    "viewpoint": "from below",
+    "shot_size": "extreme close-up"
+  },
+  "suggest_place": "",
+  "aspect": "both",
+  "level": 1,
+  "theme": "🔞 成人向",
+  "count_lock": "1girl, solo",
+  "env_ref": "",
+  "source_id": "sc_near_nsfw_soles",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_near_nsfw_soles.jpg"
+}

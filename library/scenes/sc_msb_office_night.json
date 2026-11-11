@@ -1,0 +1,45 @@
+{
+ "id": "sc_msb_office_night",
+ "kind": "scene",
+ "name": "办公室 · 夜",
+ "group": "nsfw",
+ "group_title": "🔞 NSFW 跨槽位配方",
+ "description": "地点：办公室；天气：night；光线：warm lighting；道具：desk lamp；相机：from side。（纯环境，不含动作/服装/表情）",
+ "tags": {
+  "place": "office",
+  "weather": "night",
+  "light_fx": "warm lighting",
+  "prop": "desk lamp"
+ },
+ "camera": {
+  "viewpoint": "from side"
+ },
+ "extra": "",
+ "extra_camera": "",
+ "env_nl": "office, night, warm lighting, desk lamp, from side.",
+ "level": 2,
+ "theme": "挖矿",
+ "count_lock": "1girl, solo",
+ "aspect": "portrait",
+ "thumb": null,
+ "env_hint": "office, night, warm lighting, desk lamp, from side",
+ "pose_ref": "pose_msb_office_night",
+ "cleaned": {
+  "version": 4,
+  "policy": "env/pose split",
+  "note": "动作/服装/表情已移入 poses/pose_msb_office_night.json",
+  "removed_tag_keys": [
+   "emotion",
+   "mouth",
+   "n_exposure",
+   "n_state",
+   "outfit"
+  ],
+  "removed_extra": [
+   "solo",
+   "overtime",
+   "hand on own thigh",
+   "under skirt"
+  ]
+ }
+}

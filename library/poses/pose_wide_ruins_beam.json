@@ -1,0 +1,40 @@
+{
+  "id": "pose_wide_ruins_beam",
+  "kind": "pose",
+  "name": "废墟 · 光柱",
+  "group": "sfw",
+  "group_title": "🏙 全年龄场景搭配",
+  "description": "真远景：断墙废墟里一道光柱落下来，人物站在尘埃里",
+  "pose_tags": "standing",
+  "pose_nl": "she stands in the broken hall of the ruins. a single shaft of light comes down through the collapsed roof and hangs full of dust. the fallen walls make a long empty space around her.",
+  "camera": {
+    "viewpoint": "from behind",
+    "shot_size": "wide shot",
+    "comp": "landscape"
+  },
+  "suggest_place": "ruins",
+  "aspect": "landscape",
+  "level": 0,
+  "theme": "远景",
+  "count_lock": "1girl, solo",
+  "env_ref": "sc_wide_ruins_beam",
+  "source_id": "sc_wide_ruins_beam",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [
+      "scenery",
+      "broken walls",
+      "dust motes",
+      "rubble"
+    ],
+    "removed_camera": [
+      "wide shot",
+      "full body",
+      "small figure",
+      "vast landscape",
+      "sense of scale"
+    ]
+  },
+  "thumb": "thumbs/pose_wide_ruins_beam.jpg"
+}

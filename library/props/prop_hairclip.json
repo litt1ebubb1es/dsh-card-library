@@ -1,0 +1,16 @@
+{
+ "id": "prop_hairclip",
+ "kind": "prop",
+ "name": "发夹",
+ "version": "1.0",
+ "group": "accessory",
+ "group_title": "配饰",
+ "description": "发夹/发饰。",
+ "prop_tags": "hairclip, wearing hairclip, hair ornament",
+ "prop_nl": "A hairclip pins back her bangs.",
+ "hold": false,
+ "suggest_pose": "standing",
+ "aspect": "both",
+ "thumb": null,
+ "notes": "道具卡只写物，不写持有者/场景/服装；hold=true 时拼配方要配 holding 动词。"
+}

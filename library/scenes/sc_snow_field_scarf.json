@@ -1,0 +1,40 @@
+{
+ "id": "sc_snow_field_scarf",
+ "kind": "scene",
+ "name": "原野 · 雪",
+ "group": "sfw",
+ "group_title": "🏙 全年龄场景搭配",
+ "description": "地点：原野；天气：snow；光线：soft lighting；景物：breath visible, snowflakes；相机：from below / full body / negative space。（纯环境，不含动作/服装/表情）",
+ "tags": {
+  "place": "field",
+  "weather": "snow",
+  "light_fx": "soft lighting"
+ },
+ "camera": {
+  "viewpoint": "from below",
+  "shot_size": "full body",
+  "comp": "negative space"
+ },
+ "extra": "breath visible, snowflakes",
+ "extra_camera": "",
+ "env_nl": "field, snow, soft lighting, breath visible, snowflakes, from below.",
+ "level": 0,
+ "theme": "冬",
+ "count_lock": "1girl, solo",
+ "aspect": "portrait",
+ "thumb": null,
+ "env_hint": "field, snow, soft lighting, full body, from below, negative space, breath visible, snowflakes",
+ "pose_ref": "pose_snow_field_scarf",
+ "cleaned": {
+  "version": 4,
+  "policy": "env/pose split",
+  "note": "动作/服装/表情已移入 poses/pose_snow_field_scarf.json",
+  "removed_tag_keys": [
+   "accessory",
+   "arms_hands",
+   "emotion",
+   "pose_base"
+  ],
+  "removed_extra": []
+ }
+}

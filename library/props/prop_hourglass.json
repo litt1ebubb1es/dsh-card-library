@@ -1,0 +1,16 @@
+{
+ "id": "prop_hourglass",
+ "kind": "prop",
+ "name": "沙漏",
+ "version": "1.0",
+ "group": "fantasy",
+ "group_title": "奇幻魔法",
+ "description": "沙漏，时间/命运。",
+ "prop_tags": "hourglass, holding hourglass",
+ "prop_nl": "An hourglass turns in her hand.",
+ "hold": true,
+ "suggest_pose": "holding hourglass",
+ "aspect": "both",
+ "thumb": null,
+ "notes": "道具卡只写物，不写持有者/场景/服装；hold=true 时拼配方要配 holding 动词。"
+}

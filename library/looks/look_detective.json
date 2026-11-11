@@ -1,0 +1,51 @@
+{
+  "id": "look_detective",
+  "kind": "look",
+  "name": "侦探",
+  "version": "1.0",
+  "description": "风衣 + 马甲 + 衬衫领带 + 软呢帽 + 皮手套 + 怀表链，手插兜侧目",
+  "nsfw": false,
+  "tags": "trench coat, brown trench coat, waistcoat, white shirt, necktie, fedora, leather gloves, pocket watch chain, dress shoes, collar up, belt, ",
+  "fields": {
+    "outfit": "trench coat",
+    "top": "waistcoat, white shirt",
+    "bottom": "trousers",
+    "shoes": "dress shoes",
+    "accessory": "fedora, leather gloves, pocket watch chain",
+    "cloth_color": "brown",
+    "cloth_mat": "wool",
+    "cloth_state_sfw": "collar up"
+  },
+  "body_decor": {},
+  "look_notes": {},
+  "artist_segment": "@wlop, @minaba_hideo, ",
+  "style_label": "柔光半写实 (wlop+minaba)",
+  "negative_extra": "",
+  "params": {
+    "model": "miaomiaoHarem_anima8Step10.safetensors",
+    "lora": "anima-turbo-lora-v0.1.safetensors @ 0.4",
+    "clip": "qwen_3_06b_base.safetensors (type=qwen_image)",
+    "vae": "qwen_image_vae.safetensors",
+    "steps": 12,
+    "cfg": 2.0,
+    "sampler": "euler",
+    "scheduler": "simple",
+    "resolution": "832x1216"
+  },
+  "thumb": "thumbs/look_detective.jpg",
+  "source_dir": "",
+  "look_tags": "trench coat, brown trench coat, waistcoat, white shirt, necktie, fedora, leather gloves, pocket watch chain, dress shoes, collar up, belt, ",
+  "pose_tags": "",
+  "tag_split": {
+    "version": 3,
+    "cloth": 11,
+    "pose": 0,
+    "moved_pose": [],
+    "migrated_to": "pose_detective"
+  },
+  "legacy_pose_ref": "pose_detective",
+  "clean_note": {
+    "version": 8,
+    "source": "random36 picked by user"
+  }
+}

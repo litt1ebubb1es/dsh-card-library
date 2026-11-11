@@ -1,0 +1,36 @@
+{
+  "id": "pose_changing_room",
+  "kind": "pose",
+  "name": "更衣室 · 换装",
+  "group": "sfw",
+  "group_title": "🏙 全年龄场景搭配",
+  "description": "体操服与更衣室，手拽衣领",
+  "pose_tags": "standing, clothes pull, embarrassed, blush, fabric, ",
+  "pose_nl": "she stands in the narrow changing room with the gym uniform half pulled up and her face red. the locker door hangs open beside her and her folded clothes sit on the bench. she glances at the door.",
+  "camera": {
+    "shot_size": "cowboy shot"
+  },
+  "suggest_place": "changing room",
+  "aspect": "portrait",
+  "level": 2,
+  "theme": "日常",
+  "count_lock": "1girl, solo",
+  "env_ref": "sc_changing_room",
+  "source_id": "sc_changing_room",
+  "clean_note": {
+    "version": 3,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [
+      "locker"
+    ],
+    "removed_camera": [],
+    "removed_cloth": [
+      "gym uniform",
+      "necklace"
+    ],
+    "removed_v5": [
+      "bench"
+    ]
+  },
+  "thumb": "thumbs/pose_changing_room.jpg"
+}

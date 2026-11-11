@@ -1,0 +1,30 @@
+{
+  "id": "pose_surf_board",
+  "kind": "pose",
+  "name": "冲浪 · 拖板归岸（擦边）",
+  "group": "sfw",
+  "group_title": "🏙 全年龄场景搭配",
+  "description": "湿身泳衣与冲浪板的剪影",
+  "pose_tags": "arched back, walking, bare feet, off shoulder, wet hair",
+  "pose_nl": "she walks out of the waves dragging her surfboard behind her with her back to the viewer. her swimsuit sits off one shoulder and her back arches. the sea is flat and bright.",
+  "camera": {
+    "viewpoint": "from behind"
+  },
+  "suggest_place": "beach",
+  "aspect": "portrait",
+  "level": 1,
+  "theme": "夏",
+  "count_lock": "1girl, solo",
+  "env_ref": "sc_surf_board",
+  "source_id": "sc_surf_board",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [
+      "surfboard",
+      "waves"
+    ],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_surf_board.jpg"
+}

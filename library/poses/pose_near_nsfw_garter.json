@@ -1,0 +1,32 @@
+{
+  "id": "pose_near_nsfw_garter",
+  "kind": "pose",
+  "name": "情趣丝袜大腿",
+  "group": "pose",
+  "group_title": "🔍 特写搭配",
+  "description": "大腿根的吊袜带与丝袜边",
+  "pose_tags": "crossed legs, black thighhighs, thigh gap, thighs, bare legs, head out of frame, legs focus, lower body",
+  "pose_nl": "her thighs in black thighhighs fill the frame with a garter strap pulled across the gap. the skin above the band is bare. only her legs are shown.",
+  "camera": {
+    "viewpoint": "from side",
+    "shot_size": "extreme close-up"
+  },
+  "suggest_place": "",
+  "aspect": "both",
+  "level": 1,
+  "theme": "🔞 成人向",
+  "count_lock": "1girl, solo",
+  "env_ref": "",
+  "source_id": "sc_near_nsfw_garter",
+  "clean_note": {
+    "version": 4,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": [],
+    "removed_cloth": [
+      "thigh strap",
+      "garter straps"
+    ]
+  },
+  "thumb": "thumbs/pose_near_nsfw_garter.jpg"
+}

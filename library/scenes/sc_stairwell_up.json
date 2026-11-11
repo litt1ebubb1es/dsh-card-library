@@ -1,0 +1,37 @@
+{
+ "id": "sc_stairwell_up",
+ "kind": "scene",
+ "name": "楼梯间 · 轮廓光",
+ "group": "sfw",
+ "group_title": "🏙 全年龄场景搭配",
+ "description": "地点：楼梯间；光线：rim lighting；道具：railing；景物：long staircase, handrail；相机：from below。（纯环境，不含动作/服装/表情）",
+ "tags": {
+  "place": "stairwell",
+  "light_fx": "rim lighting",
+  "prop": "railing"
+ },
+ "camera": {
+  "viewpoint": "from below"
+ },
+ "extra": "long staircase, handrail",
+ "extra_camera": "",
+ "env_nl": "stairwell, rim lighting, railing, long staircase, handrail, from below.",
+ "level": 0,
+ "theme": "日常",
+ "count_lock": "1girl, solo",
+ "aspect": "portrait",
+ "thumb": null,
+ "env_hint": "stairwell, rim lighting, railing, from below, long staircase, handrail",
+ "pose_ref": "pose_stairwell_up",
+ "cleaned": {
+  "version": 4,
+  "policy": "env/pose split",
+  "note": "动作/服装/表情已移入 poses/pose_stairwell_up.json",
+  "removed_tag_keys": [
+   "action",
+   "eye_gaze",
+   "pose_base"
+  ],
+  "removed_extra": []
+ }
+}

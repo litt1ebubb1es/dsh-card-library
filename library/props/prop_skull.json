@@ -1,0 +1,16 @@
+{
+ "id": "prop_skull",
+ "kind": "prop",
+ "name": "头骨",
+ "version": "1.0",
+ "group": "weapon",
+ "group_title": "武器",
+ "description": "头骨，死灵/暗黑静物。",
+ "prop_tags": "skull, holding skull",
+ "prop_nl": "She holds a skull in her palm.",
+ "hold": true,
+ "suggest_pose": "holding skull",
+ "aspect": "both",
+ "thumb": null,
+ "notes": "道具卡只写物，不写持有者/场景/服装；hold=true 时拼配方要配 holding 动词。"
+}

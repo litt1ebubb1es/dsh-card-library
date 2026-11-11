@@ -1,0 +1,16 @@
+{
+ "id": "prop_cocktail",
+ "kind": "prop",
+ "name": "鸡尾酒",
+ "version": "1.0",
+ "group": "food",
+ "group_title": "食物饮品",
+ "description": "鸡尾酒，酒吧/派对。",
+ "prop_tags": "cocktail, holding cocktail glass",
+ "prop_nl": "She holds a cocktail in a stemmed glass.",
+ "hold": true,
+ "suggest_pose": "holding cocktail, drinking",
+ "aspect": "both",
+ "thumb": null,
+ "notes": "道具卡只写物，不写持有者/场景/服装；hold=true 时拼配方要配 holding 动词。"
+}

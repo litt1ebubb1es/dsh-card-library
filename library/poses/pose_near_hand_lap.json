@@ -1,0 +1,31 @@
+{
+  "id": "pose_near_hand_lap",
+  "kind": "pose",
+  "name": "手放膝上",
+  "group": "pose",
+  "group_title": "🔍 特写搭配",
+  "description": "坐姿双手分开、掌心向下各放一侧膝上（第三人称 · 斜上方俯拍七分身，脸入画）",
+  "pose_tags": "sitting, fingers, lap, thighs, hands apart on lap, palms down, one hand on each thigh",
+  "pose_nl": "she sits with both hands resting palms down on her knees. seen from above at an angle so her face and the length of her thighs both stay inside the frame. her fingers are relaxed and slightly apart and her back is straight.",
+  "camera": {
+    "viewpoint": "from above",
+    "shot_size": "cowboy shot"
+  },
+  "suggest_place": "",
+  "aspect": "portrait",
+  "level": 0,
+  "theme": "手部",
+  "count_lock": "1girl, solo",
+  "env_ref": "",
+  "source_id": "sc_near_hand_lap",
+  "clean_note": {
+    "version": 3,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": [],
+    "removed_cloth": [
+      "skirt"
+    ]
+  },
+  "thumb": "thumbs/pose_near_hand_lap.jpg"
+}

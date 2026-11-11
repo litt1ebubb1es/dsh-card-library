@@ -1,0 +1,21 @@
+{
+  "id": "pose_from_beige_sweater",
+  "kind": "pose",
+  "name": "插兜散步",
+  "version": 1,
+  "group": "from_look",
+  "group_title": "来自造型卡",
+  "description": "景别：cowboy shot；动作：biting own lip, hand in pocket, head tilt, looking to the side, one hand in pocket, smile, standing, walking。",
+  "pose_tags": "biting own lip, hand in pocket, head tilt, looking to the side, one hand in pocket, smile, standing, walking",
+  "pose_nl": "",
+  "camera": {
+    "shot_size": "cowboy shot"
+  },
+  "suggest_place": "",
+  "aspect": "portrait",
+  "thumb": "thumbs/pose_from_beige_sweater.jpg",
+  "env_ref": null,
+  "source": "look_pose_v1",
+  "legacy_look": "look_beige_sweater",
+  "notes": "由造型卡的 pose_tags 迁出（v4）。动作卡只讲做什么，穿什么归造型卡。"
+}

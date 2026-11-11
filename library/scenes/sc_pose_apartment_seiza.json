@@ -1,0 +1,39 @@
+{
+ "id": "sc_pose_apartment_seiza",
+ "kind": "scene",
+ "name": "公寓 · 晨光",
+ "group": "pose",
+ "group_title": "🧎 姿势场景",
+ "description": "地点：公寓；光线：morning light；相机：from side / full body。（纯环境，不含动作/服装/表情）",
+ "tags": {
+  "place": "apartment",
+  "light_fx": "morning light"
+ },
+ "camera": {
+  "viewpoint": "from side",
+  "shot_size": "full body"
+ },
+ "extra": "",
+ "extra_camera": "",
+ "env_nl": "apartment, morning light, from side.",
+ "level": 0,
+ "theme": "姿势·和室正座",
+ "count_lock": "1girl, solo",
+ "aspect": "landscape",
+ "thumb": null,
+ "env_hint": "apartment, morning light, full body, from side",
+ "pose_ref": "pose_pose_apartment_seiza",
+ "cleaned": {
+  "version": 4,
+  "policy": "env/pose split",
+  "note": "动作/服装/表情已移入 poses/pose_pose_apartment_seiza.json",
+  "removed_tag_keys": [
+   "cloth_state_sfw",
+   "pose_base"
+  ],
+  "removed_extra": [
+   "hands on thighs",
+   "palms down"
+  ]
+ }
+}

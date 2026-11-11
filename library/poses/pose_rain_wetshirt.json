@@ -1,0 +1,33 @@
+{
+  "id": "pose_rain_wetshirt",
+  "kind": "pose",
+  "name": "雨中 · 透衫回眸（擦边）",
+  "group": "sfw",
+  "group_title": "🏙 全年龄场景搭配",
+  "description": "雨夜街头，甩发回眸；纯淋雨不带伞（避免第二个伞）",
+  "pose_tags": "standing, hair flip, looking back, wet hair, shirt clinging to body, drenched clothes, rain on skin",
+  "pose_nl": "the rain has soaked her oversized shirt through so it clings to her body. she looks back over her shoulder as she flips her wet hair. puddles mirror the street light.",
+  "camera": {},
+  "suggest_place": "street",
+  "aspect": "portrait",
+  "level": 1,
+  "theme": "户外",
+  "count_lock": "1girl, solo",
+  "env_ref": "sc_rain_wetshirt",
+  "source_id": "sc_rain_wetshirt",
+  "clean_note": {
+    "version": 3,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [
+      "rain drops",
+      "puddle"
+    ],
+    "removed_camera": [],
+    "removed_cloth": [
+      "shirt",
+      "skirt",
+      "oversized clothes"
+    ]
+  },
+  "thumb": "thumbs/pose_rain_wetshirt.jpg"
+}

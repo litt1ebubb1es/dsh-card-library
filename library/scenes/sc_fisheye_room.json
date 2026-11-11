@@ -1,0 +1,36 @@
+{
+ "id": "sc_fisheye_room",
+ "kind": "scene",
+ "name": "卧室 · 暖光",
+ "group": "sfw",
+ "group_title": "🏙 全年龄场景搭配",
+ "description": "地点：卧室；光线：warm lighting；相机：fisheye / cowboy shot / distorted perspective, wide field of view。（纯环境，不含动作/服装/表情）",
+ "tags": {
+  "place": "bedroom",
+  "light_fx": "warm lighting"
+ },
+ "camera": {
+  "viewpoint": "fisheye",
+  "shot_size": "cowboy shot"
+ },
+ "extra": "",
+ "extra_camera": "distorted perspective, wide field of view",
+ "env_nl": "bedroom, warm lighting, distorted perspective, wide field of view, seen fisheye.",
+ "level": 0,
+ "theme": "镜头实验",
+ "count_lock": "1girl, solo",
+ "aspect": "portrait",
+ "thumb": null,
+ "env_hint": "bedroom, warm lighting, cowboy shot, fisheye, distorted perspective, wide field of view",
+ "pose_ref": "pose_fisheye_room",
+ "cleaned": {
+  "version": 4,
+  "policy": "env/pose split",
+  "note": "动作/服装/表情已移入 poses/pose_fisheye_room.json",
+  "removed_tag_keys": [
+   "emotion",
+   "pose_base"
+  ],
+  "removed_extra": []
+ }
+}

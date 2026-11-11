@@ -1,0 +1,32 @@
+{
+  "id": "pose_ol_overtime",
+  "kind": "pose",
+  "name": "OL · 加班趴桌（擦边）",
+  "group": "sfw",
+  "group_title": "🏙 全年龄场景搭配",
+  "description": "深夜办公室的领口与疲态",
+  "pose_tags": "lying, arched back, embarrassed, blush, office lady, documents",
+  "pose_nl": "she lies across the office desk at midnight with her tie loosened and papers under her arms. seen from above. rim light from the monitor.",
+  "camera": {
+    "viewpoint": "from above"
+  },
+  "suggest_place": "office",
+  "aspect": "landscape",
+  "level": 1,
+  "theme": "职场",
+  "count_lock": "1girl, solo",
+  "env_ref": "sc_ol_overtime",
+  "source_id": "sc_ol_overtime",
+  "clean_note": {
+    "version": 3,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [
+      "midnight"
+    ],
+    "removed_camera": [],
+    "removed_cloth": [
+      "loosened tie"
+    ]
+  },
+  "thumb": "thumbs/pose_ol_overtime.jpg"
+}

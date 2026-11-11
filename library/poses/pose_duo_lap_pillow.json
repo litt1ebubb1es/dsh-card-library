@@ -1,0 +1,28 @@
+{
+  "id": "pose_duo_lap_pillow",
+  "kind": "pose",
+  "name": "双女 · 膝枕",
+  "group": "sfw",
+  "group_title": "🏙 全年龄场景搭配",
+  "description": "一个女孩枕在另一个腿上，伴侣低头给她拨头发（擦边）",
+  "pose_tags": "lying, smile, affectionate, lap pillow, head on lap, hair stroking, looking up, fingers through hair",
+  "pose_nl": "one girl lies on her back with her head resting in the other girl's lap. the seated girl looks down at her and runs her fingers through her hair. the girl lying down looks up at her face. seen from above with both of them in frame.",
+  "camera": {
+    "viewpoint": "from above",
+    "shot_size": "cowboy shot"
+  },
+  "suggest_place": "bedroom",
+  "aspect": "landscape",
+  "level": 1,
+  "theme": "双女",
+  "count_lock": "2girls, yuri",
+  "env_ref": "sc_duo_lap_pillow",
+  "source_id": "sc_duo_lap_pillow",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_duo_lap_pillow.jpg"
+}

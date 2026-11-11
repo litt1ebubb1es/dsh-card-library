@@ -1,0 +1,28 @@
+{
+  "id": "pose_near_nsfw_breast_massage",
+  "kind": "pose",
+  "name": "双女按摩胸部",
+  "group": "near",
+  "group_title": "🔍 特写搭配",
+  "description": "两名女性侧卧，一人双手揉按另一人的胸部",
+  "pose_tags": "on side, 2girls, yuri, massaging breasts, grabbing breasts, nipples, breasts, saliva, blush, eyes closed",
+  "pose_nl": "one woman lies on her side while the other cups and squeezes her breast from behind. saliva shines on her nipple. both bodies are cropped to the chest.",
+  "camera": {
+    "viewpoint": "from above",
+    "shot_size": "extreme close-up"
+  },
+  "suggest_place": "",
+  "aspect": "both",
+  "level": 2,
+  "theme": "🔞 成人向",
+  "count_lock": "2girls, yuri",
+  "env_ref": "",
+  "source_id": "sc_near_nsfw_breast_massage",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_near_nsfw_breast_massage.jpg"
+}

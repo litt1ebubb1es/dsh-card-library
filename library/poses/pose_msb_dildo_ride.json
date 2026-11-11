@@ -1,0 +1,27 @@
+{
+  "id": "pose_msb_dildo_ride",
+  "kind": "pose",
+  "name": "自慰 · 假阳具骑乘",
+  "group": "nsfw",
+  "group_title": "🔞 NSFW 跨槽位配方",
+  "description": "用户示例②：跨坐在透明假阳具上骑乘（胸部乳夹垂链 + 胸绳缚）",
+  "pose_tags": "dildo riding, squatting cowgirl position, embarrassed, blush, open mouth, completely nude, moaning, dildo, solo, riding, transparent dildo, transparent, vaginal object insertion, hands on bed, nipple clamps with chain, chain between nipple clamps, chest harness, rope around breasts",
+  "pose_nl": "she squats over a transparent dildo on the bed and lowers herself onto it. the shaft shows through her body. her hands press into the sheet for balance.",
+  "camera": {
+    "viewpoint": "from side"
+  },
+  "suggest_place": "",
+  "aspect": "portrait",
+  "level": 3,
+  "theme": "挖矿",
+  "count_lock": "1girl, solo",
+  "env_ref": "",
+  "source_id": "sc_msb_dildo_ride",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_msb_dildo_ride.jpg"
+}

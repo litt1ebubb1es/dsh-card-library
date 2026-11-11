@@ -1,0 +1,38 @@
+{
+ "id": "sc_train_home",
+ "kind": "scene",
+ "name": "电车车厢 · 黄昏",
+ "group": "sfw",
+ "group_title": "🏙 全年龄场景搭配",
+ "description": "地点：电车车厢；天气：sunset；光线：backlighting；道具：window；景物：moving train, blurred window；相机：from side。（纯环境，不含动作/服装/表情）",
+ "tags": {
+  "place": "train interior",
+  "weather": "sunset",
+  "light_fx": "backlighting",
+  "prop": "window"
+ },
+ "camera": {
+  "viewpoint": "from side"
+ },
+ "extra": "moving train, blurred window",
+ "extra_camera": "",
+ "env_nl": "train interior, sunset, backlighting, window, moving train, blurred window, from side.",
+ "level": 0,
+ "theme": "出行",
+ "count_lock": "1girl, solo",
+ "aspect": "portrait",
+ "thumb": null,
+ "env_hint": "train interior, sunset, backlighting, window, from side, moving train, blurred window",
+ "pose_ref": "pose_train_home",
+ "cleaned": {
+  "version": 4,
+  "policy": "env/pose split",
+  "note": "动作/服装/表情已移入 poses/pose_train_home.json",
+  "removed_tag_keys": [
+   "arms_hands",
+   "emotion",
+   "pose_base"
+  ],
+  "removed_extra": []
+ }
+}

@@ -1,0 +1,29 @@
+{
+  "id": "pose_cam_ots_lookback",
+  "kind": "pose",
+  "name": "过肩视角 · 回眸（擦边）",
+  "group": "pose",
+  "group_title": "🏙 全年龄场景搭配",
+  "description": "镜头×姿势模板（不带地点，地点由随机抽取）",
+  "pose_tags": "standing, arched back, embarrassed, blush, looking back",
+  "pose_nl": "seen from just behind her shoulder as she looks back with her back arched. her face turns toward the viewer. the room beyond is blurred.",
+  "camera": {
+    "viewpoint": "over-the-shoulder shot"
+  },
+  "suggest_place": "",
+  "aspect": "portrait",
+  "level": 1,
+  "theme": "镜头实验",
+  "count_lock": "1girl, solo",
+  "env_ref": "",
+  "source_id": "sc_cam_ots_lookback",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": [
+      "from behind"
+    ]
+  },
+  "thumb": "thumbs/pose_cam_ots_lookback.jpg"
+}

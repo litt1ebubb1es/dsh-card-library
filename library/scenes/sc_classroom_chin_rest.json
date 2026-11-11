@@ -1,0 +1,43 @@
+{
+ "id": "sc_classroom_chin_rest",
+ "kind": "scene",
+ "name": "教室 · 晴",
+ "group": "sfw",
+ "group_title": "🏙 全年龄场景搭配",
+ "description": "地点：教室；天气：clear sky；光线：soft lighting；道具：desk；景物：afternoon light, quiet；相机：cowboy shot。（纯环境，不含动作/服装/表情）",
+ "tags": {
+  "place": "classroom",
+  "weather": "clear sky",
+  "light_fx": "soft lighting",
+  "prop": "desk"
+ },
+ "camera": {
+  "shot_size": "cowboy shot"
+ },
+ "extra": "afternoon light, quiet",
+ "extra_camera": "",
+ "env_nl": "classroom, clear sky, soft lighting, desk, afternoon light, quiet, seen cowboy shot.",
+ "level": 0,
+ "theme": "日常",
+ "count_lock": "1girl, solo",
+ "aspect": "portrait",
+ "thumb": null,
+ "env_hint": "classroom, clear sky, soft lighting, desk, cowboy shot, afternoon light, quiet",
+ "pose_ref": "pose_classroom_chin_rest",
+ "cleaned": {
+  "version": 4,
+  "policy": "env/pose split",
+  "note": "动作/服装/表情已移入 poses/pose_classroom_chin_rest.json",
+  "removed_tag_keys": [
+   "cloth_state_sfw",
+   "emotion",
+   "eye_gaze",
+   "outfit",
+   "pose_base"
+  ],
+  "removed_extra": [
+   "sitting at desk",
+   "sitting on chair"
+  ]
+ }
+}

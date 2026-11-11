@@ -1,0 +1,27 @@
+{
+  "id": "pose_msb_squirt_dildo",
+  "kind": "pose",
+  "name": "自慰 · 假阳具潮吹",
+  "group": "nsfw",
+  "group_title": "🔞 NSFW 跨槽位配方",
+  "description": "骑着假阳具喷出来（手上不拿道具；内衣/丝袜随机，裸体也保留；赤足不穿内裤）",
+  "pose_tags": "dildo riding, squatting cowgirl position, open mouth, squirting, pussy juice, dildo, bare feet, solo, liquid spray, nipple clamps with chain, chain between nipple clamps, chest harness, rope around breasts",
+  "pose_nl": "she rides the dildo and squirts at the same time. liquid sprays forward onto the bed. her head is thrown back.",
+  "camera": {
+    "viewpoint": "from side"
+  },
+  "suggest_place": "",
+  "aspect": "portrait",
+  "level": 4,
+  "theme": "挖矿",
+  "count_lock": "1girl, solo",
+  "env_ref": "",
+  "source_id": "sc_msb_squirt_dildo",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_msb_squirt_dildo.jpg"
+}

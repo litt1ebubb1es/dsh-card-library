@@ -1,0 +1,42 @@
+{
+  "name": "dsh-card-library",
+  "version": "1.0.0",
+  "private": false,
+  "description": "卡片库：画风卡 / 角色卡 / 造型卡 / 环境卡 / 动作卡 / 道具卡，右侧栏可视化挑选并组合成出图配方",
+  "type": "module",
+  "main": "./index.js",
+  "exports": {
+    ".": "./index.js",
+    "./client": "./client.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "index.js",
+    "client.js",
+    "cordis.patch.yml",
+    "selfcheck.mjs",
+    "README.md",
+    "library"
+  ],
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "stable-diffusion",
+    "prompt",
+    "comfyui",
+    "anima"
+  ],
+  "license": "MIT",
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-layout",
+        "@deepseek-ai/dsh-client-ui-sidebar"
+      ]
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "id": "pose_pose_hug_knees",
+  "kind": "pose",
+  "name": "抱膝蜷坐",
+  "group": "pose",
+  "group_title": "🧎 姿势场景",
+  "description": "抱着自己的膝盖坐着，侧向全身，表情空白",
+  "pose_tags": "knees up, hugging own legs, expressionless",
+  "pose_nl": "she sits with her knees drawn up and her arms around them. her eyes are empty and her expression is flat. the side view shows her whole body.",
+  "camera": {
+    "viewpoint": "from side",
+    "shot_size": "full body"
+  },
+  "suggest_place": "",
+  "aspect": "portrait",
+  "level": 1,
+  "theme": "姿势·抱膝",
+  "count_lock": "1girl, solo",
+  "env_ref": "",
+  "source_id": "sc_pose_hug_knees",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_pose_hug_knees.jpg"
+}

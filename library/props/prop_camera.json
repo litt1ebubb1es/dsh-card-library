@@ -1,0 +1,16 @@
+{
+ "id": "prop_camera",
+ "kind": "prop",
+ "name": "相机",
+ "version": "1.0",
+ "group": "daily",
+ "group_title": "日常",
+ "description": "相机，旅拍/街拍。",
+ "prop_tags": "camera, holding camera, looking through camera",
+ "prop_nl": "She raises a camera to her eye.",
+ "hold": true,
+ "suggest_pose": "holding camera, taking picture",
+ "aspect": "both",
+ "thumb": null,
+ "notes": "道具卡只写物，不写持有者/场景/服装；hold=true 时拼配方要配 holding 动词。"
+}

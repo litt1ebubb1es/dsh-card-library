@@ -1,0 +1,30 @@
+{
+  "id": "pose_cam_fisheye_squat",
+  "kind": "pose",
+  "name": "鱼眼仰视 · 蹲姿（擦边）",
+  "group": "pose",
+  "group_title": "🏙 全年龄场景搭配",
+  "description": "镜头×姿势模板（不带地点，地点由随机抽取）",
+  "pose_tags": "squatting, hands on own thighs, smug",
+  "pose_nl": "she squats with her hands on her thighs. seen from very close and below with ultra wide fisheye distortion. the ground curves at the edges of the frame. she looks down with a smug face.",
+  "camera": {
+    "viewpoint": "fisheye"
+  },
+  "suggest_place": "",
+  "aspect": "portrait",
+  "level": 1,
+  "theme": "镜头实验",
+  "count_lock": "1girl, solo",
+  "env_ref": "",
+  "source_id": "sc_cam_fisheye_squat",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": [
+      "wide angle",
+      "low angle view"
+    ]
+  },
+  "thumb": "thumbs/pose_cam_fisheye_squat.jpg"
+}

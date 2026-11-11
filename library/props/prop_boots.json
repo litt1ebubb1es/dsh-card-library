@@ -1,0 +1,16 @@
+{
+ "id": "prop_boots",
+ "kind": "prop",
+ "name": "长靴",
+ "version": "1.0",
+ "group": "home",
+ "group_title": "家居",
+ "description": "长靴（穿戴类）。",
+ "prop_tags": "boots, wearing boots, knee boots",
+ "prop_nl": "She wears knee-high boots.",
+ "hold": false,
+ "suggest_pose": "standing",
+ "aspect": "both",
+ "thumb": null,
+ "notes": "道具卡只写物，不写持有者/场景/服装；hold=true 时拼配方要配 holding 动词。"
+}

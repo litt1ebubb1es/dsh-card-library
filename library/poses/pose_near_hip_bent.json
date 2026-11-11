@@ -1,0 +1,28 @@
+{
+  "id": "pose_near_hip_bent",
+  "kind": "pose",
+  "name": "弯腰",
+  "group": "pose",
+  "group_title": "🔍 特写搭配",
+  "description": "弯腰时的臀部特写，后腰弧线入画",
+  "pose_tags": "standing, bent over, ass, hips, thighs, arched back, head out of frame, lower body, ass focus",
+  "pose_nl": "she bends forward at the waist with her back arched. seen from behind. her hips fill the frame. her head is out of shot.",
+  "camera": {
+    "viewpoint": "from behind",
+    "shot_size": "extreme close-up"
+  },
+  "suggest_place": "",
+  "aspect": "both",
+  "level": 1,
+  "theme": "臀部",
+  "count_lock": "1girl, solo",
+  "env_ref": "",
+  "source_id": "sc_near_hip_bent",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_near_hip_bent.jpg"
+}

@@ -1,0 +1,40 @@
+{
+  "id": "pose_wide_lake_mist",
+  "kind": "pose",
+  "name": "湖畔 · 晨雾",
+  "group": "sfw",
+  "group_title": "🏙 全年龄场景搭配",
+  "description": "真远景：清晨湖面起雾，人物立在岸边，远处山脉隐在雾里",
+  "pose_tags": "standing",
+  "pose_nl": "she stands at the lake edge in the morning mist. the flat water runs out to the far shore and the mountains fade out of it. the frame stays wide and quiet.",
+  "camera": {
+    "viewpoint": "from side",
+    "shot_size": "wide shot",
+    "comp": "landscape"
+  },
+  "suggest_place": "lake",
+  "aspect": "landscape",
+  "level": 0,
+  "theme": "远景",
+  "count_lock": "1girl, solo",
+  "env_ref": "sc_wide_lake_mist",
+  "source_id": "sc_wide_lake_mist",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [
+      "scenery",
+      "mist",
+      "still water",
+      "distant mountains"
+    ],
+    "removed_camera": [
+      "wide shot",
+      "full body",
+      "small figure",
+      "vast landscape",
+      "sense of scale"
+    ]
+  },
+  "thumb": "thumbs/pose_wide_lake_mist.jpg"
+}

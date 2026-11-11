@@ -1,0 +1,29 @@
+{
+  "id": "pose_pov_hands_selfie",
+  "kind": "pose",
+  "name": "第一人称 · 手持自拍",
+  "group": "sfw",
+  "group_title": "🏙 全年龄场景搭配",
+  "description": "手持自拍：举机的手臂伸向镜头，另一只手比耶（只有她自己的两只手）",
+  "pose_tags": "standing, v, smile, arm extended towards viewer, looking at viewer",
+  "pose_nl": "one hand makes a small v sign beside her cheek while her other arm runs in from the left edge of the frame. the arm is foreshortened by the short distance between her and the viewer. her face fills the upper half of the frame and she grins at the viewer. the street behind her is bright.",
+  "camera": {
+    "shot_size": "upper body"
+  },
+  "suggest_place": "street",
+  "aspect": "both",
+  "level": 0,
+  "theme": "第一人称",
+  "count_lock": "1girl, solo",
+  "env_ref": "sc_pov_hands_selfie",
+  "source_id": "sc_pov_hands_selfie",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": [
+      "selfie angle"
+    ]
+  },
+  "thumb": "thumbs/pose_pov_hands_selfie.jpg"
+}

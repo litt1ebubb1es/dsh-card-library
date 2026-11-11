@@ -1,0 +1,38 @@
+{
+ "id": "sc_amusement_night",
+ "kind": "scene",
+ "name": "游乐园 · 夜",
+ "group": "sfw",
+ "group_title": "🏙 全年龄场景搭配",
+ "description": "地点：游乐园；天气：night；光线：neon lights；景物：ferris wheel, fairground lights；相机：cowboy shot / motion。（纯环境，不含动作/服装/表情）",
+ "tags": {
+  "place": "amusement park",
+  "weather": "night",
+  "light_fx": "neon lights"
+ },
+ "camera": {
+  "shot_size": "cowboy shot"
+ },
+ "extra": "ferris wheel, fairground lights",
+ "extra_camera": "motion",
+ "env_nl": "amusement park, night, neon lights, ferris wheel, fairground lights, motion, seen cowboy shot.",
+ "level": 0,
+ "theme": "约会",
+ "count_lock": "1girl, solo",
+ "aspect": "portrait",
+ "thumb": null,
+ "env_hint": "amusement park, night, neon lights, cowboy shot, ferris wheel, fairground lights, motion",
+ "pose_ref": "pose_amusement_night",
+ "cleaned": {
+  "version": 4,
+  "policy": "env/pose split",
+  "note": "动作/服装/表情已移入 poses/pose_amusement_night.json",
+  "removed_tag_keys": [
+   "action",
+   "arms_hands",
+   "emotion",
+   "pose_base"
+  ],
+  "removed_extra": []
+ }
+}

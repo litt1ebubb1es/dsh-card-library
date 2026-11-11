@@ -1,0 +1,27 @@
+{
+  "id": "pose_msb_plug_rear",
+  "kind": "pose",
+  "name": "自慰 · 后穴玩具",
+  "group": "nsfw",
+  "group_title": "🔞 NSFW 跨槽位配方",
+  "description": "四肢着地用后穴玩具：情趣服装/丝袜随机、不穿内裤、赤足",
+  "pose_tags": "masturbation, partially undressed, aroused, anus, love juice trail, butt plug, bare feet, solo, holding sex toy, anal, rear",
+  "pose_nl": "she kneels on the bed with a metal plug in her anus and her hips raised. her hand still holds the base. her back is arched toward the viewer.",
+  "camera": {
+    "viewpoint": "from behind"
+  },
+  "suggest_place": "",
+  "aspect": "landscape",
+  "level": 3,
+  "theme": "挖矿",
+  "count_lock": "1girl, solo",
+  "env_ref": "",
+  "source_id": "sc_msb_plug_rear",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_msb_plug_rear.jpg"
+}

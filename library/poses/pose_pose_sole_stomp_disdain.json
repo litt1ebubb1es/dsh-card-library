@@ -1,0 +1,34 @@
+{
+  "id": "pose_pose_sole_stomp_disdain",
+  "kind": "pose",
+  "name": "虫视 · 脚踩镜头",
+  "group": "pose",
+  "group_title": "🧎 姿势场景",
+  "description": "镜头贴地仰拍，她赤足抬脚踩向镜头，双手仍提着裙摆，居高临下地鄙视你",
+  "pose_tags": "standing on one leg, disgust, looking at viewer, frown, light makeup, both hands on skirt, one leg up, sole focus, disdain, looking down on viewer, narrowed eyes, clothing aside",
+  "pose_nl": "she lifts one leg toward the viewer so the sole fills the frame from below. her skirt hangs down around her thigh. she looks down with a frown.",
+  "camera": {
+    "viewpoint": "worm's eye view",
+    "shot_size": "full body",
+    "dof": "deep focus"
+  },
+  "suggest_place": "",
+  "aspect": "portrait",
+  "level": 1,
+  "theme": "姿势·脚踩",
+  "count_lock": "1girl, solo",
+  "env_ref": "",
+  "source_id": "sc_pose_sole_stomp_disdain",
+  "clean_note": {
+    "version": 3,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": [
+      "foreshortening"
+    ],
+    "removed_cloth": [
+      "pleated skirt"
+    ]
+  },
+  "thumb": "thumbs/pose_pose_sole_stomp_disdain.jpg"
+}

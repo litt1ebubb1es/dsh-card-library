@@ -1,0 +1,28 @@
+{
+  "id": "pose_near_nsfw_breast_suck",
+  "kind": "pose",
+  "name": "双女吸乳吐舌",
+  "group": "near",
+  "group_title": "🔍 特写搭配",
+  "description": "吸吮后抬眼看镜头，舌尖与唾液还在唇边",
+  "pose_tags": "on back, 2girls, yuri, breast sucking, tongue out, saliva, nipples, breasts, blush",
+  "pose_nl": "one woman lies on her back while the other sucks her breast with her tongue out. their faces are close and flushed. rim light runs over their skin.",
+  "camera": {
+    "viewpoint": "from above",
+    "shot_size": "extreme close-up"
+  },
+  "suggest_place": "",
+  "aspect": "both",
+  "level": 3,
+  "theme": "🔞 成人向",
+  "count_lock": "2girls, yuri",
+  "env_ref": "",
+  "source_id": "sc_near_nsfw_breast_suck",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_near_nsfw_breast_suck.jpg"
+}

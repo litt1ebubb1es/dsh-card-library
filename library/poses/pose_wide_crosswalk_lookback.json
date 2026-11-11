@@ -1,0 +1,39 @@
+{
+  "id": "pose_wide_crosswalk_lookback",
+  "kind": "pose",
+  "name": "十字路口 · 回眸",
+  "group": "sfw",
+  "group_title": "🏙 全年龄场景搭配",
+  "description": "真远景：斑马线中央回头，城市灯牌在身后展开",
+  "pose_tags": "standing, looking back, looking back over shoulder",
+  "pose_nl": "she stops on the zebra crossing and looks back over her shoulder. the signs and the wet asphalt throw neon color across the crossing. the street runs empty around her.",
+  "camera": {
+    "viewpoint": "from behind",
+    "shot_size": "wide shot",
+    "comp": "landscape"
+  },
+  "suggest_place": "crosswalk",
+  "aspect": "landscape",
+  "level": 0,
+  "theme": "远景",
+  "count_lock": "1girl, solo",
+  "env_ref": "sc_wide_crosswalk_lookback",
+  "source_id": "sc_wide_crosswalk_lookback",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [
+      "scenery",
+      "zebra crossing",
+      "city signs"
+    ],
+    "removed_camera": [
+      "wide shot",
+      "full body",
+      "small figure",
+      "vast landscape",
+      "sense of scale"
+    ]
+  },
+  "thumb": "thumbs/pose_wide_crosswalk_lookback.jpg"
+}

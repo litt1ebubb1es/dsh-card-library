@@ -1,0 +1,27 @@
+{
+  "id": "pose_ccc_femdom_reverse",
+  "kind": "pose",
+  "name": "攻守反转 · 压制骑乘",
+  "group": "nsfw",
+  "group_title": "🔞 NSFW 跨槽位配方",
+  "description": "文档 §9.3.10：女方主导、男方被压",
+  "pose_tags": "cowgirl position, hand on own cheek, grin, bedroom eyes, femdom, smug, submission",
+  "pose_nl": "she sits on top of him and looks down with a smug grin. one hand rests on her own cheek while she controls the pace. he is pinned under her.",
+  "camera": {
+    "viewpoint": "from above"
+  },
+  "suggest_place": "bedroom",
+  "aspect": "landscape",
+  "level": 3,
+  "theme": "攻守反转",
+  "count_lock": "1girl, 1boy, hetero",
+  "env_ref": "sc_ccc_femdom_reverse",
+  "source_id": "sc_ccc_femdom_reverse",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_ccc_femdom_reverse.jpg"
+}

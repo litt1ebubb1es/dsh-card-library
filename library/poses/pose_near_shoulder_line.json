@@ -1,0 +1,28 @@
+{
+  "id": "pose_near_shoulder_line",
+  "kind": "pose",
+  "name": "肩颈线",
+  "group": "near",
+  "group_title": "🔍 特写搭配",
+  "description": "侧向机位的肩颈与下颌线特写，暖光",
+  "pose_tags": "shoulder, collarbone, neck, jawline, skin",
+  "pose_nl": "the line from her neck to her shoulder fills the frame sideways. warm light lies along the curve of her collarbone. her jaw is just visible at the edge.",
+  "camera": {
+    "viewpoint": "from side",
+    "shot_size": "close-up"
+  },
+  "suggest_place": "",
+  "aspect": "both",
+  "level": 0,
+  "theme": "上半身与胸",
+  "count_lock": "1girl, solo",
+  "env_ref": "",
+  "source_id": "sc_near_shoulder_line",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_near_shoulder_line.jpg"
+}

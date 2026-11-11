@@ -1,0 +1,33 @@
+{
+  "id": "pose_sock_change_legup",
+  "kind": "pose",
+  "name": "更衣间 · 抬腿拉平袜口",
+  "group": "sfw",
+  "group_title": "🏙 全年龄场景搭配",
+  "description": "更衣间抬腿整理袜口，OL 套装 + 高跟，黑丝在 socks 里随机。",
+  "pose_tags": "standing on one leg, leg up, serious, looking down, parted lips, office lady, adjusting tights, one leg raised",
+  "pose_nl": "she stands on one leg in the changing room and lifts the other to smooth her tights up. her high heels are still on. she looks down at her own leg.",
+  "camera": {
+    "viewpoint": "from below",
+    "shot_size": "full body"
+  },
+  "suggest_place": "changing room",
+  "aspect": "portrait",
+  "level": 1,
+  "theme": "丝袜",
+  "count_lock": "1girl, solo",
+  "env_ref": "sc_sock_change_legup",
+  "source_id": "sc_sock_change_legup",
+  "clean_note": {
+    "version": 3,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [
+      "changing room"
+    ],
+    "removed_camera": [],
+    "removed_cloth": [
+      "high heels"
+    ]
+  },
+  "thumb": "thumbs/pose_sock_change_legup.jpg"
+}

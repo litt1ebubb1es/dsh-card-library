@@ -1,0 +1,28 @@
+{
+  "id": "pose_office_overtime",
+  "kind": "pose",
+  "name": "办公室 · 加班夜",
+  "group": "sfw",
+  "group_title": "🏙 全年龄场景搭配",
+  "description": "台灯 + 深夜，OL 伏案",
+  "pose_tags": "sitting, sleepy, office lady, overtime, coffee cup, tired",
+  "pose_nl": "she sits at her desk late at night with a cold cup of coffee beside the keyboard. the desk lamp lights only her face and the loose papers. her eyes are tired.",
+  "camera": {
+    "shot_size": "cowboy shot",
+    "dof": "depth of field, blurry background"
+  },
+  "suggest_place": "office",
+  "aspect": "portrait",
+  "level": 0,
+  "theme": "职场",
+  "count_lock": "1girl, solo",
+  "env_ref": "sc_office_overtime",
+  "source_id": "sc_office_overtime",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_office_overtime.jpg"
+}

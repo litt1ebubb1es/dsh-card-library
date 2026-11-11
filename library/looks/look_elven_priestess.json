@@ -1,0 +1,77 @@
+{
+  "id": "look_elven_priestess",
+  "kind": "look",
+  "name": "精灵祭司",
+  "version": "1.0",
+  "description": "白色长袍 + 短披肩 + 头纱 + 月桂冠 + 手肘长手套，跪姿合掌",
+  "nsfw": false,
+  "tags": "white robe, elbow gloves, capelet, veil, laurel crown, long dress, black underdress, rosary, no makeup, red nail polish, fully clothed, wearing clothes, covered chest, covered torso, long sleeves, fantasy, intricate details, ",
+  "fields": {
+    "outfit": "elven priestess",
+    "pieces": "white robe, elbow gloves, capelet, veil, laurel crown, long dress",
+    "cloth_color": "black"
+  },
+  "body_decor": {
+    "makeup": "no makeup",
+    "nails": "red nail polish",
+    "skin_detail": "mole under eye"
+  },
+  "look_notes": {},
+  "artist_segment": "minaba_hideo, liduke, piromizu, nonco,",
+  "style_label": "柔光半写实 (基准)",
+  "negative_extra": "modern city, cars, buildings, electric lights, crowd, many people, multiple girls, 2girls, t-shirt, jeans, hoodie, sneakers, casual clothes, nude, naked, topless, bottomless, no bra, bare breasts, exposed breasts, nipples, pussy, exposed pussy, underwear, panties only, undressing, torn clothes, clothing cutout, breast cutout, sideboob, underboob, cleavage window, open clothes, unbuttoned, ",
+  "params": {
+    "model": "miaomiaoHarem_anima8Step10.safetensors",
+    "lora": "anima-turbo-lora-v0.1.safetensors @ 0.4",
+    "clip": "qwen_3_06b_base.safetensors (type=qwen_image)",
+    "vae": "qwen_image_vae.safetensors",
+    "steps": 12,
+    "cfg": 2.0,
+    "sampler": "euler",
+    "scheduler": "simple",
+    "resolution": "832x1216",
+    "seed": 110001
+  },
+  "thumb": "thumbs/look_elven_priestess.jpg",
+  "source_dir": "_assets/characters/look_elven_priestess",
+  "look_tags": "white robe, elbow gloves, capelet, veil, laurel crown, long dress, black underdress, rosary, no makeup, red nail polish, fully clothed, wearing clothes, covered chest, covered torso, long sleeves, fantasy, intricate details, ",
+  "pose_tags": "",
+  "tag_split": {
+    "version": 3,
+    "cloth": 20,
+    "pose": 0,
+    "moved_pose": [],
+    "migrated_to": "pose_from_elven_priestess"
+  },
+  "legacy_pose_ref": "pose_from_elven_priestess",
+  "fields_legacy_pose": {
+    "emotion": "expressionless",
+    "eye_gaze": "looking up",
+    "mouth": "parted lips",
+    "pose_base": "kneeling",
+    "arms_hands": "own hands clasped",
+    "action": "kneeling, praying",
+    "prop": "rosary",
+    "shot_size": "full body"
+  },
+  "clean_note": {
+    "version": 6.1,
+    "removed_look": [
+      "own hands clasped",
+      "mole under eye"
+    ],
+    "removed_v6": [
+      "elven_priestess"
+    ],
+    "color_bound_v6": [
+      "black -> black elven priestess"
+    ],
+    "fixed_v6b": [
+      "black elven priestess"
+    ],
+    "color_bound_v6b": [
+      "black -> black white robe"
+    ],
+    "fix_v6c": "black white robe -> black underdress（白袍卡不该出现黑主件）"
+  }
+}

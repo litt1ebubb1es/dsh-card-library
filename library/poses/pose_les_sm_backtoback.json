@@ -1,0 +1,28 @@
+{
+  "id": "pose_les_sm_backtoback",
+  "kind": "pose",
+  "name": "背缚趴姿 · 情趣道具",
+  "group": "nsfw",
+  "group_title": "🔞 NSFW 跨槽位配方",
+  "description": "第三人称背后视角：她趴在床上、双手被反绑在身后、脸埋在枕头里；身上是情趣服装、身上带着调教道具；背上沁出一层薄汗，身体随呼吸微微发抖",
+  "pose_tags": "on stomach, partially undressed, orgasm, trembling, slave, shibari, bound wrists, arms bound behind her back, bound ankles, sweat",
+  "pose_nl": "she lies face down on the bed with her arms bound behind her back and her ankles tied. her back is arched and sweat shines on her skin. the shot is from behind.",
+  "camera": {
+    "viewpoint": "from behind",
+    "shot_size": "cowboy shot"
+  },
+  "suggest_place": "",
+  "aspect": "landscape",
+  "level": 4,
+  "theme": "BDSM",
+  "count_lock": "1girl, solo",
+  "env_ref": "",
+  "source_id": "sc_les_sm_backtoback",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_les_sm_backtoback.jpg"
+}

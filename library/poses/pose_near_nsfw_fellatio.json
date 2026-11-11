@@ -1,0 +1,29 @@
+{
+  "id": "pose_near_nsfw_fellatio",
+  "kind": "pose",
+  "name": "口交特写",
+  "group": "pose",
+  "group_title": "🔍 特写搭配",
+  "description": "第一人称视角，极特写只到面部（不出现舌头、阴毛、胸部）；必定为深喉，五个阶段随机：含入到位翻白眼 / 喉咙鼓起失神 / 被按住下压崩坏 / 极限深喉流泪 / 翻眼带泪",
+  "pose_tags": "half-closed eyes, solo focus, penis, face, eyes, cheeks, lips, nose, saliva, blush, chest out of frame, torso out of frame",
+  "pose_nl": "his penis rests against her lips and cheek while she looks up. saliva strings from the tip to her mouth. the shot is framed on her face.",
+  "camera": {
+    "viewpoint": "pov, fellatio",
+    "shot_size": "extreme close-up",
+    "dof": "focus on face"
+  },
+  "suggest_place": "",
+  "aspect": "both",
+  "level": 3,
+  "theme": "🔞 成人向",
+  "count_lock": "1girl, solo",
+  "env_ref": "",
+  "source_id": "sc_near_nsfw_fellatio",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_near_nsfw_fellatio.jpg"
+}

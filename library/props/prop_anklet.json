@@ -1,0 +1,16 @@
+{
+ "id": "prop_anklet",
+ "kind": "prop",
+ "name": "脚链",
+ "version": "1.0",
+ "group": "accessory",
+ "group_title": "配饰",
+ "description": "脚链，异域/裸足。",
+ "prop_tags": "anklet, wearing anklet",
+ "prop_nl": "A thin anklet circles her ankle.",
+ "hold": false,
+ "suggest_pose": "bare feet",
+ "aspect": "both",
+ "thumb": null,
+ "notes": "道具卡只写物，不写持有者/场景/服装；hold=true 时拼配方要配 holding 动词。"
+}

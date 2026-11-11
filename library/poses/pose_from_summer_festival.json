@@ -1,0 +1,21 @@
+{
+  "id": "pose_from_summer_festival",
+  "kind": "pose",
+  "name": "提金鱼袋",
+  "version": 1,
+  "group": "from_look",
+  "group_title": "来自造型卡",
+  "description": "景别：cowboy shot；动作：excited, happy, holding fan, looking to the side, one hand on fan, open mouth, other hand holding goldfish bag, smile, standing, walking。",
+  "pose_tags": "excited, happy, holding fan, looking to the side, one hand on fan, open mouth, other hand holding goldfish bag, smile, standing, walking",
+  "pose_nl": "",
+  "camera": {
+    "shot_size": "cowboy shot"
+  },
+  "suggest_place": "",
+  "aspect": "portrait",
+  "thumb": "thumbs/pose_from_summer_festival.jpg",
+  "env_ref": null,
+  "source": "look_pose_v1",
+  "legacy_look": "look_summer_festival",
+  "notes": "由造型卡的 pose_tags 迁出（v4）。动作卡只讲做什么，穿什么归造型卡。"
+}

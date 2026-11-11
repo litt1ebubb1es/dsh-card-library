@@ -1,0 +1,72 @@
+{
+  "id": "nsfw_shower_look_up",
+  "kind": "look",
+  "name": "淋浴仰头",
+  "version": "1.0",
+  "description": "淋浴下仰头撩发，水从头顶流下，全裸湿身",
+  "nsfw": true,
+  "tags": "1girl, solo, wet hair, wet skin, water drop, water on skin, bare breasts, exposed breasts, nipples, bare shoulders, collarbone, wet skin, water running down body, completely nude, no panties, bare crotch, bottomless, standing, head tilted back, arms up, hand in own hair, eyes closed, parted lips, relaxed, wet, cowboy shot, detailed skin texture, skin pores, fine skin detail, natural skin tone, soft shadow on skin, ",
+  "fields": {
+    "pieces": "wet hair, wet skin, water drop, water on skin,",
+    "body": "bare breasts, exposed breasts, nipples, bare shoulders, collarbone, wet skin, water running down body",
+    "nude": true
+  },
+  "body_decor": {},
+  "look_notes": {},
+  "artist_segment": "minaba_hideo, liduke, piromizu, nonco,",
+  "style_label": "柔光半写实 (基准)",
+  "negative_extra": "worst quality, low quality, score_1, score_2, score_3, lowres, jpeg artifacts, cel shading, flat colors, painterly, 3d render, deformed body, bad proportions, big head, bad hands, extra fingers, missing fingers, extra limbs, watermark, signature, text, logo, artist name, cat ears, animal ear fluff, tail, beret, hat, beanie, headwear, cap, male, 1boy, multiple boys, penis, multiple girls, 2girls, crowd, many people, panties, underwear, white panties, black panties, blue panties, bikini bottom, swimsuit, thong, clothing, clothed, partially clothed, covered crotch, covered groin, covered pussy, ",
+  "params": {
+    "model": "miaomiaoHarem_anima8Step10.safetensors",
+    "lora": "anima-turbo-lora-v0.1.safetensors @ 0.4",
+    "clip": "qwen_3_06b_base.safetensors (type=qwen_image)",
+    "vae": "qwen_image_vae.safetensors",
+    "steps": 12,
+    "cfg": 2.0,
+    "sampler": "euler",
+    "scheduler": "simple",
+    "resolution": "832x1216",
+    "seed": 210002
+  },
+  "thumb": "thumbs/nsfw_shower_look_up.jpg",
+  "source_dir": "_assets/characters/nsfw_shower_look_up",
+  "look_tags": "1girl, solo, wet hair, wet skin, water drop, water on skin, bare breasts, exposed breasts, nipples, bare shoulders, collarbone, water running down body, completely nude, no panties, bare crotch, bottomless, wet, detailed skin texture, skin pores, fine skin detail, natural skin tone, soft shadow on skin, ",
+  "pose_tags": "",
+  "tag_split": {
+    "version": 3,
+    "cloth": 38,
+    "pose": 0,
+    "moved_pose": [
+      "arms up",
+      "hand in own hair"
+    ],
+    "migrated_to": "pose_from_shower_look_up"
+  },
+  "legacy_pose_ref": "pose_from_shower_look_up",
+  "fields_legacy_pose": {
+    "pose": "standing, head tilted back, arms up, hand in own hair",
+    "expression": "eyes closed, parted lips, relaxed, wet",
+    "shot": "cowboy shot"
+  },
+  "clean_note": {
+    "version": 5,
+    "removed_look": [
+      "tooth_necklace",
+      "vampire",
+      "fang_out",
+      "white hair",
+      "heterochromia",
+      "mole_under_eye",
+      "close-set eyes",
+      "short_hair",
+      "blue_eyes",
+      "pointy_ears",
+      "fang",
+      "symbol-shaped_pupils",
+      "round face",
+      "red eyes",
+      "Long nails",
+      "subsurface scattering"
+    ]
+  }
+}

@@ -1,0 +1,16 @@
+{
+ "id": "prop_cushion",
+ "kind": "prop",
+ "name": "坐垫",
+ "version": "1.0",
+ "group": "home",
+ "group_title": "家居",
+ "description": "坐垫，和室/地坐。",
+ "prop_tags": "cushion, sitting on cushion, floor cushion",
+ "prop_nl": "She kneels on a floor cushion.",
+ "hold": false,
+ "suggest_pose": "sitting, seiza",
+ "aspect": "both",
+ "thumb": null,
+ "notes": "道具卡只写物，不写持有者/场景/服装；hold=true 时拼配方要配 holding 动词。"
+}

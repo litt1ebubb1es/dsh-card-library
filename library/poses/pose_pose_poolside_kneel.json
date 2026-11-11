@@ -1,0 +1,28 @@
+{
+  "id": "pose_pose_poolside_kneel",
+  "kind": "pose",
+  "name": "泳池边 · 跪坐",
+  "group": "pose",
+  "group_title": "🧎 姿势场景",
+  "description": "池边跪坐、连体泳衣、赤足，水光斑驳",
+  "pose_tags": "kneeling, bare feet",
+  "pose_nl": "she kneels at the pool edge in a one-piece swimsuit with her hands on her thighs. the caustic light from the water moves up her legs. seen from the side.",
+  "camera": {
+    "viewpoint": "from side",
+    "shot_size": "full body"
+  },
+  "suggest_place": "poolside",
+  "aspect": "landscape",
+  "level": 0,
+  "theme": "姿势·泳池跪坐",
+  "count_lock": "1girl, solo",
+  "env_ref": "sc_pose_poolside_kneel",
+  "source_id": "sc_pose_poolside_kneel",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_pose_poolside_kneel.jpg"
+}

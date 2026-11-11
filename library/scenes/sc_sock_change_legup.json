@@ -1,0 +1,44 @@
+{
+ "id": "sc_sock_change_legup",
+ "kind": "scene",
+ "name": "更衣室 · 全身",
+ "group": "sfw",
+ "group_title": "🏙 全年龄场景搭配",
+ "description": "地点：更衣室；光线：studio lighting；景物：changing room；相机：from below / full body。（纯环境，不含动作/服装/表情）",
+ "tags": {
+  "place": "changing room",
+  "light_fx": "studio lighting"
+ },
+ "camera": {
+  "viewpoint": "from below",
+  "shot_size": "full body"
+ },
+ "extra": "changing room",
+ "extra_camera": "",
+ "env_nl": "changing room, studio lighting, changing room, from below.",
+ "level": 1,
+ "theme": "丝袜",
+ "count_lock": "1girl, solo",
+ "aspect": "portrait",
+ "thumb": null,
+ "env_hint": "changing room, studio lighting, full body, from below, changing room",
+ "pose_ref": "pose_sock_change_legup",
+ "cleaned": {
+  "version": 4,
+  "policy": "env/pose split",
+  "note": "动作/服装/表情已移入 poses/pose_sock_change_legup.json",
+  "removed_tag_keys": [
+   "emotion",
+   "eye_gaze",
+   "mouth",
+   "outfit",
+   "pose_base",
+   "pose_risque",
+   "shoes"
+  ],
+  "removed_extra": [
+   "adjusting tights",
+   "one leg raised"
+  ]
+ }
+}

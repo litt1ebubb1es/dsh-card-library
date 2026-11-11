@@ -1,0 +1,42 @@
+{
+ "id": "sc_yoga_mat",
+ "kind": "scene",
+ "name": "公寓 · 瑜伽垫",
+ "group": "sfw",
+ "group_title": "🏙 全年龄场景搭配",
+ "description": "地点：公寓；光线：morning light；相机：from behind / from behind。（纯环境，不含动作/服装/表情）",
+ "tags": {
+  "place": "apartment",
+  "light_fx": "morning light"
+ },
+ "camera": {
+  "viewpoint": "from behind"
+ },
+ "extra": "",
+ "extra_camera": "from behind",
+ "env_nl": "apartment, morning light, from behind, from behind.",
+ "level": 1,
+ "theme": "日常",
+ "count_lock": "1girl, solo",
+ "aspect": "landscape",
+ "thumb": null,
+ "env_hint": "apartment, morning light, from behind, from behind",
+ "pose_ref": "pose_yoga_mat",
+ "cleaned": {
+  "version": 4,
+  "policy": "env/pose split",
+  "note": "动作/服装/表情已移入 poses/pose_yoga_mat.json",
+  "removed_tag_keys": [
+   "bottom",
+   "pose_risque",
+   "top"
+  ],
+  "removed_extra": [
+   "downward dog",
+   "yoga mat",
+   "stretching",
+   "ass focus",
+   "lower body"
+  ]
+ }
+}

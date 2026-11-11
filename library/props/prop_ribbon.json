@@ -1,0 +1,16 @@
+{
+ "id": "prop_ribbon",
+ "kind": "prop",
+ "name": "缎带",
+ "version": "1.0",
+ "group": "accessory",
+ "group_title": "配饰",
+ "description": "缎带，少女/礼物装饰。",
+ "prop_tags": "ribbon, hair ribbon, red ribbon",
+ "prop_nl": "A red ribbon ties her hair.",
+ "hold": false,
+ "suggest_pose": "standing",
+ "aspect": "both",
+ "thumb": null,
+ "notes": "道具卡只写物，不写持有者/场景/服装；hold=true 时拼配方要配 holding 动词。"
+}

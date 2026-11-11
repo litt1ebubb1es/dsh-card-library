@@ -1,0 +1,33 @@
+{
+  "id": "pose_cam_worm_sit",
+  "kind": "pose",
+  "name": "贴地超广角 · 坐姿长腿（擦边）",
+  "group": "pose",
+  "group_title": "🏙 全年龄场景搭配",
+  "description": "真贴地机位（离地 10–20cm）仰拍全身含脚；坐处随机（台阶 / 椅子 / 沙发）；画面内不得出现相机",
+  "pose_tags": "sitting, hands on own thighs, smug, legs extended forward, sitting upright, hands resting on her thighs, legs extended toward viewer",
+  "pose_nl": "seen from just above the floor as she sits with her legs stretched toward the viewer. her legs fill the frame in strong foreshortening. she smirks down.",
+  "camera": {
+    "viewpoint": "worm's eye view",
+    "shot_size": "full body"
+  },
+  "suggest_place": "",
+  "aspect": "both",
+  "level": 1,
+  "theme": "镜头实验",
+  "count_lock": "1girl, solo",
+  "env_ref": "",
+  "source_id": "sc_cam_worm_sit",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": [
+      "ground level",
+      "extremely low angle",
+      "wide angle",
+      "foreshortening"
+    ]
+  },
+  "thumb": "thumbs/pose_cam_worm_sit.jpg"
+}

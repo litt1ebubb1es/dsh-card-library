@@ -1,0 +1,39 @@
+{
+  "id": "pose_wide_river_lookback",
+  "kind": "pose",
+  "name": "河畔 · 回眸",
+  "group": "sfw",
+  "group_title": "🏙 全年龄场景搭配",
+  "description": "真远景：河堤上回头，水面把暮色拉成一条长光带",
+  "pose_tags": "standing, looking back, looking back over shoulder",
+  "pose_nl": "she stands at the river bank in the warm twilight and looks back. the water carries the last light in long flat bands. the far bank is already dark.",
+  "camera": {
+    "viewpoint": "from behind",
+    "shot_size": "wide shot",
+    "comp": "negative space"
+  },
+  "suggest_place": "river",
+  "aspect": "landscape",
+  "level": 0,
+  "theme": "远景",
+  "count_lock": "1girl, solo",
+  "env_ref": "sc_wide_river_lookback",
+  "source_id": "sc_wide_river_lookback",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [
+      "scenery",
+      "river bank",
+      "still water"
+    ],
+    "removed_camera": [
+      "wide shot",
+      "full body",
+      "small figure",
+      "vast landscape",
+      "sense of scale"
+    ]
+  },
+  "thumb": "thumbs/pose_wide_river_lookback.jpg"
+}

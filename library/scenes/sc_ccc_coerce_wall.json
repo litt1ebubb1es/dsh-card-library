@@ -1,0 +1,48 @@
+{
+ "id": "sc_ccc_coerce_wall",
+ "kind": "scene",
+ "name": "小巷 · 墙边暗处",
+ "group": "nsfw",
+ "group_title": "🔞 NSFW 跨槽位配方",
+ "description": "地点：小巷；光线：dark background；相机：from side。（纯环境，不含动作/服装/表情）",
+ "tags": {
+  "place": "alley",
+  "light_fx": "dark background"
+ },
+ "camera": {
+  "viewpoint": "from side"
+ },
+ "extra": "",
+ "extra_camera": "",
+ "env_nl": "alley, dark background, from side.",
+ "level": 3,
+ "theme": "胁迫",
+ "count_lock": "1girl, 1boy, hetero",
+ "aspect": "landscape",
+ "thumb": null,
+ "env_hint": "alley, dark background, from side",
+ "pose_ref": "pose_ccc_coerce_wall",
+ "cleaned": {
+  "version": 4,
+  "policy": "env/pose split",
+  "note": "动作/服装/表情已移入 poses/pose_ccc_coerce_wall.json",
+  "removed_tag_keys": [
+   "emotion",
+   "n_act",
+   "n_orgasm",
+   "n_pos",
+   "n_state",
+   "pose_base"
+  ],
+  "removed_extra": [
+   "pressed against wall",
+   "her back pressed to the brick wall",
+   "wall behind her",
+   "his palm on the wall",
+   "power dynamics",
+   "coercion",
+   "cornered",
+   "no escape"
+  ]
+ }
+}

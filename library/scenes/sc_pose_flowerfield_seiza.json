@@ -1,0 +1,37 @@
+{
+ "id": "sc_pose_flowerfield_seiza",
+ "kind": "scene",
+ "name": "花田 · 暖光",
+ "group": "pose",
+ "group_title": "🧎 姿势场景",
+ "description": "地点：花田；光线：warm lighting；氛围：soft focus；相机：from above / full body。（纯环境，不含动作/服装/表情）",
+ "tags": {
+  "place": "flower field",
+  "light_fx": "warm lighting",
+  "texture_fx": "soft focus"
+ },
+ "camera": {
+  "viewpoint": "from above",
+  "shot_size": "full body"
+ },
+ "extra": "",
+ "extra_camera": "",
+ "env_nl": "flower field, warm lighting, soft focus, from above.",
+ "level": 1,
+ "theme": "姿势·花田跪坐",
+ "count_lock": "1girl, solo",
+ "aspect": "portrait",
+ "thumb": null,
+ "env_hint": "flower field, warm lighting, soft focus, full body, from above",
+ "pose_ref": "pose_pose_flowerfield_seiza",
+ "cleaned": {
+  "version": 4,
+  "policy": "env/pose split",
+  "note": "动作/服装/表情已移入 poses/pose_pose_flowerfield_seiza.json",
+  "removed_tag_keys": [
+   "outfit",
+   "pose_base"
+  ],
+  "removed_extra": []
+ }
+}

@@ -1,0 +1,51 @@
+{
+  "id": "look_racer",
+  "kind": "look",
+  "name": "赛车手",
+  "version": "1.0",
+  "description": "白色赛车服 + 赛车手套 + 靴 + 帽子 + 赞助商标 + 胸口拉链拉开，腋下夹头盔",
+  "nsfw": false,
+  "tags": "racing suit, white racing suit, racing gloves, boots, cap, sponsor logos, zipper open at chest, ",
+  "fields": {
+    "outfit": "white racing suit",
+    "top": "racing suit",
+    "bottom": "racing suit",
+    "shoes": "boots",
+    "accessory": "cap, racing gloves",
+    "cloth_color": "white",
+    "cloth_mat": "synthetic",
+    "cloth_state_sfw": "zipper open at chest"
+  },
+  "body_decor": {},
+  "look_notes": {},
+  "artist_segment": "@wlop, @minaba_hideo, ",
+  "style_label": "柔光半写实 (wlop+minaba)",
+  "negative_extra": "",
+  "params": {
+    "model": "miaomiaoHarem_anima8Step10.safetensors",
+    "lora": "anima-turbo-lora-v0.1.safetensors @ 0.4",
+    "clip": "qwen_3_06b_base.safetensors (type=qwen_image)",
+    "vae": "qwen_image_vae.safetensors",
+    "steps": 12,
+    "cfg": 2.0,
+    "sampler": "euler",
+    "scheduler": "simple",
+    "resolution": "832x1216"
+  },
+  "thumb": "thumbs/look_racer.jpg",
+  "source_dir": "",
+  "look_tags": "racing suit, white racing suit, racing gloves, boots, cap, sponsor logos, zipper open at chest, ",
+  "pose_tags": "",
+  "tag_split": {
+    "version": 3,
+    "cloth": 7,
+    "pose": 0,
+    "moved_pose": [],
+    "migrated_to": "pose_racer"
+  },
+  "legacy_pose_ref": "pose_racer",
+  "clean_note": {
+    "version": 11,
+    "source": "random36b picked by user"
+  }
+}

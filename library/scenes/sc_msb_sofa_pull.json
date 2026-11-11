@@ -1,0 +1,44 @@
+{
+ "id": "sc_msb_sofa_pull",
+ "kind": "scene",
+ "name": "卧室 · 沙发",
+ "group": "nsfw",
+ "group_title": "🔞 NSFW 跨槽位配方",
+ "description": "地点：卧室；光线：warm lighting；道具：couch；相机：from side。（纯环境，不含动作/服装/表情）",
+ "tags": {
+  "place": "bedroom",
+  "light_fx": "warm lighting",
+  "prop": "couch"
+ },
+ "camera": {
+  "viewpoint": "from side"
+ },
+ "extra": "",
+ "extra_camera": "",
+ "env_nl": "bedroom, warm lighting, couch, from side.",
+ "level": 2,
+ "theme": "挖矿",
+ "count_lock": "1girl, solo",
+ "aspect": "landscape",
+ "thumb": null,
+ "env_hint": "bedroom, warm lighting, couch, from side",
+ "pose_ref": "pose_msb_sofa_pull",
+ "cleaned": {
+  "version": 4,
+  "policy": "env/pose split",
+  "note": "动作/服装/表情已移入 poses/pose_msb_sofa_pull.json",
+  "removed_tag_keys": [
+   "emotion",
+   "mouth",
+   "n_body",
+   "n_exposure",
+   "n_state",
+   "pose_base"
+  ],
+  "removed_extra": [
+   "solo",
+   "hand on own thigh",
+   "looking down at self"
+  ]
+ }
+}

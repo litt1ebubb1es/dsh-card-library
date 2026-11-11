@@ -1,0 +1,21 @@
+{
+  "id": "pose_from_winter_adventurer",
+  "kind": "pose",
+  "name": "抱膝托腮",
+  "version": 1,
+  "group": "from_look",
+  "group_title": "来自造型卡",
+  "description": "景别：cowboy shot；动作：arms wrapped around knees, both arms occupied, chin on knees, half-closed eyes, hugging own legs, knees up, no hands free, parted lips, relaxed, sitting, sleepy, smile。",
+  "pose_tags": "arms wrapped around knees, both arms occupied, chin on knees, half-closed eyes, hugging own legs, knees up, no hands free, parted lips, relaxed, sitting, sleepy, smile",
+  "pose_nl": "",
+  "camera": {
+    "shot_size": "cowboy shot"
+  },
+  "suggest_place": "",
+  "aspect": "portrait",
+  "thumb": "thumbs/pose_from_winter_adventurer.jpg",
+  "env_ref": null,
+  "source": "look_pose_v1",
+  "legacy_look": "look_winter_adventurer",
+  "notes": "由造型卡的 pose_tags 迁出（v4）。动作卡只讲做什么，穿什么归造型卡。"
+}

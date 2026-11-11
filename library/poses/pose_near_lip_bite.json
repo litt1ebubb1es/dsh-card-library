@@ -1,0 +1,27 @@
+{
+  "id": "pose_near_lip_bite",
+  "kind": "pose",
+  "name": "咬唇特写",
+  "group": "pose",
+  "group_title": "🔍 特写搭配",
+  "description": "轻咬下唇的嘴部特写（口部细微动作建议 20–30 步，8 步 turbo 常退化成微张）",
+  "pose_tags": "embarrassed, blush, biting own lip, lips, teeth, chin, skin, teeth biting lower lip, lower lip between teeth, mouth focus",
+  "pose_nl": "her lower lip is caught between her teeth and pulled slightly. the skin around her mouth is flushed. only lips and chin are in frame.",
+  "camera": {
+    "shot_size": "extreme close-up"
+  },
+  "suggest_place": "",
+  "aspect": "both",
+  "level": 0,
+  "theme": "眼与唇",
+  "count_lock": "1girl, solo",
+  "env_ref": "",
+  "source_id": "sc_near_lip_bite",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_near_lip_bite.jpg"
+}

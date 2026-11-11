@@ -1,0 +1,38 @@
+{
+ "id": "sc_classroom_afterschool",
+ "kind": "scene",
+ "name": "教室 · 黄昏",
+ "group": "sfw",
+ "group_title": "🏙 全年龄场景搭配",
+ "description": "地点：教室；天气：sunset；光线：warm lighting；道具：desk；景物：empty classroom, long shadow, after school；相机：dutch angle / negative space。（纯环境，不含动作/服装/表情）",
+ "tags": {
+  "place": "classroom",
+  "weather": "sunset",
+  "light_fx": "warm lighting",
+  "prop": "desk"
+ },
+ "camera": {
+  "viewpoint": "dutch angle",
+  "comp": "negative space"
+ },
+ "extra": "empty classroom, long shadow, after school",
+ "extra_camera": "",
+ "env_nl": "classroom, sunset, warm lighting, desk, empty classroom, long shadow, after school, seen dutch angle.",
+ "level": 0,
+ "theme": "日常",
+ "count_lock": "1girl, solo",
+ "aspect": "portrait",
+ "thumb": null,
+ "env_hint": "classroom, sunset, warm lighting, desk, dutch angle, negative space, empty classroom, long shadow, after school",
+ "pose_ref": "pose_classroom_afterschool",
+ "cleaned": {
+  "version": 4,
+  "policy": "env/pose split",
+  "note": "动作/服装/表情已移入 poses/pose_classroom_afterschool.json",
+  "removed_tag_keys": [
+   "emotion",
+   "pose_base"
+  ],
+  "removed_extra": []
+ }
+}

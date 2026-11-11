@@ -1,0 +1,28 @@
+{
+  "id": "pose_near_face_mirror",
+  "kind": "pose",
+  "name": "闭眼特写",
+  "group": "pose",
+  "group_title": "🔍 特写搭配",
+  "description": "安静闭着的眼睛与睫毛的面部特写（中性背景）",
+  "pose_tags": "expressionless, closed eyes, face, eyelashes, calm, blush, collarbone, shoulders",
+  "pose_nl": "her eyes are closed and her face is calm. her lashes rest on her cheek and a faint blush sits under them. her collarbone shows at the bottom of the frame.",
+  "camera": {
+    "shot_size": "close-up",
+    "dof": "focus on face"
+  },
+  "suggest_place": "",
+  "aspect": "both",
+  "level": 0,
+  "theme": "面部",
+  "count_lock": "1girl, solo",
+  "env_ref": "",
+  "source_id": "sc_near_face_mirror",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_near_face_mirror.jpg"
+}

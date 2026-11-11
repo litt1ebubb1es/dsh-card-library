@@ -1,0 +1,50 @@
+{
+ "id": "style_wlop_warm_soft",
+ "name": "★柔光半写实（wlop+minaba）",
+ "kind": "style",
+ "version": "1.0",
+ "description": "参考图复刻定稿：单双画师 + 暖光主导 + 脸部补光 + 后期柔光。用户 2026-11-10 认可（crab_lit_H1..H3）。",
+ "quality_prefix": "masterpiece, best quality, score_7, score_9, very aesthetic, ultra detailed, ",
+ "artist_segment": "@wlop, @minaba_hideo, ",
+ "render": "smooth digital painting, soft gradient shading, airbrushed soft shading, semi-realistic, delicate soft rendering, soft edges, detailed hair strands, glossy hair highlights, backlit hair, dim ambient lighting, bloom, light particles, muted colors, low saturation, soft contrast, filmic color grading, detailed eyes with catchlight, cinematic composition, ",
+ "face_light": "face fully lit, soft fill light on face, key light on face, bright face, illuminated face, glowing skin, luminous skin, skin catching the lamp light, gentle highlight on cheek, no shadow on face, even facial lighting, soft light wrapping the face, warm light on cheek and nose, catchlight in both eyes, ",
+ "negative": "worst quality, low quality, score_1, score_2, score_3, lowres, jpeg artifacts, impasto, thick paint, rough brush strokes, visible brushwork, oil paint texture, cel shading, flat colors, clean lineart, thick outlines, 3d render, photorealistic, watermark, signature, artist signature, artist logo, artist name, logo, text, letters, handwriting, english text, chinese text, multiple girls, 2girls, multiple views, split screen, extra person, duplicate, deformed body, bad proportions, bad hands, extra fingers, missing fingers, extra limbs, dark face, shadowed face, half face in shadow, heavy shadow on face, deep shadow on face, shadow over eyes, shadow across cheek, face in darkness, underexposed face, dark under eyes, black shadow, harsh shadow, split lighting, silhouette, rim light only, backlit silhouette, , blue tint, cold color cast, strong blue backlight, cyan lighting, blue dominant, teal and orange, cyan skin, high contrast, dark image, underexposed, oversaturated, neon colors, fluorescent white light, harsh white light, overexposed, multiple light sources, evenly lit, flat lighting, sharp face, angular face, pointed chin, long face, thin face, gaunt face, narrow eyes, small eyes, tiny eyes, squinting, mature face, adult face, aged, old, sharp jawline, defined jawline, high cheekbones, realistic eyes, small irises, tiny pupils, plain eyes, lifeless eyes, wide-set eyes, far apart eyes, wide eye spacing, cigarette, smoking, alcohol bottle, beer",
+ "post": {
+  "lift_shadows": {
+   "amount": 0.22,
+   "gamma": 1.35
+  },
+  "haze": {
+   "lift": 0.06,
+   "contrast": 0.2,
+   "sat": 0.8,
+   "blur_r": 2,
+   "blur_blend": 0.3
+  },
+  "bloom": {
+   "threshold": 0.65,
+   "radius": 14,
+   "intensity": 0.35
+  },
+  "note": "先 lift_shadows 再 haze；夜景把 haze.lift 降到 0.04（见 n60）"
+ },
+ "params": {
+  "model": "miaomiaoHarem_anima8Step10.safetensors",
+  "lora": "anima-turbo-lora-v0.1.safetensors @ 0.4",
+  "clip": "qwen_3_06b_base.safetensors (type=qwen_image)",
+  "vae": "qwen_image_vae.safetensors",
+  "steps": 12,
+  "cfg": 2,
+  "sampler": "euler",
+  "scheduler": "simple",
+  "resolution": "832x1216"
+ },
+ "tags": [
+  "柔光",
+  "半写实",
+  "低饱和",
+  "暖光",
+  "夜景友好"
+ ],
+ "notes": "脸黑先查光照分布不要堆眼睛词（n61）；每次出 2-3 张。"
+}

@@ -1,0 +1,28 @@
+{
+  "id": "pose_near_leg_kneel",
+  "kind": "pose",
+  "name": "跪坐小腿",
+  "group": "near",
+  "group_title": "🔍 特写搭配",
+  "description": "正坐姿势下的小腿与脚踝，柔光",
+  "pose_tags": "seiza, calves, ankles, sitting on heels, thighs, head out of frame, legs focus, lower body",
+  "pose_nl": "she sits on her heels with her calves folded under her thighs. the frame holds only her legs and ankles. soft light lies on her skin.",
+  "camera": {
+    "viewpoint": "from side",
+    "shot_size": "extreme close-up"
+  },
+  "suggest_place": "",
+  "aspect": "both",
+  "level": 0,
+  "theme": "腿部",
+  "count_lock": "1girl, solo",
+  "env_ref": "",
+  "source_id": "sc_near_leg_kneel",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_near_leg_kneel.jpg"
+}

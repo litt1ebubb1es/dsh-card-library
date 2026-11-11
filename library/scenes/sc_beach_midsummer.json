@@ -1,0 +1,40 @@
+{
+ "id": "sc_beach_midsummer",
+ "kind": "scene",
+ "name": "海边 · 晴",
+ "group": "sfw",
+ "group_title": "🏙 全年龄场景搭配",
+ "description": "地点：海边；天气：clear sky；光线：god rays；景物：waves, splashing water；相机：cowboy shot。（纯环境，不含动作/服装/表情）",
+ "tags": {
+  "place": "beach",
+  "weather": "clear sky",
+  "light_fx": "god rays"
+ },
+ "camera": {
+  "shot_size": "cowboy shot"
+ },
+ "extra": "waves, splashing water",
+ "extra_camera": "",
+ "env_nl": "beach, clear sky, god rays, waves, splashing water, seen cowboy shot.",
+ "level": 0,
+ "theme": "夏",
+ "count_lock": "1girl, solo",
+ "aspect": "portrait",
+ "thumb": null,
+ "env_hint": "beach, clear sky, god rays, cowboy shot, waves, splashing water",
+ "pose_ref": "pose_beach_midsummer",
+ "cleaned": {
+  "version": 4,
+  "policy": "env/pose split",
+  "note": "动作/服装/表情已移入 poses/pose_beach_midsummer.json",
+  "removed_tag_keys": [
+   "arms_hands",
+   "emotion",
+   "pose_base",
+   "shoes"
+  ],
+  "removed_extra": [
+   "sunscreen"
+  ]
+ }
+}

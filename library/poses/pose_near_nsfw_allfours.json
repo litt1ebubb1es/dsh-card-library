@@ -1,0 +1,28 @@
+{
+  "id": "pose_near_nsfw_allfours",
+  "kind": "pose",
+  "name": "四足跪姿后视",
+  "group": "near",
+  "group_title": "🔍 特写搭配",
+  "description": "四足跪姿的臀部与大腿特写",
+  "pose_tags": "all fours, presenting, ass, hips, thighs, lower body, head out of frame",
+  "pose_nl": "she is on all fours seen from behind with her hips raised high and her head down out of frame. rim light traces her back and hips. only her lower body is shown.",
+  "camera": {
+    "viewpoint": "from behind",
+    "shot_size": "extreme close-up"
+  },
+  "suggest_place": "",
+  "aspect": "both",
+  "level": 3,
+  "theme": "🔞 成人向",
+  "count_lock": "1girl, solo",
+  "env_ref": "",
+  "source_id": "sc_near_nsfw_allfours",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_near_nsfw_allfours.jpg"
+}

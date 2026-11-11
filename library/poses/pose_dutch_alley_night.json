@@ -1,0 +1,34 @@
+{
+  "id": "pose_dutch_alley_night",
+  "kind": "pose",
+  "name": "斜角小巷 · 夜",
+  "group": "sfw",
+  "group_title": "🏙 全年龄场景搭配",
+  "description": "荷兰角 + 霓虹，靠墙不悦",
+  "pose_tags": "against wall, pout, leaning",
+  "pose_nl": "she leans against the damp alley wall with the frame tilted. a sign light throws pink and blue across the bricks. she pouts at the viewer.",
+  "camera": {
+    "viewpoint": "dutch angle",
+    "shot_size": "cowboy shot"
+  },
+  "suggest_place": "alley",
+  "aspect": "portrait",
+  "level": 0,
+  "theme": "夜景",
+  "count_lock": "1girl, solo",
+  "env_ref": "sc_dutch_alley_night",
+  "source_id": "sc_dutch_alley_night",
+  "clean_note": {
+    "version": 4,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [
+      "damp wall",
+      "sign light"
+    ],
+    "removed_camera": [],
+    "from_nl": [
+      "leaning"
+    ]
+  },
+  "thumb": "thumbs/pose_dutch_alley_night.jpg"
+}

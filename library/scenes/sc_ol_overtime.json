@@ -1,0 +1,40 @@
+{
+ "id": "sc_ol_overtime",
+ "kind": "scene",
+ "name": "办公室 · 轮廓光",
+ "group": "sfw",
+ "group_title": "🏙 全年龄场景搭配",
+ "description": "地点：办公室；光线：rim lighting；景物：midnight；相机：from above。（纯环境，不含动作/服装/表情）",
+ "tags": {
+  "place": "office",
+  "light_fx": "rim lighting"
+ },
+ "camera": {
+  "viewpoint": "from above"
+ },
+ "extra": "midnight",
+ "extra_camera": "",
+ "env_nl": "office, rim lighting, midnight, from above.",
+ "level": 1,
+ "theme": "职场",
+ "count_lock": "1girl, solo",
+ "aspect": "landscape",
+ "thumb": null,
+ "env_hint": "office, rim lighting, from above, midnight",
+ "pose_ref": "pose_ol_overtime",
+ "cleaned": {
+  "version": 4,
+  "policy": "env/pose split",
+  "note": "动作/服装/表情已移入 poses/pose_ol_overtime.json",
+  "removed_tag_keys": [
+   "emotion",
+   "outfit",
+   "pose_base",
+   "pose_risque"
+  ],
+  "removed_extra": [
+   "documents",
+   "loosened tie"
+  ]
+ }
+}

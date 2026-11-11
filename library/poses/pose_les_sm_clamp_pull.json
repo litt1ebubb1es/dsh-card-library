@@ -1,0 +1,33 @@
+{
+  "id": "pose_les_sm_clamp_pull",
+  "kind": "pose",
+  "name": "乳夹拉拽 · 手持链条",
+  "group": "nsfw",
+  "group_title": "🔞 NSFW 跨槽位配方",
+  "description": "她双腕被反绑在身后、跪着向后仰身、胸口被迫挺起；两枚乳夹之间连着一条细链，戴黑色皮手套的手捏住链子往镜头方向拉，乳夹被扯得绷紧；她翻白眼吐舌、口水滴落，泪从眼角滑下",
+  "pose_tags": "kneeling, tongue out, completely nude, ahegao, rolled back eyes, slave, shibari, nipple clamps, chain between nipples, pulling nipple clamps, holding chain, female hand, pov, drool, tears",
+  "pose_nl": "she kneels with a chain strung between her nipple clamps and a gloved hand pulling it forward. her mouth is open and drool hangs down. candlelight hits her chest.",
+  "camera": {
+    "viewpoint": "pov hands",
+    "shot_size": "upper body"
+  },
+  "suggest_place": "bedroom",
+  "aspect": "both",
+  "level": 4,
+  "theme": "BDSM",
+  "count_lock": "1girl, solo",
+  "env_ref": "sc_les_sm_clamp_pull",
+  "source_id": "sc_les_sm_clamp_pull",
+  "clean_note": {
+    "version": 3,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": [],
+    "removed_cloth": [
+      "black leather gloves",
+      "black gloves",
+      "leather gloves"
+    ]
+  },
+  "thumb": "thumbs/pose_les_sm_clamp_pull.jpg"
+}

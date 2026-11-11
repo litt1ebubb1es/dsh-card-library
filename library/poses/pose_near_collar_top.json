@@ -1,0 +1,31 @@
+{
+  "id": "pose_near_collar_top",
+  "kind": "pose",
+  "name": "领口俯视",
+  "group": "near",
+  "group_title": "🔍 特写搭配",
+  "description": "俯拍领口与锁骨，柔光",
+  "pose_tags": "visible collarbone, collarbone, shirt collar, neck, chest",
+  "pose_nl": "seen from above her collar at her collarbone and chest. the shirt neckline cuts across the frame. soft light lies on her skin.",
+  "camera": {
+    "viewpoint": "from above",
+    "shot_size": "close-up"
+  },
+  "suggest_place": "",
+  "aspect": "both",
+  "level": 0,
+  "theme": "上半身与胸",
+  "count_lock": "1girl, solo",
+  "env_ref": "",
+  "source_id": "sc_near_collar_top",
+  "clean_note": {
+    "version": 4,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": [],
+    "removed_cloth": [
+      "neckline"
+    ]
+  },
+  "thumb": "thumbs/pose_near_collar_top.jpg"
+}

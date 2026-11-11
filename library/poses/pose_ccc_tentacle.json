@@ -1,0 +1,25 @@
+{
+  "id": "pose_ccc_tentacle",
+  "kind": "pose",
+  "name": "异种 · 触手",
+  "group": "nsfw",
+  "group_title": "🔞 NSFW 跨槽位配方",
+  "description": "文档 §14.5：被触手缠住、身体失控。束缚方式三选一（双手吊起 / 手臂反绑 / 全身悬吊）× 口部三选一（触手在脸侧 / 绕颈 / **插入口中**，约 1/3）",
+  "pose_tags": "completely nude, love juice trail, tentacles, restrained, aphrodisiac, non-human, tentacles wrapped around her body",
+  "pose_nl": "thick tentacles wrap around her arms and waist and lift her off the ground. one tentacle slides between her legs while another holds her throat. the foggy forest behind her is almost black.",
+  "camera": {},
+  "suggest_place": "forest",
+  "aspect": "portrait",
+  "level": 3,
+  "theme": "异种",
+  "count_lock": "1girl, solo",
+  "env_ref": "sc_ccc_tentacle",
+  "source_id": "sc_ccc_tentacle",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_ccc_tentacle.jpg"
+}

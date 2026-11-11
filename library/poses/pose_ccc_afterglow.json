@@ -1,0 +1,27 @@
+{
+  "id": "pose_ccc_afterglow",
+  "kind": "pose",
+  "name": "事后 · 余韵",
+  "group": "nsfw",
+  "group_title": "🔞 NSFW 跨槽位配方",
+  "description": "文档 §14.9：无性行为标签，重残留与情绪（单人余韵）。中景到全身：景别 cowboy shot / full body 二选一，姿势六选一",
+  "pose_tags": "sleepy, completely nude, after sex, cum overflow, exhausted, messy hair, sweat, lingering, alone",
+  "pose_nl": "she lies alone on the messy bed after it is over. sweat and cum have dried on her thighs. her hair is stuck to her face and her eyes are half closed.",
+  "camera": {},
+  "suggest_place": "",
+  "aspect": "portrait",
+  "level": 3,
+  "theme": "事后",
+  "count_lock": "1girl, solo",
+  "env_ref": "",
+  "source_id": "sc_ccc_afterglow",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [
+      "empty bed"
+    ],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_ccc_afterglow.jpg"
+}

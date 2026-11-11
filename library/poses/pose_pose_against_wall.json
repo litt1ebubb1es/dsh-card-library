@@ -1,0 +1,31 @@
+{
+  "id": "pose_pose_against_wall",
+  "kind": "pose",
+  "name": "靠墙而立",
+  "group": "pose",
+  "group_title": "🧎 姿势场景",
+  "description": "后背贴墙站立，双臂交叉，侧向机位",
+  "pose_tags": "against wall, crossed arms, leaning",
+  "pose_nl": "she leans her back against the wall with her arms crossed and one foot flat. seen from the side so the wall and her body make a narrow gap. her face is relaxed.",
+  "camera": {
+    "viewpoint": "from side",
+    "shot_size": "cowboy shot"
+  },
+  "suggest_place": "",
+  "aspect": "portrait",
+  "level": 0,
+  "theme": "姿势·靠墙",
+  "count_lock": "1girl, solo",
+  "env_ref": "",
+  "source_id": "sc_pose_against_wall",
+  "clean_note": {
+    "version": 4,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": [],
+    "from_nl": [
+      "leaning"
+    ]
+  },
+  "thumb": "thumbs/pose_pose_against_wall.jpg"
+}

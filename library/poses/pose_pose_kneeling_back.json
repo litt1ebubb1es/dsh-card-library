@@ -1,0 +1,28 @@
+{
+  "id": "pose_pose_kneeling_back",
+  "kind": "pose",
+  "name": "跪姿 · 背手",
+  "group": "pose",
+  "group_title": "🧎 姿势场景",
+  "description": "标准跪姿、双手背后，正后方机位强调脊柱与臀线",
+  "pose_tags": "kneeling, arms behind back",
+  "pose_nl": "she kneels with both arms behind her back and her shoulders open. seen from behind so the line of her spine and the backs of her thighs show. her head is slightly lowered.",
+  "camera": {
+    "viewpoint": "from behind",
+    "shot_size": "full body"
+  },
+  "suggest_place": "",
+  "aspect": "portrait",
+  "level": 0,
+  "theme": "姿势·跪姿",
+  "count_lock": "1girl, solo",
+  "env_ref": "",
+  "source_id": "sc_pose_kneeling_back",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_pose_kneeling_back.jpg"
+}

@@ -1,0 +1,32 @@
+{
+  "id": "pose_classroom_afterschool",
+  "kind": "pose",
+  "name": "教室 · 放学后",
+  "group": "sfw",
+  "group_title": "🏙 全年龄场景搭配",
+  "description": "空教室 + 斜阳，坐在课桌上",
+  "pose_tags": "sitting, expressionless",
+  "pose_nl": "she sits alone at a desk in the empty classroom with the frame tilted. the sunset light comes in low and throws her long shadow across the floor. she does not look up.",
+  "camera": {
+    "viewpoint": "dutch angle",
+    "comp": "negative space"
+  },
+  "suggest_place": "classroom",
+  "aspect": "portrait",
+  "level": 0,
+  "theme": "日常",
+  "count_lock": "1girl, solo",
+  "env_ref": "sc_classroom_afterschool",
+  "source_id": "sc_classroom_afterschool",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [
+      "empty classroom",
+      "long shadow",
+      "after school"
+    ],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_classroom_afterschool.jpg"
+}

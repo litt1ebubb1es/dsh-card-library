@@ -1,0 +1,33 @@
+{
+  "id": "pose_yoga_mat",
+  "kind": "pose",
+  "name": "瑜伽 · 下犬式（擦边）",
+  "group": "sfw",
+  "group_title": "🏙 全年龄场景搭配",
+  "description": "俯拍视角下的拉伸曲线",
+  "pose_tags": "bent over, downward dog, yoga mat, stretching, ass focus, lower body",
+  "pose_nl": "she holds a downward dog pose on the yoga mat with her hips raised high. seen from behind. only her lower body fills the frame. morning light on the floor.",
+  "camera": {
+    "viewpoint": "from behind"
+  },
+  "suggest_place": "apartment",
+  "aspect": "landscape",
+  "level": 1,
+  "theme": "日常",
+  "count_lock": "1girl, solo",
+  "env_ref": "sc_yoga_mat",
+  "source_id": "sc_yoga_mat",
+  "clean_note": {
+    "version": 3,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": [
+      "from behind"
+    ],
+    "removed_cloth": [
+      "sports bra",
+      "yoga pants"
+    ]
+  },
+  "thumb": "thumbs/pose_yoga_mat.jpg"
+}

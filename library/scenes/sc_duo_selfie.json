@@ -1,0 +1,39 @@
+{
+ "id": "sc_duo_selfie",
+ "kind": "scene",
+ "name": "咖啡馆 · 自拍半身",
+ "group": "sfw",
+ "group_title": "🏙 全年龄场景搭配",
+ "description": "地点：咖啡馆；相机：upper body / front view。（纯环境，不含动作/服装/表情）",
+ "tags": {
+  "place": "cafe"
+ },
+ "camera": {
+  "shot_size": "upper body"
+ },
+ "extra": "",
+ "extra_camera": "front view",
+ "env_nl": "cafe, front view, seen upper body.",
+ "level": 0,
+ "theme": "双女",
+ "count_lock": "2girls",
+ "aspect": "both",
+ "thumb": null,
+ "env_hint": "cafe, upper body, front view",
+ "pose_ref": "pose_duo_selfie",
+ "cleaned": {
+  "version": 4,
+  "policy": "env/pose split",
+  "note": "动作/服装/表情已移入 poses/pose_duo_selfie.json",
+  "removed_tag_keys": [
+   "emotion",
+   "eye_gaze",
+   "pose_base"
+  ],
+  "removed_extra": [
+   "cheek to cheek",
+   "arms around each other",
+   "both girls in frame"
+  ]
+ }
+}

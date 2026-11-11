@@ -1,0 +1,33 @@
+{
+  "id": "pose_hotel_mirror",
+  "kind": "pose",
+  "name": "旅馆 · 镜前自照（擦边）",
+  "group": "sfw",
+  "group_title": "🏙 全年龄场景搭配",
+  "description": "镜面反射的双重视角",
+  "pose_tags": "hands on own thighs, embarrassed, blush",
+  "pose_nl": "she stands in the hotel room with her hands on her own thighs and her back to the tall mirror. her camisole dress rides up slightly. she blushes and looks down.",
+  "camera": {
+    "viewpoint": "from behind"
+  },
+  "suggest_place": "hotel room",
+  "aspect": "portrait",
+  "level": 1,
+  "theme": "室内",
+  "count_lock": "1girl, solo",
+  "env_ref": "sc_hotel_mirror",
+  "source_id": "sc_hotel_mirror",
+  "clean_note": {
+    "version": 3,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [
+      "mirror as backdrop",
+      "hotel"
+    ],
+    "removed_camera": [],
+    "removed_cloth": [
+      "camisole dress"
+    ]
+  },
+  "thumb": "thumbs/pose_hotel_mirror.jpg"
+}

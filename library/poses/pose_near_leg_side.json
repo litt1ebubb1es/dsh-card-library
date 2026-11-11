@@ -1,0 +1,29 @@
+{
+  "id": "pose_near_leg_side",
+  "kind": "pose",
+  "name": "侧卧并腿",
+  "group": "near",
+  "group_title": "🔍 特写搭配",
+  "description": "侧卧在床上双腿并拢（不穿鞋）",
+  "pose_tags": "on side, legs together, thighs, calves, head out of frame, legs focus, lower body",
+  "pose_nl": "she lies on her side on the bed with her legs pressed together. the sheet is twisted between her calves. only her legs fill the frame.",
+  "camera": {
+    "shot_size": "extreme close-up"
+  },
+  "suggest_place": "",
+  "aspect": "both",
+  "level": 0,
+  "theme": "腿部",
+  "count_lock": "1girl, solo",
+  "env_ref": "",
+  "source_id": "sc_near_leg_side",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [
+      "bed sheet"
+    ],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_near_leg_side.jpg"
+}

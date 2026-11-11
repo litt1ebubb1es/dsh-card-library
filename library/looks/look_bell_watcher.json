@@ -1,0 +1,75 @@
+{
+  "id": "look_bell_watcher",
+  "kind": "look",
+  "name": "钟楼守望",
+  "version": "1.0",
+  "description": "兜帽外套 + 胸甲 + 护腿 + 腰披风 + 护符 + 战靴",
+  "nsfw": false,
+  "tags": "combat boots, armored dress, breastplate, amulet, greaves, hooded coat, waist cape, red armored dress, glossy lips, red nail polish, visible collarbone, fully clothed, wearing clothes, covered chest, covered torso, long sleeves, fantasy, intricate details, ",
+  "fields": {
+    "outfit": "bell tower watcher",
+    "pieces": "combat boots, armored dress, breastplate, amulet, greaves, hooded coat, waist cape",
+    "cloth_color": "red"
+  },
+  "body_decor": {
+    "makeup": "glossy lips",
+    "nails": "red nail polish",
+    "skin_detail": "visible collarbone"
+  },
+  "look_notes": {},
+  "artist_segment": "minaba_hideo, liduke, piromizu, nonco,",
+  "style_label": "柔光半写实 (基准)",
+  "negative_extra": "modern city, cars, electric lights, crowd, many people, multiple girls, 2girls, t-shirt, jeans, hoodie, sneakers, casual clothes, nude, naked, topless, bottomless, no bra, bare breasts, exposed breasts, nipples, pussy, exposed pussy, underwear, panties only, undressing, torn clothes, clothing cutout, breast cutout, sideboob, underboob, cleavage window, open clothes, unbuttoned, ",
+  "params": {
+    "model": "miaomiaoHarem_anima8Step10.safetensors",
+    "lora": "anima-turbo-lora-v0.1.safetensors @ 0.4",
+    "clip": "qwen_3_06b_base.safetensors (type=qwen_image)",
+    "vae": "qwen_image_vae.safetensors",
+    "steps": 12,
+    "cfg": 2.0,
+    "sampler": "euler",
+    "scheduler": "simple",
+    "resolution": "832x1216",
+    "seed": 115005
+  },
+  "thumb": "thumbs/look_bell_watcher.jpg",
+  "source_dir": "_assets/characters/look_bell_watcher",
+  "look_tags": "combat boots, armored dress, breastplate, amulet, greaves, hooded coat, waist cape, red armored dress, glossy lips, red nail polish, visible collarbone, fully clothed, wearing clothes, covered chest, covered torso, long sleeves, fantasy, intricate details, ",
+  "pose_tags": "",
+  "tag_split": {
+    "version": 3,
+    "cloth": 20,
+    "pose": 0,
+    "moved_pose": [
+      "hand on own hip"
+    ],
+    "migrated_to": "pose_from_bell_watcher"
+  },
+  "legacy_pose_ref": "pose_from_bell_watcher",
+  "fields_legacy_pose": {
+    "emotion": "serious",
+    "eye_gaze": "looking away",
+    "mouth": "closed mouth",
+    "pose_base": "standing",
+    "arms_hands": "hand on own hip",
+    "action": "standing, looking ahead",
+    "prop": "no prop",
+    "shot_size": "cowboy shot"
+  },
+  "clean_note": {
+    "version": 6.1,
+    "removed_v6": [
+      "bell_tower_watcher",
+      "no prop"
+    ],
+    "color_bound_v6": [
+      "red -> red bell tower watcher"
+    ],
+    "fixed_v6b": [
+      "red bell tower watcher"
+    ],
+    "color_bound_v6b": [
+      "red -> red armored dress"
+    ]
+  }
+}

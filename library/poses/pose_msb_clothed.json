@@ -1,0 +1,30 @@
+{
+  "id": "pose_msb_clothed",
+  "kind": "pose",
+  "name": "自慰 · 衣着自慰",
+  "group": "nsfw",
+  "group_title": "🔞 NSFW 跨槽位配方",
+  "description": "更衣室里隔着体操服摸",
+  "pose_tags": "squatting, masturbation, thigh gap, embarrassed, blush, clothes pull, moaning, solo, through clothes, hand on own thigh",
+  "pose_nl": "she squats in the changing room with her back against the lockers. her hand presses through the gym shorts and her mouth is open in a moan. her thighs stay pressed together.",
+  "camera": {
+    "viewpoint": "from side"
+  },
+  "suggest_place": "changing room",
+  "aspect": "portrait",
+  "level": 2,
+  "theme": "挖矿",
+  "count_lock": "1girl, solo",
+  "env_ref": "sc_msb_clothed",
+  "source_id": "sc_msb_clothed",
+  "clean_note": {
+    "version": 3,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": [],
+    "removed_cloth": [
+      "gym uniform"
+    ]
+  },
+  "thumb": "thumbs/pose_msb_clothed.jpg"
+}

@@ -1,0 +1,31 @@
+{
+  "id": "pose_pose_fetal",
+  "kind": "pose",
+  "name": "蜷缩",
+  "group": "pose",
+  "group_title": "🧎 姿势场景",
+  "description": "侧向蜷缩、膝盖收到胸口，俯拍，松弛或脆弱感都成立",
+  "pose_tags": "fetal position, sleepy, lying",
+  "pose_nl": "she lies curled on her side with her knees drawn up and her hands tucked under her cheek. seen from above so her whole body fits inside the frame. her eyes are closed.",
+  "camera": {
+    "viewpoint": "from above",
+    "shot_size": "full body"
+  },
+  "suggest_place": "",
+  "aspect": "portrait",
+  "level": 0,
+  "theme": "姿势·卧姿",
+  "count_lock": "1girl, solo",
+  "env_ref": "",
+  "source_id": "sc_pose_fetal",
+  "clean_note": {
+    "version": 4,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": [],
+    "from_nl": [
+      "lying"
+    ]
+  },
+  "thumb": "thumbs/pose_pose_fetal.jpg"
+}

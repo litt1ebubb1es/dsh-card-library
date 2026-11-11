@@ -1,0 +1,36 @@
+{
+ "id": "sc_konbini_midnight",
+ "kind": "scene",
+ "name": "便利店 · 轮廓光",
+ "group": "sfw",
+ "group_title": "🏙 全年龄场景搭配",
+ "description": "地点：便利店；光线：rim lighting；景物：refrigerator, midnight；相机：from below。（纯环境，不含动作/服装/表情）",
+ "tags": {
+  "place": "convenience store",
+  "light_fx": "rim lighting"
+ },
+ "camera": {
+  "viewpoint": "from below"
+ },
+ "extra": "refrigerator, midnight",
+ "extra_camera": "",
+ "env_nl": "convenience store, rim lighting, refrigerator, midnight, from below.",
+ "level": 1,
+ "theme": "日常",
+ "count_lock": "1girl, solo",
+ "aspect": "portrait",
+ "thumb": null,
+ "env_hint": "convenience store, rim lighting, from below, refrigerator, midnight",
+ "pose_ref": "pose_konbini_midnight",
+ "cleaned": {
+  "version": 4,
+  "policy": "env/pose split",
+  "note": "动作/服装/表情已移入 poses/pose_konbini_midnight.json",
+  "removed_tag_keys": [
+   "bottom",
+   "outfit",
+   "pose_risque"
+  ],
+  "removed_extra": []
+ }
+}

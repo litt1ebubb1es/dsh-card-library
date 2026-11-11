@@ -1,0 +1,28 @@
+{
+  "id": "pose_near_nsfw_nipple_suck",
+  "kind": "pose",
+  "name": "双女口含乳头",
+  "group": "near",
+  "group_title": "🔍 特写搭配",
+  "description": "一名女性低头含住另一人的乳头，侧向近拍",
+  "pose_tags": "on side, 2girls, yuri, nipple suck, sucking nipples, nipples, breasts, saliva, eyes closed, blush",
+  "pose_nl": "one woman lies on her side while the other closes her lips around her nipple and sucks. saliva glistens on the skin. only their chests are in frame.",
+  "camera": {
+    "viewpoint": "from side",
+    "shot_size": "extreme close-up"
+  },
+  "suggest_place": "",
+  "aspect": "both",
+  "level": 2,
+  "theme": "🔞 成人向",
+  "count_lock": "2girls, yuri",
+  "env_ref": "",
+  "source_id": "sc_near_nsfw_nipple_suck",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_near_nsfw_nipple_suck.jpg"
+}

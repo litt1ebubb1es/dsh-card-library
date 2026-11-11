@@ -1,0 +1,30 @@
+{
+  "id": "pose_near_foot_bare",
+  "kind": "pose",
+  "name": "赤足踩地",
+  "group": "near",
+  "group_title": "🔍 特写搭配",
+  "description": "俯拍赤足，脚趾与脚背占满画面",
+  "pose_tags": "sitting, bare feet, barefoot, toes, soles, foot, head out of frame, feet focus, lower body",
+  "pose_nl": "her bare feet rest on the bedroom floor with the toes relaxed. seen from above at her soles and ankles. her head is out of frame.",
+  "camera": {
+    "viewpoint": "from above",
+    "shot_size": "extreme close-up"
+  },
+  "suggest_place": "bedroom",
+  "aspect": "both",
+  "level": 0,
+  "theme": "脚部",
+  "count_lock": "1girl, solo",
+  "env_ref": "sc_near_foot_bare",
+  "source_id": "sc_near_foot_bare",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [
+      "floor"
+    ],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_near_foot_bare.jpg"
+}

@@ -1,0 +1,31 @@
+{
+  "id": "pose_near_leg_thighhigh",
+  "kind": "pose",
+  "name": "膝上丝袜",
+  "group": "pose",
+  "group_title": "🔍 特写搭配",
+  "description": "膝上丝袜与大腿根（不穿鞋）；长袜款式随机：黑丝/白丝/蕾丝边/渔网/吊袜带/袜上叠穿",
+  "pose_tags": "crossed legs, thighs, knees, bare legs, head out of frame, legs focus, lower body",
+  "pose_nl": "her thighs and knees fill the frame with thighhighs pulled up high. bare skin shows above the band. the shot is from the side and her head is not in frame.",
+  "camera": {
+    "viewpoint": "from side",
+    "shot_size": "extreme close-up"
+  },
+  "suggest_place": "",
+  "aspect": "both",
+  "level": 0,
+  "theme": "腿部",
+  "count_lock": "1girl, solo",
+  "env_ref": "",
+  "source_id": "sc_near_leg_thighhigh",
+  "clean_note": {
+    "version": 3,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": [],
+    "removed_cloth": [
+      "thighhighs"
+    ]
+  },
+  "thumb": "thumbs/pose_near_leg_thighhigh.jpg"
+}

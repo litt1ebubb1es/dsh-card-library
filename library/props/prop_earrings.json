@@ -1,0 +1,16 @@
+{
+ "id": "prop_earrings",
+ "kind": "prop",
+ "name": "耳环",
+ "version": "1.0",
+ "group": "accessory",
+ "group_title": "配饰",
+ "description": "耳环，通用配饰。",
+ "prop_tags": "earrings, wearing earrings, dangle earrings",
+ "prop_nl": "She wears dangling earrings.",
+ "hold": false,
+ "suggest_pose": "standing",
+ "aspect": "both",
+ "thumb": null,
+ "notes": "道具卡只写物，不写持有者/场景/服装；hold=true 时拼配方要配 holding 动词。"
+}

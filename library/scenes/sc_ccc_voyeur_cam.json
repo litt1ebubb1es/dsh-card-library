@@ -1,0 +1,39 @@
+{
+ "id": "sc_ccc_voyeur_cam",
+ "kind": "scene",
+ "name": "旅馆房间 · 门缝机位",
+ "group": "nsfw",
+ "group_title": "🔞 NSFW 跨槽位配方",
+ "description": "地点：旅馆房间。（纯环境，不含动作/服装/表情）",
+ "tags": {
+  "place": "hotel room"
+ },
+ "camera": {},
+ "extra": "",
+ "extra_camera": "",
+ "env_nl": "hotel room.",
+ "level": 2,
+ "theme": "偷窥",
+ "count_lock": "1girl, solo",
+ "aspect": "portrait",
+ "thumb": null,
+ "env_hint": "hotel room",
+ "pose_ref": "pose_ccc_voyeur_cam",
+ "cleaned": {
+  "version": 4,
+  "policy": "env/pose split",
+  "note": "动作/服装/表情已移入 poses/pose_ccc_voyeur_cam.json",
+  "removed_tag_keys": [
+   "n_act",
+   "n_exposure",
+   "n_orgasm",
+   "n_state",
+   "pose_base"
+  ],
+  "removed_extra": [
+   "peeping through the doorway",
+   "unaware",
+   "candid"
+  ]
+ }
+}

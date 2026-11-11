@@ -1,0 +1,41 @@
+{
+ "id": "sc_duo_feeding",
+ "kind": "scene",
+ "name": "咖啡馆 · 半身",
+ "group": "sfw",
+ "group_title": "🏙 全年龄场景搭配",
+ "description": "地点：咖啡馆；相机：upper body。（纯环境，不含动作/服装/表情）",
+ "tags": {
+  "place": "cafe"
+ },
+ "camera": {
+  "shot_size": "upper body"
+ },
+ "extra": "",
+ "extra_camera": "",
+ "env_nl": "cafe, seen upper body.",
+ "level": 1,
+ "theme": "双女",
+ "count_lock": "2girls, yuri",
+ "aspect": "both",
+ "thumb": null,
+ "env_hint": "cafe, upper body",
+ "pose_ref": "pose_duo_feeding",
+ "cleaned": {
+  "version": 4,
+  "policy": "env/pose split",
+  "note": "动作/服装/表情已移入 poses/pose_duo_feeding.json",
+  "removed_tag_keys": [
+   "emotion",
+   "eye_gaze",
+   "pose_base"
+  ],
+  "removed_extra": [
+   "feeding",
+   "chopsticks",
+   "sharing food",
+   "open mouth",
+   "bowl"
+  ]
+ }
+}

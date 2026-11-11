@@ -1,0 +1,16 @@
+{
+ "id": "prop_badge",
+ "kind": "prop",
+ "name": "徽章",
+ "version": "1.0",
+ "group": "accessory",
+ "group_title": "配饰",
+ "description": "徽章，制服/社团。",
+ "prop_tags": "badge, wearing badge, pin badge",
+ "prop_nl": "A small badge is pinned to her chest.",
+ "hold": false,
+ "suggest_pose": "standing",
+ "aspect": "both",
+ "thumb": null,
+ "notes": "道具卡只写物，不写持有者/场景/服装；hold=true 时拼配方要配 holding 动词。"
+}

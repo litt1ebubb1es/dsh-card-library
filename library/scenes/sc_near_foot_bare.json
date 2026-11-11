@@ -1,0 +1,44 @@
+{
+ "id": "sc_near_foot_bare",
+ "kind": "scene",
+ "name": "卧室 · 极近",
+ "group": "near",
+ "group_title": "🔍 特写搭配",
+ "description": "地点：卧室；景物：floor；相机：from above / extreme close-up。（纯环境，不含动作/服装/表情）",
+ "tags": {
+  "place": "bedroom"
+ },
+ "camera": {
+  "viewpoint": "from above",
+  "shot_size": "extreme close-up"
+ },
+ "extra": "floor",
+ "extra_camera": "",
+ "env_nl": "bedroom, floor, from above.",
+ "level": 0,
+ "theme": "脚部",
+ "count_lock": "1girl, solo",
+ "aspect": "both",
+ "thumb": null,
+ "env_hint": "bedroom, extreme close-up, from above, floor",
+ "pose_ref": "pose_near_foot_bare",
+ "cleaned": {
+  "version": 4,
+  "policy": "env/pose split",
+  "note": "动作/服装/表情已移入 poses/pose_near_foot_bare.json",
+  "removed_tag_keys": [
+   "pose_base",
+   "shoes",
+   "socks"
+  ],
+  "removed_extra": [
+   "bare feet",
+   "toes",
+   "soles",
+   "foot",
+   "head out of frame",
+   "feet focus",
+   "lower body"
+  ]
+ }
+}

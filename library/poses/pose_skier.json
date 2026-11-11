@@ -1,0 +1,22 @@
+{
+  "id": "pose_skier",
+  "kind": "pose",
+  "name": "滑雪者",
+  "version": 1,
+  "group": "from_look",
+  "group_title": "来自造型卡",
+  "description": "景别：full body；动作：standing, holding ski poles, both hands on poles, looking at viewer, rosy cheeks, closed mouth, smile, full body。",
+  "pose_tags": "standing, holding ski poles, both hands on poles, looking at viewer, rosy cheeks, closed mouth, smile, full body",
+  "pose_nl": "",
+  "camera": {
+    "shot_size": "full body",
+    "viewpoint": "from front"
+  },
+  "suggest_place": "field",
+  "aspect": "portrait",
+  "thumb": "thumbs/pose_skier.jpg",
+  "env_ref": null,
+  "source": "look_pose_v1",
+  "legacy_look": "look_skier",
+  "notes": "由 random36 挑图反推（v4）。动作卡只讲做什么，穿什么归造型卡。"
+}

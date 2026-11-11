@@ -1,0 +1,16 @@
+{
+ "id": "prop_raincoat",
+ "kind": "prop",
+ "name": "雨衣",
+ "version": "1.0",
+ "group": "home",
+ "group_title": "家居",
+ "description": "雨衣，雨天。",
+ "prop_tags": "raincoat, wearing raincoat",
+ "prop_nl": "She wears a yellow raincoat.",
+ "hold": false,
+ "suggest_pose": "standing, rain",
+ "aspect": "both",
+ "thumb": null,
+ "notes": "道具卡只写物，不写持有者/场景/服装；hold=true 时拼配方要配 holding 动词。"
+}

@@ -1,0 +1,28 @@
+{
+  "id": "pose_pose_bed_kneel",
+  "kind": "pose",
+  "name": "卧室 · 床上跪坐",
+  "group": "pose",
+  "group_title": "🧎 姿势场景",
+  "description": "床上跪坐、寝间着，清晨侧光，牛仔镜",
+  "pose_tags": "kneeling, sleeping kimono",
+  "pose_nl": "she kneels on the bed in a loose sleeping kimono with her hands on her thighs. morning light comes across the sheet and the collar slips off one shoulder. seen from the side.",
+  "camera": {
+    "viewpoint": "from side",
+    "shot_size": "cowboy shot"
+  },
+  "suggest_place": "",
+  "aspect": "landscape",
+  "level": 0,
+  "theme": "姿势·床上跪坐",
+  "count_lock": "1girl, solo",
+  "env_ref": "",
+  "source_id": "sc_pose_bed_kneel",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_pose_bed_kneel.jpg"
+}

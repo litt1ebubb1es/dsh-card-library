@@ -1,0 +1,16 @@
+{
+ "id": "prop_bottle",
+ "kind": "prop",
+ "name": "瓶子",
+ "version": "1.0",
+ "group": "food",
+ "group_title": "食物饮品",
+ "description": "玻璃瓶，汽水/药水通用。",
+ "prop_tags": "bottle, holding bottle, glass bottle",
+ "prop_nl": "She holds a glass bottle.",
+ "hold": true,
+ "suggest_pose": "holding bottle, drinking",
+ "aspect": "both",
+ "thumb": null,
+ "notes": "道具卡只写物，不写持有者/场景/服装；hold=true 时拼配方要配 holding 动词。"
+}

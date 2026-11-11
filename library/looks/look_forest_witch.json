@@ -1,0 +1,53 @@
+{
+  "id": "look_forest_witch",
+  "kind": "look",
+  "name": "森林女巫",
+  "version": "1.0",
+  "description": "尖顶女巫帽 + 黑斗篷 + 层叠长裙 + 束腰 + 腰带药瓶 + 露指手套，持法杖",
+  "nsfw": false,
+  "tags": "witch hat, black cloak, layered dress, black layered dress, lace collar, corset, potion vials on belt, fingerless gloves, tall boots, silver ornament, ",
+  "fields": {
+    "outfit": "layered dress",
+    "top": "corset",
+    "bottom": "layered dress",
+    "shoes": "tall boots",
+    "accessory": "witch hat, potion vials on belt, fingerless gloves",
+    "cloth_color": "black",
+    "cloth_mat": "velvet",
+    "cloth_state_sfw": "clasped"
+  },
+  "body_decor": {
+    "nails": "black nail polish"
+  },
+  "look_notes": {},
+  "artist_segment": "@wlop, @minaba_hideo, ",
+  "style_label": "柔光半写实 (wlop+minaba)",
+  "negative_extra": "",
+  "params": {
+    "model": "miaomiaoHarem_anima8Step10.safetensors",
+    "lora": "anima-turbo-lora-v0.1.safetensors @ 0.4",
+    "clip": "qwen_3_06b_base.safetensors (type=qwen_image)",
+    "vae": "qwen_image_vae.safetensors",
+    "steps": 12,
+    "cfg": 2.0,
+    "sampler": "euler",
+    "scheduler": "simple",
+    "resolution": "832x1216"
+  },
+  "thumb": "thumbs/look_forest_witch.jpg",
+  "source_dir": "",
+  "look_tags": "witch hat, black cloak, layered dress, black layered dress, lace collar, corset, potion vials on belt, fingerless gloves, tall boots, silver ornament, ",
+  "pose_tags": "",
+  "tag_split": {
+    "version": 3,
+    "cloth": 10,
+    "pose": 0,
+    "moved_pose": [],
+    "migrated_to": "pose_forest_witch"
+  },
+  "legacy_pose_ref": "pose_forest_witch",
+  "clean_note": {
+    "version": 8,
+    "source": "random36 picked by user"
+  }
+}

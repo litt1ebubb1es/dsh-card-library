@@ -1,0 +1,41 @@
+{
+ "id": "sc_sakura_street_lookback",
+ "kind": "scene",
+ "name": "街道 · 樱吹雪",
+ "group": "sfw",
+ "group_title": "🏙 全年龄场景搭配",
+ "description": "地点：街道；天气：cherry blossoms；光线：soft lighting；景物：road stretching into distance, cherry blossom trees on both sides, falling petals, petal storm, natural daylight；相机：from behind / full body / one-point perspective, vanishing point。（纯环境，不含动作/服装/表情）",
+ "tags": {
+  "place": "street",
+  "weather": "cherry blossoms",
+  "light_fx": "soft lighting"
+ },
+ "camera": {
+  "viewpoint": "from behind",
+  "shot_size": "full body"
+ },
+ "extra": "road stretching into distance, cherry blossom trees on both sides, falling petals, petal storm, natural daylight",
+ "extra_camera": "one-point perspective, vanishing point",
+ "env_nl": "street, cherry blossoms, soft lighting, road stretching into distance, cherry blossom trees on both sides, falling petals, petal storm, natural daylight, one-point perspective, vanishing point, from behind.",
+ "level": 0,
+ "theme": "樱花",
+ "count_lock": "1girl, solo",
+ "aspect": "portrait",
+ "thumb": null,
+ "env_hint": "street, cherry blossoms, soft lighting, full body, from behind, road stretching into distance, cherry blossom trees on both sides, falling petals, petal storm, natural daylight, one-point perspective, vanishing point",
+ "pose_ref": "pose_sakura_street_lookback",
+ "cleaned": {
+  "version": 4,
+  "policy": "env/pose split",
+  "note": "动作/服装/表情已移入 poses/pose_sakura_street_lookback.json",
+  "removed_tag_keys": [
+   "action",
+   "emotion",
+   "eye_gaze",
+   "pose_base"
+  ],
+  "removed_extra": [
+   "leaning forward slightly"
+  ]
+ }
+}

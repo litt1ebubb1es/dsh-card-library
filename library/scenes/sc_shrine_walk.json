@@ -1,0 +1,38 @@
+{
+ "id": "sc_shrine_walk",
+ "kind": "scene",
+ "name": "神社 · 樱吹雪",
+ "group": "sfw",
+ "group_title": "🏙 全年龄场景搭配",
+ "description": "地点：神社；天气：cherry blossoms；光线：morning light；氛围：soft focus；景物：stone lantern, torii, petals；相机：from side。（纯环境，不含动作/服装/表情）",
+ "tags": {
+  "place": "shrine",
+  "weather": "cherry blossoms",
+  "light_fx": "morning light",
+  "texture_fx": "soft focus"
+ },
+ "camera": {
+  "viewpoint": "from side"
+ },
+ "extra": "stone lantern, torii, petals",
+ "extra_camera": "",
+ "env_nl": "shrine, cherry blossoms, morning light, soft focus, stone lantern, torii, petals, from side.",
+ "level": 0,
+ "theme": "和风",
+ "count_lock": "1girl, solo",
+ "aspect": "portrait",
+ "thumb": null,
+ "env_hint": "shrine, cherry blossoms, morning light, soft focus, from side, stone lantern, torii, petals",
+ "pose_ref": "pose_shrine_walk",
+ "cleaned": {
+  "version": 4,
+  "policy": "env/pose split",
+  "note": "动作/服装/表情已移入 poses/pose_shrine_walk.json",
+  "removed_tag_keys": [
+   "action",
+   "outfit",
+   "pose_base"
+  ],
+  "removed_extra": []
+ }
+}

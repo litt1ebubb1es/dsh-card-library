@@ -1,0 +1,70 @@
+{
+  "id": "look_school_rooftop_wave",
+  "kind": "look",
+  "name": "天台回头招呼（长裙）",
+  "version": "1.0",
+  "description": "水手服长百褶裙（遮住大腿），天台提书包回头招手，夕阳戴贝雷帽",
+  "nsfw": false,
+  "tags": "1girl, solo, school uniform, white sailor collar, long pleated skirt, navy blue long skirt, kneehighs, loafers, school bag, standing, looking back, waving, hand up, holding bag, smile, looking at viewer, open mouth, happy, school bag, full body, long skirt, knee-length skirt, covered thighs, skirt below knee, body_shape_light, detailed skin texture, skin pores, fine skin detail, natural skin tone, soft shadow on skin, ",
+  "fields": {
+    "clothes": "school uniform, white sailor collar, long pleated skirt, navy blue long skirt, kneehighs, loafers, school bag"
+  },
+  "body_decor": {},
+  "look_notes": {},
+  "artist_segment": "minaba_hideo, liduke, piromizu, nonco,",
+  "style_label": "柔光半写实 (基准)",
+  "negative_extra": "worst quality, low quality, score_1, score_2, score_3, lowres, jpeg artifacts, cel shading, flat colors, painterly, 3d render, deformed body, bad proportions, big head, bad hands, extra fingers, missing fingers, extra limbs, watermark, signature, text, logo, artist name, cat ears, animal ear fluff, tail, male, 1boy, multiple boys, multiple girls, 2girls, crowd, nude, naked, topless, bottomless, no bra, bare breasts, panties, underwear, covered crotch, fantasy armor, robe, cloak, sword, short skirt, miniskirt, microskirt, thigh focus, thick thighs focus, ",
+  "params": {
+    "model": "miaomiaoHarem_anima8Step10.safetensors",
+    "lora": "anima-turbo-lora-v0.1.safetensors @ 0.4",
+    "clip": "qwen_3_06b_base.safetensors (type=qwen_image)",
+    "vae": "qwen_image_vae.safetensors",
+    "steps": 12,
+    "cfg": 2.0,
+    "sampler": "euler",
+    "scheduler": "simple",
+    "resolution": "832x1216",
+    "seed": 312005
+  },
+  "thumb": "thumbs/look_school_rooftop_wave.jpg",
+  "source_dir": "_assets/characters/look_school_rooftop_wave",
+  "look_tags": "1girl, solo, school uniform, white sailor collar, long pleated skirt, navy blue long skirt, kneehighs, loafers, school bag, long skirt, knee-length skirt, covered thighs, skirt below knee, body_shape_light, detailed skin texture, skin pores, fine skin detail, natural skin tone, soft shadow on skin, ",
+  "pose_tags": "",
+  "tag_split": {
+    "version": 3,
+    "cloth": 35,
+    "pose": 0,
+    "moved_pose": [
+      "hand up"
+    ],
+    "migrated_to": "pose_from_school_rooftop_wave"
+  },
+  "legacy_pose_ref": "pose_from_school_rooftop_wave",
+  "fields_legacy_pose": {
+    "pose": "standing, looking back, waving, hand up, holding bag",
+    "expression": "smile, looking at viewer, open mouth, happy",
+    "prop": "school bag",
+    "shot": "full body"
+  },
+  "clean_note": {
+    "version": 5,
+    "removed_look": [
+      "tooth_necklace",
+      "vampire",
+      "fang_out",
+      "white hair",
+      "heterochromia",
+      "mole_under_eye",
+      "close-set eyes",
+      "short_hair",
+      "blue_eyes",
+      "pointy_ears",
+      "fang",
+      "symbol-shaped_pupils",
+      "round face",
+      "red eyes",
+      "Long nails",
+      "subsurface scattering"
+    ]
+  }
+}

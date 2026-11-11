@@ -1,0 +1,29 @@
+{
+  "id": "pose_pose_stage_one_knee",
+  "kind": "pose",
+  "name": "舞台 · 单膝跪地",
+  "group": "pose",
+  "group_title": "🧎 姿势场景",
+  "description": "舞台单膝跪地、偶像演出服，棚拍顶光 + 仰拍",
+  "pose_tags": "on one knee, idol costume",
+  "pose_nl": "she drops to one knee on the stage with one hand on the floor. seen from below so the spotlight and the dark empty space above her open the frame. the sequins on her costume catch the light.",
+  "camera": {
+    "viewpoint": "from below",
+    "shot_size": "full body",
+    "comp": "negative space"
+  },
+  "suggest_place": "stage",
+  "aspect": "landscape",
+  "level": 0,
+  "theme": "姿势·舞台单膝",
+  "count_lock": "1girl, solo",
+  "env_ref": "sc_pose_stage_one_knee",
+  "source_id": "sc_pose_stage_one_knee",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_pose_stage_one_knee.jpg"
+}

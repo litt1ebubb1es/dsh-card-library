@@ -1,0 +1,45 @@
+{
+ "id": "sc_les_sm_clamp_weight",
+ "kind": "scene",
+ "name": "卧室 · 侧视半身",
+ "group": "nsfw",
+ "group_title": "🔞 NSFW 跨槽位配方",
+ "description": "地点：卧室；光线：warm lighting；相机：from side / upper body。（纯环境，不含动作/服装/表情）",
+ "tags": {
+  "place": "bedroom",
+  "light_fx": "warm lighting"
+ },
+ "camera": {
+  "viewpoint": "from side",
+  "shot_size": "upper body"
+ },
+ "extra": "",
+ "extra_camera": "",
+ "env_nl": "bedroom, warm lighting, from side.",
+ "level": 4,
+ "theme": "BDSM",
+ "count_lock": "1girl, solo",
+ "aspect": "both",
+ "thumb": null,
+ "env_hint": "bedroom, warm lighting, upper body, from side",
+ "pose_ref": "pose_les_sm_clamp_weight",
+ "cleaned": {
+  "version": 4,
+  "policy": "env/pose split",
+  "note": "动作/服装/表情已移入 poses/pose_les_sm_clamp_weight.json",
+  "removed_tag_keys": [
+   "mouth",
+   "n_orgasm",
+   "n_state",
+   "pose_base"
+  ],
+  "removed_extra": [
+   "slave",
+   "bound wrists",
+   "nipple clamps",
+   "chain between nipples",
+   "nipple weights",
+   "drool"
+  ]
+ }
+}

@@ -1,0 +1,74 @@
+{
+  "id": "look_red_hoodie",
+  "kind": "look",
+  "name": "红色连帽衫阔腿裤",
+  "version": "1.0",
+  "description": "红色短款连帽衫（露腰）+ 深色阔腿裤 + 白色运动鞋，夜晚街头走路",
+  "nsfw": false,
+  "tags": "cropped hoodie, wide-leg pants, sneakers, earrings, red cropped hoodie, red nail polish, short hoodie, cropped top, navel, midriff, midriff peek, loose pants, long pants, full length pants, ",
+  "fields": {
+    "top": "cropped hoodie",
+    "bottom": "wide-leg pants",
+    "shoes": "sneakers",
+    "accessory": "earrings",
+    "cloth_color": "red"
+  },
+  "body_decor": {
+    "makeup": "blush",
+    "nails": "red nail polish",
+    "skin_detail": "mole under eye"
+  },
+  "look_notes": {
+    "top": "cropped hoodie 是短款；必须配 navel/midriff 才不会画成长卫衣",
+    "bottom": "wide-leg pants 配裤装时不能有 pantyhose，否则裤子消失只剩黑丝",
+    "shoes": "sneakers，配卫衣不要高跟"
+  },
+  "artist_segment": "minaba_hideo, liduke, piromizu, nonco,",
+  "style_label": "柔光半写实 (基准)",
+  "negative_extra": "",
+  "params": {
+    "model": "miaomiaoHarem_anima8Step10.safetensors",
+    "lora": "anima-turbo-lora-v0.1.safetensors @ 0.4",
+    "clip": "qwen_3_06b_base.safetensors (type=qwen_image)",
+    "vae": "qwen_image_vae.safetensors",
+    "steps": 12,
+    "cfg": 2.0,
+    "sampler": "euler",
+    "scheduler": "simple",
+    "resolution": "832x1216"
+  },
+  "thumb": "thumbs/look_red_hoodie.jpg",
+  "source_dir": "_assets/characters/look_red_hoodie",
+  "look_tags": "cropped hoodie, wide-leg pants, sneakers, earrings, red cropped hoodie, red nail polish, short hoodie, cropped top, navel, midriff, midriff peek, loose pants, long pants, full length pants, ",
+  "pose_tags": "",
+  "tag_split": {
+    "version": 3,
+    "cloth": 15,
+    "pose": 0,
+    "moved_pose": [
+      "arms at sides",
+      "hand in own hair"
+    ],
+    "migrated_to": "pose_from_red_hoodie"
+  },
+  "legacy_pose_ref": "pose_from_red_hoodie",
+  "fields_legacy_pose": {
+    "emotion": "smile",
+    "eye_gaze": "looking to the side",
+    "mouth": "grin, teeth",
+    "pose_base": "walking",
+    "arms_hands": "arms at sides",
+    "action": "walking, hand in own hair",
+    "shot_size": "full body"
+  },
+  "clean_note": {
+    "version": 6,
+    "removed_look": [
+      "mole under eye"
+    ],
+    "removed_v6": [],
+    "color_bound_v6": [
+      "red -> red cropped hoodie"
+    ]
+  }
+}

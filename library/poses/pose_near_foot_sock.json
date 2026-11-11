@@ -1,0 +1,31 @@
+{
+  "id": "pose_near_foot_sock",
+  "kind": "pose",
+  "name": "短款袜脚背",
+  "group": "pose",
+  "group_title": "🔍 特写搭配",
+  "description": "脚背与脚踝特写（不穿鞋）；短袜款式随机：白袜/踝袜/隐形袜/花边袜/罗纹袜/条纹袜/蕾丝袜",
+  "pose_tags": "sitting, feet, foot, instep, ankles, toes",
+  "pose_nl": "her feet in short socks fill the frame from above. the instep curves and her toes point down. only feet and ankles are shown.",
+  "camera": {
+    "viewpoint": "from above",
+    "shot_size": "extreme close-up"
+  },
+  "suggest_place": "",
+  "aspect": "both",
+  "level": 0,
+  "theme": "脚部",
+  "count_lock": "1girl, solo",
+  "env_ref": "",
+  "source_id": "sc_near_foot_sock",
+  "clean_note": {
+    "version": 3,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": [],
+    "removed_cloth": [
+      "socks"
+    ]
+  },
+  "thumb": "thumbs/pose_near_foot_sock.jpg"
+}

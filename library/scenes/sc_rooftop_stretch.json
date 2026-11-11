@@ -1,0 +1,40 @@
+{
+ "id": "sc_rooftop_stretch",
+ "kind": "scene",
+ "name": "天台 · 黄昏",
+ "group": "sfw",
+ "group_title": "🏙 全年龄场景搭配",
+ "description": "地点：天台；天气：sunset；光线：backlighting；景物：long shadow；相机：from side / full body / portrait。（纯环境，不含动作/服装/表情）",
+ "tags": {
+  "place": "rooftop",
+  "weather": "sunset",
+  "light_fx": "backlighting"
+ },
+ "camera": {
+  "viewpoint": "from side",
+  "shot_size": "full body",
+  "comp": "portrait"
+ },
+ "extra": "long shadow",
+ "extra_camera": "",
+ "env_nl": "rooftop, sunset, backlighting, long shadow, from side.",
+ "level": 1,
+ "theme": "户外",
+ "count_lock": "1girl, solo",
+ "aspect": "portrait",
+ "thumb": null,
+ "env_hint": "rooftop, sunset, backlighting, full body, from side, portrait, long shadow",
+ "pose_ref": "pose_rooftop_stretch",
+ "cleaned": {
+  "version": 4,
+  "policy": "env/pose split",
+  "note": "动作/服装/表情已移入 poses/pose_rooftop_stretch.json",
+  "removed_tag_keys": [
+   "emotion",
+   "pose_risque"
+  ],
+  "removed_extra": [
+   "stretching arms up"
+  ]
+ }
+}

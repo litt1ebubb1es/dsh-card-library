@@ -1,0 +1,31 @@
+{
+  "id": "pose_sofa_catnap",
+  "kind": "pose",
+  "name": "沙发 · 抱枕小憩（擦边）",
+  "group": "sfw",
+  "group_title": "🏙 全年龄场景搭配",
+  "description": "睡姿下滑落的肩带",
+  "pose_tags": "lying, arched back, sleeping, cat",
+  "pose_nl": "she curls up on the sofa with a cushion and a blanket while a cat sleeps beside her. morning light comes through the window onto her back. her back arches as she stretches in her sleep.",
+  "camera": {},
+  "suggest_place": "apartment",
+  "aspect": "landscape",
+  "level": 1,
+  "theme": "室内",
+  "count_lock": "1girl, solo",
+  "env_ref": "sc_sofa_catnap",
+  "source_id": "sc_sofa_catnap",
+  "clean_note": {
+    "version": 3,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [
+      "cushion",
+      "blanket"
+    ],
+    "removed_camera": [],
+    "removed_cloth": [
+      "camisole dress"
+    ]
+  },
+  "thumb": "thumbs/pose_sofa_catnap.jpg"
+}

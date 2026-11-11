@@ -1,0 +1,51 @@
+{
+  "id": "look_pajama_block",
+  "kind": "look",
+  "name": "积木睡衣",
+  "version": "1.0",
+  "description": "米黄底睡衣套装，身上有彩色积木块状贴布（P3 版），宽松衬衫款上衣 + 睡裤，赤足",
+  "nsfw": false,
+  "tags": "pajama set, beige pajamas, cream pajamas, oversized shirt, pajama pants, colorful patch pattern, block shaped patches, colorful squares, geometric print, multicolor blocks, patchwork details, bare feet, messy hair, ",
+  "fields": {
+    "outfit": "pajama set",
+    "top": "oversized shirt",
+    "bottom": "pajama pants",
+    "cloth_color": "beige",
+    "cloth_mat": "cotton",
+    "cloth_state_sfw": "loose"
+  },
+  "body_decor": {},
+  "look_notes": {
+    "print": "P3 = colorful patch pattern / block shaped patches / colorful squares / geometric print / multicolor blocks；块大、数量少、带贴布感（用户选定）"
+  },
+  "artist_segment": "@wlop, @minaba_hideo, ",
+  "style_label": "柔光半写实 (wlop+minaba)",
+  "negative_extra": "",
+  "params": {
+    "model": "miaomiaoHarem_anima8Step10.safetensors",
+    "lora": "anima-turbo-lora-v0.1.safetensors @ 0.4",
+    "clip": "qwen_3_06b_base.safetensors (type=qwen_image)",
+    "vae": "qwen_image_vae.safetensors",
+    "steps": 12,
+    "cfg": 2.0,
+    "sampler": "euler",
+    "scheduler": "simple",
+    "resolution": "832x1216"
+  },
+  "thumb": "thumbs/look_pajama_block.jpg",
+  "source_dir": "",
+  "look_tags": "pajama set, beige pajamas, cream pajamas, oversized shirt, pajama pants, colorful patch pattern, block shaped patches, colorful squares, geometric print, multicolor blocks, patchwork details, bare feet, messy hair, ",
+  "pose_tags": "",
+  "tag_split": {
+    "version": 3,
+    "cloth": 13,
+    "pose": 0,
+    "moved_pose": [],
+    "migrated_to": "pose_pajama_block"
+  },
+  "legacy_pose_ref": "pose_pajama_block",
+  "clean_note": {
+    "version": 10,
+    "source": "random36 pajama P3 (user picked)"
+  }
+}

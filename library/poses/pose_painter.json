@@ -1,0 +1,22 @@
+{
+  "id": "pose_painter",
+  "kind": "pose",
+  "name": "画家",
+  "version": 1,
+  "group": "from_look",
+  "group_title": "来自造型卡",
+  "description": "景别：upper body；动作：sitting, holding paintbrush, looking at canvas, focused, closed mouth, one hand up, upper body。",
+  "pose_tags": "sitting, holding paintbrush, looking at canvas, focused, closed mouth, one hand up",
+  "pose_nl": "",
+  "camera": {
+    "shot_size": "upper body",
+    "viewpoint": "from side"
+  },
+  "suggest_place": "apartment",
+  "aspect": "portrait",
+  "thumb": "thumbs/pose_painter.jpg",
+  "env_ref": null,
+  "source": "look_pose_v1",
+  "legacy_look": "look_painter",
+  "notes": "由 random36b 挑图反推（v4）。动作卡只讲做什么，穿什么归造型卡。"
+}

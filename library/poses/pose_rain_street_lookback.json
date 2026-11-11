@@ -1,0 +1,32 @@
+{
+  "id": "pose_rain_street_lookback",
+  "kind": "pose",
+  "name": "雨中街头 · 回眸",
+  "group": "sfw",
+  "group_title": "🏙 全年龄场景搭配",
+  "description": "霓虹雨夜，走在中途回头看镜头一眼",
+  "pose_tags": "standing, looking back",
+  "pose_nl": "she stops in the wet street and turns her head over her shoulder toward the viewer. neon signs smear into long colored streaks behind her. rain keeps falling on her shoulders.",
+  "camera": {
+    "viewpoint": "from behind",
+    "shot_size": "upper body"
+  },
+  "suggest_place": "street",
+  "aspect": "both",
+  "level": 0,
+  "theme": "夜景",
+  "count_lock": "1girl, solo",
+  "env_ref": "sc_rain_street_lookback",
+  "source_id": "sc_rain_street_lookback",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [
+      "rain drops",
+      "rain puddle",
+      "puddle glow"
+    ],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_rain_street_lookback.jpg"
+}

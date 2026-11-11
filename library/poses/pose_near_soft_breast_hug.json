@@ -1,0 +1,28 @@
+{
+  "id": "pose_near_soft_breast_hug",
+  "kind": "pose",
+  "name": "贴胸搂抱",
+  "group": "near",
+  "group_title": "🔍 特写搭配",
+  "description": "两人胸前相贴相拥，隔着衣服的挤压感（擦边向）",
+  "pose_tags": "on side, 2girls, yuri, hugging, breasts together, breast press, clothed, covered breasts, blush, eyes closed",
+  "pose_nl": "the two women press their clothed chests together in an embrace. the fabric flattens between them. rim light on their shoulders.",
+  "camera": {
+    "viewpoint": "from side",
+    "shot_size": "close-up"
+  },
+  "suggest_place": "",
+  "aspect": "both",
+  "level": 1,
+  "theme": "🔞 成人向",
+  "count_lock": "2girls, yuri",
+  "env_ref": "",
+  "source_id": "sc_near_soft_breast_hug",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_near_soft_breast_hug.jpg"
+}

@@ -1,0 +1,31 @@
+{
+  "id": "pose_sock_rain_wet",
+  "kind": "pose",
+  "name": "雨街 · 湿透的丝袜",
+  "group": "nsfw",
+  "group_title": "🔞 NSFW 跨槽位配方",
+  "description": "雨中街头行走，水手服湿透贴身（wet clothes = 2 档），黑丝在 socks 里随机。",
+  "pose_tags": "walking, expressionless, looking ahead, parted lips, serafuku, loafers, wet clothes, rainy street, soaked",
+  "pose_nl": "she walks along the rainy street in a soaked serafuku. the wet tights cling to her legs and shine. rain runs off the edge of her skirt and her loafers splash in the puddles.",
+  "camera": {
+    "viewpoint": "from side",
+    "shot_size": "full body"
+  },
+  "suggest_place": "street",
+  "aspect": "portrait",
+  "level": 2,
+  "theme": "丝袜",
+  "count_lock": "1girl, solo",
+  "env_ref": "sc_sock_rain_wet",
+  "source_id": "sc_sock_rain_wet",
+  "clean_note": {
+    "version": 3,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": [],
+    "removed_cloth": [
+      "wet tights"
+    ]
+  },
+  "thumb": "thumbs/pose_sock_rain_wet.jpg"
+}

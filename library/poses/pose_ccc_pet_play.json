@@ -1,0 +1,31 @@
+{
+  "id": "pose_ccc_pet_play",
+  "kind": "pose",
+  "name": "调教 · 宠物",
+  "group": "nsfw",
+  "group_title": "🔞 NSFW 跨槽位配方",
+  "description": "文档 §14.6：项圈牵绳 + 爬行服从",
+  "pose_tags": "all fours, embarrassed, blush, tongue out, topless, pet play, leash trailing on floor, crawling, alone, submissive",
+  "pose_nl": "she crawls on all fours on the bedroom floor wearing only a collar. the leash trails behind her on the carpet. her face is red with shame as she looks up.",
+  "camera": {
+    "viewpoint": "from side"
+  },
+  "suggest_place": "bedroom",
+  "aspect": "landscape",
+  "level": 4,
+  "theme": "调教",
+  "count_lock": "1girl, solo",
+  "env_ref": "sc_ccc_pet_play",
+  "source_id": "sc_ccc_pet_play",
+  "clean_note": {
+    "version": 4,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": [],
+    "removed_cloth": [
+      "choker",
+      "collar and leash"
+    ]
+  },
+  "thumb": "thumbs/pose_ccc_pet_play.jpg"
+}

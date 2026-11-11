@@ -1,0 +1,34 @@
+{
+  "id": "pose_sock_shibari_room",
+  "kind": "pose",
+  "name": "酒店地毯 · 绳缚下的丝袜",
+  "group": "nsfw",
+  "group_title": "🔞 NSFW 跨槽位配方",
+  "description": "酒店地毯正座，绳缚（shibari = 3 档）+ 只穿鞋袜（otherwise nude），黑丝在 socks 里随机。",
+  "pose_tags": "wariza, embarrassed, blush, looking down, parted lips, shibari, otherwise nude, rope, kneeling",
+  "pose_nl": "she sits on the hotel carpet in a formal kneeling pose with rope around her torso and her legs in stockings. candlelight warms the room behind her. her face is flushed.",
+  "camera": {
+    "viewpoint": "from above",
+    "shot_size": "full body"
+  },
+  "suggest_place": "hotel room",
+  "aspect": "both",
+  "level": 3,
+  "theme": "丝袜",
+  "count_lock": "1girl, solo",
+  "env_ref": "sc_sock_shibari_room",
+  "source_id": "sc_sock_shibari_room",
+  "clean_note": {
+    "version": 3,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [
+      "hotel carpet"
+    ],
+    "removed_camera": [],
+    "removed_cloth": [
+      "high heels",
+      "stockings"
+    ]
+  },
+  "thumb": "thumbs/pose_sock_shibari_room.jpg"
+}

@@ -1,0 +1,16 @@
+{
+ "id": "prop_pillar",
+ "kind": "prop",
+ "name": "石柱",
+ "version": "1.0",
+ "group": "fantasy",
+ "group_title": "奇幻魔法",
+ "description": "石柱，神殿/废墟（摆件）。",
+ "prop_tags": "pillar, stone pillar, column",
+ "prop_nl": "Stone pillars line the hall.",
+ "hold": false,
+ "suggest_pose": "standing",
+ "aspect": "both",
+ "thumb": null,
+ "notes": "道具卡只写物，不写持有者/场景/服装；hold=true 时拼配方要配 holding 动词。"
+}

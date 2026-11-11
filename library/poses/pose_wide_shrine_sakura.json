@@ -1,0 +1,40 @@
+{
+  "id": "pose_wide_shrine_sakura",
+  "kind": "pose",
+  "name": "神社 · 樱吹雪",
+  "group": "sfw",
+  "group_title": "🏙 全年龄场景搭配",
+  "description": "真远景：神社参道与鸟居，樱吹雪落满石阶，人物远远立在阶下",
+  "pose_tags": "standing",
+  "pose_nl": "she climbs the stone steps toward the torii under the falling petals. the cherry trees on both sides scatter white and pink across the path. the shrine sits quiet at the top.",
+  "camera": {
+    "viewpoint": "from behind",
+    "shot_size": "wide shot",
+    "comp": "landscape"
+  },
+  "suggest_place": "shrine",
+  "aspect": "landscape",
+  "level": 0,
+  "theme": "远景",
+  "count_lock": "1girl, solo",
+  "env_ref": "sc_wide_shrine_sakura",
+  "source_id": "sc_wide_shrine_sakura",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [
+      "scenery",
+      "torii gate",
+      "stone steps",
+      "falling petals"
+    ],
+    "removed_camera": [
+      "wide shot",
+      "full body",
+      "small figure",
+      "vast landscape",
+      "sense of scale"
+    ]
+  },
+  "thumb": "thumbs/pose_wide_shrine_sakura.jpg"
+}

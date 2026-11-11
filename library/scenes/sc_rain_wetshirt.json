@@ -1,0 +1,42 @@
+{
+ "id": "sc_rain_wetshirt",
+ "kind": "scene",
+ "name": "街道 · 雨丝",
+ "group": "sfw",
+ "group_title": "🏙 全年龄场景搭配",
+ "description": "地点：街道；天气：rain；景物：rain drops, puddle。（纯环境，不含动作/服装/表情）",
+ "tags": {
+  "place": "street",
+  "weather": "rain"
+ },
+ "camera": {},
+ "extra": "rain drops, puddle",
+ "extra_camera": "",
+ "env_nl": "street, rain, rain drops, puddle.",
+ "level": 1,
+ "theme": "户外",
+ "count_lock": "1girl, solo",
+ "aspect": "portrait",
+ "thumb": null,
+ "env_hint": "street, rain, rain drops, puddle",
+ "pose_ref": "pose_rain_wetshirt",
+ "cleaned": {
+  "version": 4,
+  "policy": "env/pose split",
+  "note": "动作/服装/表情已移入 poses/pose_rain_wetshirt.json",
+  "removed_tag_keys": [
+   "bottom",
+   "cloth_state_sfw",
+   "eye_gaze",
+   "pose_base",
+   "pose_risque",
+   "top"
+  ],
+  "removed_extra": [
+   "wet hair",
+   "shirt clinging to body",
+   "drenched clothes",
+   "rain on skin"
+  ]
+ }
+}

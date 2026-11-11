@@ -1,0 +1,38 @@
+{
+ "id": "sc_jog_rest",
+ "kind": "scene",
+ "name": "公园 · 长椅",
+ "group": "sfw",
+ "group_title": "🏙 全年龄场景搭配",
+ "description": "地点：公园；景物：bench。（纯环境，不含动作/服装/表情）",
+ "tags": {
+  "place": "park"
+ },
+ "camera": {},
+ "extra": "bench",
+ "extra_camera": "",
+ "env_nl": "park, bench.",
+ "level": 1,
+ "theme": "日常",
+ "count_lock": "1girl, solo",
+ "aspect": "portrait",
+ "thumb": null,
+ "env_hint": "park, bench",
+ "pose_ref": "pose_jog_rest",
+ "cleaned": {
+  "version": 4,
+  "policy": "env/pose split",
+  "note": "动作/服装/表情已移入 poses/pose_jog_rest.json",
+  "removed_tag_keys": [
+   "bottom",
+   "emotion",
+   "pose_base",
+   "pose_risque",
+   "top"
+  ],
+  "removed_extra": [
+   "water bottle",
+   "sweat"
+  ]
+ }
+}

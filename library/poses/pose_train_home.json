@@ -1,0 +1,30 @@
+{
+  "id": "pose_train_home",
+  "kind": "pose",
+  "name": "电车归途",
+  "group": "sfw",
+  "group_title": "🏙 全年龄场景搭配",
+  "description": "黄昏车窗侧光，坐姿打盹",
+  "pose_tags": "sitting, own hands clasped, sleepy",
+  "pose_nl": "she sits by the train window in the low sunset light with her hands clasped in her lap. the fields outside slide past in a blur. her eyes are half closed.",
+  "camera": {
+    "viewpoint": "from side"
+  },
+  "suggest_place": "train interior",
+  "aspect": "portrait",
+  "level": 0,
+  "theme": "出行",
+  "count_lock": "1girl, solo",
+  "env_ref": "sc_train_home",
+  "source_id": "sc_train_home",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [
+      "moving train",
+      "blurred window"
+    ],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_train_home.jpg"
+}

@@ -1,0 +1,31 @@
+{
+  "id": "pose_cam_pov_stand",
+  "kind": "pose",
+  "name": "第一人称 · 仰望站立（擦边）",
+  "group": "pose",
+  "group_title": "🏙 全年龄场景搭配",
+  "description": "正面仰视：上身前倾、双手撑在大腿上、低头看镜头、害羞（画面里不出现相机）",
+  "pose_tags": "standing, hands on own thighs, embarrassed, blush, looking at viewer, leaning forward",
+  "pose_nl": "first person view looking up at her from below while she leans her upper body forward over the viewer. both hands are braced on her thighs for support. her head tips down so she meets the viewer's eyes with a shy blush. her body fills the whole frame from the thighs up.",
+  "camera": {
+    "viewpoint": "first-person view, pov",
+    "shot_size": "cowboy shot"
+  },
+  "suggest_place": "",
+  "aspect": "portrait",
+  "level": 1,
+  "theme": "镜头实验",
+  "count_lock": "1girl, solo",
+  "env_ref": "",
+  "source_id": "sc_cam_pov_stand",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": [
+      "from below",
+      "low angle view"
+    ]
+  },
+  "thumb": "thumbs/pose_cam_pov_stand.jpg"
+}

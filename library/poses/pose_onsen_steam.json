@@ -1,0 +1,32 @@
+{
+  "id": "pose_onsen_steam",
+  "kind": "pose",
+  "name": "温泉 · 月下蒸汽",
+  "group": "sfw",
+  "group_title": "🏙 全年龄场景搭配",
+  "description": "背对镜头的坐姿 + 浓蒸汽",
+  "pose_tags": "sitting, expressionless",
+  "pose_nl": "she sits at the edge of the hot spring with her back to the viewer. steam covers the water and the moonlight lies across the wet stone. her hair is tied up and damp at the nape.",
+  "camera": {
+    "viewpoint": "from behind",
+    "dof": "depth of field, blurry background"
+  },
+  "suggest_place": "onsen",
+  "aspect": "portrait",
+  "level": 0,
+  "theme": "和风",
+  "count_lock": "1girl, solo",
+  "env_ref": "sc_onsen_steam",
+  "source_id": "sc_onsen_steam",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [
+      "hot spring",
+      "stone edge",
+      "mist"
+    ],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_onsen_steam.jpg"
+}

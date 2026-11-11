@@ -1,0 +1,38 @@
+{
+ "id": "sc_onsen_steam",
+ "kind": "scene",
+ "name": "温泉 · 蒸汽",
+ "group": "sfw",
+ "group_title": "🏙 全年龄场景搭配",
+ "description": "地点：温泉；天气：steam；光线：moonlight；氛围：soft focus；景物：hot spring, stone edge, mist；相机：from behind / depth of field, blurry background。（纯环境，不含动作/服装/表情）",
+ "tags": {
+  "place": "onsen",
+  "weather": "steam",
+  "light_fx": "moonlight",
+  "texture_fx": "soft focus"
+ },
+ "camera": {
+  "viewpoint": "from behind",
+  "dof": "depth of field, blurry background"
+ },
+ "extra": "hot spring, stone edge, mist",
+ "extra_camera": "",
+ "env_nl": "onsen, steam, moonlight, soft focus, hot spring, stone edge, mist, from behind.",
+ "level": 0,
+ "theme": "和风",
+ "count_lock": "1girl, solo",
+ "aspect": "portrait",
+ "thumb": null,
+ "env_hint": "onsen, steam, moonlight, soft focus, from behind, depth of field, blurry background, hot spring, stone edge, mist",
+ "pose_ref": "pose_onsen_steam",
+ "cleaned": {
+  "version": 4,
+  "policy": "env/pose split",
+  "note": "动作/服装/表情已移入 poses/pose_onsen_steam.json",
+  "removed_tag_keys": [
+   "emotion",
+   "pose_base"
+  ],
+  "removed_extra": []
+ }
+}

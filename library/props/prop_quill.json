@@ -1,0 +1,16 @@
+{
+ "id": "prop_quill",
+ "kind": "prop",
+ "name": "羽毛笔",
+ "version": "1.0",
+ "group": "stationery",
+ "group_title": "文具纸品",
+ "description": "羽毛笔与墨水瓶，古典。",
+ "prop_tags": "quill, holding quill, inkwell",
+ "prop_nl": "She dips a quill into an inkwell.",
+ "hold": true,
+ "suggest_pose": "writing, holding quill",
+ "aspect": "both",
+ "thumb": null,
+ "notes": "道具卡只写物，不写持有者/场景/服装；hold=true 时拼配方要配 holding 动词。"
+}

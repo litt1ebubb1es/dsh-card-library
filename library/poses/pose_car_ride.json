@@ -1,0 +1,28 @@
+{
+  "id": "pose_car_ride",
+  "kind": "pose",
+  "name": "车后座 · 黄昏",
+  "group": "sfw",
+  "group_title": "🏙 全年龄场景搭配",
+  "description": "车窗逆光，靠着睡",
+  "pose_tags": "sitting, sleepy, looking away, seatbelt",
+  "pose_nl": "she sits in the back seat with the seatbelt across her shoulder and her head turned to the window. the sunset light comes through the glass and moves over her face. her eyes are heavy.",
+  "camera": {},
+  "suggest_place": "car interior",
+  "aspect": "portrait",
+  "level": 0,
+  "theme": "出行",
+  "count_lock": "1girl, solo",
+  "env_ref": "sc_car_ride",
+  "source_id": "sc_car_ride",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [
+      "moving car",
+      "blurred window"
+    ],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_car_ride.jpg"
+}

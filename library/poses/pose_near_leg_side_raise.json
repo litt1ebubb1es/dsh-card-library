@@ -1,0 +1,28 @@
+{
+  "id": "pose_near_leg_side_raise",
+  "kind": "pose",
+  "name": "侧躺抬腿",
+  "group": "near",
+  "group_title": "🔍 特写搭配",
+  "description": "侧躺抬腿，丝袜与膝线入画（不穿鞋）",
+  "pose_tags": "on side, leg up, thighs, knees, calves, white thighhighs, head out of frame, legs focus, lower body",
+  "pose_nl": "she lies on her side and lifts one leg with the thighhigh stretched over it. the frame holds only her legs. the bed sheet wrinkles beneath her.",
+  "camera": {
+    "viewpoint": "from side",
+    "shot_size": "extreme close-up"
+  },
+  "suggest_place": "",
+  "aspect": "both",
+  "level": 1,
+  "theme": "腿部",
+  "count_lock": "1girl, solo",
+  "env_ref": "",
+  "source_id": "sc_near_leg_side_raise",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_near_leg_side_raise.jpg"
+}

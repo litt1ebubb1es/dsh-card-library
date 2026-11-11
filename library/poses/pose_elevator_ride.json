@@ -1,0 +1,36 @@
+{
+  "id": "pose_elevator_ride",
+  "kind": "pose",
+  "name": "电梯里 · 静默",
+  "group": "sfw",
+  "group_title": "🏙 全年龄场景搭配",
+  "description": "俯拍电梯内的静默对望",
+  "pose_tags": "against wall, expressionless, leaning",
+  "pose_nl": "she leans on the elevator wall and looks up at the floor indicator. seen from above so the small closed space makes a clean square around her. her face is blank.",
+  "camera": {
+    "viewpoint": "from above",
+    "shot_size": "full body",
+    "comp": "symmetry"
+  },
+  "suggest_place": "elevator",
+  "aspect": "portrait",
+  "level": 0,
+  "theme": "日常",
+  "count_lock": "1girl, solo",
+  "env_ref": "sc_elevator_ride",
+  "source_id": "sc_elevator_ride",
+  "clean_note": {
+    "version": 4,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [
+      "elevator",
+      "closed space",
+      "indicator light"
+    ],
+    "removed_camera": [],
+    "from_nl": [
+      "leaning"
+    ]
+  },
+  "thumb": "thumbs/pose_elevator_ride.jpg"
+}

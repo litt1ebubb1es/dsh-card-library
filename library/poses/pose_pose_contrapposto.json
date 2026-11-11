@@ -1,0 +1,32 @@
+{
+  "id": "pose_pose_contrapposto",
+  "kind": "pose",
+  "name": "对立式站姿",
+  "group": "pose",
+  "group_title": "🧎 姿势场景",
+  "description": "重心落在一侧的对立式站姿，一手叉腰，仰拍拉长身形",
+  "pose_tags": "contrapposto, hand on own hip, standing",
+  "pose_nl": "she stands with her weight on one leg and one hand on her hip so her body makes a long curve. seen from below with open space around her. she holds the pose without effort.",
+  "camera": {
+    "viewpoint": "from below",
+    "shot_size": "full body",
+    "comp": "negative space"
+  },
+  "suggest_place": "",
+  "aspect": "portrait",
+  "level": 0,
+  "theme": "姿势·对立式",
+  "count_lock": "1girl, solo",
+  "env_ref": "",
+  "source_id": "sc_pose_contrapposto",
+  "clean_note": {
+    "version": 4,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": [],
+    "from_nl": [
+      "standing"
+    ]
+  },
+  "thumb": "thumbs/pose_pose_contrapposto.jpg"
+}

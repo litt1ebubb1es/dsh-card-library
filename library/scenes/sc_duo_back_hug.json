@@ -1,0 +1,41 @@
+{
+ "id": "sc_duo_back_hug",
+ "kind": "scene",
+ "name": "公园 · 半身",
+ "group": "sfw",
+ "group_title": "🏙 全年龄场景搭配",
+ "description": "地点：公园；相机：from side / upper body。（纯环境，不含动作/服装/表情）",
+ "tags": {
+  "place": "park"
+ },
+ "camera": {
+  "viewpoint": "from side",
+  "shot_size": "upper body"
+ },
+ "extra": "",
+ "extra_camera": "",
+ "env_nl": "park, from side.",
+ "level": 0,
+ "theme": "双女",
+ "count_lock": "2girls",
+ "aspect": "both",
+ "thumb": null,
+ "env_hint": "park, upper body, from side",
+ "pose_ref": "pose_duo_back_hug",
+ "cleaned": {
+  "version": 4,
+  "policy": "env/pose split",
+  "note": "动作/服装/表情已移入 poses/pose_duo_back_hug.json",
+  "removed_tag_keys": [
+   "emotion",
+   "eye_gaze",
+   "pose_base"
+  ],
+  "removed_extra": [
+   "back hug",
+   "embrace from behind",
+   "arms around waist",
+   "cheek to cheek"
+  ]
+ }
+}

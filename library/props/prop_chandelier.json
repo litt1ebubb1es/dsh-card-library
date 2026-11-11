@@ -1,0 +1,16 @@
+{
+ "id": "prop_chandelier",
+ "kind": "prop",
+ "name": "吊灯",
+ "version": "1.0",
+ "group": "fantasy",
+ "group_title": "奇幻魔法",
+ "description": "吊灯，宴会厅（摆件）。",
+ "prop_tags": "chandelier, crystal chandelier",
+ "prop_nl": "A crystal chandelier hangs overhead.",
+ "hold": false,
+ "suggest_pose": "standing",
+ "aspect": "both",
+ "thumb": null,
+ "notes": "道具卡只写物，不写持有者/场景/服装；hold=true 时拼配方要配 holding 动词。"
+}

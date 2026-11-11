@@ -1,0 +1,27 @@
+{
+  "id": "pose_msb_toys_show",
+  "kind": "pose",
+  "name": "自慰 · 玩具展示",
+  "group": "nsfw",
+  "group_title": "🔞 NSFW 跨槽位配方",
+  "description": "跪在床上举着玩具给人看：手持电动棒、伸舌舔棒、赤足，胸部乳夹垂链 + 胸绳缚",
+  "pose_tags": "kneeling, embarrassed, blush, tongue out, topless, nipples, sex toys, bare feet, solo, holding sex toy, presenting toy, holding vibrator, licking vibrator, nipple clamps with chain, chain between nipple clamps, chest harness, rope around breasts",
+  "pose_nl": "she kneels on the bed holding a vibrator up and licks the tip. several other toys lie on the sheet in front of her. her chest is bare and flushed.",
+  "camera": {
+    "viewpoint": "from above"
+  },
+  "suggest_place": "",
+  "aspect": "both",
+  "level": 3,
+  "theme": "挖矿",
+  "count_lock": "1girl, solo",
+  "env_ref": "",
+  "source_id": "sc_msb_toys_show",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_msb_toys_show.jpg"
+}

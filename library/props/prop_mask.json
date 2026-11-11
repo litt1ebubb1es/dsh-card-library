@@ -1,0 +1,16 @@
+{
+ "id": "prop_mask",
+ "kind": "prop",
+ "name": "面具",
+ "version": "1.0",
+ "group": "weapon",
+ "group_title": "武器",
+ "description": "面具，祭典/怪盗/能剧。",
+ "prop_tags": "mask, holding mask, mask on face",
+ "prop_nl": "She holds a white mask over her face.",
+ "hold": true,
+ "suggest_pose": "holding mask, mask on face",
+ "aspect": "both",
+ "thumb": null,
+ "notes": "道具卡只写物，不写持有者/场景/服装；hold=true 时拼配方要配 holding 动词。"
+}

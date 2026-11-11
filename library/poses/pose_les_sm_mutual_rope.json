@@ -1,0 +1,28 @@
+{
+  "id": "pose_les_sm_mutual_rope",
+  "kind": "pose",
+  "name": "悬吊蒙眼 · 情趣道具",
+  "group": "nsfw",
+  "group_title": "🔞 NSFW 跨槽位配方",
+  "description": "第三人称侧面：她被绳吊在空中、双脚离地，双眼被布条蒙住只靠触感；身上是情趣服装、身上带着调教道具，绳结从上方垂下；身体随呼吸轻轻发抖，嘴唇微张喘着",
+  "pose_tags": "standing, open mouth, partially undressed, orgasm, trembling, suspension bondage, shibari, blindfolded, rope harness, wrists bound above her head, feet off the ground, sweat",
+  "pose_nl": "she hangs blindfolded in a rope harness with her wrists tied above her head. her feet are off the ground and sweat runs down her body. the bedroom is softly lit.",
+  "camera": {
+    "viewpoint": "from side",
+    "shot_size": "full body"
+  },
+  "suggest_place": "bedroom",
+  "aspect": "portrait",
+  "level": 4,
+  "theme": "BDSM",
+  "count_lock": "1girl, solo",
+  "env_ref": "sc_les_sm_mutual_rope",
+  "source_id": "sc_les_sm_mutual_rope",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_les_sm_mutual_rope.jpg"
+}

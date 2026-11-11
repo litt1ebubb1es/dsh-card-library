@@ -1,0 +1,40 @@
+{
+ "id": "sc_fitting_room",
+ "kind": "scene",
+ "name": "试衣间 · 柔光",
+ "group": "sfw",
+ "group_title": "🏙 全年龄场景搭配",
+ "description": "地点：试衣间；光线：soft lighting；道具：mirror；景物：curtain, mirror as backdrop；相机：focus on face。（纯环境，不含动作/服装/表情）",
+ "tags": {
+  "place": "fitting room",
+  "light_fx": "soft lighting",
+  "prop": "mirror"
+ },
+ "camera": {
+  "dof": "focus on face"
+ },
+ "extra": "curtain, mirror as backdrop",
+ "extra_camera": "",
+ "env_nl": "fitting room, soft lighting, mirror, curtain, mirror as backdrop.",
+ "level": 0,
+ "theme": "日常",
+ "count_lock": "1girl, solo",
+ "aspect": "portrait",
+ "thumb": null,
+ "env_hint": "fitting room, soft lighting, mirror, focus on face, curtain, mirror as backdrop",
+ "pose_ref": "pose_fitting_room",
+ "cleaned": {
+  "version": 4,
+  "policy": "env/pose split",
+  "note": "动作/服装/表情已移入 poses/pose_fitting_room.json",
+  "removed_tag_keys": [
+   "arms_hands",
+   "emotion",
+   "outfit",
+   "pose_base"
+  ],
+  "removed_extra": [
+   "tags"
+  ]
+ }
+}

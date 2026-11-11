@@ -1,0 +1,27 @@
+{
+  "id": "pose_near_hand_cover",
+  "kind": "pose",
+  "name": "手掩胸口",
+  "group": "near",
+  "group_title": "🔍 特写搭配",
+  "description": "胸前锁骨与单手掩胸的特写（单手，避免双手合拢）",
+  "pose_tags": "hands, chest, collarbone, fingers, one hand covering chest, fingers spread",
+  "pose_nl": "one hand covers her chest with the fingers spread. the other rests below at the bottom of the frame. soft light falls across her collarbone.",
+  "camera": {
+    "shot_size": "close-up"
+  },
+  "suggest_place": "",
+  "aspect": "both",
+  "level": 0,
+  "theme": "上半身与胸",
+  "count_lock": "1girl, solo",
+  "env_ref": "",
+  "source_id": "sc_near_hand_cover",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_near_hand_cover.jpg"
+}

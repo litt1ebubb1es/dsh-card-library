@@ -1,0 +1,67 @@
+{
+  "id": "look_winter_adventurer",
+  "kind": "look",
+  "name": "冒险者冬装",
+  "version": "1.0",
+  "description": "毛领外套 + 白麻花毛衣 + 毛披风 + 灰宽松羊毛裤 + 毛边靴，抱膝坐姿，半闭眼慵懒",
+  "nsfw": false,
+  "tags": "1girl, solo, fur-trimmed coat, white wool sweater, fur cape, grey pants, wool pants, thick pants, loose pants, baggy pants, fur-trimmed boots, brown boots, brown belt, wide belt, fur gloves, fur collar, thick wool, fur trim, heavy fabric, knitted, sitting, knees up, arms wrapped around knees, hugging own legs, both arms occupied, no hands free, chin on knees, relaxed, half-closed eyes, sleepy, smile, parted lips, cowboy shot, detailed skin texture, skin pores, fine skin detail, natural skin tone, soft shadow on skin, ",
+  "fields": {
+    "clothes": "fur-trimmed coat, white wool sweater, fur cape, grey pants, wool pants, thick pants, loose pants, baggy pants, fur-trimmed boots, brown boots, brown belt, wide belt, fur gloves, fur collar, thick wool, fur trim, heavy fabric, knitted"
+  },
+  "body_decor": {},
+  "look_notes": {},
+  "artist_segment": "minaba_hideo, liduke, piromizu, nonco,",
+  "style_label": "柔光半写实 (基准)",
+  "negative_extra": "worst quality, low quality, score_1, score_2, score_3, lowres, jpeg artifacts, cel shading, flat colors, painterly, 3d render, deformed body, bad proportions, big head, bad hands, extra fingers, missing fingers, extra limbs, watermark, signature, text, logo, artist name, cat ears, animal ear fluff, tail, male, 1boy, multiple boys, multiple girls, 2girls, crowd, nude, naked, topless, bottomless, no bra, bare breasts, panties, underwear, covered crotch, pantyhose, tights, stockings, tight pants, skinny pants, slim fit, leggings, skin tight, tight clothes, bodycon, pencil pants, tight leather pants, metal armor, breastplate, plate armor, steel, chrome, shiny metal, metallic, iron, polished armor, pauldrons, gauntlets, greaves, metal texture, reflective metal, summer, green foliage, tall grass, warm sunlight, cup, mug, white cup, paper cup, thermos, bottle, holding anything, cup on ground, mug on snow, object on ground, clutter, modern clothes, jeans, sneakers, city, buildings, cars, ",
+  "params": {
+    "model": "miaomiaoHarem_anima8Step10.safetensors",
+    "lora": "anima-turbo-lora-v0.1.safetensors @ 0.4",
+    "clip": "qwen_3_06b_base.safetensors (type=qwen_image)",
+    "vae": "qwen_image_vae.safetensors",
+    "steps": 12,
+    "cfg": 2.0,
+    "sampler": "euler",
+    "scheduler": "simple",
+    "resolution": "832x1216",
+    "seed": 600000
+  },
+  "thumb": "thumbs/look_winter_adventurer.jpg",
+  "source_dir": "_assets/characters/look_winter_adventurer",
+  "look_tags": "1girl, solo, fur-trimmed coat, white wool sweater, fur cape, grey pants, wool pants, thick pants, loose pants, baggy pants, fur-trimmed boots, brown boots, brown belt, wide belt, fur gloves, fur collar, thick wool, fur trim, heavy fabric, knitted, detailed skin texture, skin pores, fine skin detail, natural skin tone, soft shadow on skin, ",
+  "pose_tags": "",
+  "tag_split": {
+    "version": 3,
+    "cloth": 41,
+    "pose": 0,
+    "moved_pose": [],
+    "migrated_to": "pose_from_winter_adventurer"
+  },
+  "legacy_pose_ref": "pose_from_winter_adventurer",
+  "fields_legacy_pose": {
+    "pose": "sitting, knees up, arms wrapped around knees, hugging own legs, both arms occupied, no hands free, chin on knees",
+    "expr": "relaxed, half-closed eyes, sleepy, smile, parted lips",
+    "shot": "cowboy shot"
+  },
+  "clean_note": {
+    "version": 5,
+    "removed_look": [
+      "tooth_necklace",
+      "vampire",
+      "fang_out",
+      "white hair",
+      "heterochromia",
+      "mole_under_eye",
+      "close-set eyes",
+      "short_hair",
+      "blue_eyes",
+      "pointy_ears",
+      "fang",
+      "symbol-shaped_pupils",
+      "round face",
+      "red eyes",
+      "Long nails",
+      "subsurface scattering"
+    ]
+  }
+}

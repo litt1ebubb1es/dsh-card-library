@@ -1,0 +1,33 @@
+{
+  "id": "pose_skirt_wind",
+  "kind": "pose",
+  "name": "路上 · 风掀裙摆（擦边）",
+  "group": "sfw",
+  "group_title": "🏙 全年龄场景搭配",
+  "description": "双手按裙的经典瞬间",
+  "pose_tags": "surprised, skirt blowing up, wind from below, pleated skirt fluttering, pantyshot",
+  "pose_nl": "she stops in the street and grabs at her pleated skirt as the wind lifts the hem. seen from below so the fabric flutters around her hips. her eyes go wide and her mouth opens.",
+  "camera": {
+    "viewpoint": "from below"
+  },
+  "suggest_place": "street",
+  "aspect": "portrait",
+  "level": 0,
+  "theme": "日常",
+  "count_lock": "1girl, solo",
+  "env_ref": "sc_skirt_wind",
+  "source_id": "sc_skirt_wind",
+  "clean_note": {
+    "version": 3,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [
+      "wind"
+    ],
+    "removed_camera": [],
+    "removed_cloth": [
+      "sailor shirt",
+      "pleated skirt"
+    ]
+  },
+  "thumb": "thumbs/pose_skirt_wind.jpg"
+}

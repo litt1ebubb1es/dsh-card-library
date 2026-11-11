@@ -1,0 +1,16 @@
+{
+ "id": "prop_bracelet",
+ "kind": "prop",
+ "name": "手链",
+ "version": "1.0",
+ "group": "accessory",
+ "group_title": "配饰",
+ "description": "手链/手镯。",
+ "prop_tags": "bracelet, wearing bracelet, bangle",
+ "prop_nl": "A thin bracelet circles her wrist.",
+ "hold": false,
+ "suggest_pose": "standing",
+ "aspect": "both",
+ "thumb": null,
+ "notes": "道具卡只写物，不写持有者/场景/服装；hold=true 时拼配方要配 holding 动词。"
+}

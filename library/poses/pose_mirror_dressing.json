@@ -1,0 +1,31 @@
+{
+  "id": "pose_mirror_dressing",
+  "kind": "pose",
+  "name": "镜前 · 整装",
+  "group": "sfw",
+  "group_title": "🏙 全年龄场景搭配",
+  "description": "镜面反射，手拢头发",
+  "pose_tags": "standing, hand in own hair, expressionless",
+  "pose_nl": "she stands at the vanity with one hand in her hair and her back partly to the viewer. she tilts her head and studies herself. the room behind her is soft and warm.",
+  "camera": {
+    "viewpoint": "from side, from behind",
+    "dof": "focus on face"
+  },
+  "suggest_place": "bedroom",
+  "aspect": "portrait",
+  "level": 0,
+  "theme": "室内",
+  "count_lock": "1girl, solo",
+  "env_ref": "sc_mirror_dressing",
+  "source_id": "sc_mirror_dressing",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [
+      "vanity table",
+      "mirror as backdrop"
+    ],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_mirror_dressing.jpg"
+}

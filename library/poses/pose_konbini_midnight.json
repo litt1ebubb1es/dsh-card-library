@@ -1,0 +1,37 @@
+{
+  "id": "pose_konbini_midnight",
+  "kind": "pose",
+  "name": "便利店 · 深夜值班（擦边）",
+  "group": "sfw",
+  "group_title": "🏙 全年龄场景搭配",
+  "description": "冰柜冷光下的制服与热裤",
+  "pose_tags": "leaning forward, leaning",
+  "pose_nl": "she leans forward over the counter in a police uniform at midnight. the refrigerator behind her glows and rim light outlines her arm. seen from below.",
+  "camera": {
+    "viewpoint": "from below"
+  },
+  "suggest_place": "convenience store",
+  "aspect": "portrait",
+  "level": 1,
+  "theme": "日常",
+  "count_lock": "1girl, solo",
+  "env_ref": "sc_konbini_midnight",
+  "source_id": "sc_konbini_midnight",
+  "clean_note": {
+    "version": 4,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [
+      "refrigerator",
+      "midnight"
+    ],
+    "removed_camera": [],
+    "removed_cloth": [
+      "police uniform",
+      "short shorts"
+    ],
+    "from_nl": [
+      "leaning"
+    ]
+  },
+  "thumb": "thumbs/pose_konbini_midnight.jpg"
+}

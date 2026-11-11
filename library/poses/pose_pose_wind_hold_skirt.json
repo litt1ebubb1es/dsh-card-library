@@ -1,0 +1,33 @@
+{
+  "id": "pose_pose_wind_hold_skirt",
+  "kind": "pose",
+  "name": "花田 · 微风压裙",
+  "group": "pose",
+  "group_title": "🧎 姿势场景",
+  "description": "花田全身照，略侧身弯腰，微风吹起长发与裙摆，双手向下压住裙摆，倾斜地面构图 —— 迎风按裙站姿（服装必为裙装）",
+  "pose_tags": "standing, wind lift, hair blowing, bent over (knees), hands on own skirt, holding skirt down",
+  "pose_nl": "she stands in the flower field holding her skirt down with both hands as the wind pushes it. her hair blows across her face and the horizon tilts behind her. petals lift around her legs.",
+  "camera": {
+    "shot_size": "full body"
+  },
+  "suggest_place": "flower field",
+  "aspect": "portrait",
+  "level": 0,
+  "theme": "姿势·花田压裙",
+  "count_lock": "1girl, solo",
+  "env_ref": "sc_pose_wind_hold_skirt",
+  "source_id": "sc_pose_wind_hold_skirt",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [
+      "wind",
+      "petals",
+      "day"
+    ],
+    "removed_camera": [
+      "tilted horizon"
+    ]
+  },
+  "thumb": "thumbs/pose_pose_wind_hold_skirt.jpg"
+}

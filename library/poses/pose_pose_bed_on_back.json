@@ -1,0 +1,31 @@
+{
+  "id": "pose_pose_bed_on_back",
+  "kind": "pose",
+  "name": "卧室 · 仰躺",
+  "group": "pose",
+  "group_title": "🧎 姿势场景",
+  "description": "躺在床上仰面，俯拍七分身，清晨光斜照",
+  "pose_tags": "on back, lying",
+  "pose_nl": "she lies on her back on the bed with one arm above her head. morning light comes across the sheet and over her shoulder. seen from above.",
+  "camera": {
+    "viewpoint": "from above",
+    "shot_size": "cowboy shot"
+  },
+  "suggest_place": "",
+  "aspect": "landscape",
+  "level": 0,
+  "theme": "姿势·床上仰躺",
+  "count_lock": "1girl, solo",
+  "env_ref": "",
+  "source_id": "sc_pose_bed_on_back",
+  "clean_note": {
+    "version": 4,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": [],
+    "from_nl": [
+      "lying"
+    ]
+  },
+  "thumb": "thumbs/pose_pose_bed_on_back.jpg"
+}

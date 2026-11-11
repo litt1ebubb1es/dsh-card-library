@@ -1,0 +1,27 @@
+{
+  "id": "pose_near_nsfw_sheer",
+  "kind": "pose",
+  "name": "薄纱透视",
+  "group": "near",
+  "group_title": "🔍 特写搭配",
+  "description": "薄纱衣料下的身体轮廓",
+  "pose_tags": "see-through, sheer fabric, skin, body, nipples",
+  "pose_nl": "sheer fabric covers her body and backlight shows the shape of her breasts through it. the material is almost transparent. only her torso is in frame.",
+  "camera": {
+    "shot_size": "close-up"
+  },
+  "suggest_place": "",
+  "aspect": "both",
+  "level": 2,
+  "theme": "🔞 成人向",
+  "count_lock": "1girl, solo",
+  "env_ref": "",
+  "source_id": "sc_near_nsfw_sheer",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_near_nsfw_sheer.jpg"
+}

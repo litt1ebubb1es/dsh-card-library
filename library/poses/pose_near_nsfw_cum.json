@@ -1,0 +1,27 @@
+{
+  "id": "pose_near_nsfw_cum",
+  "kind": "pose",
+  "name": "局部射精特写",
+  "group": "near",
+  "group_title": "🔍 特写搭配",
+  "description": "皮肤上的精液特写",
+  "pose_tags": "cum on body, cum, skin, thighs, lower body",
+  "pose_nl": "cum is spread across her thigh and skin in thick streaks. soft light lies on the surface of it. only the marked skin is in frame.",
+  "camera": {
+    "shot_size": "extreme close-up"
+  },
+  "suggest_place": "",
+  "aspect": "both",
+  "level": 3,
+  "theme": "🔞 成人向",
+  "count_lock": "1girl, solo",
+  "env_ref": "",
+  "source_id": "sc_near_nsfw_cum",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_near_nsfw_cum.jpg"
+}

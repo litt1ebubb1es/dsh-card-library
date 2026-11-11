@@ -1,0 +1,27 @@
+{
+  "id": "pose_msb_sofa_pull",
+  "kind": "pose",
+  "name": "自慰 · 沙发褪内裤",
+  "group": "nsfw",
+  "group_title": "🔞 NSFW 跨槽位配方",
+  "description": "沙发上把内裤褪到腿上",
+  "pose_tags": "sitting, tears, parted lips, pulled by self, clitoris, panties pulled down, solo, hand on own thigh, looking down at self",
+  "pose_nl": "she sits on the couch with her panties pulled down to one knee. one hand rests on her own thigh and she looks down at herself with wet eyes. the room is warm and dim.",
+  "camera": {
+    "viewpoint": "from side"
+  },
+  "suggest_place": "bedroom",
+  "aspect": "landscape",
+  "level": 2,
+  "theme": "挖矿",
+  "count_lock": "1girl, solo",
+  "env_ref": "sc_msb_sofa_pull",
+  "source_id": "sc_msb_sofa_pull",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_msb_sofa_pull.jpg"
+}

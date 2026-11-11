@@ -1,0 +1,55 @@
+{
+  "id": "look_ballet",
+  "kind": "look",
+  "name": "芭蕾舞者",
+  "version": "1.0",
+  "description": "黑色 leotard + 黑纱 tutu + 黑足尖鞋 + 黑色羽毛头饰，单腿后举",
+  "nsfw": false,
+  "tags": "leotard, black leotard, black tutu, black pointe shoes, black tights, hair bun, black feather hair ornament, tutu, ballet slippers, ",
+  "fields": {
+    "outfit": "leotard",
+    "top": "leotard",
+    "bottom": "tutu",
+    "socks": "black tights",
+    "shoes": "black pointe shoes",
+    "accessory": "black feather hair ornament, hair bun",
+    "cloth_color": "black",
+    "cloth_mat": "tulle",
+    "cloth_state_sfw": "fitted"
+  },
+  "body_decor": {
+    "makeup": "stage makeup",
+    "nails": "nail polish"
+  },
+  "look_notes": {},
+  "artist_segment": "@wlop, @minaba_hideo, ",
+  "style_label": "柔光半写实 (wlop+minaba)",
+  "negative_extra": "",
+  "params": {
+    "model": "miaomiaoHarem_anima8Step10.safetensors",
+    "lora": "anima-turbo-lora-v0.1.safetensors @ 0.4",
+    "clip": "qwen_3_06b_base.safetensors (type=qwen_image)",
+    "vae": "qwen_image_vae.safetensors",
+    "steps": 12,
+    "cfg": 2.0,
+    "sampler": "euler",
+    "scheduler": "simple",
+    "resolution": "832x1216"
+  },
+  "thumb": "thumbs/look_ballet.jpg",
+  "source_dir": "",
+  "look_tags": "leotard, black leotard, black tutu, black pointe shoes, black tights, hair bun, black feather hair ornament, tutu, ballet slippers, ",
+  "pose_tags": "",
+  "tag_split": {
+    "version": 3,
+    "cloth": 9,
+    "pose": 0,
+    "moved_pose": [],
+    "migrated_to": "pose_ballet"
+  },
+  "legacy_pose_ref": "pose_ballet",
+  "clean_note": {
+    "version": 8,
+    "source": "random36 c-version picked by user"
+  }
+}

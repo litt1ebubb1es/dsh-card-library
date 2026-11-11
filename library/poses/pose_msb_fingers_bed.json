@@ -1,0 +1,28 @@
+{
+  "id": "pose_msb_fingers_bed",
+  "kind": "pose",
+  "name": "自慰 · 床上手指",
+  "group": "nsfw",
+  "group_title": "🔞 NSFW 跨槽位配方",
+  "description": "躺着用手指自慰",
+  "pose_tags": "on back, fingering, embarrassed, blush, half-closed eyes, open mouth, bottomless, aroused, pussy, solo, hand on own thigh, arched back, trembling",
+  "pose_nl": "she lies on her back on the bed with one hand between her legs. her back arches off the sheet and her thighs tremble. her face is turned away in embarrassment.",
+  "camera": {
+    "viewpoint": "from above",
+    "dof": "focus on face"
+  },
+  "suggest_place": "",
+  "aspect": "landscape",
+  "level": 3,
+  "theme": "挖矿",
+  "count_lock": "1girl, solo",
+  "env_ref": "",
+  "source_id": "sc_msb_fingers_bed",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_msb_fingers_bed.jpg"
+}

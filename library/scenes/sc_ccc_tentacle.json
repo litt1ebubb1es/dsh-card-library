@@ -1,0 +1,41 @@
+{
+ "id": "sc_ccc_tentacle",
+ "kind": "scene",
+ "name": "森林 · 雾",
+ "group": "nsfw",
+ "group_title": "🔞 NSFW 跨槽位配方",
+ "description": "地点：森林；天气：fog；光线：dark background。（纯环境，不含动作/服装/表情）",
+ "tags": {
+  "place": "forest",
+  "weather": "fog",
+  "light_fx": "dark background"
+ },
+ "camera": {},
+ "extra": "",
+ "extra_camera": "",
+ "env_nl": "forest, fog, dark background.",
+ "level": 3,
+ "theme": "异种",
+ "count_lock": "1girl, solo",
+ "aspect": "portrait",
+ "thumb": null,
+ "env_hint": "forest, fog, dark background",
+ "pose_ref": "pose_ccc_tentacle",
+ "cleaned": {
+  "version": 4,
+  "policy": "env/pose split",
+  "note": "动作/服装/表情已移入 poses/pose_ccc_tentacle.json",
+  "removed_tag_keys": [
+   "n_fluid",
+   "n_state",
+   "n_theme"
+  ],
+  "removed_extra": [
+   "tentacles",
+   "restrained",
+   "aphrodisiac",
+   "non-human",
+   "tentacles wrapped around her body"
+  ]
+ }
+}

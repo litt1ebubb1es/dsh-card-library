@@ -1,0 +1,27 @@
+{
+  "id": "pose_msb_squirt_after",
+  "kind": "pose",
+  "name": "自慰 · 潮吹失神",
+  "group": "nsfw",
+  "group_title": "🔞 NSFW 跨槽位配方",
+  "description": "潮吹后瘫软失神",
+  "pose_tags": "on back, masturbation, tears, half-closed eyes, tongue out, completely nude, squirting, pussy juice, solo, after masturbation, trembling, liquid spray",
+  "pose_nl": "she lies on her back after squirting with her body still shaking. fluid is spread across the sheet under her hips. tears run from the corners of her eyes.",
+  "camera": {
+    "viewpoint": "from above"
+  },
+  "suggest_place": "",
+  "aspect": "portrait",
+  "level": 4,
+  "theme": "挖矿",
+  "count_lock": "1girl, solo",
+  "env_ref": "",
+  "source_id": "sc_msb_squirt_after",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_msb_squirt_after.jpg"
+}

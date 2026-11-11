@@ -1,0 +1,16 @@
+{
+ "id": "prop_chain",
+ "kind": "prop",
+ "name": "锁链",
+ "version": "1.0",
+ "group": "weapon",
+ "group_title": "武器",
+ "description": "锁链，束缚/哥特。",
+ "prop_tags": "chain, holding chain, chains",
+ "prop_nl": "Chains wrap around her wrist.",
+ "hold": true,
+ "suggest_pose": "holding chain, bound wrists",
+ "aspect": "both",
+ "thumb": null,
+ "notes": "道具卡只写物，不写持有者/场景/服装；hold=true 时拼配方要配 holding 动词。"
+}

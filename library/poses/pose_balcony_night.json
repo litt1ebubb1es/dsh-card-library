@@ -1,0 +1,31 @@
+{
+  "id": "pose_balcony_night",
+  "kind": "pose",
+  "name": "阳台 · 星空",
+  "group": "sfw",
+  "group_title": "🏙 全年龄场景搭配",
+  "description": "栏杆边抬头看星",
+  "pose_tags": "standing, sad, looking up",
+  "pose_nl": "she stands on the balcony with both hands on the railing and looks up at the stars. the city lights sit far below the edge of the frame. the wind moves her hair.",
+  "camera": {
+    "shot_size": "cowboy shot",
+    "comp": "negative space"
+  },
+  "suggest_place": "balcony",
+  "aspect": "portrait",
+  "level": 0,
+  "theme": "夜景",
+  "count_lock": "1girl, solo",
+  "env_ref": "sc_balcony_night",
+  "source_id": "sc_balcony_night",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [
+      "city night",
+      "wind"
+    ],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_balcony_night.jpg"
+}

@@ -1,0 +1,16 @@
+{
+ "id": "prop_veil",
+ "kind": "prop",
+ "name": "头纱",
+ "version": "1.0",
+ "group": "accessory",
+ "group_title": "配饰",
+ "description": "头纱，新娘/祭司。",
+ "prop_tags": "veil, wearing veil, bridal veil",
+ "prop_nl": "A translucent veil falls over her hair.",
+ "hold": false,
+ "suggest_pose": "standing, praying",
+ "aspect": "both",
+ "thumb": null,
+ "notes": "道具卡只写物，不写持有者/场景/服装；hold=true 时拼配方要配 holding 动词。"
+}

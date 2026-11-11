@@ -1,0 +1,71 @@
+{
+  "id": "look_summer_festival",
+  "kind": "look",
+  "name": "夏日祭典",
+  "version": "1.0",
+  "description": "粉色樱纹浴衣 + 白腰带 + 发花 + 团扇 + 金鱼袋，橙贝雷帽，夜市祭典风",
+  "nsfw": false,
+  "tags": "1girl, solo, japanese clothes, pink yukata, sakura print, white obi, pink obi, obi, wide sleeves, geta, wooden sandals, hair flower, hair ornament, flower hairpin, uchiwa, paper fan, kingyo, goldfish bag, detailed skin texture, skin pores, fine skin detail, natural skin tone, soft shadow on skin, ",
+  "fields": {
+    "clothes": "japanese clothes, pink yukata, sakura print, white obi, pink obi, obi, wide sleeves, geta, wooden sandals, hair flower, hair ornament, flower hairpin, uchiwa, holding fan, paper fan, kingyo, goldfish bag"
+  },
+  "body_decor": {},
+  "look_notes": {},
+  "artist_segment": "minaba_hideo, liduke, piromizu, nonco,",
+  "style_label": "柔光半写实 (基准)",
+  "negative_extra": "worst quality, low quality, score_1, score_2, score_3, lowres, jpeg artifacts, cel shading, flat colors, painterly, 3d render, deformed body, bad proportions, big head, bad hands, extra fingers, missing fingers, extra limbs, watermark, signature, text, logo, artist name, cat ears, animal ear fluff, muddy colors, desaturated, washed out, dull colors, color clash, oversaturated, neon, western clothes, dress, t-shirt, jeans, sneakers, modern clothes, school uniform, nude, naked, topless, bottomless, bare breasts, panties, underwear, covered crotch, male, 1boy, multiple girls, 2girls, crowd, holding cup, holding mug, holding phone, cup, mug, white cup, paper cup, ",
+  "params": {
+    "model": "miaomiaoHarem_anima8Step10.safetensors",
+    "lora": "anima-turbo-lora-v0.1.safetensors @ 0.4",
+    "clip": "qwen_3_06b_base.safetensors (type=qwen_image)",
+    "vae": "qwen_image_vae.safetensors",
+    "steps": 12,
+    "cfg": 2.0,
+    "sampler": "euler",
+    "scheduler": "simple",
+    "resolution": "832x1216",
+    "seed": 920002
+  },
+  "thumb": "thumbs/look_summer_festival.jpg",
+  "source_dir": "_assets/characters/look_summer_festival",
+  "look_tags": "1girl, solo, japanese clothes, pink yukata, sakura print, white obi, pink obi, obi, wide sleeves, geta, wooden sandals, hair flower, hair ornament, flower hairpin, uchiwa, paper fan, kingyo, goldfish bag, detailed skin texture, skin pores, fine skin detail, natural skin tone, soft shadow on skin, ",
+  "pose_tags": "",
+  "tag_split": {
+    "version": 3,
+    "cloth": 41,
+    "pose": 0,
+    "moved_pose": [],
+    "migrated_to": "pose_from_summer_festival"
+  },
+  "legacy_pose_ref": "pose_from_summer_festival",
+  "fields_legacy_pose": {
+    "pose": "standing, walking, looking to the side, holding fan, one hand on fan, other hand holding goldfish bag",
+    "expr": "smile, happy, open mouth, excited",
+    "shot": "cowboy shot"
+  },
+  "clean_note": {
+    "version": 7,
+    "removed_look": [
+      "tooth_necklace",
+      "vampire",
+      "fang_out",
+      "white hair",
+      "heterochromia",
+      "mole_under_eye",
+      "close-set eyes",
+      "short_hair",
+      "blue_eyes",
+      "pointy ears",
+      "fang",
+      "symbol-shaped_pupils",
+      "round face",
+      "red eyes",
+      "Long nails",
+      "subsurface scattering"
+    ],
+    "removed_v7": [
+      "silver hair",
+      "elf ears"
+    ]
+  }
+}

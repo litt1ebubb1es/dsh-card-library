@@ -1,0 +1,28 @@
+{
+  "id": "pose_near_face_lowgaze",
+  "kind": "pose",
+  "name": "低头抬眼",
+  "group": "pose",
+  "group_title": "🔍 特写搭配",
+  "description": "低着头从睫毛下方抬眼看向镜头，脸颊泛红",
+  "pose_tags": "embarrassed, blush, looking up, face, eyes, iris, eyelashes, shoulders",
+  "pose_nl": "she looks up from under her lashes with her chin lowered. her cheeks are flushed and her eyes are wide. the frame ends at her shoulders.",
+  "camera": {
+    "shot_size": "extreme close-up",
+    "dof": "focus on face"
+  },
+  "suggest_place": "",
+  "aspect": "both",
+  "level": 0,
+  "theme": "面部",
+  "count_lock": "1girl, solo",
+  "env_ref": "",
+  "source_id": "sc_near_face_lowgaze",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_near_face_lowgaze.jpg"
+}

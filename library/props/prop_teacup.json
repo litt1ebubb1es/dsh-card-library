@@ -1,0 +1,16 @@
+{
+ "id": "prop_teacup",
+ "kind": "prop",
+ "name": "茶杯",
+ "version": "1.0",
+ "group": "food",
+ "group_title": "食物饮品",
+ "description": "茶杯，下午茶/和风。",
+ "prop_tags": "teacup, holding teacup, tea",
+ "prop_nl": "She lifts a teacup to her lips.",
+ "hold": true,
+ "suggest_pose": "holding teacup, sipping tea",
+ "aspect": "both",
+ "thumb": null,
+ "notes": "道具卡只写物，不写持有者/场景/服装；hold=true 时拼配方要配 holding 动词。"
+}

@@ -1,0 +1,27 @@
+{
+  "id": "pose_near_nsfw_tongue",
+  "kind": "pose",
+  "name": "舌与唾液",
+  "group": "near",
+  "group_title": "🔍 特写搭配",
+  "description": "面部与肩膀的正面特写：伸出舌头、唾液欲滴（七种舌姿随机：直伸/上卷/垂下/失神，其中三种带舌钉）；表情固定极端（ahegao 翻白眼）；画面不出现手与胸",
+  "pose_tags": "half-closed eyes, tongue out, ahegao, rolled back eyes, face, shoulders, tongue, saliva, lips, teeth, blush, heavy breathing, drool, hands out of frame, chest out of frame",
+  "pose_nl": "her tongue is out and saliva strings from her lip to her chin. her eyes are half closed and rolled back. rim light hits her cheek.",
+  "camera": {
+    "shot_size": "close-up"
+  },
+  "suggest_place": "",
+  "aspect": "both",
+  "level": 3,
+  "theme": "🔞 成人向",
+  "count_lock": "1girl, solo",
+  "env_ref": "",
+  "source_id": "sc_near_nsfw_tongue",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_near_nsfw_tongue.jpg"
+}

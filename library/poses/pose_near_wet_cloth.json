@@ -1,0 +1,27 @@
+{
+  "id": "pose_near_wet_cloth",
+  "kind": "pose",
+  "name": "湿衣贴身",
+  "group": "near",
+  "group_title": "🔍 特写搭配",
+  "description": "雨中湿透的衣物贴身，背光透出轮廓",
+  "pose_tags": "wet clothes, soaked clothes, see-through, moist skin, chest",
+  "pose_nl": "her shirt is soaked through and clings to her chest. the fabric turns see-through where it is wet. backlight outlines her shape.",
+  "camera": {
+    "shot_size": "upper body"
+  },
+  "suggest_place": "",
+  "aspect": "both",
+  "level": 2,
+  "theme": "上半身与胸",
+  "count_lock": "1girl, solo",
+  "env_ref": "",
+  "source_id": "sc_near_wet_cloth",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_near_wet_cloth.jpg"
+}

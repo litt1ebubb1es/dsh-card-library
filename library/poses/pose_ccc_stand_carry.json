@@ -1,0 +1,27 @@
+{
+  "id": "pose_ccc_stand_carry",
+  "kind": "pose",
+  "name": "站立抱起",
+  "group": "nsfw",
+  "group_title": "🔞 NSFW 跨槽位配方",
+  "description": "文档 §9.3.2：被整个抱起来的站立位",
+  "pose_tags": "stand and carry, arms behind back, partially undressed, panting, sex from behind, lifted by her hips, legs wrapped around his waist, carrying her, standing carry, against wall",
+  "pose_nl": "he lifts her by the hips and carries her with her legs wrapped around his waist. her back is against the hallway wall and her arms are bound behind her. he pushes up into her while standing.",
+  "camera": {
+    "viewpoint": "from side"
+  },
+  "suggest_place": "hallway",
+  "aspect": "landscape",
+  "level": 3,
+  "theme": "双人正戏",
+  "count_lock": "1girl, 1boy, hetero",
+  "env_ref": "sc_ccc_stand_carry",
+  "source_id": "sc_ccc_stand_carry",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_ccc_stand_carry.jpg"
+}

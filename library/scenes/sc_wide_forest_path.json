@@ -1,0 +1,37 @@
+{
+ "id": "sc_wide_forest_path",
+ "kind": "scene",
+ "name": "森林 · 远景",
+ "group": "sfw",
+ "group_title": "🏙 全年龄场景搭配",
+ "description": "地点：森林；天气：fog；光线：god rays；景物：scenery, forest path, tall trees, light shafts；相机：from behind / wide shot / landscape / wide shot, full body, small figure, vast landscape, sense of scale。（纯环境，不含动作/服装/表情）",
+ "tags": {
+  "place": "forest",
+  "weather": "fog",
+  "light_fx": "god rays"
+ },
+ "camera": {
+  "viewpoint": "from behind",
+  "shot_size": "wide shot",
+  "comp": "landscape"
+ },
+ "extra": "scenery, forest path, tall trees, light shafts",
+ "extra_camera": "wide shot, full body, small figure, vast landscape, sense of scale",
+ "env_nl": "forest, fog, god rays, scenery, forest path, tall trees, light shafts, wide shot, full body, small figure, vast landscape, sense of scale, from behind.",
+ "level": 0,
+ "theme": "远景",
+ "count_lock": "1girl, solo",
+ "aspect": "landscape",
+ "thumb": null,
+ "env_hint": "forest, fog, god rays, wide shot, from behind, landscape, scenery, forest path, tall trees, light shafts, wide shot, full body, small figure, vast landscape, sense of scale",
+ "pose_ref": "pose_wide_forest_path",
+ "cleaned": {
+  "version": 4,
+  "policy": "env/pose split",
+  "note": "动作/服装/表情已移入 poses/pose_wide_forest_path.json",
+  "removed_tag_keys": [
+   "pose_base"
+  ],
+  "removed_extra": []
+ }
+}

@@ -1,0 +1,44 @@
+{
+ "id": "sc_ccc_clothed_sex",
+ "kind": "scene",
+ "name": "办公室 · 桌沿",
+ "group": "nsfw",
+ "group_title": "🔞 NSFW 跨槽位配方",
+ "description": "地点：办公室；景物：silhouette, desk edge；相机：from side。（纯环境，不含动作/服装/表情）",
+ "tags": {
+  "place": "office"
+ },
+ "camera": {
+  "viewpoint": "from side"
+ },
+ "extra": "silhouette, desk edge",
+ "extra_camera": "",
+ "env_nl": "office, silhouette, desk edge, from side.",
+ "level": 3,
+ "theme": "双人正戏",
+ "count_lock": "1girl, 1boy, hetero",
+ "aspect": "landscape",
+ "thumb": null,
+ "env_hint": "office, from side, silhouette, desk edge",
+ "pose_ref": "pose_ccc_clothed_sex",
+ "cleaned": {
+  "version": 4,
+  "policy": "env/pose split",
+  "note": "动作/服装/表情已移入 poses/pose_ccc_clothed_sex.json",
+  "removed_tag_keys": [
+   "cloth_state_sfw",
+   "n_act",
+   "n_orgasm",
+   "n_pos",
+   "n_state",
+   "outfit"
+  ],
+  "removed_extra": [
+   "faceless male",
+   "his face out of frame",
+   "male face in shadow",
+   "partially clothed",
+   "hurried"
+  ]
+ }
+}

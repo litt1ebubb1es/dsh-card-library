@@ -1,0 +1,16 @@
+{
+ "id": "prop_backpack",
+ "kind": "prop",
+ "name": "背包",
+ "version": "1.0",
+ "group": "daily",
+ "group_title": "日常",
+ "description": "双肩背包，校园/远行。",
+ "prop_tags": "backpack, wearing backpack, school backpack",
+ "prop_nl": "She wears a backpack on both shoulders.",
+ "hold": false,
+ "suggest_pose": "standing, walking",
+ "aspect": "both",
+ "thumb": null,
+ "notes": "道具卡只写物，不写持有者/场景/服装；hold=true 时拼配方要配 holding 动词。"
+}

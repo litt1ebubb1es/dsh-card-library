@@ -1,0 +1,21 @@
+{
+  "id": "pose_from_summer_adventurer",
+  "kind": "pose",
+  "name": "看地图",
+  "version": 1,
+  "group": "from_look",
+  "group_title": "来自造型卡",
+  "description": "景别：cowboy shot；动作：both hands holding map, closed mouth, focused, hands on paper, holding map, holding map with both hands, looking at map, looking down, no hands free, serious, standing, unfolding map。",
+  "pose_tags": "both hands holding map, closed mouth, focused, hands on paper, holding map, holding map with both hands, looking at map, looking down, no hands free, serious, standing, unfolding map",
+  "pose_nl": "",
+  "camera": {
+    "shot_size": "cowboy shot"
+  },
+  "suggest_place": "",
+  "aspect": "portrait",
+  "thumb": "thumbs/pose_from_summer_adventurer.jpg",
+  "env_ref": null,
+  "source": "look_pose_v1",
+  "legacy_look": "look_summer_adventurer",
+  "notes": "由造型卡的 pose_tags 迁出（v4）。动作卡只讲做什么，穿什么归造型卡。"
+}

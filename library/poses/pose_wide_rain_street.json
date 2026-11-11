@@ -1,0 +1,39 @@
+{
+  "id": "pose_wide_rain_street",
+  "kind": "pose",
+  "name": "雨街 · 撑伞远行",
+  "group": "sfw",
+  "group_title": "🏙 全年龄场景搭配",
+  "description": "真远景：雨夜街头撑伞走远，湿地面反着霓虹光",
+  "pose_tags": "standing, holding umbrella, open umbrella above her",
+  "pose_nl": "she walks away down the rainy street under a dark umbrella. the neon color breaks into pieces in the puddles. the buildings close in on both sides.",
+  "camera": {
+    "viewpoint": "from behind",
+    "shot_size": "wide shot",
+    "comp": "landscape"
+  },
+  "suggest_place": "street",
+  "aspect": "landscape",
+  "level": 0,
+  "theme": "远景",
+  "count_lock": "1girl, solo",
+  "env_ref": "sc_wide_rain_street",
+  "source_id": "sc_wide_rain_street",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [
+      "scenery",
+      "rain puddle",
+      "puddle glow"
+    ],
+    "removed_camera": [
+      "wide shot",
+      "full body",
+      "small figure",
+      "vast landscape",
+      "sense of scale"
+    ]
+  },
+  "thumb": "thumbs/pose_wide_rain_street.jpg"
+}

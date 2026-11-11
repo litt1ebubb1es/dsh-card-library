@@ -1,0 +1,16 @@
+{
+ "id": "prop_papers",
+ "kind": "prop",
+ "name": "文件",
+ "version": "1.0",
+ "group": "stationery",
+ "group_title": "文具纸品",
+ "description": "文件，办公/公文。",
+ "prop_tags": "papers, holding papers, documents",
+ "prop_nl": "She flips through a stack of papers.",
+ "hold": true,
+ "suggest_pose": "holding papers, reading",
+ "aspect": "both",
+ "thumb": null,
+ "notes": "道具卡只写物，不写持有者/场景/服装；hold=true 时拼配方要配 holding 动词。"
+}

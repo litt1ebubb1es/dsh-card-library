@@ -1,0 +1,16 @@
+{
+ "id": "prop_horns",
+ "kind": "prop",
+ "name": "角",
+ "version": "1.0",
+ "group": "accessory",
+ "group_title": "配饰",
+ "description": "角，恶魔/龙族。",
+ "prop_tags": "horns, curved horns, demon horns",
+ "prop_nl": "Curved horns rise from her temples.",
+ "hold": false,
+ "suggest_pose": "standing",
+ "aspect": "both",
+ "thumb": null,
+ "notes": "道具卡只写物，不写持有者/场景/服装；hold=true 时拼配方要配 holding 动词。"
+}

@@ -1,0 +1,28 @@
+{
+  "id": "pose_near_soft_breast_massage",
+  "kind": "pose",
+  "name": "隔衣揉胸",
+  "group": "near",
+  "group_title": "🔍 特写搭配",
+  "description": "隔着一层衣服揉按胸部，肩颈与上胸入画（擦边向）",
+  "pose_tags": "on side, 2girls, yuri, massaging breasts, grabbing breasts, clothed, covered breasts, breasts, cleavage, blush, eyes closed",
+  "pose_nl": "one woman reaches under the other's clothes and cups her breast through the fabric. the cloth pulls tight over her hand. only their chests are in frame.",
+  "camera": {
+    "viewpoint": "from above",
+    "shot_size": "close-up"
+  },
+  "suggest_place": "",
+  "aspect": "both",
+  "level": 1,
+  "theme": "🔞 成人向",
+  "count_lock": "2girls, yuri",
+  "env_ref": "",
+  "source_id": "sc_near_soft_breast_massage",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_near_soft_breast_massage.jpg"
+}

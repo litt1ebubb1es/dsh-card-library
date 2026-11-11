@@ -1,0 +1,31 @@
+{
+  "id": "pose_library_quiet",
+  "kind": "pose",
+  "name": "图书馆 · 静读",
+  "group": "sfw",
+  "group_title": "🏙 全年龄场景搭配",
+  "description": "书架侧光，坐姿、表情收敛",
+  "pose_tags": "sitting, own hands clasped, expressionless, closed mouth",
+  "pose_nl": "she sits alone between tall wooden bookshelves reading a book. thin dust floats in the slanting afternoon light. her finger traces the line she is reading.",
+  "camera": {
+    "viewpoint": "from side",
+    "dof": "focus on face"
+  },
+  "suggest_place": "library",
+  "aspect": "portrait",
+  "level": 0,
+  "theme": "日常",
+  "count_lock": "1girl, solo",
+  "env_ref": "sc_library_quiet",
+  "source_id": "sc_library_quiet",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [
+      "dust in light",
+      "silence"
+    ],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_library_quiet.jpg"
+}

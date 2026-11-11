@@ -1,0 +1,21 @@
+{
+  "id": "pose_from_towel_slip",
+  "kind": "pose",
+  "name": "浴巾滑落",
+  "version": 1,
+  "group": "from_look",
+  "group_title": "来自造型卡",
+  "description": "景别：cowboy shot；动作：blush, contrapposto, embarrassed, hand on own chest, holding towel, looking to the side, parted lips, standing。",
+  "pose_tags": "blush, contrapposto, embarrassed, hand on own chest, holding towel, looking to the side, parted lips, standing",
+  "pose_nl": "",
+  "camera": {
+    "shot_size": "cowboy shot"
+  },
+  "suggest_place": "",
+  "aspect": "portrait",
+  "thumb": "thumbs/pose_from_towel_slip.jpg",
+  "env_ref": null,
+  "source": "look_pose_v1",
+  "legacy_look": "nsfw_towel_slip",
+  "notes": "由造型卡的 pose_tags 迁出（v4）。动作卡只讲做什么，穿什么归造型卡。"
+}

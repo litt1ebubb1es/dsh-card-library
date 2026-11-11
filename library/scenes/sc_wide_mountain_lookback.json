@@ -1,0 +1,41 @@
+{
+ "id": "sc_wide_mountain_lookback",
+ "kind": "scene",
+ "name": "山道 · 风",
+ "group": "sfw",
+ "group_title": "🏙 全年龄场景搭配",
+ "description": "地点：山道；天气：wind；光线：god rays；景物：scenery, mountain ridge, sea of clouds；相机：from behind / wide shot / negative space / wide shot, full body, small figure, vast landscape, sense of scale。（纯环境，不含动作/服装/表情）",
+ "tags": {
+  "place": "mountain",
+  "weather": "wind",
+  "light_fx": "god rays"
+ },
+ "camera": {
+  "viewpoint": "from behind",
+  "shot_size": "wide shot",
+  "comp": "negative space"
+ },
+ "extra": "scenery, mountain ridge, sea of clouds",
+ "extra_camera": "wide shot, full body, small figure, vast landscape, sense of scale",
+ "env_nl": "mountain, wind, god rays, scenery, mountain ridge, sea of clouds, wide shot, full body, small figure, vast landscape, sense of scale, from behind.",
+ "level": 0,
+ "theme": "远景",
+ "count_lock": "1girl, solo",
+ "aspect": "landscape",
+ "thumb": null,
+ "env_hint": "mountain, wind, god rays, wide shot, from behind, negative space, scenery, mountain ridge, sea of clouds, wide shot, full body, small figure, vast landscape, sense of scale",
+ "pose_ref": "pose_wide_mountain_lookback",
+ "cleaned": {
+  "version": 4,
+  "policy": "env/pose split",
+  "note": "动作/服装/表情已移入 poses/pose_wide_mountain_lookback.json",
+  "removed_tag_keys": [
+   "action",
+   "eye_gaze",
+   "pose_base"
+  ],
+  "removed_extra": [
+   "looking back over shoulder"
+  ]
+ }
+}

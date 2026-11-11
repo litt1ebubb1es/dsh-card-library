@@ -1,0 +1,32 @@
+{
+  "id": "pose_bedroom_sleepshirt",
+  "kind": "pose",
+  "name": "卧室 · 宽松睡衫（擦边）",
+  "group": "sfw",
+  "group_title": "🏙 全年龄场景搭配",
+  "description": "过大的男款衬衫与光腿的对比",
+  "pose_tags": "on bed, hugging own legs, looking at viewer",
+  "pose_nl": "she sits on the bed in an oversized sleep shirt with her knees pulled up and her arms around them. morning light falls across the rumpled sheet. she looks straight at the viewer.",
+  "camera": {},
+  "suggest_place": "bedroom",
+  "aspect": "portrait",
+  "level": 1,
+  "theme": "室内",
+  "count_lock": "1girl, solo",
+  "env_ref": "sc_bedroom_sleepshirt",
+  "source_id": "sc_bedroom_sleepshirt",
+  "clean_note": {
+    "version": 3,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [
+      "bed sheets",
+      "morning light"
+    ],
+    "removed_camera": [],
+    "removed_cloth": [
+      "off-shoulder sweater",
+      "short shorts"
+    ]
+  },
+  "thumb": "thumbs/pose_bedroom_sleepshirt.jpg"
+}

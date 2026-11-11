@@ -1,0 +1,36 @@
+{
+ "id": "sc_wide_lighthouse",
+ "kind": "scene",
+ "name": "灯塔 · 阴",
+ "group": "sfw",
+ "group_title": "🏙 全年龄场景搭配",
+ "description": "地点：灯塔；天气：overcast；景物：scenery, cliff, ocean waves, distant horizon；相机：from side / wide shot / negative space / wide shot, full body, small figure, vast landscape, sense of scale。（纯环境，不含动作/服装/表情）",
+ "tags": {
+  "place": "lighthouse",
+  "weather": "overcast"
+ },
+ "camera": {
+  "viewpoint": "from side",
+  "shot_size": "wide shot",
+  "comp": "negative space"
+ },
+ "extra": "scenery, cliff, ocean waves, distant horizon",
+ "extra_camera": "wide shot, full body, small figure, vast landscape, sense of scale",
+ "env_nl": "lighthouse, overcast, scenery, cliff, ocean waves, distant horizon, wide shot, full body, small figure, vast landscape, sense of scale, from side.",
+ "level": 0,
+ "theme": "远景",
+ "count_lock": "1girl, solo",
+ "aspect": "landscape",
+ "thumb": null,
+ "env_hint": "lighthouse, overcast, wide shot, from side, negative space, scenery, cliff, ocean waves, distant horizon, wide shot, full body, small figure, vast landscape, sense of scale",
+ "pose_ref": "pose_wide_lighthouse",
+ "cleaned": {
+  "version": 4,
+  "policy": "env/pose split",
+  "note": "动作/服装/表情已移入 poses/pose_wide_lighthouse.json",
+  "removed_tag_keys": [
+   "pose_base"
+  ],
+  "removed_extra": []
+ }
+}

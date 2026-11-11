@@ -1,0 +1,71 @@
+{
+  "id": "home_sweeping_grey",
+  "kind": "look",
+  "name": "居家扫地·灰裤",
+  "version": "1.0",
+  "description": "",
+  "nsfw": false,
+  "tags": "sweater, track pants, loose socks, necklace, beige sweater, knitwear, oversized clothes, colored eyelashes, nail polish, grey track pants, dark grey pants, ",
+  "fields": {
+    "top": "sweater",
+    "bottom": "track pants",
+    "socks": "loose socks",
+    "accessory": "necklace",
+    "cloth_color": "beige",
+    "cloth_mat": "knitwear",
+    "cloth_state_sfw": "oversized clothes"
+  },
+  "body_decor": {
+    "makeup": "colored eyelashes",
+    "nails": "nail polish",
+    "skin_detail": "glistening skin"
+  },
+  "look_notes": {},
+  "artist_segment": "minaba_hideo, liduke, piromizu, nonco,",
+  "style_label": "柔光半写实 (基准)",
+  "negative_extra": "",
+  "params": {
+    "model": "miaomiaoHarem_anima8Step10.safetensors",
+    "lora": "anima-turbo-lora-v0.1.safetensors @ 0.4",
+    "clip": "qwen_3_06b_base.safetensors (type=qwen_image)",
+    "vae": "qwen_image_vae.safetensors",
+    "steps": 12,
+    "cfg": 2.0,
+    "sampler": "euler",
+    "scheduler": "simple",
+    "resolution": "832x1216"
+  },
+  "thumb": "thumbs/home_sweeping_grey.jpg",
+  "source_dir": "_assets/characters/home_sweeping_grey",
+  "look_tags": "sweater, track pants, loose socks, necklace, beige sweater, knitwear, oversized clothes, colored eyelashes, nail polish, grey track pants, dark grey pants, ",
+  "pose_tags": "",
+  "tag_split": {
+    "version": 3,
+    "cloth": 12,
+    "pose": 0,
+    "moved_pose": [
+      "arms at sides"
+    ],
+    "migrated_to": "pose_from_home_sweeping_grey"
+  },
+  "legacy_pose_ref": "pose_from_home_sweeping_grey",
+  "fields_legacy_pose": {
+    "action": "sweeping, holding broom",
+    "pose_base": "standing",
+    "arms_hands": "arms at sides",
+    "emotion": "serious",
+    "eye_gaze": "looking down",
+    "mouth": "closed mouth",
+    "shot_size": "full body"
+  },
+  "clean_note": {
+    "version": 6,
+    "removed_look": [
+      "glistening skin"
+    ],
+    "removed_v6": [],
+    "color_bound_v6": [
+      "beige -> beige sweater"
+    ]
+  }
+}

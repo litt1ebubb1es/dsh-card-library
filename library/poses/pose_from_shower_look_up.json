@@ -1,0 +1,21 @@
+{
+  "id": "pose_from_shower_look_up",
+  "kind": "pose",
+  "name": "淋浴仰头",
+  "version": 1,
+  "group": "from_look",
+  "group_title": "来自造型卡",
+  "description": "景别：cowboy shot；动作：arms up, eyes closed, hand in own hair, head tilted back, parted lips, relaxed, standing。",
+  "pose_tags": "arms up, eyes closed, hand in own hair, head tilted back, parted lips, relaxed, standing",
+  "pose_nl": "",
+  "camera": {
+    "shot_size": "cowboy shot"
+  },
+  "suggest_place": "",
+  "aspect": "portrait",
+  "thumb": "thumbs/pose_from_shower_look_up.jpg",
+  "env_ref": null,
+  "source": "look_pose_v1",
+  "legacy_look": "nsfw_shower_look_up",
+  "notes": "由造型卡的 pose_tags 迁出（v4）。动作卡只讲做什么，穿什么归造型卡。"
+}

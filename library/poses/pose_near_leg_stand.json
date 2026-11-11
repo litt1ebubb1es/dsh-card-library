@@ -1,0 +1,28 @@
+{
+  "id": "pose_near_leg_stand",
+  "kind": "pose",
+  "name": "站立笔直双腿",
+  "group": "near",
+  "group_title": "🔍 特写搭配",
+  "description": "侧向机位拍笔直站立的双腿，背光勾边",
+  "pose_tags": "standing, legs, long legs, straight legs, thighs, calves, ankles, head out of frame, legs focus, lower body",
+  "pose_nl": "her bare legs stand straight in the frame with backlight behind them. long lines run from thigh to ankle. her upper body is cropped away.",
+  "camera": {
+    "viewpoint": "from side",
+    "shot_size": "extreme close-up"
+  },
+  "suggest_place": "",
+  "aspect": "both",
+  "level": 0,
+  "theme": "腿部",
+  "count_lock": "1girl, solo",
+  "env_ref": "",
+  "source_id": "sc_near_leg_stand",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_near_leg_stand.jpg"
+}

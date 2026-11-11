@@ -1,0 +1,27 @@
+{
+  "id": "pose_ccc_facesitting",
+  "kind": "pose",
+  "name": "颜骑",
+  "group": "nsfw",
+  "group_title": "🔞 NSFW 跨槽位配方",
+  "description": "上位压制视角",
+  "pose_tags": "facesitting, straddling, bottomless, bedroom eyes, sitting on face, thighs, weight",
+  "pose_nl": "she sits on his face with her thighs pressing against his ears. her own weight pins him down. she looks down at him with half closed eyes.",
+  "camera": {
+    "viewpoint": "from below"
+  },
+  "suggest_place": "",
+  "aspect": "landscape",
+  "level": 3,
+  "theme": "双人正戏",
+  "count_lock": "1girl, 1boy, hetero",
+  "env_ref": "",
+  "source_id": "sc_ccc_facesitting",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_ccc_facesitting.jpg"
+}

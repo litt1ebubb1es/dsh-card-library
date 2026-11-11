@@ -1,0 +1,41 @@
+{
+ "id": "sc_skirt_wind",
+ "kind": "scene",
+ "name": "街道 · 风",
+ "group": "sfw",
+ "group_title": "🏙 全年龄场景搭配",
+ "description": "地点：街道；天气：wind；景物：wind；相机：from below。（纯环境，不含动作/服装/表情）",
+ "tags": {
+  "place": "street",
+  "weather": "wind"
+ },
+ "camera": {
+  "viewpoint": "from below"
+ },
+ "extra": "wind",
+ "extra_camera": "",
+ "env_nl": "street, wind, wind, from below.",
+ "level": 0,
+ "theme": "日常",
+ "count_lock": "1girl, solo",
+ "aspect": "portrait",
+ "thumb": null,
+ "env_hint": "street, wind, from below, wind",
+ "pose_ref": "pose_skirt_wind",
+ "cleaned": {
+  "version": 4,
+  "policy": "env/pose split",
+  "note": "动作/服装/表情已移入 poses/pose_skirt_wind.json",
+  "removed_tag_keys": [
+   "bottom",
+   "emotion",
+   "top"
+  ],
+  "removed_extra": [
+   "skirt blowing up",
+   "wind from below",
+   "pleated skirt fluttering",
+   "pantyshot"
+  ]
+ }
+}

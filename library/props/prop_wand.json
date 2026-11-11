@@ -1,0 +1,16 @@
+{
+ "id": "prop_wand",
+ "kind": "prop",
+ "name": "短魔杖",
+ "version": "1.0",
+ "group": "weapon",
+ "group_title": "武器",
+ "description": "短魔杖，魔法少女。",
+ "prop_tags": "wand, holding wand, magic wand",
+ "prop_nl": "She points a short wand forward.",
+ "hold": true,
+ "suggest_pose": "holding wand, casting spell",
+ "aspect": "both",
+ "thumb": null,
+ "notes": "道具卡只写物，不写持有者/场景/服装；hold=true 时拼配方要配 holding 动词。"
+}

@@ -1,0 +1,75 @@
+{
+  "id": "look_night_reader",
+  "kind": "look",
+  "name": "夜读少女",
+  "version": "1.0",
+  "description": "层叠长裙 + 兜帽短披肩 + 披巾 + 十字项链，坐地持书",
+  "nsfw": false,
+  "tags": "cross necklace, layered dress, hooded capelet, candle, shawl, ankle boots, silver layered dress, book, eyeliner, red nail polish, fully clothed, wearing clothes, covered chest, covered torso, long sleeves, fantasy, intricate details, ",
+  "fields": {
+    "outfit": "night reader",
+    "pieces": "cross necklace, layered dress, hooded capelet, candle, shawl, ankle boots",
+    "cloth_color": "silver"
+  },
+  "body_decor": {
+    "makeup": "eyeliner",
+    "nails": "red nail polish",
+    "skin_detail": "mole under eye"
+  },
+  "look_notes": {},
+  "artist_segment": "minaba_hideo, liduke, piromizu, nonco,",
+  "style_label": "柔光半写实 (基准)",
+  "negative_extra": "modern city, cars, electric lights, crowd, many people, multiple girls, 2girls, t-shirt, jeans, hoodie, sneakers, casual clothes, nude, naked, topless, bottomless, no bra, bare breasts, exposed breasts, nipples, pussy, exposed pussy, underwear, panties only, undressing, torn clothes, clothing cutout, breast cutout, sideboob, underboob, cleavage window, open clothes, unbuttoned, ",
+  "params": {
+    "model": "miaomiaoHarem_anima8Step10.safetensors",
+    "lora": "anima-turbo-lora-v0.1.safetensors @ 0.4",
+    "clip": "qwen_3_06b_base.safetensors (type=qwen_image)",
+    "vae": "qwen_image_vae.safetensors",
+    "steps": 12,
+    "cfg": 2.0,
+    "sampler": "euler",
+    "scheduler": "simple",
+    "resolution": "832x1216",
+    "seed": 111003
+  },
+  "thumb": "thumbs/look_night_reader.jpg",
+  "source_dir": "_assets/characters/look_night_reader",
+  "look_tags": "cross necklace, layered dress, hooded capelet, candle, shawl, ankle boots, silver layered dress, book, eyeliner, red nail polish, fully clothed, wearing clothes, covered chest, covered torso, long sleeves, fantasy, intricate details, ",
+  "pose_tags": "",
+  "tag_split": {
+    "version": 3,
+    "cloth": 19,
+    "pose": 0,
+    "moved_pose": [],
+    "migrated_to": "pose_from_night_reader"
+  },
+  "legacy_pose_ref": "pose_from_night_reader",
+  "fields_legacy_pose": {
+    "emotion": "serious",
+    "eye_gaze": "looking down",
+    "mouth": "parted lips",
+    "pose_base": "on floor",
+    "arms_hands": "holding book",
+    "action": "sitting, reading",
+    "prop": "book",
+    "shot_size": "cowboy shot"
+  },
+  "clean_note": {
+    "version": 6.1,
+    "removed_look": [
+      "mole under eye"
+    ],
+    "removed_v6": [
+      "night_reader"
+    ],
+    "color_bound_v6": [
+      "silver -> silver night reader"
+    ],
+    "fixed_v6b": [
+      "silver night reader"
+    ],
+    "color_bound_v6b": [
+      "silver -> silver layered dress"
+    ]
+  }
+}

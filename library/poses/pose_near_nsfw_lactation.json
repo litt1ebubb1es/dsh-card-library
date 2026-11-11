@@ -1,0 +1,28 @@
+{
+  "id": "pose_near_nsfw_lactation",
+  "kind": "pose",
+  "name": "双女泌乳",
+  "group": "near",
+  "group_title": "🔍 特写搭配",
+  "description": "吸吮时乳汁沿乳首溢出，另一人伸手接",
+  "pose_tags": "on side, 2girls, yuri, lactation, milk, breast sucking, nipples, breasts, saliva",
+  "pose_nl": "milk runs from her nipple into the other woman's mouth. drops bead on her breast. the two bodies are cropped to the chest.",
+  "camera": {
+    "viewpoint": "from side",
+    "shot_size": "extreme close-up"
+  },
+  "suggest_place": "",
+  "aspect": "both",
+  "level": 4,
+  "theme": "🔞 成人向",
+  "count_lock": "2girls, yuri",
+  "env_ref": "",
+  "source_id": "sc_near_nsfw_lactation",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_near_nsfw_lactation.jpg"
+}

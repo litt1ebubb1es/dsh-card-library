@@ -1,0 +1,22 @@
+{
+  "id": "pose_photographer",
+  "kind": "pose",
+  "name": "摄影师",
+  "version": 1,
+  "group": "from_look",
+  "group_title": "来自造型卡",
+  "description": "景别：upper body；动作：standing, holding camera, camera to eye, looking through viewfinder, both hands on camera, focused, closed mouth, upper body。",
+  "pose_tags": "standing, holding camera, camera to eye, looking through viewfinder, both hands on camera, focused, closed mouth, upper body",
+  "pose_nl": "",
+  "camera": {
+    "shot_size": "upper body",
+    "viewpoint": "from front"
+  },
+  "suggest_place": "street",
+  "aspect": "portrait",
+  "thumb": "thumbs/pose_photographer.jpg",
+  "env_ref": null,
+  "source": "look_pose_v1",
+  "legacy_look": "look_photographer",
+  "notes": "由 random36 挑图反推（v4）。动作卡只讲做什么，穿什么归造型卡。"
+}

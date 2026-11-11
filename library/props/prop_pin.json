@@ -1,0 +1,16 @@
+{
+ "id": "prop_pin",
+ "kind": "prop",
+ "name": "别针",
+ "version": "1.0",
+ "group": "stationery",
+ "group_title": "文具纸品",
+ "description": "别针（小物）。",
+ "prop_tags": "pin, safety pin",
+ "prop_nl": "A safety pin holds a strap together.",
+ "hold": false,
+ "suggest_pose": "standing",
+ "aspect": "both",
+ "thumb": null,
+ "notes": "道具卡只写物，不写持有者/场景/服装；hold=true 时拼配方要配 holding 动词。"
+}

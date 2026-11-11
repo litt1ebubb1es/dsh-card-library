@@ -1,0 +1,28 @@
+{
+  "id": "pose_pose_library_floor",
+  "kind": "pose",
+  "name": "图书馆 · 席地阅读",
+  "group": "pose",
+  "group_title": "🧎 姿势场景",
+  "description": "书架之间席地而坐翻书，俯拍高机位",
+  "pose_tags": "on floor, reading, expressionless",
+  "pose_nl": "she sits on the library floor with a book open across her knees. seen from above so the pages and her bent head fill the frame. the shelves run away behind her.",
+  "camera": {
+    "viewpoint": "from above",
+    "shot_size": "full body"
+  },
+  "suggest_place": "library",
+  "aspect": "portrait",
+  "level": 0,
+  "theme": "姿势·图书馆席地",
+  "count_lock": "1girl, solo",
+  "env_ref": "sc_pose_library_floor",
+  "source_id": "sc_pose_library_floor",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_pose_library_floor.jpg"
+}

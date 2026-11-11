@@ -1,0 +1,30 @@
+{
+  "id": "pose_ccc_bdsm_gag",
+  "kind": "pose",
+  "name": "束缚 · 口球垂涎",
+  "group": "pose",
+  "group_title": "🔞 NSFW 跨槽位配方",
+  "description": "文档 §14.2 口具拘束：口球 + 垂涎 + 腕缚（**单人自缚**，画面里只有她一个人）",
+  "pose_tags": "kneeling, arms behind back, tears, open mouth, completely nude, saliva string, gag ball, drooling, bound wrists, gagged, self-bondage, rope marks",
+  "pose_nl": "a red ball gag sits inside her open mouth and saliva drips from her lips to her chest. her wrists are tied behind her back while she kneels. rope marks are visible on her skin.",
+  "camera": {
+    "shot_size": "upper body"
+  },
+  "suggest_place": "",
+  "aspect": "both",
+  "level": 3,
+  "theme": "BDSM",
+  "count_lock": "1girl, solo",
+  "env_ref": "",
+  "source_id": "sc_ccc_bdsm_gag",
+  "clean_note": {
+    "version": 3,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": [],
+    "removed_cloth": [
+      "choker"
+    ]
+  },
+  "thumb": "thumbs/pose_ccc_bdsm_gag.jpg"
+}

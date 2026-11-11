@@ -1,0 +1,16 @@
+{
+ "id": "prop_potion",
+ "kind": "prop",
+ "name": "药水瓶",
+ "version": "1.0",
+ "group": "fantasy",
+ "group_title": "奇幻魔法",
+ "description": "药水瓶，炼金/奇幻。",
+ "prop_tags": "potion, holding potion, vial",
+ "prop_nl": "She holds a small vial of glowing liquid.",
+ "hold": true,
+ "suggest_pose": "holding potion, holding vial",
+ "aspect": "both",
+ "thumb": null,
+ "notes": "道具卡只写物，不写持有者/场景/服装；hold=true 时拼配方要配 holding 动词。"
+}

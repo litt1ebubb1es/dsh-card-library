@@ -1,0 +1,30 @@
+{
+  "id": "pose_near_face_tears",
+  "kind": "pose",
+  "name": "泪光特写",
+  "group": "near",
+  "group_title": "🔍 特写搭配",
+  "description": "含泪的眼睛，泪痕划过脸颊，轮廓光",
+  "pose_tags": "tears, looking at viewer, tear streak, eyes, eyelashes, iris, damp cheek, catchlight, shoulders, head and shoulders only, hands out of frame, ",
+  "pose_nl": "a tear runs down her damp cheek and light catches in her iris. her lashes are wet and her eyes are fixed on the viewer. rim light outlines her face.",
+  "camera": {
+    "shot_size": "extreme close-up"
+  },
+  "suggest_place": "",
+  "aspect": "both",
+  "level": 1,
+  "theme": "面部",
+  "count_lock": "1girl, solo",
+  "env_ref": "",
+  "source_id": "sc_near_face_tears",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": [],
+    "removed_v5": [
+      "glistening skin"
+    ]
+  },
+  "thumb": "thumbs/pose_near_face_tears.jpg"
+}

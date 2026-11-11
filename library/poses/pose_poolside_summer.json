@@ -1,0 +1,30 @@
+{
+  "id": "pose_poolside_summer",
+  "kind": "pose",
+  "name": "泳池边 · 盛夏",
+  "group": "sfw",
+  "group_title": "🏙 全年龄场景搭配",
+  "description": "池边蹲姿 + 硬光",
+  "pose_tags": "squatting, hand on own cheek, smile, bare feet, towel",
+  "pose_nl": "she squats at the edge of the pool with one hand on her cheek and her elbows on her knees. the caustic light from the water moves over her arms. a towel lies beside her.",
+  "camera": {
+    "shot_size": "full body"
+  },
+  "suggest_place": "poolside",
+  "aspect": "both",
+  "level": 0,
+  "theme": "夏",
+  "count_lock": "1girl, solo",
+  "env_ref": "sc_poolside_summer",
+  "source_id": "sc_poolside_summer",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [
+      "water surface",
+      "caustics"
+    ],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_poolside_summer.jpg"
+}

@@ -1,0 +1,16 @@
+{
+ "id": "prop_walkman",
+ "kind": "prop",
+ "name": "随身听",
+ "version": "1.0",
+ "group": "tech",
+ "group_title": "电子乐器",
+ "description": "随身听，复古。",
+ "prop_tags": "walkman, holding walkman, cassette",
+ "prop_nl": "She holds a cassette walkman.",
+ "hold": true,
+ "suggest_pose": "holding walkman",
+ "aspect": "both",
+ "thumb": null,
+ "notes": "道具卡只写物，不写持有者/场景/服装；hold=true 时拼配方要配 holding 动词。"
+}

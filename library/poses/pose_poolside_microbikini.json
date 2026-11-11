@@ -1,0 +1,29 @@
+{
+  "id": "pose_poolside_microbikini",
+  "kind": "pose",
+  "name": "泳池 · 微距比基尼（擦边）",
+  "group": "sfw",
+  "group_title": "🏙 全年龄场景搭配",
+  "description": "擦边档的泳装特写：裁剪面料 + 俯拍",
+  "pose_tags": "on back, hand on own cheek, embarrassed, blush, bare feet, sunbathing, sunscreen",
+  "pose_nl": "she lies on her back by the pool in a tiny bikini with sunscreen shining on her skin. one hand rests on her own cheek and she looks away shyly. the water surface behind her reflects the light.",
+  "camera": {
+    "viewpoint": "from above"
+  },
+  "suggest_place": "poolside",
+  "aspect": "portrait",
+  "level": 1,
+  "theme": "夏",
+  "count_lock": "1girl, solo",
+  "env_ref": "sc_poolside_microbikini",
+  "source_id": "sc_poolside_microbikini",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [
+      "water surface"
+    ],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_poolside_microbikini.jpg"
+}

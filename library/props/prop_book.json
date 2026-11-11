@@ -1,0 +1,16 @@
+{
+ "id": "prop_book",
+ "kind": "prop",
+ "name": "书",
+ "version": "1.0",
+ "group": "daily",
+ "group_title": "日常",
+ "description": "书，阅读/夜读/图书馆。",
+ "prop_tags": "book, holding book, open book",
+ "prop_nl": "She holds an open book in both hands.",
+ "hold": true,
+ "suggest_pose": "reading, holding book",
+ "aspect": "both",
+ "thumb": null,
+ "notes": "道具卡只写物，不写持有者/场景/服装；hold=true 时拼配方要配 holding 动词。"
+}

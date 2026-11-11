@@ -1,0 +1,39 @@
+{
+ "id": "sc_beach_volley",
+ "kind": "scene",
+ "name": "海边 · 晨光",
+ "group": "sfw",
+ "group_title": "🏙 全年龄场景搭配",
+ "description": "地点：海边；天气：clear sky；光线：morning light；景物：sand。（纯环境，不含动作/服装/表情）",
+ "tags": {
+  "place": "beach",
+  "weather": "clear sky",
+  "light_fx": "morning light"
+ },
+ "camera": {},
+ "extra": "sand",
+ "extra_camera": "",
+ "env_nl": "beach, clear sky, morning light, sand.",
+ "level": 1,
+ "theme": "夏",
+ "count_lock": "1girl, solo",
+ "aspect": "portrait",
+ "thumb": null,
+ "env_hint": "beach, clear sky, morning light, sand",
+ "pose_ref": "pose_beach_volley",
+ "cleaned": {
+  "version": 4,
+  "policy": "env/pose split",
+  "note": "动作/服装/表情已移入 poses/pose_beach_volley.json",
+  "removed_tag_keys": [
+   "action",
+   "arms_hands",
+   "pose_risque",
+   "shoes"
+  ],
+  "removed_extra": [
+   "volleyball",
+   "sweat"
+  ]
+ }
+}

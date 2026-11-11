@@ -1,0 +1,27 @@
+{
+  "id": "pose_near_foot_curl",
+  "kind": "pose",
+  "name": "脚趾蜷起",
+  "group": "near",
+  "group_title": "🔍 特写搭配",
+  "description": "正坐姿势下蜷起的脚趾，柔光",
+  "pose_tags": "wariza, toes, feet, soles, curled toes, skin, head out of frame, feet focus, lower body",
+  "pose_nl": "her toes curl tightly against the floor as she sits in a formal kneel. the soles are visible and the skin is tense. soft light from above.",
+  "camera": {
+    "shot_size": "extreme close-up"
+  },
+  "suggest_place": "",
+  "aspect": "both",
+  "level": 0,
+  "theme": "脚部",
+  "count_lock": "1girl, solo",
+  "env_ref": "",
+  "source_id": "sc_near_foot_curl",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_near_foot_curl.jpg"
+}

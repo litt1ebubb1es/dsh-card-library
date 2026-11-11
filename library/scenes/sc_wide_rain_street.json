@@ -1,0 +1,40 @@
+{
+ "id": "sc_wide_rain_street",
+ "kind": "scene",
+ "name": "街道 · 远景",
+ "group": "sfw",
+ "group_title": "🏙 全年龄场景搭配",
+ "description": "地点：街道；天气：rain；光线：neon lights；景物：scenery, rain puddle, puddle glow；相机：from behind / wide shot / landscape / wide shot, full body, small figure, vast landscape, sense of scale。（纯环境，不含动作/服装/表情）",
+ "tags": {
+  "place": "street",
+  "weather": "rain",
+  "light_fx": "neon lights"
+ },
+ "camera": {
+  "viewpoint": "from behind",
+  "shot_size": "wide shot",
+  "comp": "landscape"
+ },
+ "extra": "scenery, rain puddle, puddle glow",
+ "extra_camera": "wide shot, full body, small figure, vast landscape, sense of scale",
+ "env_nl": "street, rain, neon lights, scenery, rain puddle, puddle glow, wide shot, full body, small figure, vast landscape, sense of scale, from behind.",
+ "level": 0,
+ "theme": "远景",
+ "count_lock": "1girl, solo",
+ "aspect": "landscape",
+ "thumb": null,
+ "env_hint": "street, rain, neon lights, wide shot, from behind, landscape, scenery, rain puddle, puddle glow, wide shot, full body, small figure, vast landscape, sense of scale",
+ "pose_ref": "pose_wide_rain_street",
+ "cleaned": {
+  "version": 4,
+  "policy": "env/pose split",
+  "note": "动作/服装/表情已移入 poses/pose_wide_rain_street.json",
+  "removed_tag_keys": [
+   "pose_base"
+  ],
+  "removed_extra": [
+   "holding umbrella",
+   "open umbrella above her"
+  ]
+ }
+}

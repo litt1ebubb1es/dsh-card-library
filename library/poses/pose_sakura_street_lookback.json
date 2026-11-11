@@ -1,0 +1,37 @@
+{
+  "id": "pose_sakura_street_lookback",
+  "kind": "pose",
+  "name": "樱花道 · 回眸微笑",
+  "group": "sfw",
+  "group_title": "🏙 全年龄场景搭配",
+  "description": "路边樱花满开，双手背在身后微微前倾，回头对镜头笑一下；一点透视的街道伸向远处",
+  "pose_tags": "standing, looking back, smile, leaning forward slightly",
+  "pose_nl": "she stands on the roadside and looks over her shoulder at the viewer. cherry trees bloom on both sides of the road and petals drift through the air. the street runs straight into the distance in one-point perspective. the light is plain and natural.",
+  "camera": {
+    "viewpoint": "from behind",
+    "shot_size": "full body"
+  },
+  "suggest_place": "street",
+  "aspect": "portrait",
+  "level": 0,
+  "theme": "樱花",
+  "count_lock": "1girl, solo",
+  "env_ref": "sc_sakura_street_lookback",
+  "source_id": "sc_sakura_street_lookback",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [
+      "road stretching into distance",
+      "cherry blossom trees on both sides",
+      "falling petals",
+      "petal storm",
+      "natural daylight"
+    ],
+    "removed_camera": [
+      "one-point perspective",
+      "vanishing point"
+    ]
+  },
+  "thumb": "thumbs/pose_sakura_street_lookback.jpg"
+}

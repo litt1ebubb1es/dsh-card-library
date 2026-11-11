@@ -1,0 +1,32 @@
+{
+  "id": "pose_ccc_ntr_window",
+  "kind": "pose",
+  "name": "NTR · 窗外直视",
+  "group": "nsfw",
+  "group_title": "🔞 NSFW 跨槽位配方",
+  "description": "文档 §14.1 窗外NTR：从外往里拍，窗内正在发生",
+  "pose_tags": "sex from behind, tears, topless, moaning, netorare, peeping, cuckold, forced to watch, faceless male, his face out of frame, male face in shadow",
+  "pose_nl": "we watch her through the bedroom window from outside as he takes her from behind. she sees us but cannot stop him. the room behind them is dark and her face is wet with tears.",
+  "camera": {
+    "viewpoint": "from side"
+  },
+  "suggest_place": "bedroom",
+  "aspect": "landscape",
+  "level": 3,
+  "theme": "NTR",
+  "count_lock": "1girl, 1boy, hetero",
+  "env_ref": "sc_ccc_ntr_window",
+  "source_id": "sc_ccc_ntr_window",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [
+      "through window",
+      "silhouette"
+    ],
+    "removed_camera": [
+      "from outside"
+    ]
+  },
+  "thumb": "thumbs/pose_ccc_ntr_window.jpg"
+}

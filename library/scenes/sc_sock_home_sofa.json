@@ -1,0 +1,46 @@
+{
+ "id": "sc_sock_home_sofa",
+ "kind": "scene",
+ "name": "公寓 · 暖光",
+ "group": "sfw",
+ "group_title": "🏙 全年龄场景搭配",
+ "description": "地点：公寓；光线：warm lighting；道具：couch；相机：from above / full body / portrait。（纯环境，不含动作/服装/表情）",
+ "tags": {
+  "place": "apartment",
+  "light_fx": "warm lighting",
+  "prop": "couch"
+ },
+ "camera": {
+  "viewpoint": "from above",
+  "shot_size": "full body",
+  "comp": "portrait"
+ },
+ "extra": "",
+ "extra_camera": "",
+ "env_nl": "apartment, warm lighting, couch, from above.",
+ "level": 0,
+ "theme": "丝袜",
+ "count_lock": "1girl, solo",
+ "aspect": "portrait",
+ "thumb": null,
+ "env_hint": "apartment, warm lighting, couch, full body, from above, portrait",
+ "pose_ref": "pose_sock_home_sofa",
+ "cleaned": {
+  "version": 4,
+  "policy": "env/pose split",
+  "note": "动作/服装/表情已移入 poses/pose_sock_home_sofa.json",
+  "removed_tag_keys": [
+   "emotion",
+   "eye_gaze",
+   "mouth",
+   "outfit",
+   "pose_base",
+   "shoes"
+  ],
+  "removed_extra": [
+   "sitting on couch",
+   "knees together",
+   "glittery tights"
+  ]
+ }
+}

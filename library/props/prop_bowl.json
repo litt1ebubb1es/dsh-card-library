@@ -1,0 +1,16 @@
+{
+ "id": "prop_bowl",
+ "kind": "prop",
+ "name": "碗",
+ "version": "1.0",
+ "group": "home",
+ "group_title": "家居",
+ "description": "碗，餐桌。",
+ "prop_tags": "bowl, holding bowl, ceramic bowl",
+ "prop_nl": "She holds a steaming bowl.",
+ "hold": true,
+ "suggest_pose": "holding bowl, eating",
+ "aspect": "both",
+ "thumb": null,
+ "notes": "道具卡只写物，不写持有者/场景/服装；hold=true 时拼配方要配 holding 动词。"
+}

@@ -1,0 +1,31 @@
+{
+  "id": "pose_watergun_fight",
+  "kind": "pose",
+  "name": "水枪 · 湿身对射（擦边）",
+  "group": "sfw",
+  "group_title": "🏙 全年龄场景搭配",
+  "description": "被水淋透的白 Tee",
+  "pose_tags": "jumping, embarrassed, blush, midriff peek, water gun, wet hair",
+  "pose_nl": "she jumps through the spray of a water gun fight in the park with her wet t-shirt clinging to her. her midriff shows and she laughs. sunlight catches the water in the air.",
+  "camera": {},
+  "suggest_place": "park",
+  "aspect": "portrait",
+  "level": 1,
+  "theme": "夏",
+  "count_lock": "1girl, solo",
+  "env_ref": "sc_watergun_fight",
+  "source_id": "sc_watergun_fight",
+  "clean_note": {
+    "version": 3,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [
+      "splashes"
+    ],
+    "removed_camera": [],
+    "removed_cloth": [
+      "t-shirt",
+      "short shorts"
+    ]
+  },
+  "thumb": "thumbs/pose_watergun_fight.jpg"
+}

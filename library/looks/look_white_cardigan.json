@@ -1,0 +1,69 @@
+{
+  "id": "look_white_cardigan",
+  "kind": "look",
+  "name": "白开衫抬手",
+  "version": "1.0",
+  "description": "白开衫 + 系腰外套，抬手，表情放松",
+  "nsfw": false,
+  "tags": "cardigan, gym shorts, ankle socks, sneakers, beret, white cardigan, denim, jacket around waist, facepaint, french manicure, visible collarbone, ",
+  "fields": {
+    "top": "cardigan",
+    "bottom": "gym shorts",
+    "socks": "ankle socks",
+    "shoes": "sneakers",
+    "accessory": "beret",
+    "cloth_color": "white",
+    "cloth_mat": "denim",
+    "cloth_state_sfw": "jacket around waist"
+  },
+  "body_decor": {
+    "makeup": "facepaint",
+    "nails": "french manicure",
+    "skin_detail": "visible collarbone"
+  },
+  "look_notes": {},
+  "artist_segment": "minaba_hideo, liduke, piromizu, nonco,",
+  "style_label": "柔光半写实 (基准)",
+  "negative_extra": "",
+  "params": {
+    "model": "miaomiaoHarem_anima8Step10.safetensors",
+    "lora": "anima-turbo-lora-v0.1.safetensors @ 0.4",
+    "clip": "qwen_3_06b_base.safetensors (type=qwen_image)",
+    "vae": "qwen_image_vae.safetensors",
+    "steps": 12,
+    "cfg": 2.0,
+    "sampler": "euler",
+    "scheduler": "simple",
+    "resolution": "832x1216"
+  },
+  "thumb": "thumbs/look_white_cardigan.jpg",
+  "source_dir": "_assets/characters/look_white_cardigan",
+  "look_tags": "cardigan, gym shorts, ankle socks, sneakers, beret, white cardigan, denim, jacket around waist, facepaint, french manicure, visible collarbone, ",
+  "pose_tags": "",
+  "tag_split": {
+    "version": 3,
+    "cloth": 11,
+    "pose": 0,
+    "moved_pose": [
+      "arms up"
+    ],
+    "migrated_to": "pose_from_white_cardigan"
+  },
+  "legacy_pose_ref": "pose_from_white_cardigan",
+  "fields_legacy_pose": {
+    "emotion": "surprised",
+    "eye_gaze": "looking up",
+    "mouth": "grin, teeth",
+    "pose_base": "contrapposto",
+    "arms_hands": "arms up",
+    "action": "looking back",
+    "shot_size": "close-up"
+  },
+  "clean_note": {
+    "version": 6,
+    "removed_v6": [],
+    "color_bound_v6": [
+      "white -> white cardigan"
+    ]
+  }
+}

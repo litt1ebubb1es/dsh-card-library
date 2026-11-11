@@ -1,0 +1,45 @@
+{
+ "id": "sc_sock_hallway_nopanty",
+ "kind": "scene",
+ "name": "走廊 · 柔光",
+ "group": "nsfw",
+ "group_title": "🔞 NSFW 跨槽位配方",
+ "description": "地点：走廊；光线：soft lighting；道具：door；景物：entryway, doorway；相机：from below / cowboy shot。（纯环境，不含动作/服装/表情）",
+ "tags": {
+  "place": "hallway",
+  "light_fx": "soft lighting",
+  "prop": "door"
+ },
+ "camera": {
+  "viewpoint": "from below",
+  "shot_size": "cowboy shot"
+ },
+ "extra": "entryway, doorway",
+ "extra_camera": "",
+ "env_nl": "hallway, soft lighting, door, entryway, doorway, from below.",
+ "level": 2,
+ "theme": "丝袜",
+ "count_lock": "1girl, solo",
+ "aspect": "portrait",
+ "thumb": null,
+ "env_hint": "hallway, soft lighting, door, cowboy shot, from below, entryway, doorway",
+ "pose_ref": "pose_sock_hallway_nopanty",
+ "cleaned": {
+  "version": 4,
+  "policy": "env/pose split",
+  "note": "动作/服装/表情已移入 poses/pose_sock_hallway_nopanty.json",
+  "removed_tag_keys": [
+   "emotion",
+   "eye_gaze",
+   "mouth",
+   "n_state",
+   "outfit",
+   "pose_base",
+   "shoes"
+  ],
+  "removed_extra": [
+   "standing",
+   "tights"
+  ]
+ }
+}

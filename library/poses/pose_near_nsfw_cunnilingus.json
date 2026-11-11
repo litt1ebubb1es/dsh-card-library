@@ -1,0 +1,28 @@
+{
+  "id": "pose_near_nsfw_cunnilingus",
+  "kind": "pose",
+  "name": "舔阴特写",
+  "group": "near",
+  "group_title": "🔍 特写搭配",
+  "description": "双女中景：被舔者仰躺双腿分开、执行者跪在她腿间；七分身（膝上）取景，两人身体都在画框里，舌头与生殖器都看得见；闭麦一切衣物字段（全裸场景抽到 off shoulder / unbuttoned collar / black bodystocking 会画出衣服）",
+  "pose_tags": "tongue out, completely nude, pussy, bare feet, cunnilingus, oral, lying on back, spread legs, kneeling, head between thighs, licking, saliva",
+  "pose_nl": "one girl lies on her back on the bed with her legs spread wide. the other girl kneels between her thighs with her face pressed to her sex and her tongue out. the girl on her back arches and gasps while the other keeps licking her. both of them are naked and the view stays at the side so both bodies fill the frame from head to knee. her hands grip the sheet beside her hips.",
+  "camera": {
+    "viewpoint": "from side",
+    "shot_size": "cowboy shot"
+  },
+  "suggest_place": "",
+  "aspect": "landscape",
+  "level": 3,
+  "theme": "🔞 成人向",
+  "count_lock": "2girls, yuri",
+  "env_ref": "",
+  "source_id": "sc_near_nsfw_cunnilingus",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_near_nsfw_cunnilingus.jpg"
+}

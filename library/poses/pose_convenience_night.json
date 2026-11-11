@@ -1,0 +1,30 @@
+{
+  "id": "pose_convenience_night",
+  "kind": "pose",
+  "name": "便利店 · 夜班",
+  "group": "sfw",
+  "group_title": "🏙 全年龄场景搭配",
+  "description": "自动贩卖机前的霓虹夜",
+  "pose_tags": "standing, hand on own hip, expressionless",
+  "pose_nl": "she stands at the vending machine outside the store with one hand on her hip. the fluorescent light makes everything cold and green behind her. she looks at the viewer without expression.",
+  "camera": {
+    "shot_size": "upper body"
+  },
+  "suggest_place": "convenience store",
+  "aspect": "both",
+  "level": 0,
+  "theme": "日常",
+  "count_lock": "1girl, solo",
+  "env_ref": "sc_convenience_night",
+  "source_id": "sc_convenience_night",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [
+      "fluorescent light",
+      "night shift"
+    ],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_convenience_night.jpg"
+}

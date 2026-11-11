@@ -1,0 +1,44 @@
+{
+ "id": "sc_sock_stair_torn",
+ "kind": "scene",
+ "name": "楼梯间 · 逆光",
+ "group": "sfw",
+ "group_title": "🏙 全年龄场景搭配",
+ "description": "地点：楼梯间；光线：backlighting；景物：stairs；相机：dutch angle / cowboy shot。（纯环境，不含动作/服装/表情）",
+ "tags": {
+  "place": "stairwell",
+  "light_fx": "backlighting"
+ },
+ "camera": {
+  "viewpoint": "dutch angle",
+  "shot_size": "cowboy shot"
+ },
+ "extra": "stairs",
+ "extra_camera": "",
+ "env_nl": "stairwell, backlighting, stairs, seen dutch angle.",
+ "level": 1,
+ "theme": "丝袜",
+ "count_lock": "1girl, solo",
+ "aspect": "portrait",
+ "thumb": null,
+ "env_hint": "stairwell, backlighting, cowboy shot, dutch angle, stairs",
+ "pose_ref": "pose_sock_stair_torn",
+ "cleaned": {
+  "version": 4,
+  "policy": "env/pose split",
+  "note": "动作/服装/表情已移入 poses/pose_sock_stair_torn.json",
+  "removed_tag_keys": [
+   "emotion",
+   "eye_gaze",
+   "mouth",
+   "outfit",
+   "pose_base",
+   "pose_risque",
+   "shoes"
+  ],
+  "removed_extra": [
+   "torn tights",
+   "hand on skirt"
+  ]
+ }
+}

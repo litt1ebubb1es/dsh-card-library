@@ -1,0 +1,40 @@
+{
+ "id": "sc_balcony_night",
+ "kind": "scene",
+ "name": "阳台 · 星空",
+ "group": "sfw",
+ "group_title": "🏙 全年龄场景搭配",
+ "description": "地点：阳台；天气：starry sky；光线：moonlight；道具：railing；景物：city night, wind；相机：cowboy shot / negative space。（纯环境，不含动作/服装/表情）",
+ "tags": {
+  "place": "balcony",
+  "weather": "starry sky",
+  "light_fx": "moonlight",
+  "prop": "railing"
+ },
+ "camera": {
+  "shot_size": "cowboy shot",
+  "comp": "negative space"
+ },
+ "extra": "city night, wind",
+ "extra_camera": "",
+ "env_nl": "balcony, starry sky, moonlight, railing, city night, wind, seen cowboy shot.",
+ "level": 0,
+ "theme": "夜景",
+ "count_lock": "1girl, solo",
+ "aspect": "portrait",
+ "thumb": null,
+ "env_hint": "balcony, starry sky, moonlight, railing, cowboy shot, negative space, city night, wind",
+ "pose_ref": "pose_balcony_night",
+ "cleaned": {
+  "version": 4,
+  "policy": "env/pose split",
+  "note": "动作/服装/表情已移入 poses/pose_balcony_night.json",
+  "removed_tag_keys": [
+   "emotion",
+   "pose_base"
+  ],
+  "removed_extra": [
+   "looking up"
+  ]
+ }
+}

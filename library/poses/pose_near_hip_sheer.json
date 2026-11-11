@@ -1,0 +1,31 @@
+{
+  "id": "pose_near_hip_sheer",
+  "kind": "pose",
+  "name": "内裤侧后",
+  "group": "pose",
+  "group_title": "🔍 特写搭配",
+  "description": "侧后方的内裤特写，薄透质感",
+  "pose_tags": "wariza, see-through, ass, hips, thighs, head out of frame, lower body, ass focus",
+  "pose_nl": "she sits in a formal kneel seen from behind with see-through panties pulled across her hips. the fabric shows her skin through it. only her lower body is shown.",
+  "camera": {
+    "viewpoint": "from side, from behind",
+    "shot_size": "extreme close-up"
+  },
+  "suggest_place": "",
+  "aspect": "both",
+  "level": 2,
+  "theme": "臀部",
+  "count_lock": "1girl, solo",
+  "env_ref": "",
+  "source_id": "sc_near_hip_sheer",
+  "clean_note": {
+    "version": 3,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": [],
+    "removed_cloth": [
+      "panties"
+    ]
+  },
+  "thumb": "thumbs/pose_near_hip_sheer.jpg"
+}

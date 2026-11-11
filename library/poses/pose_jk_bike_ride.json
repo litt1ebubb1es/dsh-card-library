@@ -1,0 +1,29 @@
+{
+  "id": "pose_jk_bike_ride",
+  "kind": "pose",
+  "name": "学园 · 单车后座（擦边）",
+  "group": "sfw",
+  "group_title": "🏙 全年龄场景搭配",
+  "description": "侧坐后座的裙摆与风",
+  "pose_tags": "sitting, embarrassed, blush, serafuku, sitting sideways on bicycle, riding on the back, seaside road, seaside",
+  "pose_nl": "she rides sideways on the back of the bicycle with both hands on the seat behind her. the seaside road runs along the water and the wind lifts her hair. her face is red.",
+  "camera": {
+    "viewpoint": "from side"
+  },
+  "suggest_place": "street",
+  "aspect": "portrait",
+  "level": 0,
+  "theme": "出行",
+  "count_lock": "1girl, solo",
+  "env_ref": "sc_jk_bike_ride",
+  "source_id": "sc_jk_bike_ride",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [
+      "bicycle"
+    ],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_jk_bike_ride.jpg"
+}

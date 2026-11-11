@@ -1,0 +1,69 @@
+{
+  "id": "look_black_crouch",
+  "kind": "look",
+  "name": "黑色系蹲姿",
+  "version": "1.0",
+  "description": "黑色系上衣 + 长裤 + 黑过膝袜，蹲姿，抬手",
+  "nsfw": false,
+  "tags": "blouse, cargo pants, black thighhighs, high heels, wristwatch, black blouse, lace, backless, thick eyelashes, nail polish, visible collarbone, ",
+  "fields": {
+    "top": "blouse",
+    "bottom": "cargo pants",
+    "socks": "black thighhighs",
+    "shoes": "high heels",
+    "accessory": "wristwatch",
+    "cloth_color": "black",
+    "cloth_mat": "lace",
+    "cloth_state_sfw": "backless"
+  },
+  "body_decor": {
+    "makeup": "thick eyelashes",
+    "nails": "nail polish",
+    "skin_detail": "visible collarbone"
+  },
+  "look_notes": {},
+  "artist_segment": "minaba_hideo, liduke, piromizu, nonco,",
+  "style_label": "柔光半写实 (基准)",
+  "negative_extra": "",
+  "params": {
+    "model": "miaomiaoHarem_anima8Step10.safetensors",
+    "lora": "anima-turbo-lora-v0.1.safetensors @ 0.4",
+    "clip": "qwen_3_06b_base.safetensors (type=qwen_image)",
+    "vae": "qwen_image_vae.safetensors",
+    "steps": 12,
+    "cfg": 2.0,
+    "sampler": "euler",
+    "scheduler": "simple",
+    "resolution": "832x1216"
+  },
+  "thumb": "thumbs/look_black_crouch.jpg",
+  "source_dir": "_assets/characters/look_black_crouch",
+  "look_tags": "blouse, cargo pants, black thighhighs, high heels, wristwatch, black blouse, lace, backless, thick eyelashes, nail polish, visible collarbone, ",
+  "pose_tags": "",
+  "tag_split": {
+    "version": 3,
+    "cloth": 11,
+    "pose": 0,
+    "moved_pose": [
+      "salute"
+    ],
+    "migrated_to": "pose_from_black_crouch"
+  },
+  "legacy_pose_ref": "pose_from_black_crouch",
+  "fields_legacy_pose": {
+    "emotion": "serious",
+    "eye_gaze": "looking up",
+    "mouth": "licking lips",
+    "pose_base": "squatting",
+    "arms_hands": "salute",
+    "action": "floating",
+    "shot_size": "wide shot"
+  },
+  "clean_note": {
+    "version": 6,
+    "removed_v6": [],
+    "color_bound_v6": [
+      "black -> black blouse"
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "id": "pose_from_bathtub_edge",
+  "kind": "pose",
+  "name": "浴缸边坐",
+  "version": 1,
+  "group": "from_look",
+  "group_title": "来自造型卡",
+  "description": "景别：cowboy shot；动作：half-closed eyes, hand on own thigh, legs crossed, looking to the side, one leg dangling, sitting, smile, smug。",
+  "pose_tags": "half-closed eyes, hand on own thigh, legs crossed, looking to the side, one leg dangling, sitting, smile, smug",
+  "pose_nl": "",
+  "camera": {
+    "shot_size": "cowboy shot"
+  },
+  "suggest_place": "",
+  "aspect": "portrait",
+  "thumb": "thumbs/pose_from_bathtub_edge.jpg",
+  "env_ref": null,
+  "source": "look_pose_v1",
+  "legacy_look": "nsfw_bathtub_edge",
+  "notes": "由造型卡的 pose_tags 迁出（v4）。动作卡只讲做什么，穿什么归造型卡。"
+}

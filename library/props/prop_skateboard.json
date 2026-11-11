@@ -1,0 +1,16 @@
+{
+ "id": "prop_skateboard",
+ "kind": "prop",
+ "name": "滑板",
+ "version": "1.0",
+ "group": "daily",
+ "group_title": "日常",
+ "description": "滑板，街头/运动。",
+ "prop_tags": "skateboard, holding skateboard, standing on skateboard",
+ "prop_nl": "She stands on a skateboard.",
+ "hold": true,
+ "suggest_pose": "standing on skateboard, holding skateboard",
+ "aspect": "both",
+ "thumb": null,
+ "notes": "道具卡只写物，不写持有者/场景/服装；hold=true 时拼配方要配 holding 动词。"
+}

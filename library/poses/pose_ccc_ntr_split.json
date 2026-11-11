@@ -1,0 +1,31 @@
+{
+  "id": "pose_ccc_ntr_split",
+  "kind": "pose",
+  "name": "双女 · 穿戴式后入",
+  "group": "nsfw",
+  "group_title": "🔞 NSFW 跨槽位配方",
+  "description": "双女：她跪趴在床上、双手撑起上半身（胸部裸露），身后那名女生佩戴穿戴式主动抽送；服装只有丝袜（6 款随机），胸部道具 4 选 1（乳夹/乳环/胸绳/不戴）；后方女生脸出画。无手机",
+  "pose_tags": "all fours, embarrassed, blush, biting own lip, topless, sex from behind, on all fours, bare breasts, on bed",
+  "pose_nl": "she props her upper body up on both hands with her face down and her hips up while the woman behind her wears the strap-on harness and pushes into her from behind. both of them are naked except for their stockings and her breasts hang bare under her. the woman behind holds her by the waist and does the moving. the woman behind keeps her own face turned away.",
+  "camera": {
+    "viewpoint": "from side",
+    "shot_size": "cowboy shot"
+  },
+  "suggest_place": "bedroom",
+  "aspect": "landscape",
+  "level": 3,
+  "theme": "双人正戏",
+  "count_lock": "2girls, yuri",
+  "env_ref": "sc_ccc_ntr_split",
+  "source_id": "sc_ccc_ntr_split",
+  "clean_note": {
+    "version": 4,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": [],
+    "removed_cloth": [
+      "strap-on"
+    ]
+  },
+  "thumb": "thumbs/pose_ccc_ntr_split.jpg"
+}

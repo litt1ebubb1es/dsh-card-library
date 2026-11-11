@@ -1,0 +1,28 @@
+{
+  "id": "pose_near_nsfw_nipple",
+  "kind": "pose",
+  "name": "乳首特写",
+  "group": "near",
+  "group_title": "🔍 特写搭配",
+  "description": "胸部特写，乳首与乳晕占满画面",
+  "pose_tags": "nipples, areolae, breasts, chest, skin",
+  "pose_nl": "seen from above at her nipples and areolae with soft light across them. her breasts fill the frame. the skin around them is smooth and warm.",
+  "camera": {
+    "viewpoint": "from above",
+    "shot_size": "extreme close-up"
+  },
+  "suggest_place": "",
+  "aspect": "both",
+  "level": 2,
+  "theme": "🔞 成人向",
+  "count_lock": "1girl, solo",
+  "env_ref": "",
+  "source_id": "sc_near_nsfw_nipple",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_near_nsfw_nipple.jpg"
+}

@@ -1,0 +1,41 @@
+{
+ "id": "sc_offshoulder_night",
+ "kind": "scene",
+ "name": "卧室 · 月光",
+ "group": "sfw",
+ "group_title": "🏙 全年龄场景搭配",
+ "description": "地点：卧室；光线：moonlight；景物：curtain；相机：from side / cowboy shot。（纯环境，不含动作/服装/表情）",
+ "tags": {
+  "place": "bedroom",
+  "light_fx": "moonlight"
+ },
+ "camera": {
+  "viewpoint": "from side",
+  "shot_size": "cowboy shot"
+ },
+ "extra": "curtain",
+ "extra_camera": "",
+ "env_nl": "bedroom, moonlight, curtain, from side.",
+ "level": 1,
+ "theme": "夜景",
+ "count_lock": "1girl, solo",
+ "aspect": "portrait",
+ "thumb": null,
+ "env_hint": "bedroom, moonlight, cowboy shot, from side, curtain",
+ "pose_ref": "pose_offshoulder_night",
+ "cleaned": {
+  "version": 4,
+  "policy": "env/pose split",
+  "note": "动作/服装/表情已移入 poses/pose_offshoulder_night.json",
+  "removed_tag_keys": [
+   "cloth_mat",
+   "cloth_state_sfw",
+   "emotion",
+   "pose_base"
+  ],
+  "removed_extra": [
+   "starlight",
+   "bare shoulder"
+  ]
+ }
+}

@@ -1,0 +1,16 @@
+{
+ "id": "prop_handbag",
+ "kind": "prop",
+ "name": "手提包",
+ "version": "1.0",
+ "group": "daily",
+ "group_title": "日常",
+ "description": "皮质手提包，通勤/逛街。",
+ "prop_tags": "handbag, holding handbag, leather handbag",
+ "prop_nl": "A leather handbag hangs from her hand.",
+ "hold": true,
+ "suggest_pose": "standing, holding handbag",
+ "aspect": "both",
+ "thumb": null,
+ "notes": "道具卡只写物，不写持有者/场景/服装；hold=true 时拼配方要配 holding 动词。"
+}

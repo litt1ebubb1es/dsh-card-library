@@ -1,0 +1,16 @@
+{
+ "id": "prop_umbrella",
+ "kind": "prop",
+ "name": "雨伞",
+ "version": "1.0",
+ "group": "daily",
+ "group_title": "日常",
+ "description": "长柄雨伞，可开可合；雨天街头常用。",
+ "prop_tags": "umbrella, holding umbrella, open umbrella",
+ "prop_nl": "She holds an open umbrella above her head.",
+ "hold": true,
+ "suggest_pose": "walking, holding umbrella",
+ "aspect": "both",
+ "thumb": null,
+ "notes": "道具卡只写物，不写持有者/场景/服装；hold=true 时拼配方要配 holding 动词。"
+}

@@ -1,0 +1,32 @@
+{
+  "id": "pose_near_face_backlight",
+  "kind": "pose",
+  "name": "逆光侧脸",
+  "group": "near",
+  "group_title": "🔍 特写搭配",
+  "description": "侧脸轮廓被逆光勾边，柔焦前景",
+  "pose_tags": "side profile, cheek, jawline, ear, eyelashes, shoulders",
+  "pose_nl": "her side profile is rimmed by light from behind. the curve of her cheek and jaw is traced by a bright edge. the background falls into soft blur.",
+  "camera": {
+    "viewpoint": "from side",
+    "shot_size": "close-up",
+    "comp": "profile",
+    "dof": "depth of field, blurry background"
+  },
+  "suggest_place": "",
+  "aspect": "both",
+  "level": 0,
+  "theme": "面部",
+  "count_lock": "1girl, solo",
+  "env_ref": "",
+  "source_id": "sc_near_face_backlight",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [
+      "rim light"
+    ],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_near_face_backlight.jpg"
+}

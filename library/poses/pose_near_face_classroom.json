@@ -1,0 +1,29 @@
+{
+  "id": "pose_near_face_classroom",
+  "kind": "pose",
+  "name": "教室午后 · 脸特写",
+  "group": "near",
+  "group_title": "🔍 特写搭配",
+  "description": "正对镜头的面部大特写，午后柔光，背景虚化",
+  "pose_tags": "face, eyes, iris, eyelashes, eyebrows, nose, lips, blush, catchlight, shoulders",
+  "pose_nl": "her face fills the frame in the afternoon classroom light. a soft catchlight sits in each iris and her lips are slightly parted. the background melts into warm blur.",
+  "camera": {
+    "shot_size": "extreme close-up",
+    "comp": "portrait",
+    "dof": "focus on face"
+  },
+  "suggest_place": "classroom",
+  "aspect": "both",
+  "level": 0,
+  "theme": "面部",
+  "count_lock": "1girl, solo",
+  "env_ref": "sc_near_face_classroom",
+  "source_id": "sc_near_face_classroom",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_near_face_classroom.jpg"
+}

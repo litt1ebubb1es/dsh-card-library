@@ -1,0 +1,31 @@
+{
+  "id": "pose_under_shower",
+  "kind": "pose",
+  "name": "淋浴下 · 闭眼",
+  "group": "sfw",
+  "group_title": "🏙 全年龄场景搭配",
+  "description": "水声里闭眼仰头",
+  "pose_tags": "standing, hand in own hair, expressionless, closed eyes, bath towel, wet hair",
+  "pose_nl": "she stands under the running water with her eyes closed and one hand pushing her wet hair back. the light behind her turns the steam bright. water runs off her shoulder.",
+  "camera": {
+    "shot_size": "upper body"
+  },
+  "suggest_place": "",
+  "aspect": "both",
+  "level": 0,
+  "theme": "室内",
+  "count_lock": "1girl, solo",
+  "env_ref": "",
+  "source_id": "sc_under_shower",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [
+      "running water",
+      "steam",
+      "tiles"
+    ],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_under_shower.jpg"
+}

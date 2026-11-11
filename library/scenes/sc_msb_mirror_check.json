@@ -1,0 +1,44 @@
+{
+ "id": "sc_msb_mirror_check",
+ "kind": "scene",
+ "name": "浴室 · 镜前侧视",
+ "group": "nsfw",
+ "group_title": "🔞 NSFW 跨槽位配方",
+ "description": "地点：浴室；光线：soft lighting；相机：from side。（纯环境，不含动作/服装/表情）",
+ "tags": {
+  "place": "bathroom",
+  "light_fx": "soft lighting"
+ },
+ "camera": {
+  "viewpoint": "from side"
+ },
+ "extra": "",
+ "extra_camera": "",
+ "env_nl": "bathroom, soft lighting, from side.",
+ "level": 2,
+ "theme": "挖矿",
+ "count_lock": "1girl, solo",
+ "aspect": "portrait",
+ "thumb": null,
+ "env_hint": "bathroom, soft lighting, from side",
+ "pose_ref": "pose_msb_mirror_check",
+ "cleaned": {
+  "version": 4,
+  "policy": "env/pose split",
+  "note": "动作/服装/表情已移入 poses/pose_msb_mirror_check.json",
+  "removed_tag_keys": [
+   "emotion",
+   "n_body",
+   "n_exposure",
+   "n_pos",
+   "n_state"
+  ],
+  "removed_extra": [
+   "solo",
+   "looking at self",
+   "spread pussy",
+   "two hands spreading",
+   "both hands between her legs"
+  ]
+ }
+}

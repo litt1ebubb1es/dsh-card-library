@@ -1,0 +1,44 @@
+{
+ "id": "sc_ccc_ntr_split",
+ "kind": "scene",
+ "name": "卧室 · 七分身",
+ "group": "nsfw",
+ "group_title": "🔞 NSFW 跨槽位配方",
+ "description": "地点：卧室；相机：from side / cowboy shot。（纯环境，不含动作/服装/表情）",
+ "tags": {
+  "place": "bedroom"
+ },
+ "camera": {
+  "viewpoint": "from side",
+  "shot_size": "cowboy shot"
+ },
+ "extra": "",
+ "extra_camera": "",
+ "env_nl": "bedroom, from side.",
+ "level": 3,
+ "theme": "双人正戏",
+ "count_lock": "2girls, yuri",
+ "aspect": "landscape",
+ "thumb": null,
+ "env_hint": "bedroom, cowboy shot, from side",
+ "pose_ref": "pose_ccc_ntr_split",
+ "cleaned": {
+  "version": 4,
+  "policy": "env/pose split",
+  "note": "动作/服装/表情已移入 poses/pose_ccc_ntr_split.json",
+  "removed_tag_keys": [
+   "emotion",
+   "mouth",
+   "n_state",
+   "n_theme",
+   "pose_base"
+  ],
+  "removed_extra": [
+   "sex from behind",
+   "on all fours",
+   "strap-on",
+   "bare breasts",
+   "on bed"
+  ]
+ }
+}

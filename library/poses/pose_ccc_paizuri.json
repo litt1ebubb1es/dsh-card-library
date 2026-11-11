@@ -1,0 +1,28 @@
+{
+  "id": "pose_ccc_paizuri",
+  "kind": "pose",
+  "name": "乳交",
+  "group": "nsfw",
+  "group_title": "🔞 NSFW 跨槽位配方",
+  "description": "第一人称乳交：坐 / 躺两种构图随机；只到上半身，不加解剖细节",
+  "pose_tags": "paizuri, topless, large breasts, pov hands, hands pressing breasts together, penis between breasts, upper body only, looking at viewer",
+  "pose_nl": "she presses her breasts together around his penis with both hands. the tip shows between them and she looks up at him. the shot is upper body only.",
+  "camera": {
+    "viewpoint": "pov, sexual intercourse",
+    "shot_size": "upper body"
+  },
+  "suggest_place": "",
+  "aspect": "both",
+  "level": 3,
+  "theme": "前戏",
+  "count_lock": "1girl, 1boy, hetero",
+  "env_ref": "",
+  "source_id": "sc_ccc_paizuri",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_ccc_paizuri.jpg"
+}

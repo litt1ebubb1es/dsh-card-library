@@ -1,0 +1,39 @@
+{
+ "id": "sc_bathroom_mirror",
+ "kind": "scene",
+ "name": "浴室 · 柔光",
+ "group": "sfw",
+ "group_title": "🏙 全年龄场景搭配",
+ "description": "地点：浴室；天气：steam；光线：soft lighting；道具：mirror；景物：fogged mirror, warm tiles；相机：from side / focus on face。（纯环境，不含动作/服装/表情）",
+ "tags": {
+  "place": "bathroom",
+  "weather": "steam",
+  "light_fx": "soft lighting",
+  "prop": "mirror"
+ },
+ "camera": {
+  "viewpoint": "from side",
+  "dof": "focus on face"
+ },
+ "extra": "fogged mirror, warm tiles",
+ "extra_camera": "",
+ "env_nl": "bathroom, steam, soft lighting, mirror, fogged mirror, warm tiles, from side.",
+ "level": 0,
+ "theme": "室内",
+ "count_lock": "1girl, solo",
+ "aspect": "portrait",
+ "thumb": null,
+ "env_hint": "bathroom, steam, soft lighting, mirror, from side, focus on face, fogged mirror, warm tiles",
+ "pose_ref": "pose_bathroom_mirror",
+ "cleaned": {
+  "version": 4,
+  "policy": "env/pose split",
+  "note": "动作/服装/表情已移入 poses/pose_bathroom_mirror.json",
+  "removed_tag_keys": [
+   "accessory",
+   "emotion",
+   "pose_base"
+  ],
+  "removed_extra": []
+ }
+}

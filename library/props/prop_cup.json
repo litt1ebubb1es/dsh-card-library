@@ -1,0 +1,16 @@
+{
+ "id": "prop_cup",
+ "kind": "prop",
+ "name": "杯子",
+ "version": "1.0",
+ "group": "food",
+ "group_title": "食物饮品",
+ "description": "杯子，日常喝水/咖啡店。",
+ "prop_tags": "cup, holding cup, ceramic cup",
+ "prop_nl": "She holds a cup with both hands.",
+ "hold": true,
+ "suggest_pose": "holding cup, drinking",
+ "aspect": "both",
+ "thumb": null,
+ "notes": "道具卡只写物，不写持有者/场景/服装；hold=true 时拼配方要配 holding 动词。"
+}

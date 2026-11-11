@@ -1,0 +1,34 @@
+{
+  "id": "pose_bathroom_mirror",
+  "kind": "pose",
+  "name": "浴室 · 蒸汽镜前",
+  "group": "sfw",
+  "group_title": "🏙 全年龄场景搭配",
+  "description": "蒸汽弥漫的镜前",
+  "pose_tags": "standing, expressionless",
+  "pose_nl": "she stands at the sink with the steam from the shower still thick in the room. the tiles are warm and the surface beside her is fogged over. she looks at the viewer with a flat face.",
+  "camera": {
+    "viewpoint": "from side",
+    "dof": "focus on face"
+  },
+  "suggest_place": "bathroom",
+  "aspect": "portrait",
+  "level": 0,
+  "theme": "室内",
+  "count_lock": "1girl, solo",
+  "env_ref": "sc_bathroom_mirror",
+  "source_id": "sc_bathroom_mirror",
+  "clean_note": {
+    "version": 3,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [
+      "fogged mirror",
+      "warm tiles"
+    ],
+    "removed_camera": [],
+    "removed_cloth": [
+      "necklace"
+    ]
+  },
+  "thumb": "thumbs/pose_bathroom_mirror.jpg"
+}

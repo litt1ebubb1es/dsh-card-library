@@ -1,0 +1,16 @@
+{
+ "id": "prop_orb",
+ "kind": "prop",
+ "name": "宝珠",
+ "version": "1.0",
+ "group": "fantasy",
+ "group_title": "奇幻魔法",
+ "description": "宝珠，占卜/圣物。",
+ "prop_tags": "orb, glowing orb, crystal ball",
+ "prop_nl": "A glowing orb rests in her hands.",
+ "hold": true,
+ "suggest_pose": "holding orb",
+ "aspect": "both",
+ "thumb": null,
+ "notes": "道具卡只写物，不写持有者/场景/服装；hold=true 时拼配方要配 holding 动词。"
+}

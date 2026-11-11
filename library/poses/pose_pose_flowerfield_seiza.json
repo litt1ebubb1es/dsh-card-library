@@ -1,0 +1,31 @@
+{
+  "id": "pose_pose_flowerfield_seiza",
+  "kind": "pose",
+  "name": "花田 · 跪坐",
+  "group": "pose",
+  "group_title": "🧎 姿势场景",
+  "description": "花田里正坐，暖光柔焦，太阳裙",
+  "pose_tags": "seiza, sundress, kneeling",
+  "pose_nl": "she kneels formally in the middle of a flower field in a sundress. warm light falls over her and the flowers around her go soft. seen from above.",
+  "camera": {
+    "viewpoint": "from above",
+    "shot_size": "full body"
+  },
+  "suggest_place": "flower field",
+  "aspect": "portrait",
+  "level": 1,
+  "theme": "姿势·花田跪坐",
+  "count_lock": "1girl, solo",
+  "env_ref": "sc_pose_flowerfield_seiza",
+  "source_id": "sc_pose_flowerfield_seiza",
+  "clean_note": {
+    "version": 4,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": [],
+    "from_nl": [
+      "kneeling"
+    ]
+  },
+  "thumb": "thumbs/pose_pose_flowerfield_seiza.jpg"
+}

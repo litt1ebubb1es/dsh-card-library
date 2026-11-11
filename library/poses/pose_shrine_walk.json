@@ -1,0 +1,31 @@
+{
+  "id": "pose_shrine_walk",
+  "kind": "pose",
+  "name": "神社参道 · 和服漫步",
+  "group": "sfw",
+  "group_title": "🏙 全年龄场景搭配",
+  "description": "樱花参道，侧向行走",
+  "pose_tags": "standing, walking, yukata",
+  "pose_nl": "she walks the stone path toward the torii in a printed yukata. morning light comes through the trees and petals drift down. the stone lanterns line the path beside her.",
+  "camera": {
+    "viewpoint": "from side"
+  },
+  "suggest_place": "shrine",
+  "aspect": "portrait",
+  "level": 0,
+  "theme": "和风",
+  "count_lock": "1girl, solo",
+  "env_ref": "sc_shrine_walk",
+  "source_id": "sc_shrine_walk",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [
+      "stone lantern",
+      "torii",
+      "petals"
+    ],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_shrine_walk.jpg"
+}

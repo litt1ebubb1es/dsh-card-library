@@ -1,0 +1,39 @@
+{
+ "id": "sc_library_quiet",
+ "kind": "scene",
+ "name": "图书馆 · 暖光",
+ "group": "sfw",
+ "group_title": "🏙 全年龄场景搭配",
+ "description": "地点：图书馆；光线：warm lighting；道具：bookshelf；景物：dust in light, silence；相机：from side / focus on face。（纯环境，不含动作/服装/表情）",
+ "tags": {
+  "place": "library",
+  "light_fx": "warm lighting",
+  "prop": "bookshelf"
+ },
+ "camera": {
+  "viewpoint": "from side",
+  "dof": "focus on face"
+ },
+ "extra": "dust in light, silence",
+ "extra_camera": "",
+ "env_nl": "library, warm lighting, bookshelf, dust in light, silence, from side.",
+ "level": 0,
+ "theme": "日常",
+ "count_lock": "1girl, solo",
+ "aspect": "portrait",
+ "thumb": null,
+ "env_hint": "library, warm lighting, bookshelf, from side, focus on face, dust in light, silence",
+ "pose_ref": "pose_library_quiet",
+ "cleaned": {
+  "version": 4,
+  "policy": "env/pose split",
+  "note": "动作/服装/表情已移入 poses/pose_library_quiet.json",
+  "removed_tag_keys": [
+   "arms_hands",
+   "emotion",
+   "mouth",
+   "pose_base"
+  ],
+  "removed_extra": []
+ }
+}

@@ -1,0 +1,45 @@
+{
+ "id": "sc_sock_library_tiptoe",
+ "kind": "scene",
+ "name": "图书馆 · 书架",
+ "group": "sfw",
+ "group_title": "🏙 全年龄场景搭配",
+ "description": "地点：图书馆；光线：soft lighting；道具：bookshelf；相机：from behind / full body。（纯环境，不含动作/服装/表情）",
+ "tags": {
+  "place": "library",
+  "light_fx": "soft lighting",
+  "prop": "bookshelf"
+ },
+ "camera": {
+  "viewpoint": "from behind",
+  "shot_size": "full body"
+ },
+ "extra": "",
+ "extra_camera": "",
+ "env_nl": "library, soft lighting, bookshelf, from behind.",
+ "level": 1,
+ "theme": "丝袜",
+ "count_lock": "1girl, solo",
+ "aspect": "portrait",
+ "thumb": null,
+ "env_hint": "library, soft lighting, bookshelf, full body, from behind",
+ "pose_ref": "pose_sock_library_tiptoe",
+ "cleaned": {
+  "version": 4,
+  "policy": "env/pose split",
+  "note": "动作/服装/表情已移入 poses/pose_sock_library_tiptoe.json",
+  "removed_tag_keys": [
+   "emotion",
+   "eye_gaze",
+   "mouth",
+   "outfit",
+   "pose_risque",
+   "shoes"
+  ],
+  "removed_extra": [
+   "reaching for book",
+   "on tiptoes",
+   "thighhighs"
+  ]
+ }
+}

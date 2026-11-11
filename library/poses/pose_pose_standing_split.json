@@ -1,0 +1,28 @@
+{
+  "id": "pose_pose_standing_split",
+  "kind": "pose",
+  "name": "一字马 · 侧向",
+  "group": "pose",
+  "group_title": "🧎 姿势场景",
+  "description": "站立一字马，正侧面全身，轮廓光勾边",
+  "pose_tags": "standing split",
+  "pose_nl": "she lifts one leg straight up beside her head and holds it with one hand. seen from the side so the full vertical line of the split shows. rim light traces her leg and back.",
+  "camera": {
+    "viewpoint": "from side",
+    "shot_size": "full body"
+  },
+  "suggest_place": "",
+  "aspect": "portrait",
+  "level": 0,
+  "theme": "姿势·一字马",
+  "count_lock": "1girl, solo",
+  "env_ref": "",
+  "source_id": "sc_pose_standing_split",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_pose_standing_split.jpg"
+}

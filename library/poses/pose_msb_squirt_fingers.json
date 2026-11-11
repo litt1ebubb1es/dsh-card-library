@@ -1,0 +1,27 @@
+{
+  "id": "pose_msb_squirt_fingers",
+  "kind": "pose",
+  "name": "自慰 · 手指潮吹",
+  "group": "nsfw",
+  "group_title": "🔞 NSFW 跨槽位配方",
+  "description": "用手指把自己弄到喷潮（赤足）",
+  "pose_tags": "fingering, spread legs, open mouth, completely nude, squirting, pussy, pussy juice, bare feet, solo, liquid spray, arched back, nipple clamps with chain, chain between nipple clamps, chest harness, rope around breasts",
+  "pose_nl": "she lies on her back with her legs spread and fingers inside herself. liquid sprays out across the sheet. her back arches hard.",
+  "camera": {
+    "viewpoint": "from below"
+  },
+  "suggest_place": "",
+  "aspect": "portrait",
+  "level": 4,
+  "theme": "挖矿",
+  "count_lock": "1girl, solo",
+  "env_ref": "",
+  "source_id": "sc_msb_squirt_fingers",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_msb_squirt_fingers.jpg"
+}

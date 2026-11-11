@@ -1,0 +1,33 @@
+{
+  "id": "pose_changing_room_peek",
+  "kind": "pose",
+  "name": "更衣间 · 拉帘半掩（擦边）",
+  "group": "sfw",
+  "group_title": "🏙 全年龄场景搭配",
+  "description": "试衣间里裙摆与肩带的分寸感",
+  "pose_tags": "skirt pull, embarrassed, blush",
+  "pose_nl": "she stands in a narrow fitting room pulling the curtain half open. the mirror behind her shows the back of her body. her skirt is half lifted.",
+  "camera": {
+    "viewpoint": "from above"
+  },
+  "suggest_place": "changing room",
+  "aspect": "portrait",
+  "level": 1,
+  "theme": "日常",
+  "count_lock": "1girl, solo",
+  "env_ref": "sc_changing_room_peek",
+  "source_id": "sc_changing_room_peek",
+  "clean_note": {
+    "version": 3,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [
+      "clothes rack",
+      "mirror"
+    ],
+    "removed_camera": [],
+    "removed_cloth": [
+      "dress"
+    ]
+  },
+  "thumb": "thumbs/pose_changing_room_peek.jpg"
+}

@@ -1,0 +1,41 @@
+{
+ "id": "sc_wide_alley_lookback",
+ "kind": "scene",
+ "name": "小巷 · 阴",
+ "group": "sfw",
+ "group_title": "🏙 全年龄场景搭配",
+ "description": "地点：小巷；天气：overcast；光线：soft lighting；景物：scenery, narrow alley；相机：from behind / wide shot / landscape / wide shot, full body, perspective, small figure, vast landscape, sense of scale。（纯环境，不含动作/服装/表情）",
+ "tags": {
+  "place": "alley",
+  "weather": "overcast",
+  "light_fx": "soft lighting"
+ },
+ "camera": {
+  "viewpoint": "from behind",
+  "shot_size": "wide shot",
+  "comp": "landscape"
+ },
+ "extra": "scenery, narrow alley",
+ "extra_camera": "wide shot, full body, perspective, small figure, vast landscape, sense of scale",
+ "env_nl": "alley, overcast, soft lighting, scenery, narrow alley, wide shot, full body, perspective, small figure, vast landscape, sense of scale, from behind.",
+ "level": 0,
+ "theme": "远景",
+ "count_lock": "1girl, solo",
+ "aspect": "landscape",
+ "thumb": null,
+ "env_hint": "alley, overcast, soft lighting, wide shot, from behind, landscape, scenery, narrow alley, wide shot, full body, perspective, small figure, vast landscape, sense of scale",
+ "pose_ref": "pose_wide_alley_lookback",
+ "cleaned": {
+  "version": 4,
+  "policy": "env/pose split",
+  "note": "动作/服装/表情已移入 poses/pose_wide_alley_lookback.json",
+  "removed_tag_keys": [
+   "action",
+   "eye_gaze",
+   "pose_base"
+  ],
+  "removed_extra": [
+   "looking back over shoulder"
+  ]
+ }
+}

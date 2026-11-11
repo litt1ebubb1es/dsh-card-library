@@ -1,0 +1,33 @@
+{
+  "id": "pose_ccc_clothed_sex",
+  "kind": "pose",
+  "name": "衣着性交",
+  "group": "nsfw",
+  "group_title": "🔞 NSFW 跨槽位配方",
+  "description": "衣物没脱干净的办公室",
+  "pose_tags": "clothed sex, bent over, shirt lift, moaning, office lady, faceless male, his face out of frame, male face in shadow, partially clothed, hurried",
+  "pose_nl": "he bends her over the edge of the office desk without taking her clothes off. only her shirt is lifted and her skirt is pushed up. his face stays out of the frame in shadow.",
+  "camera": {
+    "viewpoint": "from side"
+  },
+  "suggest_place": "office",
+  "aspect": "landscape",
+  "level": 3,
+  "theme": "双人正戏",
+  "count_lock": "1girl, 1boy, hetero",
+  "env_ref": "sc_ccc_clothed_sex",
+  "source_id": "sc_ccc_clothed_sex",
+  "clean_note": {
+    "version": 4,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [
+      "silhouette",
+      "desk edge"
+    ],
+    "removed_camera": [],
+    "removed_cloth": [
+      "unbuttoned collar"
+    ]
+  },
+  "thumb": "thumbs/pose_ccc_clothed_sex.jpg"
+}

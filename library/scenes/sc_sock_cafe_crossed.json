@@ -1,0 +1,44 @@
+{
+ "id": "sc_sock_cafe_crossed",
+ "kind": "scene",
+ "name": "咖啡馆 · 暖光",
+ "group": "sfw",
+ "group_title": "🏙 全年龄场景搭配",
+ "description": "地点：咖啡馆；光线：warm lighting；道具：cup；景物：window seat, cafe table；相机：from side / cowboy shot / depth of field, blurry background。（纯环境，不含动作/服装/表情）",
+ "tags": {
+  "place": "cafe",
+  "light_fx": "warm lighting",
+  "prop": "cup"
+ },
+ "camera": {
+  "viewpoint": "from side",
+  "shot_size": "cowboy shot",
+  "dof": "depth of field, blurry background"
+ },
+ "extra": "window seat, cafe table",
+ "extra_camera": "",
+ "env_nl": "cafe, warm lighting, cup, window seat, cafe table, from side.",
+ "level": 0,
+ "theme": "丝袜",
+ "count_lock": "1girl, solo",
+ "aspect": "portrait",
+ "thumb": null,
+ "env_hint": "cafe, warm lighting, cup, cowboy shot, from side, depth of field, blurry background, window seat, cafe table",
+ "pose_ref": "pose_sock_cafe_crossed",
+ "cleaned": {
+  "version": 4,
+  "policy": "env/pose split",
+  "note": "动作/服装/表情已移入 poses/pose_sock_cafe_crossed.json",
+  "removed_tag_keys": [
+   "emotion",
+   "eye_gaze",
+   "mouth",
+   "outfit",
+   "pose_base",
+   "shoes"
+  ],
+  "removed_extra": [
+   "crossed legs"
+  ]
+ }
+}

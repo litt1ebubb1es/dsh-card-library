@@ -1,0 +1,63 @@
+{
+ "id": "style_manga_ink_v1",
+ "name": "★黑白漫画墨线（真页 img2img）",
+ "kind": "style",
+ "version": "1.0",
+ "mode": "img2img",
+ "init_required": true,
+ "description": "复刻用户 2026-11-11 上传的 60 页黑白漫画（_assets/manga_ref/）的墨线画法。核心事实：这个底模 text2img 从零画不出原作墨线稿（十一轮实测），必须给一张底图让模型继承画法。denoise 0.85 = 换内容保画法；0.65-0.75 + 彩色提示词 = 给黑白页上色。",
+ "quality_prefix": "masterpiece, best quality, score 7, score 9, very aesthetic, ultra detailed, ",
+ "artist_segment": "",
+ "render": "monochrome, greyscale, comic, manga, flat black and white, fine ink lineart, thin black lineart, delicate lines, varying line weight, tapered strokes, flat two-tone shading, screentone dots visible, halftone dots, screentone on clothes, screentone on background, grey hair, dark grey hair, black hair with white line highlights, hair drawn with thin lines, strand by strand hair, detailed background, ",
+ "face_light": "",
+ "scene_hint": "背景要有内容（detailed background / screentone on background），不要 simple background / plain background / white background —— 参考页信息密度极高，空背景会立刻露馅。构图用 medium shot / cowboy shot，别用 close-up / portrait。",
+ "negative": "worst quality, low quality, score 1, score 2, score 3, lowres, jpeg artifacts, colored, colorful, color, full color, white hair, blonde hair, silver hair, soft gradient shading, airbrush, smooth gradient, blurry shading, solid black hair mass, hair highlight, glossy hair, rim light, rim lighting, backlighting, white halo, glowing outline, hollow eyes, empty eyes, solid black eyes, featureless eyes, uniform line width, thick outline, bold outline, vector lineart, photorealistic, 3d render, realistic, oil painting, impasto, watermark, signature, ",
+ "post": {
+  "note": "这套画风不需要 haze / bloom / grain —— 那些是柔光画风用的，套上来会把网点糊掉。建议只用轻微锐化：crisp(contrast=1.02, sat=1.0, sharpen=0.6)。",
+  "crisp": {
+   "contrast": 1.02,
+   "sat": 1,
+   "sharpen": 0.6
+  }
+ },
+ "params": {
+  "model": "miaomiaoHarem_anima8Step10.safetensors",
+  "lora": "anima-turbo-lora-v0.1.safetensors @ 0.4",
+  "clip": "qwen_3_06b_base.safetensors (type=qwen_image)",
+  "vae": "qwen_image_vae.safetensors",
+  "steps": 30,
+  "cfg": 4.5,
+  "sampler": "euler",
+  "scheduler": "simple",
+  "resolution": "1280x1807",
+  "denoise": 0.85,
+  "denoise_note": "0.80 保原图多 / 0.85 结构稳内容全新（推荐）/ 0.92 分镜溶解。全彩化用 0.65-0.75 + cfg 5.0。"
+ },
+ "init_hint": {
+  "what": "任意一张同尺寸（1280x1807）的底图都能当 init：真漫画页 / 程序画的空白分镜骨架 / 上一轮的成品。",
+  "blank_template": "用 PIL 画 1280x1807 白底：ImageDraw.rectangle(box, outline='black', width=3) 画三行不对称分镜（第一行两格 / 第二行一格 / 第三行两格），ImageDraw.ellipse(box, fill='white', outline='black', width=2) 画空白气泡，存到 ComfyUI/input/。脚本见 _manga_newcontent.py 的 make_template()。",
+  "workflow": "LoadImage → VAEEncode → KSampler(denoise=0.85) → VAEDecode → SaveImage。"
+ },
+ "colorize": {
+  "note": "把黑白页上色的第二条用法。",
+  "denoise": 0.7,
+  "cfg": 5,
+  "positive_add": "colored, full color, anime coloring, watercolor coloring, soft pastel palette, pale pink skin, warm skin tone, pale lavender hair, white shirt, navy blue skirt, dark green grass, muted green background, pale blue night sky, colored lineart, brown lineart, ",
+  "negative_remove": [
+   "colored, colorful, color, full color"
+  ]
+ },
+ "tags": [
+  "黑白",
+  "漫画",
+  "墨线",
+  "网点",
+  "img2img",
+  "日漫"
+ ],
+ "notes": "① 必须 img2img —— text2img 无论怎么调都出不来真墨线稿（monochrome 前置 + cfg 6.0 能压成黑白，但画法是「AI 模仿漫画」，头发是纯黑色块、眼睛是空洞黑块、线条粗而均匀）；② 数值达标 ≠ 像：参考页 ink 12-30% / mid 21-48% / white 22-64% / std 81-101，靠「黑块多」也能凑进区间，但信息密度差一个量级；③ 正向写 no outline around hair 反而会在头发上加白色高光条（否定式被当正向）；④ 后期网点化（旋转 45° halftone）会破坏已有的灰，别做；⑤ 台词框里的字模型会自己写日文，字通但内容随机；要控台词就盖白自己贴。",
+ "source_refs": [
+  "1216628.zip 黑白漫画 60 页（_assets/manga_ref/）"
+ ],
+ "thumb": "thumbs/style_manga_ink_v1.jpg"
+}

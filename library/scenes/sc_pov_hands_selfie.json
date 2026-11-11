@@ -1,0 +1,39 @@
+{
+ "id": "sc_pov_hands_selfie",
+ "kind": "scene",
+ "name": "街道 · 半身",
+ "group": "sfw",
+ "group_title": "🏙 全年龄场景搭配",
+ "description": "地点：街道；天气：clear sky；相机：upper body / selfie angle。（纯环境，不含动作/服装/表情）",
+ "tags": {
+  "place": "street",
+  "weather": "clear sky"
+ },
+ "camera": {
+  "shot_size": "upper body"
+ },
+ "extra": "",
+ "extra_camera": "selfie angle",
+ "env_nl": "street, clear sky, selfie angle, seen upper body.",
+ "level": 0,
+ "theme": "第一人称",
+ "count_lock": "1girl, solo",
+ "aspect": "both",
+ "thumb": null,
+ "env_hint": "street, clear sky, upper body, selfie angle",
+ "pose_ref": "pose_pov_hands_selfie",
+ "cleaned": {
+  "version": 4,
+  "policy": "env/pose split",
+  "note": "动作/服装/表情已移入 poses/pose_pov_hands_selfie.json",
+  "removed_tag_keys": [
+   "arms_hands",
+   "emotion",
+   "pose_base"
+  ],
+  "removed_extra": [
+   "arm extended towards viewer",
+   "looking at viewer"
+  ]
+ }
+}

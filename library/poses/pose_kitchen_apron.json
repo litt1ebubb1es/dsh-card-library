@@ -1,0 +1,31 @@
+{
+  "id": "pose_kitchen_apron",
+  "kind": "pose",
+  "name": "厨房 · 围裙裸臂（擦边）",
+  "group": "sfw",
+  "group_title": "🏙 全年龄场景搭配",
+  "description": "只穿围裙的背面轮廓",
+  "pose_tags": "leaning forward, embarrassed, blush, cooking, bare arms, bare shoulders",
+  "pose_nl": "she leans forward at the kitchen counter wearing only an apron with her arms and shoulders bare. seen from behind. morning light comes through the window. her face is flushed.",
+  "camera": {
+    "viewpoint": "from behind"
+  },
+  "suggest_place": "kitchen",
+  "aspect": "portrait",
+  "level": 1,
+  "theme": "日常",
+  "count_lock": "1girl, solo",
+  "env_ref": "sc_kitchen_apron",
+  "source_id": "sc_kitchen_apron",
+  "clean_note": {
+    "version": 3,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": [],
+    "removed_cloth": [
+      "apron only",
+      "apron"
+    ]
+  },
+  "thumb": "thumbs/pose_kitchen_apron.jpg"
+}

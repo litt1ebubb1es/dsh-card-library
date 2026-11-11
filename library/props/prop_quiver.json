@@ -1,0 +1,16 @@
+{
+ "id": "prop_quiver",
+ "kind": "prop",
+ "name": "箭袋",
+ "version": "1.0",
+ "group": "weapon",
+ "group_title": "武器",
+ "description": "箭袋与弓，弓手/精灵。",
+ "prop_tags": "quiver, bow (weapon), arrow, holding bow",
+ "prop_nl": "A quiver of arrows rests at her hip.",
+ "hold": true,
+ "suggest_pose": "drawing bow, aiming",
+ "aspect": "both",
+ "thumb": null,
+ "notes": "道具卡只写物，不写持有者/场景/服装；hold=true 时拼配方要配 holding 动词。"
+}

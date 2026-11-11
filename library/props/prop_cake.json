@@ -1,0 +1,16 @@
+{
+ "id": "prop_cake",
+ "kind": "prop",
+ "name": "蛋糕",
+ "version": "1.0",
+ "group": "food",
+ "group_title": "食物饮品",
+ "description": "蛋糕，生日/下午茶。",
+ "prop_tags": "cake, holding cake, slice of cake, strawberry shortcake",
+ "prop_nl": "A slice of strawberry shortcake sits on a plate.",
+ "hold": true,
+ "suggest_pose": "holding cake, eating cake",
+ "aspect": "both",
+ "thumb": null,
+ "notes": "道具卡只写物，不写持有者/场景/服装；hold=true 时拼配方要配 holding 动词。"
+}

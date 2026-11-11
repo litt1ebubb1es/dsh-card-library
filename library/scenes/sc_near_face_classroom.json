@@ -1,0 +1,45 @@
+{
+ "id": "sc_near_face_classroom",
+ "kind": "scene",
+ "name": "教室 · 柔光",
+ "group": "near",
+ "group_title": "🔍 特写搭配",
+ "description": "地点：教室；光线：soft lighting；相机：extreme close-up / portrait / focus on face。（纯环境，不含动作/服装/表情）",
+ "tags": {
+  "place": "classroom",
+  "light_fx": "soft lighting"
+ },
+ "camera": {
+  "shot_size": "extreme close-up",
+  "comp": "portrait",
+  "dof": "focus on face"
+ },
+ "extra": "",
+ "extra_camera": "",
+ "env_nl": "classroom, soft lighting, seen extreme close-up.",
+ "level": 0,
+ "theme": "面部",
+ "count_lock": "1girl, solo",
+ "aspect": "both",
+ "thumb": null,
+ "env_hint": "classroom, soft lighting, extreme close-up, portrait, focus on face",
+ "pose_ref": "pose_near_face_classroom",
+ "cleaned": {
+  "version": 4,
+  "policy": "env/pose split",
+  "note": "动作/服装/表情已移入 poses/pose_near_face_classroom.json",
+  "removed_tag_keys": [],
+  "removed_extra": [
+   "face",
+   "eyes",
+   "iris",
+   "eyelashes",
+   "eyebrows",
+   "nose",
+   "lips",
+   "blush",
+   "catchlight",
+   "shoulders"
+  ]
+ }
+}

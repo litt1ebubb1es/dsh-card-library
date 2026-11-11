@@ -1,0 +1,27 @@
+{
+  "id": "pose_ccc_dp_group",
+  "kind": "pose",
+  "name": "群体 · 双管齐下",
+  "group": "nsfw",
+  "group_title": "🔞 NSFW 跨槽位配方",
+  "description": "文档 §9.4/§14.3：多孔穴占用 + 极限体液",
+  "pose_tags": "double penetration, spread legs, completely nude, fucked silly, bukkake, two boys, spitroast, group sex, surrounded",
+  "pose_nl": "one man holds her from behind while another stands in front of her mouth. both of them use her at the same time. three bodies are tangled on the bed.",
+  "camera": {
+    "viewpoint": "from above"
+  },
+  "suggest_place": "bedroom",
+  "aspect": "landscape",
+  "level": 4,
+  "theme": "群体",
+  "count_lock": "1girl, multiple boys, group sex",
+  "env_ref": "sc_ccc_dp_group",
+  "source_id": "sc_ccc_dp_group",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_ccc_dp_group.jpg"
+}

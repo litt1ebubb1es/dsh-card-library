@@ -1,0 +1,78 @@
+{
+  "id": "nsfw_towel_slip",
+  "kind": "look",
+  "name": "浴巾滑落",
+  "version": "1.0",
+  "description": "浴巾裹身微微下滑，手按胸前，害羞侧目",
+  "nsfw": true,
+  "tags": "1girl, solo, towel, towel around body, wrapped towel, towel around torso, bare shoulders, bare legs, collarbone, cleavage, towel slipping, wet skin, towel covering chest, towel covering torso, detailed skin texture, skin pores, fine skin detail, natural skin tone, soft shadow on skin, ",
+  "fields": {
+    "pieces": "towel, towel around body, wrapped towel, towel around torso,",
+    "body": "bare shoulders, bare legs, collarbone, cleavage, towel slipping, wet skin, towel covering chest, towel covering torso",
+    "nude": false
+  },
+  "body_decor": {},
+  "look_notes": {},
+  "artist_segment": "minaba_hideo, liduke, piromizu, nonco,",
+  "style_label": "柔光半写实 (基准)",
+  "negative_extra": "worst quality, low quality, score_1, score_2, score_3, lowres, jpeg artifacts, cel shading, flat colors, painterly, 3d render, deformed body, bad proportions, big head, bad hands, extra fingers, missing fingers, extra limbs, watermark, signature, text, logo, artist name, cat ears, animal ear fluff, tail, beret, hat, beanie, headwear, cap, male, 1boy, multiple boys, penis, multiple girls, 2girls, crowd, many people, nude, naked, topless, bottomless, no towel, holding towel only, bare breasts, exposed breasts, nipples, pussy, exposed pussy, ",
+  "params": {
+    "model": "miaomiaoHarem_anima8Step10.safetensors",
+    "lora": "anima-turbo-lora-v0.1.safetensors @ 0.4",
+    "clip": "qwen_3_06b_base.safetensors (type=qwen_image)",
+    "vae": "qwen_image_vae.safetensors",
+    "steps": 12,
+    "cfg": 2.0,
+    "sampler": "euler",
+    "scheduler": "simple",
+    "resolution": "832x1216",
+    "seed": 210003
+  },
+  "thumb": "thumbs/nsfw_towel_slip.jpg",
+  "source_dir": "_assets/characters/nsfw_towel_slip",
+  "look_tags": "1girl, solo, towel, towel around body, wrapped towel, towel around torso, bare shoulders, bare legs, collarbone, cleavage, towel slipping, wet skin, towel covering chest, towel covering torso, detailed skin texture, skin pores, fine skin detail, natural skin tone, soft shadow on skin, ",
+  "pose_tags": "",
+  "tag_split": {
+    "version": 3,
+    "cloth": 39,
+    "pose": 0,
+    "moved_pose": [
+      "hand on own chest",
+      "holding towel"
+    ],
+    "migrated_to": "pose_from_towel_slip"
+  },
+  "legacy_pose_ref": "pose_from_towel_slip",
+  "fields_legacy_pose": {
+    "pose": "standing, contrapposto, one hand on towel, hand on own chest, holding towel",
+    "expression": "looking to the side, embarrassed, blush, parted lips",
+    "shot": "cowboy shot"
+  },
+  "clean_note": {
+    "version": 5,
+    "removed_look": [
+      "tooth_necklace",
+      "vampire",
+      "fang_out",
+      "white hair",
+      "heterochromia",
+      "mole_under_eye",
+      "close-set eyes",
+      "short_hair",
+      "blue_eyes",
+      "pointy_ears",
+      "fang",
+      "symbol-shaped_pupils",
+      "round face",
+      "red eyes",
+      "Long nails",
+      "one hand on towel",
+      "subsurface scattering"
+    ],
+    "removed_v8": [
+      "black clothes",
+      "bat print on clothes",
+      "bat motif"
+    ]
+  }
+}

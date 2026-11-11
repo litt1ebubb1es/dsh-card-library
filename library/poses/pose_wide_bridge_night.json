@@ -1,0 +1,40 @@
+{
+  "id": "pose_wide_bridge_night",
+  "kind": "pose",
+  "name": "城市桥 · 夜景",
+  "group": "sfw",
+  "group_title": "🏙 全年龄场景搭配",
+  "description": "真远景：站在桥上看夜景，城市天际线与车流灯轨占据画面（不含红绿灯 / 信号灯）",
+  "pose_tags": "standing",
+  "pose_nl": "she stands at the middle of the bridge at night. the city skyline burns behind her and the headlights far below pull long red trails into the distance. the scale of the city dwarfs her.",
+  "camera": {
+    "viewpoint": "from behind",
+    "shot_size": "wide shot",
+    "comp": "landscape"
+  },
+  "suggest_place": "bridge",
+  "aspect": "landscape",
+  "level": 0,
+  "theme": "远景",
+  "count_lock": "1girl, solo",
+  "env_ref": "sc_wide_bridge_night",
+  "source_id": "sc_wide_bridge_night",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [
+      "scenery",
+      "city skyline",
+      "light trails",
+      "long exposure"
+    ],
+    "removed_camera": [
+      "wide shot",
+      "full body",
+      "small figure",
+      "vast landscape",
+      "sense of scale"
+    ]
+  },
+  "thumb": "thumbs/pose_wide_bridge_night.jpg"
+}

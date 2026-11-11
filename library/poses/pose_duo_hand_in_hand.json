@@ -1,0 +1,28 @@
+{
+  "id": "pose_duo_hand_in_hand",
+  "kind": "pose",
+  "name": "双女 · 牵手同行",
+  "group": "sfw",
+  "group_title": "🏙 全年龄场景搭配",
+  "description": "两个女孩并排走、牵着手，肩碰肩（全年龄）",
+  "pose_tags": "standing, walking, looking at another, holding hands, side by side, shoulders touching, interlocked fingers",
+  "pose_nl": "two girls walk side by side and hold hands. their shoulders touch as they step. they turn their faces toward each other. seen from the side with both of them in frame.",
+  "camera": {
+    "viewpoint": "from side",
+    "shot_size": "cowboy shot"
+  },
+  "suggest_place": "street",
+  "aspect": "landscape",
+  "level": 0,
+  "theme": "双女",
+  "count_lock": "2girls",
+  "env_ref": "sc_duo_hand_in_hand",
+  "source_id": "sc_duo_hand_in_hand",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_duo_hand_in_hand.jpg"
+}

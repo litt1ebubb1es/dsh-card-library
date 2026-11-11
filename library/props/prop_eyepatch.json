@@ -1,0 +1,16 @@
+{
+ "id": "prop_eyepatch",
+ "kind": "prop",
+ "name": "眼罩",
+ "version": "1.0",
+ "group": "accessory",
+ "group_title": "配饰",
+ "description": "眼罩，中二/海盗。",
+ "prop_tags": "eyepatch, wearing eyepatch",
+ "prop_nl": "A black eyepatch covers one eye.",
+ "hold": false,
+ "suggest_pose": "standing",
+ "aspect": "both",
+ "thumb": null,
+ "notes": "道具卡只写物，不写持有者/场景/服装；hold=true 时拼配方要配 holding 动词。"
+}

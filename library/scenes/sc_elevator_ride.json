@@ -1,0 +1,37 @@
+{
+ "id": "sc_elevator_ride",
+ "kind": "scene",
+ "name": "电梯 · 棚拍",
+ "group": "sfw",
+ "group_title": "🏙 全年龄场景搭配",
+ "description": "地点：电梯；光线：studio lighting；景物：elevator, closed space, indicator light；相机：from above / full body / symmetry。（纯环境，不含动作/服装/表情）",
+ "tags": {
+  "place": "elevator",
+  "light_fx": "studio lighting"
+ },
+ "camera": {
+  "viewpoint": "from above",
+  "shot_size": "full body",
+  "comp": "symmetry"
+ },
+ "extra": "elevator, closed space, indicator light",
+ "extra_camera": "",
+ "env_nl": "elevator, studio lighting, elevator, closed space, indicator light, from above.",
+ "level": 0,
+ "theme": "日常",
+ "count_lock": "1girl, solo",
+ "aspect": "portrait",
+ "thumb": null,
+ "env_hint": "elevator, studio lighting, full body, from above, symmetry, elevator, closed space, indicator light",
+ "pose_ref": "pose_elevator_ride",
+ "cleaned": {
+  "version": 4,
+  "policy": "env/pose split",
+  "note": "动作/服装/表情已移入 poses/pose_elevator_ride.json",
+  "removed_tag_keys": [
+   "emotion",
+   "pose_base"
+  ],
+  "removed_extra": []
+ }
+}

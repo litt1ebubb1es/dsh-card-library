@@ -1,0 +1,16 @@
+{
+ "id": "prop_compass",
+ "kind": "prop",
+ "name": "罗盘",
+ "version": "1.0",
+ "group": "fantasy",
+ "group_title": "奇幻魔法",
+ "description": "罗盘，航海/冒险。",
+ "prop_tags": "compass, holding compass",
+ "prop_nl": "She checks a brass compass.",
+ "hold": true,
+ "suggest_pose": "holding compass, looking down",
+ "aspect": "both",
+ "thumb": null,
+ "notes": "道具卡只写物，不写持有者/场景/服装；hold=true 时拼配方要配 holding 动词。"
+}

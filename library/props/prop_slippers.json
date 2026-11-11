@@ -1,0 +1,16 @@
+{
+ "id": "prop_slippers",
+ "kind": "prop",
+ "name": "拖鞋",
+ "version": "1.0",
+ "group": "home",
+ "group_title": "家居",
+ "description": "拖鞋，居家。",
+ "prop_tags": "slippers, wearing slippers",
+ "prop_nl": "She wears soft slippers.",
+ "hold": false,
+ "suggest_pose": "standing",
+ "aspect": "both",
+ "thumb": null,
+ "notes": "道具卡只写物，不写持有者/场景/服装；hold=true 时拼配方要配 holding 动词。"
+}

@@ -1,0 +1,28 @@
+{
+  "id": "pose_pose_standing_split_back",
+  "kind": "pose",
+  "name": "一字马 · 逆光背影",
+  "group": "pose",
+  "group_title": "🧎 姿势场景",
+  "description": "背对镜头的站立一字马，逆光成剪影",
+  "pose_tags": "standing split",
+  "pose_nl": "seen from behind as she lifts one leg straight up. the backlight turns her whole body into a dark silhouette against the bright air. the raised leg cuts a clean line.",
+  "camera": {
+    "viewpoint": "from behind",
+    "shot_size": "full body"
+  },
+  "suggest_place": "",
+  "aspect": "portrait",
+  "level": 0,
+  "theme": "姿势·一字马",
+  "count_lock": "1girl, solo",
+  "env_ref": "",
+  "source_id": "sc_pose_standing_split_back",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_pose_standing_split_back.jpg"
+}

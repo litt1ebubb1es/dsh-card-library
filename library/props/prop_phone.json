@@ -1,0 +1,16 @@
+{
+ "id": "prop_phone",
+ "kind": "prop",
+ "name": "手机",
+ "version": "1.0",
+ "group": "daily",
+ "group_title": "日常",
+ "description": "手机，低头看屏/自拍。",
+ "prop_tags": "phone, holding phone, cellphone",
+ "prop_nl": "She holds a phone and looks at the screen.",
+ "hold": true,
+ "suggest_pose": "holding phone, looking at phone",
+ "aspect": "both",
+ "thumb": null,
+ "notes": "道具卡只写物，不写持有者/场景/服装；hold=true 时拼配方要配 holding 动词。"
+}

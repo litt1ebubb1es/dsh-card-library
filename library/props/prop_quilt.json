@@ -1,0 +1,16 @@
+{
+ "id": "prop_quilt",
+ "kind": "prop",
+ "name": "被褥",
+ "version": "1.0",
+ "group": "home",
+ "group_title": "家居",
+ "description": "被褥，卧室。",
+ "prop_tags": "quilt, futon, bedding",
+ "prop_nl": "She lies under a thick quilt.",
+ "hold": false,
+ "suggest_pose": "lying, sleeping",
+ "aspect": "both",
+ "thumb": null,
+ "notes": "道具卡只写物，不写持有者/场景/服装；hold=true 时拼配方要配 holding 动词。"
+}

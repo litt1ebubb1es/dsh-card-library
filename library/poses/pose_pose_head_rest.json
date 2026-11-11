@@ -1,0 +1,28 @@
+{
+  "id": "pose_pose_head_rest",
+  "kind": "pose",
+  "name": "托腮",
+  "group": "pose",
+  "group_title": "🧎 姿势场景",
+  "description": "手托着下巴，七分身，侧向机位",
+  "pose_tags": "head rest, sleepy",
+  "pose_nl": "she rests her cheek in one hand with her elbow on her knee. seen from the side so the line of her forearm and her lowered lashes show. her eyes are half closed.",
+  "camera": {
+    "viewpoint": "from side",
+    "shot_size": "cowboy shot"
+  },
+  "suggest_place": "",
+  "aspect": "portrait",
+  "level": 0,
+  "theme": "姿势·托腮",
+  "count_lock": "1girl, solo",
+  "env_ref": "",
+  "source_id": "sc_pose_head_rest",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_pose_head_rest.jpg"
+}

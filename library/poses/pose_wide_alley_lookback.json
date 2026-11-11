@@ -1,0 +1,39 @@
+{
+  "id": "pose_wide_alley_lookback",
+  "kind": "pose",
+  "name": "巷弄 · 回眸",
+  "group": "sfw",
+  "group_title": "🏙 全年龄场景搭配",
+  "description": "真远景：窄巷里回头，两侧墙面透视收向远处",
+  "pose_tags": "standing, looking back, looking back over shoulder",
+  "pose_nl": "she walks the narrow alley and turns her head back toward the viewer. the walls rise on both sides and the alley runs away behind her. the overcast light flattens everything.",
+  "camera": {
+    "viewpoint": "from behind",
+    "shot_size": "wide shot",
+    "comp": "landscape"
+  },
+  "suggest_place": "alley",
+  "aspect": "landscape",
+  "level": 0,
+  "theme": "远景",
+  "count_lock": "1girl, solo",
+  "env_ref": "sc_wide_alley_lookback",
+  "source_id": "sc_wide_alley_lookback",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [
+      "scenery",
+      "narrow alley"
+    ],
+    "removed_camera": [
+      "wide shot",
+      "full body",
+      "perspective",
+      "small figure",
+      "vast landscape",
+      "sense of scale"
+    ]
+  },
+  "thumb": "thumbs/pose_wide_alley_lookback.jpg"
+}

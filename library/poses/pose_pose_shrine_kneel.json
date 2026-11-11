@@ -1,0 +1,28 @@
+{
+  "id": "pose_pose_shrine_kneel",
+  "kind": "pose",
+  "name": "神社 · 跪坐参拜",
+  "group": "pose",
+  "group_title": "🧎 姿势场景",
+  "description": "神社前正座行礼，巫女装束，柔光",
+  "pose_tags": "seiza, bowing, miko",
+  "pose_nl": "she kneels in seiza before the shrine and bows with her hands on her thighs. seen from the side so the red of her miko skirt spreads on the stone. the offering box sits in front of her.",
+  "camera": {
+    "viewpoint": "from side",
+    "shot_size": "full body"
+  },
+  "suggest_place": "shrine",
+  "aspect": "portrait",
+  "level": 0,
+  "theme": "姿势·神社跪坐",
+  "count_lock": "1girl, solo",
+  "env_ref": "sc_pose_shrine_kneel",
+  "source_id": "sc_pose_shrine_kneel",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_pose_shrine_kneel.jpg"
+}

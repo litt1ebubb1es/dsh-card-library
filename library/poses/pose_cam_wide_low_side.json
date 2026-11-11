@@ -1,0 +1,32 @@
+{
+  "id": "pose_cam_wide_low_side",
+  "kind": "pose",
+  "name": "广角仰视 · 侧身对峙步（擦边）",
+  "group": "sfw",
+  "group_title": "🏙 全年龄场景搭配",
+  "description": "镜头×姿势模板（不带地点，地点由随机抽取）",
+  "pose_tags": "contrapposto, hair flip, smug, wide stance",
+  "pose_nl": "a wide angle low shot of her standing sideways in a wide stance with foreshortening. her weight rests on one hip and she flips her hair. she looks smug.",
+  "camera": {
+    "viewpoint": "from side",
+    "shot_size": "full body"
+  },
+  "suggest_place": "",
+  "aspect": "portrait",
+  "level": 1,
+  "theme": "镜头实验",
+  "count_lock": "1girl, solo",
+  "env_ref": "",
+  "source_id": "sc_cam_wide_low_side",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": [
+      "wide angle",
+      "low angle view",
+      "foreshortening"
+    ]
+  },
+  "thumb": "thumbs/pose_cam_wide_low_side.jpg"
+}

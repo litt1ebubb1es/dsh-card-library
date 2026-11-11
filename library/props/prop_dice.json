@@ -1,0 +1,16 @@
+{
+ "id": "prop_dice",
+ "kind": "prop",
+ "name": "骰子",
+ "version": "1.0",
+ "group": "tech",
+ "group_title": "电子乐器",
+ "description": "骰子，桌游/赌。",
+ "prop_tags": "dice, holding dice, rolling dice",
+ "prop_nl": "She rolls a pair of dice.",
+ "hold": true,
+ "suggest_pose": "holding dice, rolling",
+ "aspect": "both",
+ "thumb": null,
+ "notes": "道具卡只写物，不写持有者/场景/服装；hold=true 时拼配方要配 holding 动词。"
+}

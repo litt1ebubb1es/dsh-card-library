@@ -1,0 +1,33 @@
+{
+  "id": "pose_sock_stair_torn",
+  "kind": "pose",
+  "name": "楼梯间 · 勾破的连裤袜",
+  "group": "sfw",
+  "group_title": "🏙 全年龄场景搭配",
+  "description": "楼梯间靠墙，水手服 + 乐福鞋，破洞连裤袜/破洞过膝袜在 socks 里随机（勾破本身即 1 档）。",
+  "pose_tags": "against wall, skirt pull, embarrassed, blush, looking away, biting own lip, serafuku, loafers, hand on skirt",
+  "pose_nl": "she leans against the stairwell wall with one hand pulling her skirt and a run in her tights. the light comes from behind her. she bites her lip.",
+  "camera": {
+    "viewpoint": "dutch angle",
+    "shot_size": "cowboy shot"
+  },
+  "suggest_place": "stairwell",
+  "aspect": "portrait",
+  "level": 1,
+  "theme": "丝袜",
+  "count_lock": "1girl, solo",
+  "env_ref": "sc_sock_stair_torn",
+  "source_id": "sc_sock_stair_torn",
+  "clean_note": {
+    "version": 3,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [
+      "stairs"
+    ],
+    "removed_camera": [],
+    "removed_cloth": [
+      "torn tights"
+    ]
+  },
+  "thumb": "thumbs/pose_sock_stair_torn.jpg"
+}

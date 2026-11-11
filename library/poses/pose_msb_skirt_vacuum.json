@@ -1,0 +1,31 @@
+{
+  "id": "pose_msb_skirt_vacuum",
+  "kind": "pose",
+  "name": "自慰 · 丝袜里的跳蛋开关",
+  "group": "pose",
+  "group_title": "🔞 NSFW 跨槽位配方",
+  "description": "第三人称侧视：裙装与丝袜款式随机（长筒袜 / 吊带袜均可，袜口在裙摆下方），长方形粉色无线遥控器塞在袜口内侧、腿环压在丝袜外面同时钉住丝袜与遥控器，下半截从袜口露出；只写一个遥控器；表情在「隐忍」与「快要高潮」之间随机；脸与耳朵不发红；手只扶墙 / 搭在膝盖或腰侧；不露本体、无风（姿势/地点随机，户外为夜景）",
+  "pose_tags": "half-closed eyes, no panties under skirt, aroused, solo, legs together",
+  "pose_nl": "seen from the side she sits on a chair in the empty classroom with her knees pressed tightly together. one hand rests on her knee and the other is pressed flat against her chest. her skirt stays down and covers her thighs. the top of her thighhighs sits below the hem of her skirt. she is in public where anyone could walk in and she must not make a sound. a small rectangular pink wireless remote is tucked inside the top of her thighhighs on her outer thigh so the stocking covers its upper half and only the lower half of the remote shows below the band. a thin strap is buckled over the stocking to pin the stocking and the remote in place.",
+  "camera": {
+    "viewpoint": "from side",
+    "shot_size": "cowboy shot"
+  },
+  "suggest_place": "",
+  "aspect": "portrait",
+  "level": 2,
+  "theme": "挖矿",
+  "count_lock": "1girl, solo",
+  "env_ref": "",
+  "source_id": "sc_msb_skirt_vacuum",
+  "clean_note": {
+    "version": 4,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": [],
+    "removed_cloth": [
+      "thigh strap"
+    ]
+  },
+  "thumb": "thumbs/pose_msb_skirt_vacuum.jpg"
+}

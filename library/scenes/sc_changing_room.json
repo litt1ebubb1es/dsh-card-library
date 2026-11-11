@@ -1,0 +1,40 @@
+{
+ "id": "sc_changing_room",
+ "kind": "scene",
+ "name": "更衣室 · 棚拍",
+ "group": "sfw",
+ "group_title": "🏙 全年龄场景搭配",
+ "description": "地点：更衣室；光线：studio lighting；景物：locker, bench；相机：cowboy shot。（纯环境，不含动作/服装/表情）",
+ "tags": {
+  "place": "changing room",
+  "light_fx": "studio lighting"
+ },
+ "camera": {
+  "shot_size": "cowboy shot"
+ },
+ "extra": "locker, bench",
+ "extra_camera": "",
+ "env_nl": "changing room, studio lighting, locker, bench, seen cowboy shot.",
+ "level": 2,
+ "theme": "日常",
+ "count_lock": "1girl, solo",
+ "aspect": "portrait",
+ "thumb": null,
+ "env_hint": "changing room, studio lighting, cowboy shot, locker, bench",
+ "pose_ref": "pose_changing_room",
+ "cleaned": {
+  "version": 4,
+  "policy": "env/pose split",
+  "note": "动作/服装/表情已移入 poses/pose_changing_room.json",
+  "removed_tag_keys": [
+   "accessory",
+   "emotion",
+   "outfit",
+   "pose_base",
+   "pose_risque"
+  ],
+  "removed_extra": [
+   "fabric"
+  ]
+ }
+}

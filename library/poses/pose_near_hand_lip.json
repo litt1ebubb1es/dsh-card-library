@@ -1,0 +1,27 @@
+{
+  "id": "pose_near_hand_lip",
+  "kind": "pose",
+  "name": "手指抚唇",
+  "group": "pose",
+  "group_title": "🔍 特写搭配",
+  "description": "指尖抵下唇、脸与手同框的近景（带角色）",
+  "pose_tags": "finger to mouth, looking at viewer, parted lips, fingers, lips, hand on mouth, face visible",
+  "pose_nl": "she tilts her chin up and presses one fingertip to her lower lip. her eyes stay on the viewer while her hand frames the lower half of her face. her hair falls across one cheek.",
+  "camera": {
+    "shot_size": "close-up"
+  },
+  "suggest_place": "",
+  "aspect": "both",
+  "level": 0,
+  "theme": "手部",
+  "count_lock": "1girl, solo",
+  "env_ref": "",
+  "source_id": "sc_near_hand_lip",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_near_hand_lip.jpg"
+}

@@ -1,0 +1,54 @@
+{
+  "id": "look_nurse",
+  "kind": "look",
+  "name": "护士",
+  "version": "1.0",
+  "description": "护士制服 + 护士帽 + 白丝袜 + 听诊器 + 工牌，抱病历板",
+  "nsfw": false,
+  "tags": "nurse uniform, white nurse dress, nurse cap, white stockings, white shoes, stethoscope around neck, ID badge, short sleeves, white apron, ",
+  "fields": {
+    "outfit": "nurse uniform",
+    "top": "nurse dress",
+    "bottom": "nurse dress",
+    "socks": "white stockings",
+    "shoes": "white shoes",
+    "accessory": "nurse cap, stethoscope around neck, ID badge",
+    "cloth_color": "white",
+    "cloth_mat": "cotton",
+    "cloth_state_sfw": "buttoned up"
+  },
+  "body_decor": {
+    "makeup": "light makeup"
+  },
+  "look_notes": {},
+  "artist_segment": "@wlop, @minaba_hideo, ",
+  "style_label": "柔光半写实 (wlop+minaba)",
+  "negative_extra": "",
+  "params": {
+    "model": "miaomiaoHarem_anima8Step10.safetensors",
+    "lora": "anima-turbo-lora-v0.1.safetensors @ 0.4",
+    "clip": "qwen_3_06b_base.safetensors (type=qwen_image)",
+    "vae": "qwen_image_vae.safetensors",
+    "steps": 12,
+    "cfg": 2.0,
+    "sampler": "euler",
+    "scheduler": "simple",
+    "resolution": "832x1216"
+  },
+  "thumb": "thumbs/look_nurse.jpg",
+  "source_dir": "",
+  "look_tags": "nurse uniform, white nurse dress, nurse cap, white stockings, white shoes, stethoscope around neck, ID badge, short sleeves, white apron, ",
+  "pose_tags": "",
+  "tag_split": {
+    "version": 3,
+    "cloth": 9,
+    "pose": 0,
+    "moved_pose": [],
+    "migrated_to": "pose_nurse"
+  },
+  "legacy_pose_ref": "pose_nurse",
+  "clean_note": {
+    "version": 8,
+    "source": "random36 picked by user"
+  }
+}

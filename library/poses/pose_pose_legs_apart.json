@@ -1,0 +1,28 @@
+{
+  "id": "pose_pose_legs_apart",
+  "kind": "pose",
+  "name": "双腿分开站",
+  "group": "pose",
+  "group_title": "🧎 姿势场景",
+  "description": "站姿双腿分开与肩同宽，双手叉腰，微笑，仰拍",
+  "pose_tags": "legs apart, hand on own hip, smile, looking at viewer, closed mouth",
+  "pose_nl": "she stands with her legs apart and her feet planted at shoulder width. both hands rest on her hips with the elbows pushed out. she smiles at the viewer and her chin is up. seen from below so the sky fills the space behind her shoulders.",
+  "camera": {
+    "viewpoint": "from below",
+    "shot_size": "full body"
+  },
+  "suggest_place": "",
+  "aspect": "portrait",
+  "level": 0,
+  "theme": "姿势·双腿分开",
+  "count_lock": "1girl, solo",
+  "env_ref": "",
+  "source_id": "sc_pose_legs_apart",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_pose_legs_apart.jpg"
+}

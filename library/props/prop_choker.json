@@ -1,0 +1,16 @@
+{
+ "id": "prop_choker",
+ "kind": "prop",
+ "name": "颈环",
+ "version": "1.0",
+ "group": "accessory",
+ "group_title": "配饰",
+ "description": "颈环，哥特/暗黑。",
+ "prop_tags": "choker, wearing choker, black choker",
+ "prop_nl": "A black choker sits at her throat.",
+ "hold": false,
+ "suggest_pose": "standing",
+ "aspect": "both",
+ "thumb": null,
+ "notes": "道具卡只写物，不写持有者/场景/服装；hold=true 时拼配方要配 holding 动词。"
+}

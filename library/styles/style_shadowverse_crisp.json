@@ -1,0 +1,65 @@
+{
+ "id": "style_shadowverse_crisp",
+ "name": "★Cygames 明亮插画（lack+redjuice）",
+ "kind": "style",
+ "version": "1.0",
+ "description": "参考用户 2026-11-10 给的 5 张 Shadowverse Worlds Beyond 官方倒计时插画复刻。目标是把 AI 感压下去：细彩线 + 三阶上色 + 硬阴影形状 + 明亮粉彩背景 + 白色星闪。与 ★柔光半写实（n58）是相反方向——那套靠低饱和柔焦，这套靠锐利结构与高明度。",
+ "quality_prefix": "masterpiece, best quality, score 7, score 9, very aesthetic, ultra detailed, ",
+ "artist_segment": "@lack, @redjuice, ",
+ "render": "anime style, anime coloring, crisp lineart, thin lineart, colored lineart, cel shading, three-tone shading, shadow shape, defined shadow, hard shadow edges, soft shadow transition, painterly rendering, detailed rendering, intricate details, vivid colors, saturated accents, fresh colors, transparent colors, detailed hair, individual hair strands, glossy hair, translucent hair, detailed eyes, glowing eyes, sharp highlights in eyes, delicate details, ",
+ "face_light": "face brightly lit, luminous face, glowing skin, soft light wrapping the face, gentle highlight on cheek and nose, soft shadow on cheek, defined nose shadow, no heavy shadow on face, catchlight in both eyes, ",
+ "scene_hint": "bright background, pastel background, gradient background, pale blue and lavender gradient, white glow, soft white aura, sparkle, star-shaped sparkles, cross-shaped sparkles, twinkling lights, glowing particles, dust motes, bokeh, backlit hair, light shining through hair, translucent hair edges, luminous atmosphere, airy, clean, cool white ambient light, soft pastel lighting, depth of field, cinematic composition, ",
+ "negative": "worst quality, low quality, score 1, score 2, score 3, lowres, jpeg artifacts, smooth airbrushed everything, over smoothed, waxy skin, plastic skin, porcelain skin, doll skin, blurry lineart, no lineart, lost edges, muddy colors, washed out, desaturated, gray, dull, pale skin, harsh contrast, clipped highlights, blown out highlights, overexposed, white out, milky, washed over, low contrast, flat lighting, flat colors, evenly lit, hazy, foggy overlay, soft focus everywhere, bloom everywhere, generic, bland, amateur, 3d render, photorealistic, photo, octane render, unreal engine, impasto, thick paint, rough brush strokes, visible brushwork, oil paint texture, large black areas, heavy black mass, crushed shadows, pure black clothing, dark background, night, black background, dark navy background, laser beam, light beam crossing face, straight light line, glowing red lines, red streaks across image, neon laser, red rim light, dark face, shadowed face, half face in shadow, shadow over eyes, face in darkness, underexposed face, dark image, silhouette, rim light only, cleavage, deep cleavage, huge breasts, large breasts, big breasts, exposed chest, exposed breasts, breasts out, bare chest, topless, low cut, deep neckline, plunging neckline, collarbone window, chest window, sideboob, underboob, nipples, areola, open shirt, unbuttoned shirt, open robe, undone clothes, bare shoulders, off shoulder, strapless, tube top, neon colors, neon pink, hot pink, magenta, vivid cyan, electric blue, fluorescent, oversaturated, garish colors, rainbow, watermark, signature, artist signature, artist logo, artist name, logo, text, letters, handwriting, english text, chinese text, multiple girls, 2girls, multiple views, split screen, extra person, duplicate, deformed body, bad proportions, bad hands, extra fingers, missing fingers, extra limbs, wide-set eyes, far apart eyes, hair over eye, one eye hidden, small eyes, tiny eyes, narrow eyes, lifeless eyes, ",
+ "post": {
+  "lift_shadows": {
+   "amount": 0.05,
+   "gamma": 1.4
+  },
+  "glow": {
+   "threshold": 0.8,
+   "radius": 10,
+   "intensity": 0.16
+  },
+  "crisp": {
+   "contrast": 1.03,
+   "sat": 0.98,
+   "sharpen": 1
+  },
+  "vignette": {
+   "strength": 0.06
+  },
+  "grain": {
+   "sigma": 2,
+   "amount": 0.035
+  },
+  "note": "顺序：lift_shadows → glow → crisp → vignette → grain。不要 haze、不要大 bloom —— 这两样是 AI 感的来源（n58 那套是反方向）"
+ },
+ "params": {
+  "model": "miaomiaoHarem_anima8Step10.safetensors",
+  "lora": "anima-turbo-lora-v0.1.safetensors @ 0.4",
+  "clip": "qwen_3_06b_base.safetensors (type=qwen_image)",
+  "vae": "qwen_image_vae.safetensors",
+  "steps": 12,
+  "cfg": 2,
+  "sampler": "euler",
+  "scheduler": "simple",
+  "resolution": "832x1216"
+ },
+ "tags": [
+  "明亮",
+  "细线",
+  "三阶上色",
+  "粉彩",
+  "去AI感",
+  "星闪",
+  "高完成度"
+ ],
+ "notes": "① 想减 AI 感的核心是「加结构」不是「加滤镜」：细彩线 + 三阶上色 + 硬阴影形状 + 明确的脸部明暗；② 负面里绝不能同时禁 high contrast 和加 lift，会糊成奶白（第 3 轮踩过）；③ 背景要明亮粉彩，写 dark background 会滑向夜店霓虹；④ 胸口走光靠「高领+胸甲」正向设计压，光写 covered chest 不够；⑤ 彩带色用 pale/soft/light 前缀，负面锁 neon/hot pink/magenta。",
+ "source_refs": [
+  "Shadowverse Worlds Beyond 1.5M 预注册 (Cygames)",
+  "Shadowverse Worlds Beyond 5 周年倒计时 あと10日",
+  "Shadowverse Worlds Beyond あと1日",
+  "Shadowverse Worlds Beyond Thank you 1.5 million",
+  "Shadowverse Worlds Beyond あと5日"
+ ]
+}

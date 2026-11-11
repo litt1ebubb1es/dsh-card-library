@@ -1,0 +1,28 @@
+{
+  "id": "pose_pose_apartment_seiza",
+  "kind": "pose",
+  "name": "公寓午后 · 正座",
+  "group": "pose",
+  "group_title": "🧎 姿势场景",
+  "description": "公寓木地板上的正座，晨光斜进，日常松弛",
+  "pose_tags": "seiza, tucked in, hands on thighs, palms down",
+  "pose_nl": "she kneels in seiza on the apartment floor with her palms flat on her thighs. morning light comes through the window and lies in a long stripe across the boards. she looks toward the light.",
+  "camera": {
+    "viewpoint": "from side",
+    "shot_size": "full body"
+  },
+  "suggest_place": "apartment",
+  "aspect": "landscape",
+  "level": 0,
+  "theme": "姿势·和室正座",
+  "count_lock": "1girl, solo",
+  "env_ref": "sc_pose_apartment_seiza",
+  "source_id": "sc_pose_apartment_seiza",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_pose_apartment_seiza.jpg"
+}

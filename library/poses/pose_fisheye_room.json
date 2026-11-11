@@ -1,0 +1,31 @@
+{
+  "id": "pose_fisheye_room",
+  "kind": "pose",
+  "name": "鱼眼 · 室内广角",
+  "group": "sfw",
+  "group_title": "🏙 全年龄场景搭配",
+  "description": "鱼眼极广角，夸张透视",
+  "pose_tags": "sitting, grin",
+  "pose_nl": "she sits on the bedroom floor and the whole room bends around her. the corners of the walls curve inward at the edges of the frame. she grins at the viewer.",
+  "camera": {
+    "viewpoint": "fisheye",
+    "shot_size": "cowboy shot"
+  },
+  "suggest_place": "bedroom",
+  "aspect": "portrait",
+  "level": 0,
+  "theme": "镜头实验",
+  "count_lock": "1girl, solo",
+  "env_ref": "sc_fisheye_room",
+  "source_id": "sc_fisheye_room",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": [
+      "distorted perspective",
+      "wide field of view"
+    ]
+  },
+  "thumb": "thumbs/pose_fisheye_room.jpg"
+}

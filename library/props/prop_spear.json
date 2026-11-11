@@ -1,0 +1,16 @@
+{
+ "id": "prop_spear",
+ "kind": "prop",
+ "name": "长枪",
+ "version": "1.0",
+ "group": "weapon",
+ "group_title": "武器",
+ "description": "长枪，骑士/守卫。",
+ "prop_tags": "spear, holding spear, polearm",
+ "prop_nl": "She plants a spear beside her.",
+ "hold": true,
+ "suggest_pose": "holding spear, standing",
+ "aspect": "both",
+ "thumb": null,
+ "notes": "道具卡只写物，不写持有者/场景/服装；hold=true 时拼配方要配 holding 动词。"
+}

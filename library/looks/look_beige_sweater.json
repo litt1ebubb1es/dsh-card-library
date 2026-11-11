@@ -1,0 +1,77 @@
+{
+  "id": "look_beige_sweater",
+  "kind": "look",
+  "name": "米色麻花毛衣短裤",
+  "version": "1.0",
+  "description": "米白麻花针织收腰短款毛衣（露腰）+ 卡其高腰短裤 + 堆堆袜 + 靴，七分身，偏头侧目",
+  "nsfw": false,
+  "tags": "cropped sweater, high-waist shorts, loose socks, boots, necklace, beige cropped sweater, knitwear, glossy lips, french manicure, short sweater, cropped top, fitted, slim fit, waistline, navel, midriff, cable knit, cable knit sweater, knit texture, chunky knit, ribbed knit, visible knit pattern, detailed fabric folds, high-waisted shorts, high-waisted, tucked in, ",
+  "fields": {
+    "top": "cropped sweater",
+    "bottom": "high-waist shorts",
+    "socks": "loose socks",
+    "shoes": "boots",
+    "accessory": "necklace",
+    "cloth_color": "beige",
+    "cloth_mat": "knitwear"
+  },
+  "body_decor": {
+    "makeup": "glossy lips",
+    "nails": "french manicure",
+    "skin_detail": "glistening skin"
+  },
+  "look_notes": {
+    "top": "cropped sweater 是短款；必须配 navel/midriff/waistline",
+    "texture": "cable knit + knit texture + ribbed knit 是麻花纹理来源，删了就变光滑面",
+    "shot": "cowboy shot = 3/4 身体（七分身）；要全身改 full body",
+    "hand": "负面锁 holding cup/mug/object，防止手里莫名出现杯子",
+    "head": "head tilt + looking to the side 是偏头来源"
+  },
+  "artist_segment": "minaba_hideo, liduke, piromizu, nonco,",
+  "style_label": "柔光半写实 (基准)",
+  "negative_extra": "",
+  "params": {
+    "model": "miaomiaoHarem_anima8Step10.safetensors",
+    "lora": "anima-turbo-lora-v0.1.safetensors @ 0.4",
+    "clip": "qwen_3_06b_base.safetensors (type=qwen_image)",
+    "vae": "qwen_image_vae.safetensors",
+    "steps": 12,
+    "cfg": 2.0,
+    "sampler": "euler",
+    "scheduler": "simple",
+    "resolution": "832x1216"
+  },
+  "thumb": "thumbs/look_beige_sweater.jpg",
+  "source_dir": "_assets/characters/look_beige_sweater",
+  "look_tags": "cropped sweater, high-waist shorts, loose socks, boots, necklace, beige cropped sweater, knitwear, glossy lips, french manicure, short sweater, cropped top, fitted, slim fit, waistline, navel, midriff, cable knit, cable knit sweater, knit texture, chunky knit, ribbed knit, visible knit pattern, detailed fabric folds, high-waisted shorts, high-waisted, tucked in, ",
+  "pose_tags": "",
+  "tag_split": {
+    "version": 3,
+    "cloth": 27,
+    "pose": 0,
+    "moved_pose": [
+      "hand in pocket"
+    ],
+    "migrated_to": "pose_from_beige_sweater"
+  },
+  "legacy_pose_ref": "pose_from_beige_sweater",
+  "fields_legacy_pose": {
+    "emotion": "smile",
+    "eye_gaze": "looking to the side",
+    "mouth": "biting own lip",
+    "pose_base": "standing, head tilt",
+    "arms_hands": "hand in pocket",
+    "action": "walking, one hand in pocket",
+    "shot_size": "cowboy shot"
+  },
+  "clean_note": {
+    "version": 6,
+    "removed_look": [
+      "glistening skin"
+    ],
+    "removed_v6": [],
+    "color_bound_v6": [
+      "beige -> beige cropped sweater"
+    ]
+  }
+}

@@ -1,0 +1,16 @@
+{
+ "id": "prop_scythe",
+ "kind": "prop",
+ "name": "镰刀",
+ "version": "1.0",
+ "group": "weapon",
+ "group_title": "武器",
+ "description": "巨镰，死神/暗黑奇幻。",
+ "prop_tags": "scythe, holding scythe",
+ "prop_nl": "She rests a scythe over her shoulder.",
+ "hold": true,
+ "suggest_pose": "holding scythe, standing",
+ "aspect": "both",
+ "thumb": null,
+ "notes": "道具卡只写物，不写持有者/场景/服装；hold=true 时拼配方要配 holding 动词。"
+}

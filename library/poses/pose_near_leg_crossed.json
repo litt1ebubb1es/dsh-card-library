@@ -1,0 +1,31 @@
+{
+  "id": "pose_near_leg_crossed",
+  "kind": "pose",
+  "name": "交叠双腿",
+  "group": "near",
+  "group_title": "🔍 特写搭配",
+  "description": "俯拍教室座椅上交叠的双腿与裙摆",
+  "pose_tags": "crossed legs, thighs, calves, knees, head out of frame, legs focus, lower body",
+  "pose_nl": "her crossed legs fill the frame from above with the skirt hem resting on her thigh. her calves press together. the classroom floor is behind her.",
+  "camera": {
+    "viewpoint": "from above",
+    "shot_size": "extreme close-up"
+  },
+  "suggest_place": "classroom",
+  "aspect": "both",
+  "level": 0,
+  "theme": "腿部",
+  "count_lock": "1girl, solo",
+  "env_ref": "sc_near_leg_crossed",
+  "source_id": "sc_near_leg_crossed",
+  "clean_note": {
+    "version": 3,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": [],
+    "removed_cloth": [
+      "skirt"
+    ]
+  },
+  "thumb": "thumbs/pose_near_leg_crossed.jpg"
+}

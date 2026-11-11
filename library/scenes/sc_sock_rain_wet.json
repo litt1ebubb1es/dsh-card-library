@@ -1,0 +1,47 @@
+{
+ "id": "sc_sock_rain_wet",
+ "kind": "scene",
+ "name": "街道 · 逆光",
+ "group": "nsfw",
+ "group_title": "🔞 NSFW 跨槽位配方",
+ "description": "地点：街道；天气：rain；光线：backlighting；相机：from side / full body。（纯环境，不含动作/服装/表情）",
+ "tags": {
+  "place": "street",
+  "weather": "rain",
+  "light_fx": "backlighting"
+ },
+ "camera": {
+  "viewpoint": "from side",
+  "shot_size": "full body"
+ },
+ "extra": "",
+ "extra_camera": "",
+ "env_nl": "street, rain, backlighting, from side.",
+ "level": 2,
+ "theme": "丝袜",
+ "count_lock": "1girl, solo",
+ "aspect": "portrait",
+ "thumb": null,
+ "env_hint": "street, rain, backlighting, full body, from side",
+ "pose_ref": "pose_sock_rain_wet",
+ "cleaned": {
+  "version": 4,
+  "policy": "env/pose split",
+  "note": "动作/服装/表情已移入 poses/pose_sock_rain_wet.json",
+  "removed_tag_keys": [
+   "action",
+   "cloth_state_sfw",
+   "emotion",
+   "eye_gaze",
+   "mouth",
+   "outfit",
+   "shoes"
+  ],
+  "removed_extra": [
+   "rainy street",
+   "soaked",
+   "wet tights",
+   "walking"
+  ]
+ }
+}

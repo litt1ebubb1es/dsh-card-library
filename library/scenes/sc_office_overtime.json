@@ -1,0 +1,43 @@
+{
+ "id": "sc_office_overtime",
+ "kind": "scene",
+ "name": "办公室 · 暖光",
+ "group": "sfw",
+ "group_title": "🏙 全年龄场景搭配",
+ "description": "地点：办公室；天气：night；光线：warm lighting；道具：desk lamp；相机：cowboy shot / depth of field, blurry background。（纯环境，不含动作/服装/表情）",
+ "tags": {
+  "place": "office",
+  "weather": "night",
+  "light_fx": "warm lighting",
+  "prop": "desk lamp"
+ },
+ "camera": {
+  "shot_size": "cowboy shot",
+  "dof": "depth of field, blurry background"
+ },
+ "extra": "",
+ "extra_camera": "",
+ "env_nl": "office, night, warm lighting, desk lamp, seen cowboy shot.",
+ "level": 0,
+ "theme": "职场",
+ "count_lock": "1girl, solo",
+ "aspect": "portrait",
+ "thumb": null,
+ "env_hint": "office, night, warm lighting, desk lamp, cowboy shot, depth of field, blurry background",
+ "pose_ref": "pose_office_overtime",
+ "cleaned": {
+  "version": 4,
+  "policy": "env/pose split",
+  "note": "动作/服装/表情已移入 poses/pose_office_overtime.json",
+  "removed_tag_keys": [
+   "emotion",
+   "outfit",
+   "pose_base"
+  ],
+  "removed_extra": [
+   "overtime",
+   "coffee cup",
+   "tired"
+  ]
+ }
+}

@@ -1,0 +1,28 @@
+{
+  "id": "pose_near_leg_bed_edge",
+  "kind": "pose",
+  "name": "床沿垂腿",
+  "group": "near",
+  "group_title": "🔍 特写搭配",
+  "description": "坐在床沿双腿垂下，低机位",
+  "pose_tags": "sitting, legs, calves, ankles, feet, head out of frame, legs focus, lower body",
+  "pose_nl": "she sits on the edge of the bed with her legs hanging down and her feet pointed. seen from below. her upper body is out of frame.",
+  "camera": {
+    "viewpoint": "from below",
+    "shot_size": "extreme close-up"
+  },
+  "suggest_place": "",
+  "aspect": "both",
+  "level": 0,
+  "theme": "腿部",
+  "count_lock": "1girl, solo",
+  "env_ref": "",
+  "source_id": "sc_near_leg_bed_edge",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_near_leg_bed_edge.jpg"
+}

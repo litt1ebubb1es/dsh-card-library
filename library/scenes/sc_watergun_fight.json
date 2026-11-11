@@ -1,0 +1,39 @@
+{
+ "id": "sc_watergun_fight",
+ "kind": "scene",
+ "name": "公园 · 晴",
+ "group": "sfw",
+ "group_title": "🏙 全年龄场景搭配",
+ "description": "地点：公园；天气：clear sky；景物：splashes。（纯环境，不含动作/服装/表情）",
+ "tags": {
+  "place": "park",
+  "weather": "clear sky"
+ },
+ "camera": {},
+ "extra": "splashes",
+ "extra_camera": "",
+ "env_nl": "park, clear sky, splashes.",
+ "level": 1,
+ "theme": "夏",
+ "count_lock": "1girl, solo",
+ "aspect": "portrait",
+ "thumb": null,
+ "env_hint": "park, clear sky, splashes",
+ "pose_ref": "pose_watergun_fight",
+ "cleaned": {
+  "version": 4,
+  "policy": "env/pose split",
+  "note": "动作/服装/表情已移入 poses/pose_watergun_fight.json",
+  "removed_tag_keys": [
+   "action",
+   "bottom",
+   "cloth_state_sfw",
+   "emotion",
+   "top"
+  ],
+  "removed_extra": [
+   "water gun",
+   "wet hair"
+  ]
+ }
+}

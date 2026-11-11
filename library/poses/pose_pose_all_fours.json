@@ -1,0 +1,28 @@
+{
+  "id": "pose_pose_all_fours",
+  "kind": "pose",
+  "name": "四肢着地",
+  "group": "pose",
+  "group_title": "🧎 姿势场景",
+  "description": "四肢撑地、抬头看镜头，俯拍略带压迫感",
+  "pose_tags": "all fours, embarrassed, blush, looking at viewer",
+  "pose_nl": "she is on all fours with her weight forward on her hands. seen from above so her back and shoulders fill the frame. she looks up at the viewer with red cheeks.",
+  "camera": {
+    "viewpoint": "from above",
+    "shot_size": "full body"
+  },
+  "suggest_place": "",
+  "aspect": "landscape",
+  "level": 0,
+  "theme": "姿势·四肢着地",
+  "count_lock": "1girl, solo",
+  "env_ref": "",
+  "source_id": "sc_pose_all_fours",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_pose_all_fours.jpg"
+}

@@ -1,0 +1,33 @@
+{
+  "id": "pose_sock_office_elevator",
+  "kind": "pose",
+  "name": "电梯 · 通勤黑丝",
+  "group": "sfw",
+  "group_title": "🏙 全年龄场景搭配",
+  "description": "办公楼下电梯：OL 套装 + 高跟 + 黑丝，站姿侧拍。丝袜在 socks 里随机抽款，鞋固定在不会盖住腿的高跟。",
+  "pose_tags": "contrapposto, expressionless, looking away, closed mouth, office lady, standing in elevator",
+  "pose_nl": "she stands in the elevator with her weight on one hip and her hands at her sides. the pencil skirt and the dark tights make one clean line from waist to heel. seen from the side.",
+  "camera": {
+    "viewpoint": "from side",
+    "shot_size": "full body"
+  },
+  "suggest_place": "elevator",
+  "aspect": "portrait",
+  "level": 0,
+  "theme": "丝袜",
+  "count_lock": "1girl, solo",
+  "env_ref": "sc_sock_office_elevator",
+  "source_id": "sc_sock_office_elevator",
+  "clean_note": {
+    "version": 3,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": [],
+    "removed_cloth": [
+      "high heels",
+      "pencil skirt",
+      "tights"
+    ]
+  },
+  "thumb": "thumbs/pose_sock_office_elevator.jpg"
+}

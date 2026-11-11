@@ -1,0 +1,30 @@
+{
+  "id": "pose_cam_dutch_wall",
+  "kind": "pose",
+  "name": "斜角镜头 · 靠墙抬腿（擦边）",
+  "group": "pose",
+  "group_title": "🏙 全年龄场景搭配",
+  "description": "镜头×姿势模板（不带地点，地点由随机抽取）",
+  "pose_tags": "against wall, leg up, smug",
+  "pose_nl": "a tilted dutch angle shot of her leaning against the wall with one leg raised. the whole frame slants. her expression is confident.",
+  "camera": {
+    "viewpoint": "dutch angle",
+    "shot_size": "full body"
+  },
+  "suggest_place": "",
+  "aspect": "portrait",
+  "level": 1,
+  "theme": "镜头实验",
+  "count_lock": "1girl, solo",
+  "env_ref": "",
+  "source_id": "sc_cam_dutch_wall",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": [
+      "low angle view"
+    ]
+  },
+  "thumb": "thumbs/pose_cam_dutch_wall.jpg"
+}

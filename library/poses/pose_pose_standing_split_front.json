@@ -1,0 +1,28 @@
+{
+  "id": "pose_pose_standing_split_front",
+  "kind": "pose",
+  "name": "一字马 · 正面仰拍",
+  "group": "pose",
+  "group_title": "🧎 姿势场景",
+  "description": "站立一字马正面仰拍，双手上举稳住抬起的腿",
+  "pose_tags": "standing split, arms up, serious",
+  "pose_nl": "she lifts one leg straight up in front of her and her arms are raised. seen from below so her standing leg and the lifted leg make a clean vertical frame. her face is serious.",
+  "camera": {
+    "viewpoint": "from below",
+    "shot_size": "full body"
+  },
+  "suggest_place": "",
+  "aspect": "portrait",
+  "level": 0,
+  "theme": "姿势·一字马",
+  "count_lock": "1girl, solo",
+  "env_ref": "",
+  "source_id": "sc_pose_standing_split_front",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_pose_standing_split_front.jpg"
+}

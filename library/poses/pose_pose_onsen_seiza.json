@@ -1,0 +1,31 @@
+{
+  "id": "pose_pose_onsen_seiza",
+  "kind": "pose",
+  "name": "温泉 · 浴后正座",
+  "group": "pose",
+  "group_title": "🧎 姿势场景",
+  "description": "温泉边浴巾正座，暖光蒸汽感",
+  "pose_tags": "seiza, bath towel, kneeling",
+  "pose_nl": "she kneels in seiza with a bath towel wrapped around her and her hands on her thighs. the warm light from the lanterns falls on her shoulders. seen from the side.",
+  "camera": {
+    "viewpoint": "from side",
+    "shot_size": "cowboy shot"
+  },
+  "suggest_place": "onsen",
+  "aspect": "portrait",
+  "level": 0,
+  "theme": "姿势·温泉正座",
+  "count_lock": "1girl, solo",
+  "env_ref": "sc_pose_onsen_seiza",
+  "source_id": "sc_pose_onsen_seiza",
+  "clean_note": {
+    "version": 4,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": [],
+    "from_nl": [
+      "kneeling"
+    ]
+  },
+  "thumb": "thumbs/pose_pose_onsen_seiza.jpg"
+}

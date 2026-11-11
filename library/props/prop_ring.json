@@ -1,0 +1,16 @@
+{
+ "id": "prop_ring",
+ "kind": "prop",
+ "name": "戒指",
+ "version": "1.0",
+ "group": "accessory",
+ "group_title": "配饰",
+ "description": "戒指，婚约/仪式。",
+ "prop_tags": "ring, wearing ring, wedding ring",
+ "prop_nl": "A ring glints on her finger.",
+ "hold": false,
+ "suggest_pose": "holding hand up",
+ "aspect": "both",
+ "thumb": null,
+ "notes": "道具卡只写物，不写持有者/场景/服装；hold=true 时拼配方要配 holding 动词。"
+}

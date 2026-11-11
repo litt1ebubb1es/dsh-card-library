@@ -1,0 +1,40 @@
+{
+ "id": "sc_gymnastics_split",
+ "kind": "scene",
+ "name": "天台 · 晴",
+ "group": "sfw",
+ "group_title": "🏙 全年龄场景搭配",
+ "description": "地点：天台；天气：clear sky；光线：morning light；相机：from side。（纯环境，不含动作/服装/表情）",
+ "tags": {
+  "place": "rooftop",
+  "weather": "clear sky",
+  "light_fx": "morning light"
+ },
+ "camera": {
+  "viewpoint": "from side"
+ },
+ "extra": "",
+ "extra_camera": "",
+ "env_nl": "rooftop, clear sky, morning light, from side.",
+ "level": 1,
+ "theme": "日常",
+ "count_lock": "1girl, solo",
+ "aspect": "portrait",
+ "thumb": null,
+ "env_hint": "rooftop, clear sky, morning light, from side",
+ "pose_ref": "pose_gymnastics_split",
+ "cleaned": {
+  "version": 4,
+  "policy": "env/pose split",
+  "note": "动作/服装/表情已移入 poses/pose_gymnastics_split.json",
+  "removed_tag_keys": [
+   "outfit",
+   "pose_base",
+   "pose_risque"
+  ],
+  "removed_extra": [
+   "leotard",
+   "flexibility"
+  ]
+ }
+}

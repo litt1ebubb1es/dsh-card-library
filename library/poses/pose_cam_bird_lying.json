@@ -1,0 +1,31 @@
+{
+  "id": "pose_cam_bird_lying",
+  "kind": "pose",
+  "name": "鸟瞰全景 · 仰躺（擦边）",
+  "group": "pose",
+  "group_title": "🏙 全年龄场景搭配",
+  "description": "镜头×姿势模板（不带地点，地点由随机抽取）",
+  "pose_tags": "on back, arched back, hand on own cheek, embarrassed, blush, ",
+  "pose_nl": "seen from directly above her as she lies on her back with one hand on her cheek. her body curves across the frame. she looks up shyly.",
+  "camera": {
+    "viewpoint": "bird's eye view",
+    "shot_size": "full body"
+  },
+  "suggest_place": "",
+  "aspect": "landscape",
+  "level": 1,
+  "theme": "镜头实验",
+  "count_lock": "1girl, solo",
+  "env_ref": "",
+  "source_id": "sc_cam_bird_lying",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": [],
+    "removed_v5": [
+      "from above"
+    ]
+  },
+  "thumb": "thumbs/pose_cam_bird_lying.jpg"
+}

@@ -1,0 +1,41 @@
+{
+ "id": "sc_near_face_rain",
+ "kind": "scene",
+ "name": "街道 · 雨",
+ "group": "near",
+ "group_title": "🔍 特写搭配",
+ "description": "地点：街道；天气：rain；光线：neon lights；相机：extreme close-up / focus on face。（纯环境，不含动作/服装/表情）",
+ "tags": {
+  "place": "street",
+  "weather": "rain",
+  "light_fx": "neon lights"
+ },
+ "camera": {
+  "shot_size": "extreme close-up",
+  "dof": "focus on face"
+ },
+ "extra": "",
+ "extra_camera": "",
+ "env_nl": "street, rain, neon lights, seen extreme close-up.",
+ "level": 0,
+ "theme": "面部",
+ "count_lock": "1girl, solo",
+ "aspect": "both",
+ "thumb": null,
+ "env_hint": "street, rain, neon lights, extreme close-up, focus on face",
+ "pose_ref": "pose_near_face_rain",
+ "cleaned": {
+  "version": 4,
+  "policy": "env/pose split",
+  "note": "动作/服装/表情已移入 poses/pose_near_face_rain.json",
+  "removed_tag_keys": [],
+  "removed_extra": [
+   "damp skin",
+   "raindrops on face",
+   "damp hair",
+   "glistening skin",
+   "parted lips",
+   "shoulders"
+  ]
+ }
+}

@@ -1,0 +1,30 @@
+{
+  "id": "pose_pose_seiza_rear_low",
+  "kind": "pose",
+  "name": "跪坐 · 低角度侧后",
+  "group": "pose",
+  "group_title": "🧎 姿势场景",
+  "description": "日式跪坐、臀部朝向镜头，机位压到膝盖以下偏侧 —— 臀线与小腿同时入画",
+  "pose_tags": "seiza, embarrassed, blush, looking back, hips toward viewer, calves, thighs, lower body, ass focus",
+  "pose_nl": "she kneels in seiza with her hips turned toward the viewer. seen from just below knee height and slightly to one side. the curve of her hips and the backs of her calves fill the frame and her cheeks are red.",
+  "camera": {
+    "viewpoint": "from below",
+    "shot_size": "cowboy shot"
+  },
+  "suggest_place": "",
+  "aspect": "portrait",
+  "level": 0,
+  "theme": "姿势·正座",
+  "count_lock": "1girl, solo",
+  "env_ref": "",
+  "source_id": "sc_pose_seiza_rear_low",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": [
+      "slight side angle"
+    ]
+  },
+  "thumb": "thumbs/pose_pose_seiza_rear_low.jpg"
+}

@@ -1,0 +1,16 @@
+{
+ "id": "prop_thermos",
+ "kind": "prop",
+ "name": "保温杯",
+ "version": "1.0",
+ "group": "food",
+ "group_title": "食物饮品",
+ "description": "保温杯，通勤/户外。",
+ "prop_tags": "thermos, holding thermos, flask",
+ "prop_nl": "She unscrews a thermos flask.",
+ "hold": true,
+ "suggest_pose": "holding thermos",
+ "aspect": "both",
+ "thumb": null,
+ "notes": "道具卡只写物，不写持有者/场景/服装；hold=true 时拼配方要配 holding 动词。"
+}

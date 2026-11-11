@@ -1,0 +1,38 @@
+{
+ "id": "sc_pool_ladder",
+ "kind": "scene",
+ "name": "泳池边 · 水珠",
+ "group": "sfw",
+ "group_title": "🏙 全年龄场景搭配",
+ "description": "地点：泳池边；天气：water drop；光线：morning light；氛围：soft focus；景物：pool ladder。（纯环境，不含动作/服装/表情）",
+ "tags": {
+  "place": "poolside",
+  "weather": "water drop",
+  "light_fx": "morning light",
+  "texture_fx": "soft focus"
+ },
+ "camera": {},
+ "extra": "pool ladder",
+ "extra_camera": "",
+ "env_nl": "poolside, water drop, morning light, soft focus, pool ladder.",
+ "level": 1,
+ "theme": "夏",
+ "count_lock": "1girl, solo",
+ "aspect": "portrait",
+ "thumb": null,
+ "env_hint": "poolside, water drop, morning light, soft focus, pool ladder",
+ "pose_ref": "pose_pool_ladder",
+ "cleaned": {
+  "version": 4,
+  "policy": "env/pose split",
+  "note": "动作/服装/表情已移入 poses/pose_pool_ladder.json",
+  "removed_tag_keys": [
+   "pose_base",
+   "pose_risque",
+   "shoes"
+  ],
+  "removed_extra": [
+   "wet hair"
+  ]
+ }
+}

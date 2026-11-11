@@ -1,0 +1,16 @@
+{
+ "id": "prop_chocolate",
+ "kind": "prop",
+ "name": "巧克力",
+ "version": "1.0",
+ "group": "food",
+ "group_title": "食物饮品",
+ "description": "巧克力，情人节/零食。",
+ "prop_tags": "chocolate, holding chocolate, chocolate bar",
+ "prop_nl": "She holds a bar of chocolate.",
+ "hold": true,
+ "suggest_pose": "holding chocolate, eating chocolate",
+ "aspect": "both",
+ "thumb": null,
+ "notes": "道具卡只写物，不写持有者/场景/服装；hold=true 时拼配方要配 holding 动词。"
+}

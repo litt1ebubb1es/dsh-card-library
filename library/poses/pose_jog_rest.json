@@ -1,0 +1,31 @@
+{
+  "id": "pose_jog_rest",
+  "kind": "pose",
+  "name": "慢跑 · 长椅休息（擦边）",
+  "group": "sfw",
+  "group_title": "🏙 全年龄场景搭配",
+  "description": "运动后的微汗与抬腿",
+  "pose_tags": "sitting, leg up, embarrassed, blush, crop top, water bottle, sweat, ",
+  "pose_nl": "she sits on a park bench after a run with a water bottle in one hand and one leg lifted. sweat shines on her skin. the park behind her is bright.",
+  "camera": {},
+  "suggest_place": "park",
+  "aspect": "portrait",
+  "level": 1,
+  "theme": "日常",
+  "count_lock": "1girl, solo",
+  "env_ref": "sc_jog_rest",
+  "source_id": "sc_jog_rest",
+  "clean_note": {
+    "version": 3,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": [],
+    "removed_cloth": [
+      "gym shorts"
+    ],
+    "removed_v5": [
+      "bench"
+    ]
+  },
+  "thumb": "thumbs/pose_jog_rest.jpg"
+}

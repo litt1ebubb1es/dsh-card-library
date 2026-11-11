@@ -1,0 +1,16 @@
+{
+ "id": "prop_apron",
+ "kind": "prop",
+ "name": "围裙",
+ "version": "1.0",
+ "group": "home",
+ "group_title": "家居",
+ "description": "围裙（穿戴类）。",
+ "prop_tags": "apron, wearing apron, waist apron",
+ "prop_nl": "She ties a waist apron over her clothes.",
+ "hold": false,
+ "suggest_pose": "standing, cooking",
+ "aspect": "both",
+ "thumb": null,
+ "notes": "道具卡只写物，不写持有者/场景/服装；hold=true 时拼配方要配 holding 动词。"
+}

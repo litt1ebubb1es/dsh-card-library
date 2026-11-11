@@ -1,0 +1,39 @@
+{
+ "id": "sc_ccc_plain_daily",
+ "kind": "scene",
+ "name": "便利店 · 棚拍",
+ "group": "nsfw",
+ "group_title": "🔞 NSFW 跨槽位配方",
+ "description": "地点：便利店；光线：studio lighting；景物：everyday life, plain；相机：from side。（纯环境，不含动作/服装/表情）",
+ "tags": {
+  "place": "convenience store",
+  "light_fx": "studio lighting"
+ },
+ "camera": {
+  "viewpoint": "from side"
+ },
+ "extra": "everyday life, plain",
+ "extra_camera": "",
+ "env_nl": "convenience store, studio lighting, everyday life, plain, from side.",
+ "level": 2,
+ "theme": "另类日常",
+ "count_lock": "1girl, solo",
+ "aspect": "portrait",
+ "thumb": null,
+ "env_hint": "convenience store, studio lighting, from side, everyday life, plain",
+ "pose_ref": "pose_ccc_plain_daily",
+ "cleaned": {
+  "version": 4,
+  "policy": "env/pose split",
+  "note": "动作/服装/表情已移入 poses/pose_ccc_plain_daily.json",
+  "removed_tag_keys": [
+   "emotion",
+   "n_exposure",
+   "n_state",
+   "pose_base"
+  ],
+  "removed_extra": [
+   "casual nudity"
+  ]
+ }
+}

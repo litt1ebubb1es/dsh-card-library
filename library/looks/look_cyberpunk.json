@@ -1,0 +1,53 @@
+{
+  "id": "look_cyberpunk",
+  "kind": "look",
+  "name": "赛博朋克",
+  "version": "1.0",
+  "description": "机能风外套 + 荧光边 + 工装裤 + 耳机 + LED 挂件，双手插兜",
+  "nsfw": false,
+  "tags": "cyberpunk, techwear jacket, black techwear jacket, neon trim, cyan trim, cargo pants, boots, headphones, LED accessories, utility straps, high collar, ",
+  "fields": {
+    "outfit": "techwear jacket",
+    "top": "techwear jacket",
+    "bottom": "cargo pants",
+    "shoes": "boots",
+    "accessory": "headphones, LED accessories",
+    "cloth_color": "black",
+    "cloth_mat": "synthetic",
+    "cloth_state_sfw": "zipped up"
+  },
+  "body_decor": {
+    "nails": "black nail polish"
+  },
+  "look_notes": {},
+  "artist_segment": "@wlop, @minaba_hideo, ",
+  "style_label": "柔光半写实 (wlop+minaba)",
+  "negative_extra": "",
+  "params": {
+    "model": "miaomiaoHarem_anima8Step10.safetensors",
+    "lora": "anima-turbo-lora-v0.1.safetensors @ 0.4",
+    "clip": "qwen_3_06b_base.safetensors (type=qwen_image)",
+    "vae": "qwen_image_vae.safetensors",
+    "steps": 12,
+    "cfg": 2.0,
+    "sampler": "euler",
+    "scheduler": "simple",
+    "resolution": "832x1216"
+  },
+  "thumb": "thumbs/look_cyberpunk.jpg",
+  "source_dir": "",
+  "look_tags": "cyberpunk, techwear jacket, black techwear jacket, neon trim, cyan trim, cargo pants, boots, headphones, LED accessories, utility straps, high collar, ",
+  "pose_tags": "",
+  "tag_split": {
+    "version": 3,
+    "cloth": 11,
+    "pose": 0,
+    "moved_pose": [],
+    "migrated_to": "pose_cyberpunk"
+  },
+  "legacy_pose_ref": "pose_cyberpunk",
+  "clean_note": {
+    "version": 8,
+    "source": "random36 picked by user"
+  }
+}

@@ -1,0 +1,16 @@
+{
+ "id": "prop_dessert",
+ "kind": "prop",
+ "name": "甜点",
+ "version": "1.0",
+ "group": "food",
+ "group_title": "食物饮品",
+ "description": "甜点杯/芭菲，甜品店。",
+ "prop_tags": "dessert, holding dessert, parfait",
+ "prop_nl": "She holds a glass parfait.",
+ "hold": true,
+ "suggest_pose": "holding dessert, eating",
+ "aspect": "both",
+ "thumb": null,
+ "notes": "道具卡只写物，不写持有者/场景/服装；hold=true 时拼配方要配 holding 动词。"
+}

@@ -1,0 +1,28 @@
+{
+  "id": "pose_les_sm_clamp_weight",
+  "kind": "pose",
+  "name": "乳夹吊重 · 重物垂链",
+  "group": "nsfw",
+  "group_title": "🔞 NSFW 跨槽位配方",
+  "description": "第三人称侧面：她跪坐挺胸、双腕被反绑，两枚乳夹之间连着细链，链下坠着重物、把乳夹拽得绷紧；身上是情趣服装；她翻白眼大张着嘴，口水滴落",
+  "pose_tags": "kneeling, open mouth, partially undressed, ahegao, rolled back eyes, slave, bound wrists, nipple clamps, chain between nipples, nipple weights, drool",
+  "pose_nl": "she kneels with weights hanging from the chain between her nipple clamps. the chain pulls her skin down and drool hangs from her lip. warm light from one side.",
+  "camera": {
+    "viewpoint": "from side",
+    "shot_size": "upper body"
+  },
+  "suggest_place": "bedroom",
+  "aspect": "both",
+  "level": 4,
+  "theme": "BDSM",
+  "count_lock": "1girl, solo",
+  "env_ref": "sc_les_sm_clamp_weight",
+  "source_id": "sc_les_sm_clamp_weight",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_les_sm_clamp_weight.jpg"
+}

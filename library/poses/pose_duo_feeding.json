@@ -1,0 +1,27 @@
+{
+  "id": "pose_duo_feeding",
+  "kind": "pose",
+  "name": "双女 · 喂食",
+  "group": "sfw",
+  "group_title": "🏙 全年龄场景搭配",
+  "description": "一个女孩把食物递到另一个嘴边（擦边）",
+  "pose_tags": "sitting, smile, looking at another, feeding, chopsticks, sharing food, open mouth, bowl",
+  "pose_nl": "one girl holds chopsticks up to the other girl's mouth. the other girl leans forward and opens her mouth to take the food. their eyes meet. seen from the side with both faces in frame.",
+  "camera": {
+    "shot_size": "upper body"
+  },
+  "suggest_place": "cafe",
+  "aspect": "both",
+  "level": 1,
+  "theme": "双女",
+  "count_lock": "2girls, yuri",
+  "env_ref": "sc_duo_feeding",
+  "source_id": "sc_duo_feeding",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_duo_feeding.jpg"
+}

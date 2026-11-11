@@ -1,0 +1,54 @@
+{
+  "id": "look_qipao",
+  "kind": "look",
+  "name": "中华旗袍",
+  "version": "1.0",
+  "description": "藕荷色旗袍 + 白色盘扣绣纹 + 高开衩 + 立领 + 白玉发簪 + 珍珠手串",
+  "nsfw": false,
+  "tags": "qipao, cheongsam, pale lavender qipao, white embroidery, white trim, high slit, mandarin collar, white flower hairpin, pearl bracelet, side slit, fitted dress, floral embroidery, ",
+  "fields": {
+    "outfit": "qipao",
+    "top": "qipao",
+    "bottom": "qipao",
+    "shoes": "high heels",
+    "accessory": "white flower hairpin, pearl bracelet",
+    "cloth_color": "pale lavender",
+    "cloth_mat": "silk",
+    "cloth_state_sfw": "fitted"
+  },
+  "body_decor": {
+    "makeup": "light makeup",
+    "nails": "french manicure"
+  },
+  "look_notes": {},
+  "artist_segment": "@wlop, @minaba_hideo, ",
+  "style_label": "柔光半写实 (wlop+minaba)",
+  "negative_extra": "",
+  "params": {
+    "model": "miaomiaoHarem_anima8Step10.safetensors",
+    "lora": "anima-turbo-lora-v0.1.safetensors @ 0.4",
+    "clip": "qwen_3_06b_base.safetensors (type=qwen_image)",
+    "vae": "qwen_image_vae.safetensors",
+    "steps": 12,
+    "cfg": 2.0,
+    "sampler": "euler",
+    "scheduler": "simple",
+    "resolution": "832x1216"
+  },
+  "thumb": "thumbs/look_qipao.jpg",
+  "source_dir": "",
+  "look_tags": "qipao, cheongsam, pale lavender qipao, white embroidery, white trim, high slit, mandarin collar, white flower hairpin, pearl bracelet, side slit, fitted dress, floral embroidery, ",
+  "pose_tags": "",
+  "tag_split": {
+    "version": 3,
+    "cloth": 12,
+    "pose": 0,
+    "moved_pose": [],
+    "migrated_to": "pose_qipao"
+  },
+  "legacy_pose_ref": "pose_qipao",
+  "clean_note": {
+    "version": 8,
+    "source": "random36 c-version picked by user"
+  }
+}

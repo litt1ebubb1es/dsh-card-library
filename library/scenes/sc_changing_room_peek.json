@@ -1,0 +1,35 @@
+{
+ "id": "sc_changing_room_peek",
+ "kind": "scene",
+ "name": "更衣室 · 镜前",
+ "group": "sfw",
+ "group_title": "🏙 全年龄场景搭配",
+ "description": "地点：更衣室；景物：clothes rack, mirror；相机：from above。（纯环境，不含动作/服装/表情）",
+ "tags": {
+  "place": "changing room"
+ },
+ "camera": {
+  "viewpoint": "from above"
+ },
+ "extra": "clothes rack, mirror",
+ "extra_camera": "",
+ "env_nl": "changing room, clothes rack, mirror, from above.",
+ "level": 1,
+ "theme": "日常",
+ "count_lock": "1girl, solo",
+ "aspect": "portrait",
+ "thumb": null,
+ "env_hint": "changing room, from above, clothes rack, mirror",
+ "pose_ref": "pose_changing_room_peek",
+ "cleaned": {
+  "version": 4,
+  "policy": "env/pose split",
+  "note": "动作/服装/表情已移入 poses/pose_changing_room_peek.json",
+  "removed_tag_keys": [
+   "emotion",
+   "outfit",
+   "pose_risque"
+  ],
+  "removed_extra": []
+ }
+}

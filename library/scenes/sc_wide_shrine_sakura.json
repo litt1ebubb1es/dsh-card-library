@@ -1,0 +1,37 @@
+{
+ "id": "sc_wide_shrine_sakura",
+ "kind": "scene",
+ "name": "神社 · 远景",
+ "group": "sfw",
+ "group_title": "🏙 全年龄场景搭配",
+ "description": "地点：神社；天气：cherry blossoms；光线：soft lighting；景物：scenery, torii gate, stone steps, falling petals；相机：from behind / wide shot / landscape / wide shot, full body, small figure, vast landscape, sense of scale。（纯环境，不含动作/服装/表情）",
+ "tags": {
+  "place": "shrine",
+  "weather": "cherry blossoms",
+  "light_fx": "soft lighting"
+ },
+ "camera": {
+  "viewpoint": "from behind",
+  "shot_size": "wide shot",
+  "comp": "landscape"
+ },
+ "extra": "scenery, torii gate, stone steps, falling petals",
+ "extra_camera": "wide shot, full body, small figure, vast landscape, sense of scale",
+ "env_nl": "shrine, cherry blossoms, soft lighting, scenery, torii gate, stone steps, falling petals, wide shot, full body, small figure, vast landscape, sense of scale, from behind.",
+ "level": 0,
+ "theme": "远景",
+ "count_lock": "1girl, solo",
+ "aspect": "landscape",
+ "thumb": null,
+ "env_hint": "shrine, cherry blossoms, soft lighting, wide shot, from behind, landscape, scenery, torii gate, stone steps, falling petals, wide shot, full body, small figure, vast landscape, sense of scale",
+ "pose_ref": "pose_wide_shrine_sakura",
+ "cleaned": {
+  "version": 4,
+  "policy": "env/pose split",
+  "note": "动作/服装/表情已移入 poses/pose_wide_shrine_sakura.json",
+  "removed_tag_keys": [
+   "pose_base"
+  ],
+  "removed_extra": []
+ }
+}

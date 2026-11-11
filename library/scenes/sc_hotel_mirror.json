@@ -1,0 +1,36 @@
+{
+ "id": "sc_hotel_mirror",
+ "kind": "scene",
+ "name": "旅馆房间 · 镜前",
+ "group": "sfw",
+ "group_title": "🏙 全年龄场景搭配",
+ "description": "地点：旅馆房间；道具：mirror；景物：mirror as backdrop, hotel；相机：from behind。（纯环境，不含动作/服装/表情）",
+ "tags": {
+  "place": "hotel room",
+  "prop": "mirror"
+ },
+ "camera": {
+  "viewpoint": "from behind"
+ },
+ "extra": "mirror as backdrop, hotel",
+ "extra_camera": "",
+ "env_nl": "hotel room, mirror, mirror as backdrop, hotel, from behind.",
+ "level": 1,
+ "theme": "室内",
+ "count_lock": "1girl, solo",
+ "aspect": "portrait",
+ "thumb": null,
+ "env_hint": "hotel room, mirror, from behind, mirror as backdrop, hotel",
+ "pose_ref": "pose_hotel_mirror",
+ "cleaned": {
+  "version": 4,
+  "policy": "env/pose split",
+  "note": "动作/服装/表情已移入 poses/pose_hotel_mirror.json",
+  "removed_tag_keys": [
+   "emotion",
+   "outfit",
+   "pose_risque"
+  ],
+  "removed_extra": []
+ }
+}

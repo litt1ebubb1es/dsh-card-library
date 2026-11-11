@@ -1,0 +1,27 @@
+{
+  "id": "pose_beach_volley",
+  "kind": "pose",
+  "name": "沙滩排球 · 跃起扣杀（擦边）",
+  "group": "sfw",
+  "group_title": "🏙 全年龄场景搭配",
+  "description": "比基尼与沙粒的动感（跳起、单臂后引过头扣杀、双膝后屈）",
+  "pose_tags": "arched back, jumping, hand up, bare feet, volleyball, sweat",
+  "pose_nl": "she leaps off the sand at the net with both knees bent up behind her. her right arm is cocked back above her head ready to strike the ball and her left arm is held out for balance. sand sprays up under her feet and the ball hangs in the air just in front of her raised hand. morning light rakes across the beach.",
+  "camera": {},
+  "suggest_place": "beach",
+  "aspect": "portrait",
+  "level": 1,
+  "theme": "夏",
+  "count_lock": "1girl, solo",
+  "env_ref": "sc_beach_volley",
+  "source_id": "sc_beach_volley",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [
+      "sand"
+    ],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_beach_volley.jpg"
+}

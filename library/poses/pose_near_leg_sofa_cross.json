@@ -1,0 +1,31 @@
+{
+  "id": "pose_near_leg_sofa_cross",
+  "kind": "pose",
+  "name": "高跟鞋沙发翘腿",
+  "group": "near",
+  "group_title": "🔍 特写搭配",
+  "description": "沙发上翘腿，人物穿高跟鞋（细高跟/绑带/厚底/尖头款式随机），侧向拍小腿与脚踝",
+  "pose_tags": "crossed legs, calves, ankles, thighs, head out of frame, legs focus, lower body",
+  "pose_nl": "she crosses her legs on the couch in high heels. the frame holds her calves and ankles from the side. warm light lies across her thighs.",
+  "camera": {
+    "viewpoint": "from side",
+    "shot_size": "extreme close-up"
+  },
+  "suggest_place": "",
+  "aspect": "both",
+  "level": 0,
+  "theme": "腿部",
+  "count_lock": "1girl, solo",
+  "env_ref": "",
+  "source_id": "sc_near_leg_sofa_cross",
+  "clean_note": {
+    "version": 3,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": [],
+    "removed_cloth": [
+      "high heels"
+    ]
+  },
+  "thumb": "thumbs/pose_near_leg_sofa_cross.jpg"
+}

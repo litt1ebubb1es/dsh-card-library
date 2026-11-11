@@ -1,0 +1,33 @@
+{
+  "id": "pose_les_sm_wax_bound",
+  "kind": "pose",
+  "name": "床上滴蜡 · 手持蜡烛",
+  "group": "nsfw",
+  "group_title": "🔞 NSFW 跨槽位配方",
+  "description": "她仰躺在床上、双手被举过头顶绑在床头、双腿微曲；身上是情趣服装、胸前有调教道具；戴黑色皮手套的手举着一支燃着的蜡烛，蜡油正沿胸口与小腹往下淌；她翻白眼大张着嘴，泪与汗交叠",
+  "pose_tags": "on back, open mouth, partially undressed, ahegao, rolled back eyes, slave, shibari, bound wrists, wrists bound above her head, candle wax, wax dripping, holding candle, female hand, pov, sweat",
+  "pose_nl": "she lies on her back with her wrists bound above her head. a gloved hand holds a candle above her and wax drips onto her skin. candlelight flickers across the bed.",
+  "camera": {
+    "viewpoint": "pov hands",
+    "shot_size": "cowboy shot"
+  },
+  "suggest_place": "",
+  "aspect": "landscape",
+  "level": 4,
+  "theme": "BDSM",
+  "count_lock": "1girl, solo",
+  "env_ref": "",
+  "source_id": "sc_les_sm_wax_bound",
+  "clean_note": {
+    "version": 3,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": [],
+    "removed_cloth": [
+      "black leather gloves",
+      "black gloves",
+      "leather gloves"
+    ]
+  },
+  "thumb": "thumbs/pose_les_sm_wax_bound.jpg"
+}

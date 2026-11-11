@@ -1,0 +1,16 @@
+{
+ "id": "prop_hamburger",
+ "kind": "prop",
+ "name": "汉堡",
+ "version": "1.0",
+ "group": "food",
+ "group_title": "食物饮品",
+ "description": "汉堡，快餐店（n46）。",
+ "prop_tags": "hamburger, holding hamburger, eating hamburger",
+ "prop_nl": "She bites into a hamburger.",
+ "hold": true,
+ "suggest_pose": "holding hamburger, eating, biting",
+ "aspect": "both",
+ "thumb": null,
+ "notes": "道具卡只写物，不写持有者/场景/服装；hold=true 时拼配方要配 holding 动词。"
+}

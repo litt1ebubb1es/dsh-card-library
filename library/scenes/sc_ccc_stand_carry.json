@@ -1,0 +1,43 @@
+{
+ "id": "sc_ccc_stand_carry",
+ "kind": "scene",
+ "name": "走廊 · 侧向光线",
+ "group": "nsfw",
+ "group_title": "🔞 NSFW 跨槽位配方",
+ "description": "地点：走廊；相机：from side。（纯环境，不含动作/服装/表情）",
+ "tags": {
+  "place": "hallway"
+ },
+ "camera": {
+  "viewpoint": "from side"
+ },
+ "extra": "",
+ "extra_camera": "",
+ "env_nl": "hallway, from side.",
+ "level": 3,
+ "theme": "双人正戏",
+ "count_lock": "1girl, 1boy, hetero",
+ "aspect": "landscape",
+ "thumb": null,
+ "env_hint": "hallway, from side",
+ "pose_ref": "pose_ccc_stand_carry",
+ "cleaned": {
+  "version": 4,
+  "policy": "env/pose split",
+  "note": "动作/服装/表情已移入 poses/pose_ccc_stand_carry.json",
+  "removed_tag_keys": [
+   "arms_hands",
+   "n_act",
+   "n_orgasm",
+   "n_state"
+  ],
+  "removed_extra": [
+   "sex from behind",
+   "lifted by her hips",
+   "legs wrapped around his waist",
+   "carrying her",
+   "standing carry",
+   "against wall"
+  ]
+ }
+}

@@ -1,0 +1,49 @@
+{
+ "id": "style_manga_fullcolor_v1",
+ "name": "★全彩条漫（ciloranko+as109）",
+ "kind": "style",
+ "version": "1.0",
+ "description": "参考用户 2026-11-11 给的三话日式全彩条漫（255485 / 227080 / 226333，共 76 页 webp）复刻的 text2img 画风。特征：柔喷枪上色（不是赛璐璐硬边）、细彩线、紫蓝渐变瞳、大而圆的眼睛 + 厚睫毛、粉白皮肤、明亮高 key 底、光斑 sparkle、背景大量留白。与 ★黑白漫画墨线（style_manga_ink_v1）互补：那张要底图、这张纯 text2img。",
+ "quality_prefix": "masterpiece, best quality, score 7, score 9, very aesthetic, ultra detailed, ",
+ "artist_segment": "@ciloranko, @as109, ",
+ "render": "full color, comic, colored lineart, thin colored lineart, brown lineart, soft shading, airbrush shading, smooth gradient shading, detailed eyes, glossy eyes, large eyes, round eyes, big irises, thick eyelashes, upper eyelashes, eyeliner, pale pink skin, fair skin, soft blush, blush on cheeks, clean lineart, delicate lines, neutral color balance, natural color, white light, warm white lighting, bright background, white background, pale pink background, light particles, sparkle, ",
+ "face_light": "face softly lit, even facial lighting, gentle highlight on cheek and nose, soft blush on cheeks, no heavy shadow on face, catchlight in both eyes, both eyes visible, ",
+ "scene_hint": "bright background, white background, pale pink background, simple background, light particles, sparkle, bloom-free clean backdrop, ",
+ "negative": "worst quality, low quality, score 1, score 2, score 3, lowres, jpeg artifacts, monochrome, greyscale, black and white, manga, screentone, halftone, flat colors, cel shading, hard shadow, harsh shadow, purple hair, blue hair, pink hair, gradient hair, rainbow hair, purple tint, magenta cast, color cast, purple lighting, blue tint, cyan tint, overall purple, violet wash, pink wash, strong cyan lighting, neon rim light, blue glow outline, blue line on face, glowing line across face, light streak on face, narrow eyes, small eyes, slit eyes, dark skin, tan skin, oil painting, impasto, thick paint, rough brush strokes, photorealistic, 3d render, realistic, watermark, signature, artist name, text, logo, speech bubble, extra eyes, deformed body, bad proportions, bad hands, extra fingers, multiple girls, 2girls, male, 1boy, nude, naked, ",
+ "post": {
+  "crisp": {
+   "contrast": 1.02,
+   "sat": 1,
+   "sharpen": 0.5
+  },
+  "note": "只做轻微 crisp。不要 haze、不要 bloom、不要 grain —— 这套画风本身就是干净的柔喷枪，任何雾化都会把它弄脏（n68 的 bloom 加在明亮画风上会糊成一片）。"
+ },
+ "params": {
+  "model": "miaomiaoHarem_anima8Step10.safetensors",
+  "lora": "anima-turbo-lora-v0.1.safetensors @ 0.4",
+  "clip": "qwen_3_06b_base.safetensors (type=qwen_image)",
+  "vae": "qwen_image_vae.safetensors",
+  "steps": 12,
+  "cfg": 2,
+  "sampler": "euler",
+  "scheduler": "simple",
+  "resolution": "832x1216"
+ },
+ "thumb": "thumbs/style_manga_fullcolor_v1.jpg",
+ "tags": [
+  "全彩",
+  "条漫",
+  "柔喷枪",
+  "渐变瞳",
+  "粉白肤",
+  "高key",
+  "细彩线",
+  "text2img"
+ ],
+ "notes": "四轮迭代出来的五条硬规矩：① 头发绝不能写 gradient hair —— 参考漫画是纯黑发，写渐变会整片紫蓝（第一轮六张全翻车）。改成 black hair + glossy black hair，负面锁 purple/blue/pink/gradient/rainbow hair。② 眼睛要显大靠 large eyes + round eyes + big irises + thick eyelashes 四件套，单写 detailed eyes 出来是细长眼。负面同时锁 narrow/small/slit eyes。③ 皮肤要 pale pink skin + fair skin + soft blush，否则会出成偏冷的惨白。④ 第三轮最容易翻的车是整张图紫红偏色（R-B 差 0.15+），必须正向写 neutral color balance + natural color + white light，负面锁 purple tint / magenta cast / color cast / violet wash / pink wash。修完 R-B 降到 0.037-0.062。⑤ 脸上会出现一道蓝色光带（来自 light particles + 高 key 打光），负面锁 blue line on face / glowing line across face / light streak on face。画师组合：@ciloranko+@as109 最贴（R-B 0.056 / sat 0.153），@mikeou+@anmi 次之（更亮更白），@ciloranko+@ke-ta 偏冷。",
+ "source_refs": [
+  "255485（25 页 webp，日式全彩条漫）",
+  "227080（26 页 webp）",
+  "226333（25 页 webp）"
+ ]
+}

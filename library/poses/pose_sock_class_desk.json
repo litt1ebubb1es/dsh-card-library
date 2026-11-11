@@ -1,0 +1,33 @@
+{
+  "id": "pose_sock_class_desk",
+  "kind": "pose",
+  "name": "教室 · 课桌前的过膝袜",
+  "group": "sfw",
+  "group_title": "🏙 全年龄场景搭配",
+  "description": "教室课桌旁坐着，水手服 + 室内鞋，过膝袜/及膝袜在 socks 里随机。",
+  "pose_tags": "sitting, smile, looking at viewer, closed mouth, serafuku, uwabaki, sitting at desk",
+  "pose_nl": "she sits sideways on the classroom desk with her legs crossed and her hands on the edge. seen from above so the thighhighs and the desk surface fill the frame. she smiles up at the viewer.",
+  "camera": {
+    "viewpoint": "from above",
+    "shot_size": "cowboy shot"
+  },
+  "suggest_place": "classroom",
+  "aspect": "portrait",
+  "level": 0,
+  "theme": "丝袜",
+  "count_lock": "1girl, solo",
+  "env_ref": "sc_sock_class_desk",
+  "source_id": "sc_sock_class_desk",
+  "clean_note": {
+    "version": 3,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [
+      "sunlight through window"
+    ],
+    "removed_camera": [],
+    "removed_cloth": [
+      "thighhighs"
+    ]
+  },
+  "thumb": "thumbs/pose_sock_class_desk.jpg"
+}

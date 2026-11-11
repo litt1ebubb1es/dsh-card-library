@@ -1,0 +1,28 @@
+{
+  "id": "pose_near_eye_lash",
+  "kind": "pose",
+  "name": "睫毛与虹膜",
+  "group": "near",
+  "group_title": "🔍 特写搭配",
+  "description": "轮廓光下的睫毛根根分明，瞳孔里有反光",
+  "pose_tags": "eyelashes, iris, pupil, reflection in eye, catchlight, head and shoulders only, hands out of frame",
+  "pose_nl": "extreme close-up of one eye. each eyelash casts a small shadow and a window is mirrored in the iris. rim light traces the lid.",
+  "camera": {
+    "shot_size": "extreme close-up",
+    "dof": "depth of field, blurry background"
+  },
+  "suggest_place": "",
+  "aspect": "both",
+  "level": 0,
+  "theme": "眼与唇",
+  "count_lock": "1girl, solo",
+  "env_ref": "",
+  "source_id": "sc_near_eye_lash",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_near_eye_lash.jpg"
+}

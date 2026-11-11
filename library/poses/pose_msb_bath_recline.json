@@ -1,0 +1,29 @@
+{
+  "id": "pose_msb_bath_recline",
+  "kind": "pose",
+  "name": "自慰 · 浴缸开腿",
+  "group": "nsfw",
+  "group_title": "🔞 NSFW 跨槽位配方",
+  "description": "浴缸里仰躺开腿",
+  "pose_tags": "on back, embarrassed, blush, completely nude, pubic hair, pussy, solo, bath, legs apart",
+  "pose_nl": "she reclines in the bathtub with her legs apart and the water up to her hips. seen from above so steam and the water surface fill the frame. her hair is damp against the porcelain.",
+  "camera": {
+    "viewpoint": "from above"
+  },
+  "suggest_place": "",
+  "aspect": "landscape",
+  "level": 2,
+  "theme": "挖矿",
+  "count_lock": "1girl, solo",
+  "env_ref": "",
+  "source_id": "sc_msb_bath_recline",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [
+      "water"
+    ],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_msb_bath_recline.jpg"
+}

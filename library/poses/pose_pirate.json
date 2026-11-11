@@ -1,0 +1,22 @@
+{
+  "id": "pose_pirate",
+  "kind": "pose",
+  "name": "海盗船长",
+  "version": 1,
+  "group": "from_look",
+  "group_title": "来自造型卡",
+  "description": "景别：full body；动作：standing, hand on hip, looking to the side, confident smirk, closed mouth, full body。",
+  "pose_tags": "standing, hand on hip, looking to the side, confident smirk, closed mouth",
+  "pose_nl": "",
+  "camera": {
+    "shot_size": "full body",
+    "viewpoint": "from front"
+  },
+  "suggest_place": "lighthouse",
+  "aspect": "portrait",
+  "thumb": "thumbs/pose_pirate.jpg",
+  "env_ref": null,
+  "source": "look_pose_v1",
+  "legacy_look": "look_pirate",
+  "notes": "由 random36b 挑图反推（v4）。动作卡只讲做什么，穿什么归造型卡。"
+}

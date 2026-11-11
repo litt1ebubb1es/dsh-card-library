@@ -1,0 +1,67 @@
+{
+  "id": "blue_fat_fish",
+  "kind": "character",
+  "name": "蓝色大肥鱼",
+  "version": 2,
+  "aliases": [
+    "大肥鱼",
+    "蓝鱼",
+    "blue fat fish"
+  ],
+  "description": "深蓝发女仆装少女，鲸鱼主题，带鱼鳍耳和鲸鱼尾巴。Q 版为主，也有正常比例版本。",
+  "key_traits": [
+    "深蓝紫长发，发尾青蓝渐变",
+    "头顶一根呆毛（ahoge）",
+    "白色蕾丝女仆头饰（宽大褶皱边，两侧蓝蝴蝶结）",
+    "蓝眼睛，大眼睛，瞳孔有鲸鱼尾巴形状的高光",
+    "鱼鳍状耳饰（白色蕾丝边 + 蓝色鳍片）",
+    "鲸鱼尾巴（蓝色，从裙后伸出）",
+    "深蓝女仆裙 + 白色荷叶边围裙",
+    "围裙正面印着蓝鲸图案",
+    "领口黑蝴蝶结 + 蓝宝石胸针",
+    "白色蕾丝袖口",
+    "白色过膝袜 + 玛丽珍鞋"
+  ],
+  "common_mistakes": [],
+  "quality_prefix": "masterpiece, best quality, score_7, score_9, very aesthetic, ultra detailed, highly detailed,",
+  "character_segment": "slim, pale skin, blue hair, long hair, gradient hair, blue eyes, ahoge, fish ears, fin ears, whale tail, fish tail, 1girl, solo, ",
+  "character_segment_closed_eyes": "slim, pale skin, blue hair, long hair, gradient hair, blue eyes, ahoge, fish ears, fin ears, whale tail, fish tail, 1girl, solo, ",
+  "negative": "worst quality, low quality, score_1, score_2, score_3, lowres, jpeg artifacts, cel shading, painterly, 3d render, deformed body, bad proportions, bad hands, extra fingers, missing fingers, extra limbs, extra tails, watermark, signature, text, logo, artist name",
+  "params": {
+    "model": "miaomiaoHarem_anima8Step10.safetensors",
+    "lora": "anima-turbo-lora-v0.1.safetensors @ 0.4",
+    "clip": "qwen_3_06b_base.safetensors (type=qwen_image)",
+    "vae": "qwen_image_vae.safetensors",
+    "steps": 12,
+    "cfg": 2.0,
+    "sampler": "euler",
+    "scheduler": "simple",
+    "resolution": "832x1216",
+    "note": "参数沿用 anima 通用配置，未针对该角色单独调优"
+  },
+  "notes": {
+    "chibi_vs_normal": "chibi_prefix 加进去就是 Q 版，去掉是正常比例。两者不要混用",
+    "whale_theme": "鲸鱼元素是核心：围裙上的鲸鱼图案、鲸鱼尾巴、鳍状耳，三个都要写",
+    "gradient_hair": "发尾青蓝渐变容易丢，需要强调 gradient hair"
+  },
+  "thumb": "thumbs/blue_fat_fish.jpg",
+  "source_dir": "_assets/characters/blue_fat_fish",
+  "body_segment": "slim, pale skin, ",
+  "feature_segment": "blue hair, long hair, gradient hair, blue eyes, ahoge, fish ears, fin ears, whale tail, fish tail, 1girl, solo, ",
+  "look_segment": "",
+  "dropped_from_character": [
+    "white frilled maid headdress",
+    "blue bow",
+    "maid outfit",
+    "navy blue dress",
+    "white apron",
+    "whale print on apron",
+    "black bowtie",
+    "blue gem brooch",
+    "white lace cuffs",
+    "white thighhighs",
+    "mary janes"
+  ],
+  "default_look": "look_fish_maid",
+  "split_note": "原 character_segment 里 12 个服装词已迁到造型卡 look_fish_maid。角色卡现在只剩种族特征 + 头发眼睛 + 尾巴。"
+}

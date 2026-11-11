@@ -1,0 +1,29 @@
+{
+  "id": "pose_ccc_rbq_wall",
+  "kind": "pose",
+  "name": "RBQ · 悬吊共用",
+  "group": "nsfw",
+  "group_title": "🔞 NSFW 跨槽位配方",
+  "description": "绳缚悬吊：她被吊在半空、双臂上举绑住、双腿被拉开，脚不落地；一人在她面前按头口交、一人在身后后入，侧视机位 + 横构图；地上散着她被脱下的衣物。⚠️ 已放弃「卡在木板洞里」：实测一圈木墙会被画成破栅栏、洞口消失，结构服从度太低",
+  "pose_tags": "open mouth, completely nude, mind break, bukkake, shibari, suspension, suspended in the air, tied up, rope bondage, bound arms, legs spread, blowjob, fellatio, sex from behind, anal, two men, one in front and one behind, clothes on the floor",
+  "pose_nl": "she hangs in the air from ropes tied around her chest and under her thighs. her arms are bound above her head and her legs are pulled apart so her feet do not touch the ground and the ropes take all of her weight. one man stands in front of her and holds her head while she takes him in her mouth. another man is behind her and pushes into her from behind. the view is from the side so both men and her whole hanging body stay in the frame. her clothes lie crumpled on the floor under her and she is not wearing any of them.",
+  "camera": {
+    "viewpoint": "from side",
+    "shot_size": "full body",
+    "comp": "landscape"
+  },
+  "suggest_place": "ruins",
+  "aspect": "landscape",
+  "level": 4,
+  "theme": "RBQ",
+  "count_lock": "1girl, multiple boys, group sex",
+  "env_ref": "sc_ccc_rbq_wall",
+  "source_id": "sc_ccc_rbq_wall",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_ccc_rbq_wall.jpg"
+}

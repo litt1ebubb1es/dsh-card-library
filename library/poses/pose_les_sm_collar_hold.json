@@ -1,0 +1,34 @@
+{
+  "id": "pose_les_sm_collar_hold",
+  "kind": "pose",
+  "name": "项圈 · 手持牵绳",
+  "group": "nsfw",
+  "group_title": "🔞 NSFW 跨槽位配方",
+  "description": "近景：她跪着、双手反绑在身后，只戴项圈与乳夹；戴黑色皮手套的手握紧项圈绳端，把她往镜头方向拉，颈侧皮肤被勒出浅痕；她翻白眼含泪被拉着抬头，嘴角挂着口水",
+  "pose_tags": "kneeling, parted lips, nude with accessories only, ahegao, rolled back eyes, bound wrists, nipple clamps, holding leash, female hand, pov, drool, tears",
+  "pose_nl": "she kneels in candlelight with a collar around her neck and a leash pulled tight by a gloved hand. clamps are on her nipples and her wrists are bound. tears and drool run down her face.",
+  "camera": {
+    "viewpoint": "pov hands",
+    "shot_size": "close-up"
+  },
+  "suggest_place": "bedroom",
+  "aspect": "both",
+  "level": 4,
+  "theme": "BDSM",
+  "count_lock": "1girl, solo",
+  "env_ref": "sc_les_sm_collar_hold",
+  "source_id": "sc_les_sm_collar_hold",
+  "clean_note": {
+    "version": 4,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": [],
+    "removed_cloth": [
+      "black leather gloves",
+      "black gloves",
+      "leather gloves",
+      "collar and leash"
+    ]
+  },
+  "thumb": "thumbs/pose_les_sm_collar_hold.jpg"
+}

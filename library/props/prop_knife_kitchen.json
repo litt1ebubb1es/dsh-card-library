@@ -1,0 +1,16 @@
+{
+ "id": "prop_knife_kitchen",
+ "kind": "prop",
+ "name": "菜刀",
+ "version": "1.0",
+ "group": "home",
+ "group_title": "家居",
+ "description": "菜刀，厨房。",
+ "prop_tags": "knife, holding knife, kitchen knife",
+ "prop_nl": "She holds a kitchen knife over a cutting board.",
+ "hold": true,
+ "suggest_pose": "holding knife, cutting",
+ "aspect": "both",
+ "thumb": null,
+ "notes": "道具卡只写物，不写持有者/场景/服装；hold=true 时拼配方要配 holding 动词。"
+}

@@ -1,0 +1,32 @@
+{
+  "id": "pose_classroom_openwin",
+  "kind": "pose",
+  "name": "学园 · 开窗风起（擦边）",
+  "group": "sfw",
+  "group_title": "🏙 全年龄场景搭配",
+  "description": "教室窗边被风掀起的裙摆",
+  "pose_tags": "standing, surprised, skirt fluttering, wind blowing skirt",
+  "pose_nl": "she stands by the open classroom window and the wind pushes her skirt against her legs. the curtain lifts and the papers on the desks move. she turns her head toward the window with wide eyes.",
+  "camera": {},
+  "suggest_place": "classroom",
+  "aspect": "portrait",
+  "level": 0,
+  "theme": "约会",
+  "count_lock": "1girl, solo",
+  "env_ref": "sc_classroom_openwin",
+  "source_id": "sc_classroom_openwin",
+  "clean_note": {
+    "version": 3,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [
+      "curtain blowing",
+      "desk",
+      "after school"
+    ],
+    "removed_camera": [],
+    "removed_cloth": [
+      "school uniform"
+    ]
+  },
+  "thumb": "thumbs/pose_classroom_openwin.jpg"
+}

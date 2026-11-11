@@ -1,0 +1,33 @@
+{
+  "id": "pose_flower_field",
+  "kind": "pose",
+  "name": "花田 · 旋转",
+  "group": "sfw",
+  "group_title": "🏙 全年龄场景搭配",
+  "description": "逆光花田里转圈",
+  "pose_tags": "standing, spinning, smile",
+  "pose_nl": "she turns in place in the flower field with her dress swinging out. petals lift into the air around her and the sun comes through them. seen from below so the sky opens behind her.",
+  "camera": {
+    "viewpoint": "from below"
+  },
+  "suggest_place": "flower field",
+  "aspect": "portrait",
+  "level": 0,
+  "theme": "户外",
+  "count_lock": "1girl, solo",
+  "env_ref": "sc_flower_field",
+  "source_id": "sc_flower_field",
+  "clean_note": {
+    "version": 3,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [
+      "petals in air",
+      "sunlight"
+    ],
+    "removed_camera": [],
+    "removed_cloth": [
+      "dress"
+    ]
+  },
+  "thumb": "thumbs/pose_flower_field.jpg"
+}

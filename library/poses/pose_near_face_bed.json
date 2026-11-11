@@ -1,0 +1,30 @@
+{
+  "id": "pose_near_face_bed",
+  "kind": "pose",
+  "name": "床上侧卧 · 脸",
+  "group": "near",
+  "group_title": "🔍 特写搭配",
+  "description": "侧卧在枕边，晨光斜照面部",
+  "pose_tags": "face, eyes, cheek, messy hair, shoulders",
+  "pose_nl": "she lies on her side on the pillow with messy hair across her cheek. morning light falls over the sheet and her shoulder. her eyes are half open.",
+  "camera": {
+    "shot_size": "close-up",
+    "comp": "portrait"
+  },
+  "suggest_place": "",
+  "aspect": "both",
+  "level": 0,
+  "theme": "面部",
+  "count_lock": "1girl, solo",
+  "env_ref": "",
+  "source_id": "sc_near_face_bed",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [
+      "pillow"
+    ],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_near_face_bed.jpg"
+}

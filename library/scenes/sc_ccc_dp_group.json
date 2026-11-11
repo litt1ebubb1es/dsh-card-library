@@ -1,0 +1,42 @@
+{
+ "id": "sc_ccc_dp_group",
+ "kind": "scene",
+ "name": "卧室 · 多人俯拍",
+ "group": "nsfw",
+ "group_title": "🔞 NSFW 跨槽位配方",
+ "description": "地点：卧室；相机：from above。（纯环境，不含动作/服装/表情）",
+ "tags": {
+  "place": "bedroom"
+ },
+ "camera": {
+  "viewpoint": "from above"
+ },
+ "extra": "",
+ "extra_camera": "",
+ "env_nl": "bedroom, from above.",
+ "level": 4,
+ "theme": "群体",
+ "count_lock": "1girl, multiple boys, group sex",
+ "aspect": "landscape",
+ "thumb": null,
+ "env_hint": "bedroom, from above",
+ "pose_ref": "pose_ccc_dp_group",
+ "cleaned": {
+  "version": 4,
+  "policy": "env/pose split",
+  "note": "动作/服装/表情已移入 poses/pose_ccc_dp_group.json",
+  "removed_tag_keys": [
+   "n_act",
+   "n_cum",
+   "n_orgasm",
+   "n_pos",
+   "n_state"
+  ],
+  "removed_extra": [
+   "two boys",
+   "spitroast",
+   "group sex",
+   "surrounded"
+  ]
+ }
+}

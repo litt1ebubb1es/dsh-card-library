@@ -1,0 +1,32 @@
+{
+  "id": "pose_pose_one_leg_stand",
+  "kind": "pose",
+  "name": "单腿站立",
+  "group": "pose",
+  "group_title": "🧎 姿势场景",
+  "description": "单腿支撑、另一腿抬起，低机位拉长身形，负空间留白",
+  "pose_tags": "standing on one leg, standing",
+  "pose_nl": "she stands on one leg with the other lifted and bent behind her. seen from below so her standing leg runs the full height of the frame. she keeps her balance without moving.",
+  "camera": {
+    "viewpoint": "from below",
+    "shot_size": "full body",
+    "comp": "negative space"
+  },
+  "suggest_place": "",
+  "aspect": "portrait",
+  "level": 0,
+  "theme": "姿势·站姿",
+  "count_lock": "1girl, solo",
+  "env_ref": "",
+  "source_id": "sc_pose_one_leg_stand",
+  "clean_note": {
+    "version": 4,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": [],
+    "from_nl": [
+      "standing"
+    ]
+  },
+  "thumb": "thumbs/pose_pose_one_leg_stand.jpg"
+}

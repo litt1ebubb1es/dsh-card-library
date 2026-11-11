@@ -1,0 +1,31 @@
+{
+  "id": "pose_gymnastics_split",
+  "kind": "pose",
+  "name": "体操 · 站立一字马（擦边）",
+  "group": "sfw",
+  "group_title": "🏙 全年龄场景搭配",
+  "description": "柔韧度展示的绷直腿线",
+  "pose_tags": "standing split, leg up, flexibility",
+  "pose_nl": "she holds a standing split on the rooftop with one leg raised high beside her head. her leotard stretches with the movement. morning light from the side.",
+  "camera": {
+    "viewpoint": "from side"
+  },
+  "suggest_place": "rooftop",
+  "aspect": "portrait",
+  "level": 1,
+  "theme": "日常",
+  "count_lock": "1girl, solo",
+  "env_ref": "sc_gymnastics_split",
+  "source_id": "sc_gymnastics_split",
+  "clean_note": {
+    "version": 3,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": [],
+    "removed_cloth": [
+      "gym uniform",
+      "leotard"
+    ]
+  },
+  "thumb": "thumbs/pose_gymnastics_split.jpg"
+}

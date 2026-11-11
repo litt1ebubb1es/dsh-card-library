@@ -1,0 +1,16 @@
+{
+ "id": "prop_map",
+ "kind": "prop",
+ "name": "地图",
+ "version": "1.0",
+ "group": "fantasy",
+ "group_title": "奇幻魔法",
+ "description": "地图，冒险/寻宝（n50 举例）。",
+ "prop_tags": "map, holding map, old map",
+ "prop_nl": "She spreads a worn map on her knees.",
+ "hold": true,
+ "suggest_pose": "holding map, unfolding map",
+ "aspect": "both",
+ "thumb": null,
+ "notes": "道具卡只写物，不写持有者/场景/服装；hold=true 时拼配方要配 holding 动词。"
+}

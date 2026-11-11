@@ -1,0 +1,16 @@
+{
+ "id": "prop_cigarette",
+ "kind": "prop",
+ "name": "香烟",
+ "version": "1.0",
+ "group": "daily",
+ "group_title": "日常",
+ "description": "香烟与烟雾，深夜/颓废氛围。",
+ "prop_tags": "cigarette, holding cigarette, smoke",
+ "prop_nl": "She holds a lit cigarette between her fingers.",
+ "hold": true,
+ "suggest_pose": "smoking, holding cigarette",
+ "aspect": "both",
+ "thumb": null,
+ "notes": "道具卡只写物，不写持有者/场景/服装；hold=true 时拼配方要配 holding 动词。"
+}

@@ -1,0 +1,42 @@
+{
+ "id": "sc_duo_lap_pillow",
+ "kind": "scene",
+ "name": "卧室 · 膝枕俯拍",
+ "group": "sfw",
+ "group_title": "🏙 全年龄场景搭配",
+ "description": "地点：卧室；相机：from above / cowboy shot。（纯环境，不含动作/服装/表情）",
+ "tags": {
+  "place": "bedroom"
+ },
+ "camera": {
+  "viewpoint": "from above",
+  "shot_size": "cowboy shot"
+ },
+ "extra": "",
+ "extra_camera": "",
+ "env_nl": "bedroom, from above.",
+ "level": 1,
+ "theme": "双女",
+ "count_lock": "2girls, yuri",
+ "aspect": "landscape",
+ "thumb": null,
+ "env_hint": "bedroom, cowboy shot, from above",
+ "pose_ref": "pose_duo_lap_pillow",
+ "cleaned": {
+  "version": 4,
+  "policy": "env/pose split",
+  "note": "动作/服装/表情已移入 poses/pose_duo_lap_pillow.json",
+  "removed_tag_keys": [
+   "emotion",
+   "eye_gaze",
+   "pose_base"
+  ],
+  "removed_extra": [
+   "lap pillow",
+   "head on lap",
+   "hair stroking",
+   "looking up",
+   "fingers through hair"
+  ]
+ }
+}

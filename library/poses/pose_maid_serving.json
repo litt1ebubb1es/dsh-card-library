@@ -1,0 +1,32 @@
+{
+  "id": "pose_maid_serving",
+  "kind": "pose",
+  "name": "女仆 · 弯腰奉茶（擦边）",
+  "group": "sfw",
+  "group_title": "🏙 全年龄场景搭配",
+  "description": "俯拍视角下的围裙领口",
+  "pose_tags": "bent over, hand on own hip, embarrassed, blush, maid, teacup",
+  "pose_nl": "she bends over to set down a teacup in a maid cafe. seen from above the table her frills spread across it. one hand rests on her hip.",
+  "camera": {
+    "viewpoint": "bird's eye view"
+  },
+  "suggest_place": "cafe",
+  "aspect": "portrait",
+  "level": 1,
+  "theme": "职场",
+  "count_lock": "1girl, solo",
+  "env_ref": "sc_maid_serving",
+  "source_id": "sc_maid_serving",
+  "clean_note": {
+    "version": 4,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [
+      "cafe"
+    ],
+    "removed_camera": [],
+    "removed_cloth": [
+      "frills"
+    ]
+  },
+  "thumb": "thumbs/pose_maid_serving.jpg"
+}

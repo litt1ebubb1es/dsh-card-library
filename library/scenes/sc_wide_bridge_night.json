@@ -1,0 +1,37 @@
+{
+ "id": "sc_wide_bridge_night",
+ "kind": "scene",
+ "name": "桥 · 夜",
+ "group": "sfw",
+ "group_title": "🏙 全年龄场景搭配",
+ "description": "地点：桥；天气：night；光线：neon lights；景物：scenery, city skyline, light trails, long exposure；相机：from behind / wide shot / landscape / wide shot, full body, small figure, vast landscape, sense of scale。（纯环境，不含动作/服装/表情）",
+ "tags": {
+  "place": "bridge",
+  "weather": "night",
+  "light_fx": "neon lights"
+ },
+ "camera": {
+  "viewpoint": "from behind",
+  "shot_size": "wide shot",
+  "comp": "landscape"
+ },
+ "extra": "scenery, city skyline, light trails, long exposure",
+ "extra_camera": "wide shot, full body, small figure, vast landscape, sense of scale",
+ "env_nl": "bridge, night, neon lights, scenery, city skyline, light trails, long exposure, wide shot, full body, small figure, vast landscape, sense of scale, from behind.",
+ "level": 0,
+ "theme": "远景",
+ "count_lock": "1girl, solo",
+ "aspect": "landscape",
+ "thumb": null,
+ "env_hint": "bridge, night, neon lights, wide shot, from behind, landscape, scenery, city skyline, light trails, long exposure, wide shot, full body, small figure, vast landscape, sense of scale",
+ "pose_ref": "pose_wide_bridge_night",
+ "cleaned": {
+  "version": 4,
+  "policy": "env/pose split",
+  "note": "动作/服装/表情已移入 poses/pose_wide_bridge_night.json",
+  "removed_tag_keys": [
+   "pose_base"
+  ],
+  "removed_extra": []
+ }
+}

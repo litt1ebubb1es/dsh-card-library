@@ -1,0 +1,16 @@
+{
+ "id": "prop_apple",
+ "kind": "prop",
+ "name": "苹果",
+ "version": "1.0",
+ "group": "food",
+ "group_title": "食物饮品",
+ "description": "苹果，田园/静物。",
+ "prop_tags": "apple, holding apple, red apple",
+ "prop_nl": "She holds a red apple.",
+ "hold": true,
+ "suggest_pose": "holding apple, eating apple",
+ "aspect": "both",
+ "thumb": null,
+ "notes": "道具卡只写物，不写持有者/场景/服装；hold=true 时拼配方要配 holding 动词。"
+}

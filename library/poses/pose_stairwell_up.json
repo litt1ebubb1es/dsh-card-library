@@ -1,0 +1,30 @@
+{
+  "id": "pose_stairwell_up",
+  "kind": "pose",
+  "name": "楼梯间 · 仰视回望",
+  "group": "sfw",
+  "group_title": "🏙 全年龄场景搭配",
+  "description": "从下往上拍，中途停下回头",
+  "pose_tags": "standing, looking back",
+  "pose_nl": "seen from below on the staircase. she stops halfway up and looks back down over the railing. the light behind her outlines her hair and one shoulder.",
+  "camera": {
+    "viewpoint": "from below"
+  },
+  "suggest_place": "stairwell",
+  "aspect": "portrait",
+  "level": 0,
+  "theme": "日常",
+  "count_lock": "1girl, solo",
+  "env_ref": "sc_stairwell_up",
+  "source_id": "sc_stairwell_up",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [
+      "long staircase",
+      "handrail"
+    ],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_stairwell_up.jpg"
+}

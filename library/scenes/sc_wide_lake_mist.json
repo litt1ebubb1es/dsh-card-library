@@ -1,0 +1,37 @@
+{
+ "id": "sc_wide_lake_mist",
+ "kind": "scene",
+ "name": "湖畔 · 雾",
+ "group": "sfw",
+ "group_title": "🏙 全年龄场景搭配",
+ "description": "地点：湖畔；天气：fog；光线：morning light；景物：scenery, mist, still water, distant mountains；相机：from side / wide shot / landscape / wide shot, full body, small figure, vast landscape, sense of scale。（纯环境，不含动作/服装/表情）",
+ "tags": {
+  "place": "lake",
+  "weather": "fog",
+  "light_fx": "morning light"
+ },
+ "camera": {
+  "viewpoint": "from side",
+  "shot_size": "wide shot",
+  "comp": "landscape"
+ },
+ "extra": "scenery, mist, still water, distant mountains",
+ "extra_camera": "wide shot, full body, small figure, vast landscape, sense of scale",
+ "env_nl": "lake, fog, morning light, scenery, mist, still water, distant mountains, wide shot, full body, small figure, vast landscape, sense of scale, from side.",
+ "level": 0,
+ "theme": "远景",
+ "count_lock": "1girl, solo",
+ "aspect": "landscape",
+ "thumb": null,
+ "env_hint": "lake, fog, morning light, wide shot, from side, landscape, scenery, mist, still water, distant mountains, wide shot, full body, small figure, vast landscape, sense of scale",
+ "pose_ref": "pose_wide_lake_mist",
+ "cleaned": {
+  "version": 4,
+  "policy": "env/pose split",
+  "note": "动作/服装/表情已移入 poses/pose_wide_lake_mist.json",
+  "removed_tag_keys": [
+   "pose_base"
+  ],
+  "removed_extra": []
+ }
+}

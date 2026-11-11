@@ -1,0 +1,27 @@
+{
+  "id": "pose_ccc_bdsm_shibari",
+  "kind": "pose",
+  "name": "束缚 · 日式绳艺",
+  "group": "nsfw",
+  "group_title": "🔞 NSFW 跨槽位配方",
+  "description": "文档 §14.2 日式后手缚：跪姿 + 绳痕",
+  "pose_tags": "kneeling, arms behind back, tears, completely nude, shibari, self-bondage, hemp rope, red rope, rope marks, bound torso, rope around chest, helpless",
+  "pose_nl": "she kneels on the floor with her arms bound behind her back. red hemp rope crosses her chest and wraps her torso in a tight pattern. the room is dark and tears run down her cheeks.",
+  "camera": {
+    "viewpoint": "from side"
+  },
+  "suggest_place": "",
+  "aspect": "landscape",
+  "level": 3,
+  "theme": "BDSM",
+  "count_lock": "1girl, solo",
+  "env_ref": "",
+  "source_id": "sc_ccc_bdsm_shibari",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_ccc_bdsm_shibari.jpg"
+}

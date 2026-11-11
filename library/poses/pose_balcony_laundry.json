@@ -1,0 +1,30 @@
+{
+  "id": "pose_balcony_laundry",
+  "kind": "pose",
+  "name": "阳台 · 晾衣弯腰（擦边）",
+  "group": "sfw",
+  "group_title": "🏙 全年龄场景搭配",
+  "description": "俯拍视角下的领口走光瞬间",
+  "pose_tags": "bent over, tank top, laundry, towels on the line",
+  "pose_nl": "she bends over to hang laundry on the balcony line in a tank top and shorts. seen from straight above. morning light and a clear sky.",
+  "camera": {
+    "viewpoint": "bird's eye view"
+  },
+  "suggest_place": "balcony",
+  "aspect": "portrait",
+  "level": 1,
+  "theme": "日常",
+  "count_lock": "1girl, solo",
+  "env_ref": "sc_balcony_laundry",
+  "source_id": "sc_balcony_laundry",
+  "clean_note": {
+    "version": 3,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": [],
+    "removed_cloth": [
+      "short shorts"
+    ]
+  },
+  "thumb": "thumbs/pose_balcony_laundry.jpg"
+}

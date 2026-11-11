@@ -1,0 +1,30 @@
+{
+  "id": "pose_shower_peek",
+  "kind": "pose",
+  "name": "淋浴间 · 玻璃水雾（擦边）",
+  "group": "sfw",
+  "group_title": "🏙 全年龄场景搭配",
+  "description": "毛玻璃后的朦胧轮廓",
+  "pose_tags": "standing, arched back, hand in own hair, embarrassed, blush, wet hair",
+  "pose_nl": "she stands under the shower with her back to the glass door. steam covers the glass and water runs down her back. her hands are in her hair.",
+  "camera": {
+    "viewpoint": "from behind"
+  },
+  "suggest_place": "",
+  "aspect": "portrait",
+  "level": 1,
+  "theme": "夏",
+  "count_lock": "1girl, solo",
+  "env_ref": "",
+  "source_id": "sc_shower_peek",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [
+      "steam",
+      "glass door"
+    ],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_shower_peek.jpg"
+}

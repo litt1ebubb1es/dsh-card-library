@@ -1,0 +1,28 @@
+{
+  "id": "pose_pose_on_floor",
+  "kind": "pose",
+  "name": "席地而坐",
+  "group": "pose",
+  "group_title": "🧎 姿势场景",
+  "description": "直接坐在地面、双手交叠放膝上，重心低",
+  "pose_tags": "on floor, hands on thighs, palms down",
+  "pose_nl": "she sits on the floor with her legs folded to one side and both palms on her thighs. seen from above so the whole shape of her seat shows. she looks straight at the viewer.",
+  "camera": {
+    "viewpoint": "from above",
+    "shot_size": "full body"
+  },
+  "suggest_place": "",
+  "aspect": "landscape",
+  "level": 0,
+  "theme": "姿势·席地",
+  "count_lock": "1girl, solo",
+  "env_ref": "",
+  "source_id": "sc_pose_on_floor",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_pose_on_floor.jpg"
+}

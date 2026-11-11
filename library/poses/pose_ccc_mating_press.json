@@ -1,0 +1,31 @@
+{
+  "id": "pose_ccc_mating_press",
+  "kind": "pose",
+  "name": "种付位 · 压制",
+  "group": "nsfw",
+  "group_title": "🔞 NSFW 跨槽位配方",
+  "description": "第一人称种付位：镜头＝他的眼睛，画框里只有他的双手与前臂（男方的脸与上身一律不出画）；压制落点 5 选 1 随机（按膝 / 按小腿 / 一手按膝一手压腹 / 掐胯 / 按脚踝）",
+  "pose_tags": "on back, mating press, legs up, embarrassed, blush, looking at viewer, parted lips, partially undressed, orgasm, trembling, cum in pussy, bare feet, pov, pov hands, his forearms reach into the view, his face out of frame, folded legs, knees beside her head, looking up at viewer, deep penetration, ",
+  "pose_nl": "seen from his eyes as he leans over her on the bed. her hips are close to him and her head lies far away at the end of the mattress. her knees are folded back beside her head. only his hands and forearms reach into the view. she grips the sheet with both hands and looks straight up at him.",
+  "camera": {
+    "viewpoint": "pov, sexual intercourse",
+    "shot_size": "cowboy shot"
+  },
+  "suggest_place": "",
+  "aspect": "landscape",
+  "level": 3,
+  "theme": "双人正戏",
+  "count_lock": "1girl, 1boy, hetero",
+  "env_ref": "",
+  "source_id": "sc_ccc_mating_press",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": [],
+    "removed_v5": [
+      "from above"
+    ]
+  },
+  "thumb": "thumbs/pose_ccc_mating_press.jpg"
+}

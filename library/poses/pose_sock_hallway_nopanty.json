@@ -1,0 +1,35 @@
+{
+  "id": "pose_sock_hallway_nopanty",
+  "kind": "pose",
+  "name": "玄关 · 丝袜下的真空",
+  "group": "nsfw",
+  "group_title": "🔞 NSFW 跨槽位配方",
+  "description": "玄关走廊，吊带连衣裙 + 玛丽珍鞋，丝袜下不穿内裤（no panties under skirt = 2 档）。低角度仰拍，但画框收到大腿中段 —— 脚留在画外，避开\"仰拍 + 全身\"最容易崩的部位。",
+  "pose_tags": "contrapposto, embarrassed, blush, looking away, biting own lip, no panties under skirt, mary janes, standing",
+  "pose_nl": "she stands in the entryway with one hip cocked and one hand on the door frame. the short camisole dress hangs loose and the tights have nothing under them. seen from below. her cheeks are red and she looks away.",
+  "camera": {
+    "viewpoint": "from below",
+    "shot_size": "cowboy shot"
+  },
+  "suggest_place": "hallway",
+  "aspect": "portrait",
+  "level": 2,
+  "theme": "丝袜",
+  "count_lock": "1girl, solo",
+  "env_ref": "sc_sock_hallway_nopanty",
+  "source_id": "sc_sock_hallway_nopanty",
+  "clean_note": {
+    "version": 3,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [
+      "entryway",
+      "doorway"
+    ],
+    "removed_camera": [],
+    "removed_cloth": [
+      "camisole dress",
+      "tights"
+    ]
+  },
+  "thumb": "thumbs/pose_sock_hallway_nopanty.jpg"
+}

@@ -1,0 +1,32 @@
+{
+  "id": "pose_forest_fog",
+  "kind": "pose",
+  "name": "森林 · 晨雾",
+  "group": "sfw",
+  "group_title": "🏙 全年龄场景搭配",
+  "description": "背对镜头走在雾里",
+  "pose_tags": "standing, walking, expressionless",
+  "pose_nl": "she walks away from the viewer along the forest path. mist sits between the trunks and the light comes down in shafts. her coat moves with her steps.",
+  "camera": {
+    "viewpoint": "from behind",
+    "shot_size": "full body"
+  },
+  "suggest_place": "forest",
+  "aspect": "portrait",
+  "level": 0,
+  "theme": "户外",
+  "count_lock": "1girl, solo",
+  "env_ref": "sc_forest_fog",
+  "source_id": "sc_forest_fog",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [
+      "light through trees",
+      "mist",
+      "leaves"
+    ],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_forest_fog.jpg"
+}

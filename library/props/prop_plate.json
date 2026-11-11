@@ -1,0 +1,16 @@
+{
+ "id": "prop_plate",
+ "kind": "prop",
+ "name": "盘子",
+ "version": "1.0",
+ "group": "home",
+ "group_title": "家居",
+ "description": "盘子，餐桌/上菜。",
+ "prop_tags": "plate, holding plate, food on plate",
+ "prop_nl": "She carries a plate of food.",
+ "hold": true,
+ "suggest_pose": "holding plate",
+ "aspect": "both",
+ "thumb": null,
+ "notes": "道具卡只写物，不写持有者/场景/服装；hold=true 时拼配方要配 holding 动词。"
+}

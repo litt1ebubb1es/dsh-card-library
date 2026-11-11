@@ -1,0 +1,40 @@
+{
+  "id": "pose_wide_beach_dusk",
+  "kind": "pose",
+  "name": "海边 · 黄昏浪",
+  "group": "sfw",
+  "group_title": "🏙 全年龄场景搭配",
+  "description": "真远景：黄昏海边，人物站在浪线上，海平线横贯画面",
+  "pose_tags": "standing",
+  "pose_nl": "she stands at the shoreline at dusk with the wind pulling at her clothes. the waves run up the sand in long white lines. the sky goes from orange to gray above her.",
+  "camera": {
+    "viewpoint": "from behind",
+    "shot_size": "wide shot",
+    "comp": "landscape"
+  },
+  "suggest_place": "beach",
+  "aspect": "landscape",
+  "level": 0,
+  "theme": "远景",
+  "count_lock": "1girl, solo",
+  "env_ref": "sc_wide_beach_dusk",
+  "source_id": "sc_wide_beach_dusk",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [
+      "scenery",
+      "waves",
+      "shoreline",
+      "wind"
+    ],
+    "removed_camera": [
+      "wide shot",
+      "full body",
+      "small figure",
+      "vast landscape",
+      "sense of scale"
+    ]
+  },
+  "thumb": "thumbs/pose_wide_beach_dusk.jpg"
+}

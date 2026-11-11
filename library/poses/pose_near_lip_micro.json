@@ -1,0 +1,27 @@
+{
+  "id": "pose_near_lip_micro",
+  "kind": "pose",
+  "name": "唇部微距",
+  "group": "near",
+  "group_title": "🔍 特写搭配",
+  "description": "只拍嘴唇的微距，微张的唇缝与牙齿",
+  "pose_tags": "parted lips, lips, mouth, teeth, skin, blush",
+  "pose_nl": "only her parted lips and the skin around them fill the frame. the lower lip is soft and slightly wet. soft light rounds the edge of her mouth.",
+  "camera": {
+    "shot_size": "extreme close-up"
+  },
+  "suggest_place": "",
+  "aspect": "both",
+  "level": 0,
+  "theme": "眼与唇",
+  "count_lock": "1girl, solo",
+  "env_ref": "",
+  "source_id": "sc_near_lip_micro",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_near_lip_micro.jpg"
+}

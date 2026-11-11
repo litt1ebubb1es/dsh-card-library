@@ -1,0 +1,38 @@
+{
+ "id": "sc_mirror_dressing",
+ "kind": "scene",
+ "name": "卧室 · 镜前",
+ "group": "sfw",
+ "group_title": "🏙 全年龄场景搭配",
+ "description": "地点：卧室；光线：soft lighting；道具：mirror；景物：vanity table, mirror as backdrop；相机：from side, from behind / focus on face。（纯环境，不含动作/服装/表情）",
+ "tags": {
+  "place": "bedroom",
+  "light_fx": "soft lighting",
+  "prop": "mirror"
+ },
+ "camera": {
+  "viewpoint": "from side, from behind",
+  "dof": "focus on face"
+ },
+ "extra": "vanity table, mirror as backdrop",
+ "extra_camera": "",
+ "env_nl": "bedroom, soft lighting, mirror, vanity table, mirror as backdrop, from side, from behind.",
+ "level": 0,
+ "theme": "室内",
+ "count_lock": "1girl, solo",
+ "aspect": "portrait",
+ "thumb": null,
+ "env_hint": "bedroom, soft lighting, mirror, from side, from behind, focus on face, vanity table, mirror as backdrop",
+ "pose_ref": "pose_mirror_dressing",
+ "cleaned": {
+  "version": 4,
+  "policy": "env/pose split",
+  "note": "动作/服装/表情已移入 poses/pose_mirror_dressing.json",
+  "removed_tag_keys": [
+   "arms_hands",
+   "emotion",
+   "pose_base"
+  ],
+  "removed_extra": []
+ }
+}

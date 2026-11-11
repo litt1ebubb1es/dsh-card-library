@@ -1,0 +1,39 @@
+{
+  "id": "pose_wide_flower_wind",
+  "kind": "pose",
+  "name": "花田 · 风起",
+  "group": "sfw",
+  "group_title": "🏙 全年龄场景搭配",
+  "description": "真远景：花田被风吹出波纹，花瓣浮在空气里，人物侧身远立于花海中",
+  "pose_tags": "standing",
+  "pose_nl": "she stands in the middle of the flower field as the wind runs through it. the whole field bends in waves and petals lift into the air. the sky opens wide above her.",
+  "camera": {
+    "viewpoint": "from side",
+    "shot_size": "wide shot",
+    "comp": "landscape"
+  },
+  "suggest_place": "flower field",
+  "aspect": "landscape",
+  "level": 0,
+  "theme": "远景",
+  "count_lock": "1girl, solo",
+  "env_ref": "sc_wide_flower_wind",
+  "source_id": "sc_wide_flower_wind",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [
+      "scenery",
+      "swaying flowers",
+      "petals in the air"
+    ],
+    "removed_camera": [
+      "wide shot",
+      "full body",
+      "small figure",
+      "vast landscape",
+      "sense of scale"
+    ]
+  },
+  "thumb": "thumbs/pose_wide_flower_wind.jpg"
+}

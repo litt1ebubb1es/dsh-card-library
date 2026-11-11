@@ -1,0 +1,16 @@
+{
+ "id": "prop_tray",
+ "kind": "prop",
+ "name": "托盘",
+ "version": "1.0",
+ "group": "home",
+ "group_title": "家居",
+ "description": "托盘，女仆/服务。",
+ "prop_tags": "tray, holding tray, serving tray",
+ "prop_nl": "She balances a serving tray on one hand.",
+ "hold": true,
+ "suggest_pose": "holding tray, serving",
+ "aspect": "both",
+ "thumb": null,
+ "notes": "道具卡只写物，不写持有者/场景/服装；hold=true 时拼配方要配 holding 动词。"
+}

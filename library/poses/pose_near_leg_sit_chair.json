@@ -1,0 +1,28 @@
+{
+  "id": "pose_near_leg_sit_chair",
+  "kind": "pose",
+  "name": "椅上并腿",
+  "group": "near",
+  "group_title": "🔍 特写搭配",
+  "description": "坐在椅上的双腿并拢，侧向机位",
+  "pose_tags": "sitting, legs together, thighs, knees, calves, ankles, head out of frame, legs focus, lower body",
+  "pose_nl": "she sits on a chair with her legs together and her knees side by side. seen from the side at the level of her calves and ankles. only her lower body is in frame.",
+  "camera": {
+    "viewpoint": "from side",
+    "shot_size": "extreme close-up"
+  },
+  "suggest_place": "",
+  "aspect": "both",
+  "level": 0,
+  "theme": "腿部",
+  "count_lock": "1girl, solo",
+  "env_ref": "",
+  "source_id": "sc_near_leg_sit_chair",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_near_leg_sit_chair.jpg"
+}

@@ -1,0 +1,41 @@
+{
+ "id": "sc_kitchen_apron",
+ "kind": "scene",
+ "name": "厨房 · 晨光",
+ "group": "sfw",
+ "group_title": "🏙 全年龄场景搭配",
+ "description": "地点：厨房；光线：morning light；相机：from behind。（纯环境，不含动作/服装/表情）",
+ "tags": {
+  "place": "kitchen",
+  "light_fx": "morning light"
+ },
+ "camera": {
+  "viewpoint": "from behind"
+ },
+ "extra": "",
+ "extra_camera": "",
+ "env_nl": "kitchen, morning light, from behind.",
+ "level": 1,
+ "theme": "日常",
+ "count_lock": "1girl, solo",
+ "aspect": "portrait",
+ "thumb": null,
+ "env_hint": "kitchen, morning light, from behind",
+ "pose_ref": "pose_kitchen_apron",
+ "cleaned": {
+  "version": 4,
+  "policy": "env/pose split",
+  "note": "动作/服装/表情已移入 poses/pose_kitchen_apron.json",
+  "removed_tag_keys": [
+   "emotion",
+   "outfit",
+   "pose_risque"
+  ],
+  "removed_extra": [
+   "apron",
+   "cooking",
+   "bare arms",
+   "bare shoulders"
+  ]
+ }
+}

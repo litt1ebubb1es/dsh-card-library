@@ -1,0 +1,28 @@
+{
+  "id": "pose_near_hip_seiza_back",
+  "kind": "pose",
+  "name": "正坐侧后",
+  "group": "pose",
+  "group_title": "🔍 特写搭配",
+  "description": "正坐的侧后方，臀部与小腿贴合",
+  "pose_tags": "seiza, ass, hips, thighs, calves, sitting on heels, head out of frame, lower body, ass focus",
+  "pose_nl": "she sits on her heels seen from behind and the side. her hips and calves fill the frame and the fabric pulls tight. only her lower body is shown.",
+  "camera": {
+    "viewpoint": "from side, from behind",
+    "shot_size": "extreme close-up"
+  },
+  "suggest_place": "",
+  "aspect": "both",
+  "level": 0,
+  "theme": "臀部",
+  "count_lock": "1girl, solo",
+  "env_ref": "",
+  "source_id": "sc_near_hip_seiza_back",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_near_hip_seiza_back.jpg"
+}

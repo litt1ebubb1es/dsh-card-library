@@ -1,0 +1,16 @@
+{
+ "id": "prop_scepter",
+ "kind": "prop",
+ "name": "权杖",
+ "version": "1.0",
+ "group": "weapon",
+ "group_title": "武器",
+ "description": "权杖，王族/仪式。",
+ "prop_tags": "scepter, holding scepter",
+ "prop_nl": "She holds a jeweled scepter.",
+ "hold": true,
+ "suggest_pose": "holding scepter, standing",
+ "aspect": "both",
+ "thumb": null,
+ "notes": "道具卡只写物，不写持有者/场景/服装；hold=true 时拼配方要配 holding 动词。"
+}

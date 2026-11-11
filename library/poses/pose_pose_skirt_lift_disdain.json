@@ -1,0 +1,32 @@
+{
+  "id": "pose_pose_skirt_lift_disdain",
+  "kind": "pose",
+  "name": "仰视 · 掀裙鄙视",
+  "group": "pose",
+  "group_title": "🧎 姿势场景",
+  "description": "镜头自下而上，她撩起裙摆把内裤亮给镜头，低头一脸嫌弃地看着你",
+  "pose_tags": "standing, disgust, looking at viewer, frown, light makeup, pantyshot, both hands on skirt, disdain, looking down on viewer, narrowed eyes, clothing aside",
+  "pose_nl": "she looks down at the viewer and lifts the hem of her pleated skirt with both hands. her eyes are narrowed in disgust and her mouth is turned down. seen from below.",
+  "camera": {
+    "viewpoint": "from below",
+    "shot_size": "cowboy shot",
+    "dof": "deep focus"
+  },
+  "suggest_place": "",
+  "aspect": "portrait",
+  "level": 1,
+  "theme": "姿势·掀裙",
+  "count_lock": "1girl, solo",
+  "env_ref": "",
+  "source_id": "sc_pose_skirt_lift_disdain",
+  "clean_note": {
+    "version": 3,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": [],
+    "removed_cloth": [
+      "pleated skirt"
+    ]
+  },
+  "thumb": "thumbs/pose_pose_skirt_lift_disdain.jpg"
+}

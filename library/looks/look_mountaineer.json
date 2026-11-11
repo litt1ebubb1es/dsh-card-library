@@ -1,0 +1,53 @@
+{
+  "id": "look_mountaineer",
+  "kind": "look",
+  "name": "登山者",
+  "version": "1.0",
+  "description": "冲锋衣 + 登山裤 + 登山靴 + 背包 + 安全带 + 护目镜 + 手套，手插腰疲惫微笑",
+  "nsfw": false,
+  "tags": "hiking jacket, windbreaker, climbing pants, hiking boots, backpack, harness, goggles, gloves, ",
+  "fields": {
+    "outfit": "windbreaker",
+    "top": "hiking jacket",
+    "bottom": "climbing pants",
+    "shoes": "hiking boots",
+    "accessory": "backpack, harness, goggles, gloves",
+    "cloth_color": "grey",
+    "cloth_mat": "nylon",
+    "cloth_state_sfw": "zipped up"
+  },
+  "body_decor": {
+    "skin_detail": "rosy cheeks"
+  },
+  "look_notes": {},
+  "artist_segment": "@wlop, @minaba_hideo, ",
+  "style_label": "柔光半写实 (wlop+minaba)",
+  "negative_extra": "",
+  "params": {
+    "model": "miaomiaoHarem_anima8Step10.safetensors",
+    "lora": "anima-turbo-lora-v0.1.safetensors @ 0.4",
+    "clip": "qwen_3_06b_base.safetensors (type=qwen_image)",
+    "vae": "qwen_image_vae.safetensors",
+    "steps": 12,
+    "cfg": 2.0,
+    "sampler": "euler",
+    "scheduler": "simple",
+    "resolution": "832x1216"
+  },
+  "thumb": "thumbs/look_mountaineer.jpg",
+  "source_dir": "",
+  "look_tags": "hiking jacket, windbreaker, climbing pants, hiking boots, backpack, harness, goggles, gloves, ",
+  "pose_tags": "",
+  "tag_split": {
+    "version": 3,
+    "cloth": 8,
+    "pose": 0,
+    "moved_pose": [],
+    "migrated_to": "pose_mountaineer"
+  },
+  "legacy_pose_ref": "pose_mountaineer",
+  "clean_note": {
+    "version": 11,
+    "source": "random36b picked by user"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "id": "pose_near_leg_hem",
+  "kind": "pose",
+  "name": "大腿与裙摆",
+  "group": "pose",
+  "group_title": "🔍 特写搭配",
+  "description": "低机位拍大腿与裙摆边缘",
+  "pose_tags": "sitting, thighs, skirt hem, bare legs, knees, head out of frame, legs focus, lower body",
+  "pose_nl": "seen from below at her thighs and the hem of her skirt. her knees are together and the fabric has ridden up. her head is out of frame.",
+  "camera": {
+    "viewpoint": "from below",
+    "shot_size": "extreme close-up"
+  },
+  "suggest_place": "",
+  "aspect": "both",
+  "level": 0,
+  "theme": "腿部",
+  "count_lock": "1girl, solo",
+  "env_ref": "",
+  "source_id": "sc_near_leg_hem",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_near_leg_hem.jpg"
+}

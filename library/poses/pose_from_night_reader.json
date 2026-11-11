@@ -1,0 +1,21 @@
+{
+  "id": "pose_from_night_reader",
+  "kind": "pose",
+  "name": "夜读",
+  "version": 1,
+  "group": "from_look",
+  "group_title": "来自造型卡",
+  "description": "景别：cowboy shot；动作：holding book, looking down, on floor, parted lips, reading, serious, sitting。",
+  "pose_tags": "holding book, looking down, on floor, parted lips, reading, serious, sitting",
+  "pose_nl": "",
+  "camera": {
+    "shot_size": "cowboy shot"
+  },
+  "suggest_place": "",
+  "aspect": "portrait",
+  "thumb": "thumbs/pose_from_night_reader.jpg",
+  "env_ref": null,
+  "source": "look_pose_v1",
+  "legacy_look": "look_night_reader",
+  "notes": "由造型卡的 pose_tags 迁出（v4）。动作卡只讲做什么，穿什么归造型卡。"
+}

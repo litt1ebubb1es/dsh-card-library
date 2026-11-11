@@ -1,0 +1,16 @@
+{
+ "id": "prop_wine",
+ "kind": "prop",
+ "name": "酒杯",
+ "version": "1.0",
+ "group": "food",
+ "group_title": "食物饮品",
+ "description": "葡萄酒与高脚杯，宴会/夜。",
+ "prop_tags": "wine, holding wine glass, wine bottle",
+ "prop_nl": "She holds a glass of red wine.",
+ "hold": true,
+ "suggest_pose": "holding wine glass, drinking wine",
+ "aspect": "both",
+ "thumb": null,
+ "notes": "道具卡只写物，不写持有者/场景/服装；hold=true 时拼配方要配 holding 动词。"
+}

@@ -1,0 +1,16 @@
+{
+ "id": "prop_ladle",
+ "kind": "prop",
+ "name": "汤勺",
+ "version": "1.0",
+ "group": "home",
+ "group_title": "家居",
+ "description": "汤勺，厨房（炼金术士卡用过）。",
+ "prop_tags": "ladle, holding ladle, stirring pot",
+ "prop_nl": "She stirs a pot with a long ladle.",
+ "hold": true,
+ "suggest_pose": "stirring pot, holding ladle",
+ "aspect": "both",
+ "thumb": null,
+ "notes": "道具卡只写物，不写持有者/场景/服装；hold=true 时拼配方要配 holding 动词。"
+}

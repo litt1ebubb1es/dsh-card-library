@@ -1,0 +1,27 @@
+{
+  "id": "pose_msb_continuous",
+  "kind": "pose",
+  "name": "自慰 · 连续到失神",
+  "group": "nsfw",
+  "group_title": "🔞 NSFW 跨槽位配方",
+  "description": "连续多次后翻白眼失神：胸部乳夹垂链 + 胸绳缚，赤足可穿丝袜",
+  "pose_tags": "on back, masturbation, tears, half-closed eyes, tongue out, completely nude, ahegao, rolled back eyes, pussy juice, bare feet, solo, after masturbation, trembling, exhausted, nipple clamps with chain, chain between nipple clamps, chest harness, rope around breasts",
+  "pose_nl": "she lies on her back after too many orgasms with her eyes rolled back and her tongue out. her body keeps trembling and fluid runs down her thigh. the sheet is soaked.",
+  "camera": {
+    "viewpoint": "from above"
+  },
+  "suggest_place": "",
+  "aspect": "portrait",
+  "level": 3,
+  "theme": "挖矿",
+  "count_lock": "1girl, solo",
+  "env_ref": "",
+  "source_id": "sc_msb_continuous",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_msb_continuous.jpg"
+}

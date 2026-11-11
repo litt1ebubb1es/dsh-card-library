@@ -1,0 +1,27 @@
+{
+  "id": "pose_nurse_rounds",
+  "kind": "pose",
+  "name": "护士 · 抬腿查房（擦边）",
+  "group": "pose",
+  "group_title": "🏙 全年龄场景搭配",
+  "description": "护士查房：5 种姿势 × 4 种道具（含空手）随机；背景随姿势走（走廊 / 病房），手里至多一件",
+  "pose_tags": "leg up, embarrassed, blush, nurse, white thighhighs",
+  "pose_nl": "she lifts one leg behind her in white thighhighs wearing a nurse uniform. seen from behind her skirt lifts slightly. her face is flushed.",
+  "camera": {
+    "viewpoint": "from behind"
+  },
+  "suggest_place": "",
+  "aspect": "portrait",
+  "level": 1,
+  "theme": "职场",
+  "count_lock": "1girl, solo",
+  "env_ref": "",
+  "source_id": "sc_nurse_rounds",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_nurse_rounds.jpg"
+}

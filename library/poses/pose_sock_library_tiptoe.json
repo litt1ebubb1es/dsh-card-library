@@ -1,0 +1,32 @@
+{
+  "id": "pose_sock_library_tiptoe",
+  "kind": "pose",
+  "name": "图书馆 · 踮脚够书",
+  "group": "sfw",
+  "group_title": "🏙 全年龄场景搭配",
+  "description": "书架前踮脚取书，毛衣短裙 + 乐福鞋，过膝袜/条纹袜在 socks 里随机。",
+  "pose_tags": "tiptoes, surprised, looking up, parted lips, loafers, reaching for book, on tiptoes",
+  "pose_nl": "she reaches up on tiptoes for a book on a high shelf in the library. her sweater and skirt stretch with the movement. her thighhighs show below the hem.",
+  "camera": {
+    "viewpoint": "from behind",
+    "shot_size": "full body"
+  },
+  "suggest_place": "library",
+  "aspect": "portrait",
+  "level": 1,
+  "theme": "丝袜",
+  "count_lock": "1girl, solo",
+  "env_ref": "sc_sock_library_tiptoe",
+  "source_id": "sc_sock_library_tiptoe",
+  "clean_note": {
+    "version": 3,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": [],
+    "removed_cloth": [
+      "sweater and skirt",
+      "thighhighs"
+    ]
+  },
+  "thumb": "thumbs/pose_sock_library_tiptoe.jpg"
+}

@@ -1,0 +1,16 @@
+{
+ "id": "prop_candy",
+ "kind": "prop",
+ "name": "糖果",
+ "version": "1.0",
+ "group": "food",
+ "group_title": "食物饮品",
+ "description": "糖果，童趣/便利店。",
+ "prop_tags": "candy, holding candy, candy wrapper",
+ "prop_nl": "She holds a piece of candy.",
+ "hold": true,
+ "suggest_pose": "holding candy, eating candy",
+ "aspect": "both",
+ "thumb": null,
+ "notes": "道具卡只写物，不写持有者/场景/服装；hold=true 时拼配方要配 holding 动词。"
+}

@@ -1,0 +1,32 @@
+{
+  "id": "pose_pose_lying_prone",
+  "kind": "pose",
+  "name": "趴卧",
+  "group": "pose",
+  "group_title": "🧎 姿势场景",
+  "description": "趴着，下巴搁在手背上，俯拍全身，浅景深",
+  "pose_tags": "on stomach, expressionless, lying",
+  "pose_nl": "she lies face down with her arms folded under her chin and her feet up. seen from above so her whole body runs diagonally across the frame. the room behind her blurs.",
+  "camera": {
+    "viewpoint": "from above",
+    "shot_size": "full body",
+    "dof": "depth of field, blurry background"
+  },
+  "suggest_place": "",
+  "aspect": "both",
+  "level": 0,
+  "theme": "姿势·趴卧",
+  "count_lock": "1girl, solo",
+  "env_ref": "",
+  "source_id": "sc_pose_lying_prone",
+  "clean_note": {
+    "version": 4,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": [],
+    "from_nl": [
+      "lying"
+    ]
+  },
+  "thumb": "thumbs/pose_pose_lying_prone.jpg"
+}

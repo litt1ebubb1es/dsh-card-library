@@ -1,0 +1,21 @@
+{
+  "id": "pose_from_white_cardigan",
+  "kind": "pose",
+  "name": "举手回头",
+  "version": 1,
+  "group": "from_look",
+  "group_title": "来自造型卡",
+  "description": "景别：close-up；动作：arms up, contrapposto, grin, looking back, looking up, surprised, teeth。",
+  "pose_tags": "arms up, contrapposto, grin, looking back, looking up, surprised, teeth",
+  "pose_nl": "",
+  "camera": {
+    "shot_size": "close-up"
+  },
+  "suggest_place": "",
+  "aspect": "portrait",
+  "thumb": "thumbs/pose_from_white_cardigan.jpg",
+  "env_ref": null,
+  "source": "look_pose_v1",
+  "legacy_look": "look_white_cardigan",
+  "notes": "由造型卡的 pose_tags 迁出（v4）。动作卡只讲做什么，穿什么归造型卡。"
+}

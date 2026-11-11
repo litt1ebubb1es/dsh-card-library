@@ -1,0 +1,28 @@
+{
+  "id": "pose_pose_wariza",
+  "kind": "pose",
+  "name": "W坐 · 俯拍",
+  "group": "pose",
+  "group_title": "🧎 姿势场景",
+  "description": "双膝内折的 W 坐，俯拍最能看出腿型，正面带笑意",
+  "pose_tags": "wariza, smile, looking at viewer",
+  "pose_nl": "she sits with her knees folded out to both sides and her hands on the floor between them. seen from above so the shape of the pose reads clearly. she smiles up at the viewer.",
+  "camera": {
+    "viewpoint": "from above",
+    "shot_size": "full body"
+  },
+  "suggest_place": "",
+  "aspect": "landscape",
+  "level": 0,
+  "theme": "姿势·W坐",
+  "count_lock": "1girl, solo",
+  "env_ref": "",
+  "source_id": "sc_pose_wariza",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_pose_wariza.jpg"
+}

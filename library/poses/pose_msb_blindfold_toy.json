@@ -1,0 +1,25 @@
+{
+  "id": "pose_msb_blindfold_toy",
+  "kind": "pose",
+  "name": "自慰 · 蒙眼触感",
+  "group": "nsfw",
+  "group_title": "🔞 NSFW 跨槽位配方",
+  "description": "蒙着眼只靠触感：透明假阳具自慰（胸部乳夹垂链 + 胸绳缚，赤足可穿丝袜）",
+  "pose_tags": "on back, masturbation, embarrassed, blush, parted lips, completely nude, aroused, blindfold, bare feet, solo, blindfolded, transparent dildo, transparent, vaginal object insertion, trembling, nipple clamps with chain, chain between nipple clamps, chest harness, rope around breasts",
+  "pose_nl": "she lies on her back wearing a black blindfold and holds a transparent dildo between her legs. she cannot see what is coming. her thighs shake.",
+  "camera": {},
+  "suggest_place": "",
+  "aspect": "portrait",
+  "level": 3,
+  "theme": "挖矿",
+  "count_lock": "1girl, solo",
+  "env_ref": "",
+  "source_id": "sc_msb_blindfold_toy",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_msb_blindfold_toy.jpg"
+}

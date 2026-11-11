@@ -1,0 +1,27 @@
+{
+  "id": "pose_ccc_bdsm_pillory",
+  "kind": "pose",
+  "name": "束缚 · 示众柱",
+  "group": "nsfw",
+  "group_title": "🔞 NSFW 跨槽位配方",
+  "description": "文档 §14.2 柱缚示众：公开曝露 + 绳痕",
+  "pose_tags": "all fours, arms behind back, tears, completely nude, shibari, pillory, public display, humiliation, audience, rope marks",
+  "pose_nl": "her head and wrists are locked in a wooden pillory. a crowd of faceless men stands around her in a dim alley. rope marks cross her back and she has stopped struggling.",
+  "camera": {
+    "viewpoint": "from behind"
+  },
+  "suggest_place": "alley",
+  "aspect": "landscape",
+  "level": 4,
+  "theme": "BDSM",
+  "count_lock": "1girl, multiple boys, group sex",
+  "env_ref": "sc_ccc_bdsm_pillory",
+  "source_id": "sc_ccc_bdsm_pillory",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_ccc_bdsm_pillory.jpg"
+}

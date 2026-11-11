@@ -1,0 +1,39 @@
+{
+ "id": "sc_movie_theater",
+ "kind": "scene",
+ "name": "电影院 · 夜",
+ "group": "sfw",
+ "group_title": "🏙 全年龄场景搭配",
+ "description": "地点：电影院；天气：night；光线：dark background；景物：screen glow, dark；相机：from side / upper body。（纯环境，不含动作/服装/表情）",
+ "tags": {
+  "place": "movie theater",
+  "weather": "night",
+  "light_fx": "dark background"
+ },
+ "camera": {
+  "viewpoint": "from side",
+  "shot_size": "upper body"
+ },
+ "extra": "screen glow, dark",
+ "extra_camera": "",
+ "env_nl": "movie theater, night, dark background, screen glow, dark, from side.",
+ "level": 0,
+ "theme": "约会",
+ "count_lock": "1girl, solo",
+ "aspect": "both",
+ "thumb": null,
+ "env_hint": "movie theater, night, dark background, upper body, from side, screen glow, dark",
+ "pose_ref": "pose_movie_theater",
+ "cleaned": {
+  "version": 4,
+  "policy": "env/pose split",
+  "note": "动作/服装/表情已移入 poses/pose_movie_theater.json",
+  "removed_tag_keys": [
+   "emotion",
+   "pose_base"
+  ],
+  "removed_extra": [
+   "popcorn"
+  ]
+ }
+}

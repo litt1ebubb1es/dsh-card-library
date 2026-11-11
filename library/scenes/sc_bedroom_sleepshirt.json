@@ -1,0 +1,36 @@
+{
+ "id": "sc_bedroom_sleepshirt",
+ "kind": "scene",
+ "name": "卧室 · 晨光",
+ "group": "sfw",
+ "group_title": "🏙 全年龄场景搭配",
+ "description": "地点：卧室；光线：morning light；景物：bed sheets, morning light。（纯环境，不含动作/服装/表情）",
+ "tags": {
+  "place": "bedroom",
+  "light_fx": "morning light"
+ },
+ "camera": {},
+ "extra": "bed sheets, morning light",
+ "extra_camera": "",
+ "env_nl": "bedroom, morning light, bed sheets, morning light.",
+ "level": 1,
+ "theme": "室内",
+ "count_lock": "1girl, solo",
+ "aspect": "portrait",
+ "thumb": null,
+ "env_hint": "bedroom, morning light, bed sheets, morning light",
+ "pose_ref": "pose_bedroom_sleepshirt",
+ "cleaned": {
+  "version": 4,
+  "policy": "env/pose split",
+  "note": "动作/服装/表情已移入 poses/pose_bedroom_sleepshirt.json",
+  "removed_tag_keys": [
+   "bottom",
+   "eye_gaze",
+   "pose_base",
+   "pose_risque",
+   "top"
+  ],
+  "removed_extra": []
+ }
+}

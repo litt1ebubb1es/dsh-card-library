@@ -1,0 +1,54 @@
+{
+  "id": "look_skier",
+  "kind": "look",
+  "name": "滑雪者",
+  "version": "1.0",
+  "description": "滑雪服 + 滑雪裤 + 护目镜推在额头 + 手套 + 雪靴 + 围巾，拄雪杖",
+  "nsfw": false,
+  "tags": "ski jacket, white ski jacket, ski pants, grey ski pants, goggles on forehead, gloves, snow boots, scarf, knit hat, zipped up, padded jacket, ",
+  "fields": {
+    "outfit": "ski jacket",
+    "top": "ski jacket",
+    "bottom": "ski pants",
+    "socks": "thick socks",
+    "shoes": "snow boots",
+    "accessory": "goggles on forehead, gloves, scarf, knit hat",
+    "cloth_color": "white",
+    "cloth_mat": "nylon",
+    "cloth_state_sfw": "zipped up"
+  },
+  "body_decor": {
+    "skin_detail": "rosy cheeks"
+  },
+  "look_notes": {},
+  "artist_segment": "@wlop, @minaba_hideo, ",
+  "style_label": "柔光半写实 (wlop+minaba)",
+  "negative_extra": "",
+  "params": {
+    "model": "miaomiaoHarem_anima8Step10.safetensors",
+    "lora": "anima-turbo-lora-v0.1.safetensors @ 0.4",
+    "clip": "qwen_3_06b_base.safetensors (type=qwen_image)",
+    "vae": "qwen_image_vae.safetensors",
+    "steps": 12,
+    "cfg": 2.0,
+    "sampler": "euler",
+    "scheduler": "simple",
+    "resolution": "832x1216"
+  },
+  "thumb": "thumbs/look_skier.jpg",
+  "source_dir": "",
+  "look_tags": "ski jacket, white ski jacket, ski pants, grey ski pants, goggles on forehead, gloves, snow boots, scarf, knit hat, zipped up, padded jacket, ",
+  "pose_tags": "",
+  "tag_split": {
+    "version": 3,
+    "cloth": 11,
+    "pose": 0,
+    "moved_pose": [],
+    "migrated_to": "pose_skier"
+  },
+  "legacy_pose_ref": "pose_skier",
+  "clean_note": {
+    "version": 8,
+    "source": "random36 picked by user"
+  }
+}

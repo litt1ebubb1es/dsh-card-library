@@ -1,0 +1,46 @@
+{
+ "id": "sc_ccc_pov_self_body",
+ "kind": "scene",
+ "name": "卧室 · 第一人称俯视",
+ "group": "nsfw",
+ "group_title": "🔞 NSFW 跨槽位配方",
+ "description": "地点：卧室；光线：soft lighting；景物：floor below；相机：from above / cowboy shot。（纯环境，不含动作/服装/表情）",
+ "tags": {
+  "place": "bedroom",
+  "light_fx": "soft lighting"
+ },
+ "camera": {
+  "viewpoint": "from above",
+  "shot_size": "cowboy shot"
+ },
+ "extra": "floor below",
+ "extra_camera": "",
+ "env_nl": "bedroom, soft lighting, floor below, from above.",
+ "level": 2,
+ "theme": "第一人称",
+ "count_lock": "1girl, solo",
+ "aspect": "landscape",
+ "thumb": null,
+ "env_hint": "bedroom, soft lighting, cowboy shot, from above, floor below",
+ "pose_ref": "pose_ccc_pov_self_body",
+ "cleaned": {
+  "version": 4,
+  "policy": "env/pose split",
+  "note": "动作/服装/表情已移入 poses/pose_ccc_pov_self_body.json",
+  "removed_tag_keys": [
+   "n_exposure",
+   "n_fluid",
+   "n_state",
+   "pose_base"
+  ],
+  "removed_extra": [
+   "sitting on the edge of a bed",
+   "looking down at her own lap",
+   "breasts",
+   "lap",
+   "thighs",
+   "traditional media",
+   "painted style"
+  ]
+ }
+}

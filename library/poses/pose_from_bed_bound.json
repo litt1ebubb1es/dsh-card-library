@@ -1,0 +1,22 @@
+{
+  "id": "pose_from_bed_bound",
+  "kind": "pose",
+  "name": "俯卧束缚",
+  "version": 1,
+  "group": "from_look",
+  "group_title": "来自造型卡",
+  "description": "景别：full body；视角：foreshortening；动作：arched back, ass focus, blush, bound ankles, embarrassed, feet focus, feet toward camera, half-closed eyes, hips up, looking back, on stomach, parted lips, prone, restrained, top-down bottom-up。",
+  "pose_tags": "arched back, ass focus, blush, bound ankles, embarrassed, feet focus, feet toward camera, half-closed eyes, hips up, looking back, on stomach, parted lips, prone, restrained, top-down bottom-up",
+  "pose_nl": "",
+  "camera": {
+    "viewpoint": "foreshortening",
+    "shot_size": "full body"
+  },
+  "suggest_place": "",
+  "aspect": "portrait",
+  "thumb": "thumbs/pose_from_bed_bound.jpg",
+  "env_ref": null,
+  "source": "look_pose_v1",
+  "legacy_look": "nsfw_bed_bound",
+  "notes": "由造型卡的 pose_tags 迁出（v4）。动作卡只讲做什么，穿什么归造型卡。"
+}

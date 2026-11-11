@@ -1,0 +1,38 @@
+{
+ "id": "sc_convenience_night",
+ "kind": "scene",
+ "name": "便利店 · 夜",
+ "group": "sfw",
+ "group_title": "🏙 全年龄场景搭配",
+ "description": "地点：便利店；天气：night；光线：neon lights；道具：vending machine；景物：fluorescent light, night shift；相机：upper body。（纯环境，不含动作/服装/表情）",
+ "tags": {
+  "place": "convenience store",
+  "weather": "night",
+  "light_fx": "neon lights",
+  "prop": "vending machine"
+ },
+ "camera": {
+  "shot_size": "upper body"
+ },
+ "extra": "fluorescent light, night shift",
+ "extra_camera": "",
+ "env_nl": "convenience store, night, neon lights, vending machine, fluorescent light, night shift, seen upper body.",
+ "level": 0,
+ "theme": "日常",
+ "count_lock": "1girl, solo",
+ "aspect": "both",
+ "thumb": null,
+ "env_hint": "convenience store, night, neon lights, vending machine, upper body, fluorescent light, night shift",
+ "pose_ref": "pose_convenience_night",
+ "cleaned": {
+  "version": 4,
+  "policy": "env/pose split",
+  "note": "动作/服装/表情已移入 poses/pose_convenience_night.json",
+  "removed_tag_keys": [
+   "arms_hands",
+   "emotion",
+   "pose_base"
+  ],
+  "removed_extra": []
+ }
+}

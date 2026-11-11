@@ -1,0 +1,28 @@
+{
+  "id": "pose_pose_seiza_bow",
+  "kind": "pose",
+  "name": "正座 · 行礼",
+  "group": "pose",
+  "group_title": "🧎 姿势场景",
+  "description": "双手交叠俯身行礼，侧机位才能看清脊背的弧度",
+  "pose_tags": "seiza, bowing, hands on thighs, palms down",
+  "pose_nl": "she kneels in seiza and bows forward with both hands flat on her thighs. seen from the side so the angle of her back is clear. her hair slides forward off her shoulder.",
+  "camera": {
+    "viewpoint": "from side",
+    "shot_size": "full body"
+  },
+  "suggest_place": "",
+  "aspect": "portrait",
+  "level": 0,
+  "theme": "姿势·正座",
+  "count_lock": "1girl, solo",
+  "env_ref": "",
+  "source_id": "sc_pose_seiza_bow",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_pose_seiza_bow.jpg"
+}

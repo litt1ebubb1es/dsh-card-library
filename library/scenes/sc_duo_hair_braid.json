@@ -1,0 +1,40 @@
+{
+ "id": "sc_duo_hair_braid",
+ "kind": "scene",
+ "name": "卧室 · 半身",
+ "group": "sfw",
+ "group_title": "🏙 全年龄场景搭配",
+ "description": "地点：卧室；相机：from behind / upper body / back view。（纯环境，不含动作/服装/表情）",
+ "tags": {
+  "place": "bedroom"
+ },
+ "camera": {
+  "viewpoint": "from behind",
+  "shot_size": "upper body"
+ },
+ "extra": "",
+ "extra_camera": "back view",
+ "env_nl": "bedroom, back view, from behind.",
+ "level": 1,
+ "theme": "双女",
+ "count_lock": "2girls, yuri",
+ "aspect": "both",
+ "thumb": null,
+ "env_hint": "bedroom, upper body, from behind, back view",
+ "pose_ref": "pose_duo_hair_braid",
+ "cleaned": {
+  "version": 4,
+  "policy": "env/pose split",
+  "note": "动作/服装/表情已移入 poses/pose_duo_hair_braid.json",
+  "removed_tag_keys": [
+   "eye_gaze",
+   "pose_base"
+  ],
+  "removed_extra": [
+   "braiding hair",
+   "fingers in hair",
+   "hair brush",
+   "hair ribbon"
+  ]
+ }
+}

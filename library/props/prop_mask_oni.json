@@ -1,0 +1,16 @@
+{
+ "id": "prop_mask_oni",
+ "kind": "prop",
+ "name": "狐面",
+ "version": "1.0",
+ "group": "accessory",
+ "group_title": "配饰",
+ "description": "狐面，祭典/和风（n52 可与帽子共存）。",
+ "prop_tags": "mask, fox mask, kitsune mask",
+ "prop_nl": "She holds a fox mask beside her face.",
+ "hold": true,
+ "suggest_pose": "holding mask, mask on face",
+ "aspect": "both",
+ "thumb": null,
+ "notes": "道具卡只写物，不写持有者/场景/服装；hold=true 时拼配方要配 holding 动词。"
+}

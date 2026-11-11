@@ -1,0 +1,46 @@
+{
+ "id": "sc_sock_shibari_room",
+ "kind": "scene",
+ "name": "旅馆房间 · 烛光",
+ "group": "nsfw",
+ "group_title": "🔞 NSFW 跨槽位配方",
+ "description": "地点：旅馆房间；光线：candlelight；景物：hotel carpet；相机：from above / full body。（纯环境，不含动作/服装/表情）",
+ "tags": {
+  "place": "hotel room",
+  "light_fx": "candlelight"
+ },
+ "camera": {
+  "viewpoint": "from above",
+  "shot_size": "full body"
+ },
+ "extra": "hotel carpet",
+ "extra_camera": "",
+ "env_nl": "hotel room, candlelight, hotel carpet, from above.",
+ "level": 3,
+ "theme": "丝袜",
+ "count_lock": "1girl, solo",
+ "aspect": "both",
+ "thumb": null,
+ "env_hint": "hotel room, candlelight, full body, from above, hotel carpet",
+ "pose_ref": "pose_sock_shibari_room",
+ "cleaned": {
+  "version": 4,
+  "policy": "env/pose split",
+  "note": "动作/服装/表情已移入 poses/pose_sock_shibari_room.json",
+  "removed_tag_keys": [
+   "emotion",
+   "eye_gaze",
+   "mouth",
+   "n_shoes_keep",
+   "n_theme",
+   "pose_base",
+   "shoes"
+  ],
+  "removed_extra": [
+   "shibari",
+   "rope",
+   "kneeling",
+   "stockings"
+  ]
+ }
+}

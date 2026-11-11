@@ -1,0 +1,29 @@
+{
+  "id": "pose_duo_selfie",
+  "kind": "pose",
+  "name": "双女 · 合照自拍",
+  "group": "sfw",
+  "group_title": "🏙 全年龄场景搭配",
+  "description": "两个女孩贴脸合影，一起看向镜头（全年龄 · 画面内不出现手机）",
+  "pose_tags": "standing, smile, looking at viewer, cheek to cheek, arms around each other, both girls in frame",
+  "pose_nl": "two girls press their cheeks together and smile at the viewer. their heads tilt toward each other and both faces fill the upper half of the frame. their arms rest around each other shoulders.",
+  "camera": {
+    "shot_size": "upper body"
+  },
+  "suggest_place": "cafe",
+  "aspect": "both",
+  "level": 0,
+  "theme": "双女",
+  "count_lock": "2girls",
+  "env_ref": "sc_duo_selfie",
+  "source_id": "sc_duo_selfie",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": [
+      "front view"
+    ]
+  },
+  "thumb": "thumbs/pose_duo_selfie.jpg"
+}

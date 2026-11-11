@@ -1,0 +1,52 @@
+{
+  "id": "look_maid",
+  "kind": "look",
+  "name": "女仆",
+  "version": "1.0",
+  "description": "黑色女仆裙 + 白色围裙 + 荷叶边头饰 + 白过膝袜 + 玛丽珍鞋 + 颈圈，端托盘",
+  "nsfw": false,
+  "tags": "maid outfit, black maid dress, white apron, frilled headdress, white thighhighs, mary janes, choker, ",
+  "fields": {
+    "outfit": "maid outfit",
+    "top": "black maid dress",
+    "bottom": "black maid dress",
+    "socks": "white thighhighs",
+    "shoes": "mary janes",
+    "accessory": "frilled headdress, choker",
+    "cloth_color": "black",
+    "cloth_mat": "cotton",
+    "cloth_state_sfw": "apron tied"
+  },
+  "body_decor": {},
+  "look_notes": {},
+  "artist_segment": "@wlop, @minaba_hideo, ",
+  "style_label": "柔光半写实 (wlop+minaba)",
+  "negative_extra": "",
+  "params": {
+    "model": "miaomiaoHarem_anima8Step10.safetensors",
+    "lora": "anima-turbo-lora-v0.1.safetensors @ 0.4",
+    "clip": "qwen_3_06b_base.safetensors (type=qwen_image)",
+    "vae": "qwen_image_vae.safetensors",
+    "steps": 12,
+    "cfg": 2.0,
+    "sampler": "euler",
+    "scheduler": "simple",
+    "resolution": "832x1216"
+  },
+  "thumb": "thumbs/look_maid.jpg",
+  "source_dir": "",
+  "look_tags": "maid outfit, black maid dress, white apron, frilled headdress, white thighhighs, mary janes, choker, ",
+  "pose_tags": "",
+  "tag_split": {
+    "version": 3,
+    "cloth": 7,
+    "pose": 0,
+    "moved_pose": [],
+    "migrated_to": "pose_maid"
+  },
+  "legacy_pose_ref": "pose_maid",
+  "clean_note": {
+    "version": 11,
+    "source": "random36b picked by user"
+  }
+}

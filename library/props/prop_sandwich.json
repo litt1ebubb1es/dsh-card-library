@@ -1,0 +1,16 @@
+{
+ "id": "prop_sandwich",
+ "kind": "prop",
+ "name": "三明治",
+ "version": "1.0",
+ "group": "food",
+ "group_title": "食物饮品",
+ "description": "三明治，野餐/轻食。",
+ "prop_tags": "sandwich, holding sandwich, eating sandwich",
+ "prop_nl": "She holds a sandwich in one hand.",
+ "hold": true,
+ "suggest_pose": "holding sandwich, eating",
+ "aspect": "both",
+ "thumb": null,
+ "notes": "道具卡只写物，不写持有者/场景/服装；hold=true 时拼配方要配 holding 动词。"
+}

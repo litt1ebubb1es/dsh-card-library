@@ -1,0 +1,28 @@
+{
+  "id": "pose_near_leg_sit_floor",
+  "kind": "pose",
+  "name": "屈膝坐地",
+  "group": "near",
+  "group_title": "🔍 特写搭配",
+  "description": "坐在地上双膝立起，侧向近拍",
+  "pose_tags": "knees up, thighs, calves, knees, head out of frame, legs focus, lower body",
+  "pose_nl": "she sits on the floor with her knees drawn up and her feet flat. the frame holds only her legs from knee to ankle. soft bedroom light.",
+  "camera": {
+    "viewpoint": "from side",
+    "shot_size": "extreme close-up"
+  },
+  "suggest_place": "bedroom",
+  "aspect": "both",
+  "level": 0,
+  "theme": "腿部",
+  "count_lock": "1girl, solo",
+  "env_ref": "sc_near_leg_sit_floor",
+  "source_id": "sc_near_leg_sit_floor",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_near_leg_sit_floor.jpg"
+}

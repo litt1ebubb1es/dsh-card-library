@@ -1,0 +1,28 @@
+{
+  "id": "pose_pose_tiptoes_stretch",
+  "kind": "pose",
+  "name": "踮脚伸展",
+  "group": "pose",
+  "group_title": "🧎 姿势场景",
+  "description": "踮起脚尖、双手向上伸展，仰拍，逆光",
+  "pose_tags": "standing, tiptoes, arms up",
+  "pose_nl": "she stands on her toes with her arms up and her body stretched long. backlight outlines her from behind. the frame holds her whole body.",
+  "camera": {
+    "viewpoint": "from below",
+    "shot_size": "full body"
+  },
+  "suggest_place": "",
+  "aspect": "portrait",
+  "level": 1,
+  "theme": "姿势·踮脚",
+  "count_lock": "1girl, solo",
+  "env_ref": "",
+  "source_id": "sc_pose_tiptoes_stretch",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_pose_tiptoes_stretch.jpg"
+}

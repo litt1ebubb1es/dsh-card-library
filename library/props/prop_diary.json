@@ -1,0 +1,16 @@
+{
+ "id": "prop_diary",
+ "kind": "prop",
+ "name": "日记本",
+ "version": "1.0",
+ "group": "stationery",
+ "group_title": "文具纸品",
+ "description": "日记本，私密/年代。",
+ "prop_tags": "diary, holding diary, locked diary",
+ "prop_nl": "She closes a locked diary.",
+ "hold": true,
+ "suggest_pose": "writing, holding diary",
+ "aspect": "both",
+ "thumb": null,
+ "notes": "道具卡只写物，不写持有者/场景/服装；hold=true 时拼配方要配 holding 动词。"
+}

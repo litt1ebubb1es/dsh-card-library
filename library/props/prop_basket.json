@@ -1,0 +1,16 @@
+{
+ "id": "prop_basket",
+ "kind": "prop",
+ "name": "提篮",
+ "version": "1.0",
+ "group": "daily",
+ "group_title": "日常",
+ "description": "藤编提篮，野餐/采买/田园。",
+ "prop_tags": "basket, holding basket, wicker basket",
+ "prop_nl": "She carries a wicker basket on her arm.",
+ "hold": true,
+ "suggest_pose": "holding basket, walking",
+ "aspect": "both",
+ "thumb": null,
+ "notes": "道具卡只写物，不写持有者/场景/服装；hold=true 时拼配方要配 holding 动词。"
+}

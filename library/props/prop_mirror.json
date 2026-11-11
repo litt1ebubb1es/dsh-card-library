@@ -1,0 +1,16 @@
+{
+ "id": "prop_mirror",
+ "kind": "prop",
+ "name": "手镜",
+ "version": "1.0",
+ "group": "daily",
+ "group_title": "日常",
+ "description": "手持镜，梳妆/自拍前。",
+ "prop_tags": "mirror, holding mirror, hand mirror",
+ "prop_nl": "She checks her reflection in a hand mirror.",
+ "hold": true,
+ "suggest_pose": "holding mirror, looking at mirror",
+ "aspect": "both",
+ "thumb": null,
+ "notes": "道具卡只写物，不写持有者/场景/服装；hold=true 时拼配方要配 holding 动词。"
+}

@@ -1,0 +1,21 @@
+{
+  "id": "pose_from_flower_field",
+  "kind": "pose",
+  "name": "提篮转身",
+  "version": 1,
+  "group": "from_look",
+  "group_title": "来自造型卡",
+  "description": "景别：cowboy shot；动作：blush, closed mouth, gentle smile, hand on own hair, holding basket, looking at viewer, smile, standing, turning around。",
+  "pose_tags": "blush, closed mouth, gentle smile, hand on own hair, holding basket, looking at viewer, smile, standing, turning around",
+  "pose_nl": "",
+  "camera": {
+    "shot_size": "cowboy shot"
+  },
+  "suggest_place": "",
+  "aspect": "portrait",
+  "thumb": "thumbs/pose_from_flower_field.jpg",
+  "env_ref": null,
+  "source": "look_pose_v1",
+  "legacy_look": "look_flower_field",
+  "notes": "由造型卡的 pose_tags 迁出（v4）。动作卡只讲做什么，穿什么归造型卡。"
+}

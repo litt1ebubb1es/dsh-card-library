@@ -1,0 +1,38 @@
+{
+ "id": "sc_pose_rooftop_squat",
+ "kind": "scene",
+ "name": "天台 · 逆光",
+ "group": "pose",
+ "group_title": "🧎 姿势场景",
+ "description": "地点：天台；天气：clear sky；光线：backlighting；景物：clear sky；相机：from side / full body / distant view。（纯环境，不含动作/服装/表情）",
+ "tags": {
+  "place": "rooftop",
+  "weather": "clear sky",
+  "light_fx": "backlighting"
+ },
+ "camera": {
+  "viewpoint": "from side",
+  "shot_size": "full body"
+ },
+ "extra": "clear sky",
+ "extra_camera": "distant view",
+ "env_nl": "rooftop, clear sky, backlighting, clear sky, distant view, from side.",
+ "level": 0,
+ "theme": "姿势·天台蹲坐",
+ "count_lock": "1girl, solo",
+ "aspect": "portrait",
+ "thumb": null,
+ "env_hint": "rooftop, clear sky, backlighting, full body, from side, clear sky, distant view",
+ "pose_ref": "pose_pose_rooftop_squat",
+ "cleaned": {
+  "version": 4,
+  "policy": "env/pose split",
+  "note": "动作/服装/表情已移入 poses/pose_pose_rooftop_squat.json",
+  "removed_tag_keys": [
+   "emotion",
+   "eye_gaze",
+   "pose_base"
+  ],
+  "removed_extra": []
+ }
+}

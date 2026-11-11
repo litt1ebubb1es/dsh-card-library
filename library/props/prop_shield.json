@@ -1,0 +1,16 @@
+{
+ "id": "prop_shield",
+ "kind": "prop",
+ "name": "盾牌",
+ "version": "1.0",
+ "group": "weapon",
+ "group_title": "武器",
+ "description": "盾牌，骑士/防御。",
+ "prop_tags": "shield, holding shield, round shield",
+ "prop_nl": "She raises a round shield.",
+ "hold": true,
+ "suggest_pose": "holding shield, standing",
+ "aspect": "both",
+ "thumb": null,
+ "notes": "道具卡只写物，不写持有者/场景/服装；hold=true 时拼配方要配 holding 动词。"
+}

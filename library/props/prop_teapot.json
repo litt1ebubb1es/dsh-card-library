@@ -1,0 +1,16 @@
+{
+ "id": "prop_teapot",
+ "kind": "prop",
+ "name": "茶壶",
+ "version": "1.0",
+ "group": "food",
+ "group_title": "食物饮品",
+ "description": "茶壶，待客/茶席。",
+ "prop_tags": "teapot, holding teapot, pouring tea",
+ "prop_nl": "She pours tea from a teapot.",
+ "hold": true,
+ "suggest_pose": "pouring tea, holding teapot",
+ "aspect": "both",
+ "thumb": null,
+ "notes": "道具卡只写物，不写持有者/场景/服装；hold=true 时拼配方要配 holding 动词。"
+}

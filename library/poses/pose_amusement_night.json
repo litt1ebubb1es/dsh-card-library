@@ -1,0 +1,32 @@
+{
+  "id": "pose_amusement_night",
+  "kind": "pose",
+  "name": "游乐园 · 夜场",
+  "group": "sfw",
+  "group_title": "🏙 全年龄场景搭配",
+  "description": "霓虹夜场，跳起来的瞬间",
+  "pose_tags": "standing, jumping, v, grin",
+  "pose_nl": "she jumps in front of the ferris wheel with both hands up in a v. the fairground lights blur behind her and her hair flies up. she grins wide at the viewer.",
+  "camera": {
+    "shot_size": "cowboy shot"
+  },
+  "suggest_place": "amusement park",
+  "aspect": "portrait",
+  "level": 0,
+  "theme": "约会",
+  "count_lock": "1girl, solo",
+  "env_ref": "sc_amusement_night",
+  "source_id": "sc_amusement_night",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [
+      "ferris wheel",
+      "fairground lights"
+    ],
+    "removed_camera": [
+      "motion"
+    ]
+  },
+  "thumb": "thumbs/pose_amusement_night.jpg"
+}

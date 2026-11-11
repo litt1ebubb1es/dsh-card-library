@@ -1,0 +1,32 @@
+{
+  "id": "pose_pose_rooftop_squat",
+  "kind": "pose",
+  "name": "天台 · 蹲坐远眺",
+  "group": "pose",
+  "group_title": "🧎 姿势场景",
+  "description": "天台边缘蹲着看远处，逆光剪影",
+  "pose_tags": "squatting, serious, looking away",
+  "pose_nl": "she squats on the rooftop with her elbows on her knees and looks out over the city. the backlight puts her in near silhouette against the sky. the distant buildings go pale in the haze.",
+  "camera": {
+    "viewpoint": "from side",
+    "shot_size": "full body"
+  },
+  "suggest_place": "rooftop",
+  "aspect": "portrait",
+  "level": 0,
+  "theme": "姿势·天台蹲坐",
+  "count_lock": "1girl, solo",
+  "env_ref": "sc_pose_rooftop_squat",
+  "source_id": "sc_pose_rooftop_squat",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [
+      "clear sky"
+    ],
+    "removed_camera": [
+      "distant view"
+    ]
+  },
+  "thumb": "thumbs/pose_pose_rooftop_squat.jpg"
+}

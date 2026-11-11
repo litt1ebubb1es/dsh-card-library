@@ -1,0 +1,53 @@
+{
+  "id": "look_painter",
+  "kind": "look",
+  "name": "画家",
+  "version": "1.0",
+  "description": "沾满颜料的衬衫 + 皮围裙 + 贝雷帽 + 卷起袖子 + 画笔 + 调色板，坐着画布前",
+  "nsfw": false,
+  "tags": "paint stained shirt, white shirt, apron, beret, rolled up sleeves, paint brush, palette, ",
+  "fields": {
+    "outfit": "apron",
+    "top": "white shirt",
+    "bottom": "trousers",
+    "shoes": "shoes",
+    "accessory": "beret, paint brush, palette",
+    "cloth_color": "white",
+    "cloth_mat": "cotton",
+    "cloth_state_sfw": "rolled up sleeves"
+  },
+  "body_decor": {
+    "nails": "nail polish"
+  },
+  "look_notes": {},
+  "artist_segment": "@wlop, @minaba_hideo, ",
+  "style_label": "柔光半写实 (wlop+minaba)",
+  "negative_extra": "",
+  "params": {
+    "model": "miaomiaoHarem_anima8Step10.safetensors",
+    "lora": "anima-turbo-lora-v0.1.safetensors @ 0.4",
+    "clip": "qwen_3_06b_base.safetensors (type=qwen_image)",
+    "vae": "qwen_image_vae.safetensors",
+    "steps": 12,
+    "cfg": 2.0,
+    "sampler": "euler",
+    "scheduler": "simple",
+    "resolution": "832x1216"
+  },
+  "thumb": "thumbs/look_painter.jpg",
+  "source_dir": "",
+  "look_tags": "paint stained shirt, white shirt, apron, beret, rolled up sleeves, paint brush, palette, ",
+  "pose_tags": "",
+  "tag_split": {
+    "version": 3,
+    "cloth": 7,
+    "pose": 0,
+    "moved_pose": [],
+    "migrated_to": "pose_painter"
+  },
+  "legacy_pose_ref": "pose_painter",
+  "clean_note": {
+    "version": 11,
+    "source": "random36b picked by user"
+  }
+}

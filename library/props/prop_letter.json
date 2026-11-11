@@ -1,0 +1,16 @@
+{
+ "id": "prop_letter",
+ "kind": "prop",
+ "name": "信",
+ "version": "1.0",
+ "group": "fantasy",
+ "group_title": "奇幻魔法",
+ "description": "信与信封，叙事/年代。",
+ "prop_tags": "letter, holding letter, envelope",
+ "prop_nl": "She holds a sealed letter.",
+ "hold": true,
+ "suggest_pose": "holding letter, reading letter",
+ "aspect": "both",
+ "thumb": null,
+ "notes": "道具卡只写物，不写持有者/场景/服装；hold=true 时拼配方要配 holding 动词。"
+}

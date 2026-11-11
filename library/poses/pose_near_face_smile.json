@@ -1,0 +1,27 @@
+{
+  "id": "pose_near_face_smile",
+  "kind": "pose",
+  "name": "笑眼特写",
+  "group": "near",
+  "group_title": "🔍 特写搭配",
+  "description": "清晨光线下的笑眼，露齿轻笑",
+  "pose_tags": "smile, looking at viewer, grin, teeth, eyes, eyelashes, blush, catchlight, shoulders",
+  "pose_nl": "she smiles with her teeth showing and her eyes narrowed. morning light warms one cheek and a catchlight sits in both eyes. only her face and shoulders are in frame.",
+  "camera": {
+    "shot_size": "extreme close-up"
+  },
+  "suggest_place": "",
+  "aspect": "both",
+  "level": 0,
+  "theme": "面部",
+  "count_lock": "1girl, solo",
+  "env_ref": "",
+  "source_id": "sc_near_face_smile",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_near_face_smile.jpg"
+}

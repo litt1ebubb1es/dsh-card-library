@@ -1,0 +1,30 @@
+{
+  "id": "pose_beach_midsummer",
+  "kind": "pose",
+  "name": "海边盛夏",
+  "group": "sfw",
+  "group_title": "🏙 全年龄场景搭配",
+  "description": "正午硬光 + 体积光，单手叉腰",
+  "pose_tags": "standing, hand on own hip, smile, bare feet, sunscreen",
+  "pose_nl": "she stands at the water edge in a one-piece swimsuit with one hand on her hip. the waves run over her ankles and the sun throws god rays through the spray. she smiles at the viewer.",
+  "camera": {
+    "shot_size": "cowboy shot"
+  },
+  "suggest_place": "beach",
+  "aspect": "portrait",
+  "level": 0,
+  "theme": "夏",
+  "count_lock": "1girl, solo",
+  "env_ref": "sc_beach_midsummer",
+  "source_id": "sc_beach_midsummer",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [
+      "waves",
+      "splashing water"
+    ],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_beach_midsummer.jpg"
+}

@@ -1,0 +1,31 @@
+{
+  "id": "pose_near_hip_bare",
+  "kind": "pose",
+  "name": "内裤俯卧",
+  "group": "pose",
+  "group_title": "🔍 特写搭配",
+  "description": "俯卧姿势的臀部特写（不穿鞋）；内裤款式随机：白棉/黑蕾丝/条纹/丁字/花边",
+  "pose_tags": "on stomach, ass, butt, hips, thighs, head out of frame, lower body, ass focus",
+  "pose_nl": "she lies face down with her hips raised and panties stretched across them. the sheet is pushed aside. only her lower body is in frame.",
+  "camera": {
+    "viewpoint": "from behind",
+    "shot_size": "extreme close-up"
+  },
+  "suggest_place": "",
+  "aspect": "both",
+  "level": 1,
+  "theme": "臀部",
+  "count_lock": "1girl, solo",
+  "env_ref": "",
+  "source_id": "sc_near_hip_bare",
+  "clean_note": {
+    "version": 3,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": [],
+    "removed_cloth": [
+      "panties"
+    ]
+  },
+  "thumb": "thumbs/pose_near_hip_bare.jpg"
+}

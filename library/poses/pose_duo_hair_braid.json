@@ -1,0 +1,33 @@
+{
+  "id": "pose_duo_hair_braid",
+  "kind": "pose",
+  "name": "双女 · 编发",
+  "group": "sfw",
+  "group_title": "🏙 全年龄场景搭配",
+  "description": "一个女孩坐在另一个身后给她编头发（擦边）",
+  "pose_tags": "sitting, looking away, braiding hair, fingers in hair, hair brush",
+  "pose_nl": "one girl sits behind the other and gathers her hair into a braid. her fingers separate the strands and weave them over each other. the girl in front sits still with her back turned. seen from behind and slightly above with both of them in frame.",
+  "camera": {
+    "viewpoint": "from behind",
+    "shot_size": "upper body"
+  },
+  "suggest_place": "bedroom",
+  "aspect": "both",
+  "level": 1,
+  "theme": "双女",
+  "count_lock": "2girls, yuri",
+  "env_ref": "sc_duo_hair_braid",
+  "source_id": "sc_duo_hair_braid",
+  "clean_note": {
+    "version": 3,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [],
+    "removed_camera": [
+      "back view"
+    ],
+    "removed_cloth": [
+      "hair ribbon"
+    ]
+  },
+  "thumb": "thumbs/pose_duo_hair_braid.jpg"
+}

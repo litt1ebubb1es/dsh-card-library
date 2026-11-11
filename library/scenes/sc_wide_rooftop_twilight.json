@@ -1,0 +1,36 @@
+{
+ "id": "sc_wide_rooftop_twilight",
+ "kind": "scene",
+ "name": "天台 · 暮色",
+ "group": "sfw",
+ "group_title": "🏙 全年龄场景搭配",
+ "description": "地点：天台；天气：twilight；景物：scenery, city skyline, railing, gradient sky；相机：from behind / wide shot / negative space / wide shot, full body, small figure, vast landscape, sense of scale。（纯环境，不含动作/服装/表情）",
+ "tags": {
+  "place": "rooftop",
+  "weather": "twilight"
+ },
+ "camera": {
+  "viewpoint": "from behind",
+  "shot_size": "wide shot",
+  "comp": "negative space"
+ },
+ "extra": "scenery, city skyline, railing, gradient sky",
+ "extra_camera": "wide shot, full body, small figure, vast landscape, sense of scale",
+ "env_nl": "rooftop, twilight, scenery, city skyline, railing, gradient sky, wide shot, full body, small figure, vast landscape, sense of scale, from behind.",
+ "level": 0,
+ "theme": "远景",
+ "count_lock": "1girl, solo",
+ "aspect": "landscape",
+ "thumb": null,
+ "env_hint": "rooftop, twilight, wide shot, from behind, negative space, scenery, city skyline, railing, gradient sky, wide shot, full body, small figure, vast landscape, sense of scale",
+ "pose_ref": "pose_wide_rooftop_twilight",
+ "cleaned": {
+  "version": 4,
+  "policy": "env/pose split",
+  "note": "动作/服装/表情已移入 poses/pose_wide_rooftop_twilight.json",
+  "removed_tag_keys": [
+   "pose_base"
+  ],
+  "removed_extra": []
+ }
+}

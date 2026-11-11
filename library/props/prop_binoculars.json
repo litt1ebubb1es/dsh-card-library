@@ -1,0 +1,16 @@
+{
+ "id": "prop_binoculars",
+ "kind": "prop",
+ "name": "双筒镜",
+ "version": "1.0",
+ "group": "fantasy",
+ "group_title": "奇幻魔法",
+ "description": "双筒望远镜，侦察/观鸟。",
+ "prop_tags": "binoculars, holding binoculars",
+ "prop_nl": "She raises binoculars to her eyes.",
+ "hold": true,
+ "suggest_pose": "looking through binoculars",
+ "aspect": "both",
+ "thumb": null,
+ "notes": "道具卡只写物，不写持有者/场景/服装；hold=true 时拼配方要配 holding 动词。"
+}

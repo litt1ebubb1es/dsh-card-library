@@ -1,0 +1,16 @@
+{
+ "id": "prop_tea",
+ "kind": "prop",
+ "name": "茶饮",
+ "version": "1.0",
+ "group": "food",
+ "group_title": "食物饮品",
+ "description": "热茶，居家/冬日。",
+ "prop_tags": "tea, holding tea cup, teacup",
+ "prop_nl": "She holds a warm cup of tea.",
+ "hold": true,
+ "suggest_pose": "holding tea, drinking tea",
+ "aspect": "both",
+ "thumb": null,
+ "notes": "道具卡只写物，不写持有者/场景/服装；hold=true 时拼配方要配 holding 动词。"
+}

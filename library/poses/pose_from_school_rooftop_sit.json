@@ -1,0 +1,21 @@
+{
+  "id": "pose_from_school_rooftop_sit",
+  "kind": "pose",
+  "name": "抱膝坐",
+  "version": 1,
+  "group": "from_look",
+  "group_title": "来自造型卡",
+  "description": "景别：full body；动作：arms around knees, closed mouth, head tilted back, knees up, looking up, relaxed, sitting on floor, smile。",
+  "pose_tags": "arms around knees, closed mouth, head tilted back, knees up, looking up, relaxed, sitting on floor, smile",
+  "pose_nl": "",
+  "camera": {
+    "shot_size": "full body"
+  },
+  "suggest_place": "",
+  "aspect": "portrait",
+  "thumb": "thumbs/pose_from_school_rooftop_sit.jpg",
+  "env_ref": null,
+  "source": "look_pose_v1",
+  "legacy_look": "look_school_rooftop_sit",
+  "notes": "由造型卡的 pose_tags 迁出（v4）。动作卡只讲做什么，穿什么归造型卡。"
+}

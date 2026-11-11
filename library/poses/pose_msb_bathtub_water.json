@@ -1,0 +1,29 @@
+{
+  "id": "pose_msb_bathtub_water",
+  "kind": "pose",
+  "name": "自慰 · 浴缸水流",
+  "group": "nsfw",
+  "group_title": "🔞 NSFW 跨槽位配方",
+  "description": "浴缸里借水流",
+  "pose_tags": "masturbation, tears, open mouth, completely nude, body writhe, pussy juice, solo, bath, arched back",
+  "pose_nl": "she lies back in the bathtub full of water with one hand between her legs. steam rises around her and her back arches. water splashes over the rim.",
+  "camera": {
+    "viewpoint": "from above"
+  },
+  "suggest_place": "",
+  "aspect": "landscape",
+  "level": 3,
+  "theme": "挖矿",
+  "count_lock": "1girl, solo",
+  "env_ref": "",
+  "source_id": "sc_msb_bathtub_water",
+  "clean_note": {
+    "version": 2,
+    "policy": "drop env/camera tokens from pose_tags",
+    "removed_env": [
+      "water"
+    ],
+    "removed_camera": []
+  },
+  "thumb": "thumbs/pose_msb_bathtub_water.jpg"
+}
