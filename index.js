@@ -317,6 +317,20 @@ function isEyesShut(text) {
  */
 const EYE_TOKEN_RE = /\b(eyes?|pupils?|irises?|catchlights?|eyelashes|lashes|heterochromia)\b/i
 
+/**
+ * v25：眼周特征不是「眼睛专属词」，闭着眼照样成立，必须豁免。
+ *
+ * `EYE_TOKEN_RE` 的 `eyes?` 是**子串命中**，`mole under eye`（眼下泪痣）与
+ * `close-set eyes`（瞳距）都被它吃掉。但这两件东西跟睁不睁眼无关：
+ * 痣长在眼睛下方、眼距是颅骨结构。实测（`_probe_r21.mjs`）闭眼时正向里
+ * 这两项**整段消失** —— 而它们是 `crab_vampire` 的招牌特征（n5 专门定的瞳距），
+ * 等于每次出闭眼 / 睡着的图，小蟹的泪痣和瞳距都丢。
+ *
+ * 只在 `stripEyeTokens` 里豁免，不动 `EYE_TOKEN_RE` 本身 —— 那个正则还被
+ * 「头出画」与别的分支共用，改它会影响别处。
+ */
+const EYE_AREA_FEATURE_RE = /^(?:mole under eye|close-set eyes|wide-set eyes|eye shadow|eyeshadow|eyebrows?|thick eyebrows?|eyebrow piercing|eyeliner|eye mask|eye patch|eyepatch|under-eye bags?|eye bags?|tear mole|beauty mark under eye)$/i
+
 function stripEyeTokens(seg) {
   if (!seg) return { text: '', dropped: [] }
   const out = []
@@ -324,7 +338,13 @@ function stripEyeTokens(seg) {
   for (const raw of String(seg).split(',')) {
     const t = raw.trim()
     if (!t) continue
-    if (EYE_TOKEN_RE.test(t.replace(/_/g, ' '))) {
+    const norm = t.replace(/_/g, ' ')
+    // 眼周特征（痣 / 眼距 / 眼线 / 眼罩 / 眉毛）先豁免，再判眼睛本体
+    if (EYE_AREA_FEATURE_RE.test(norm)) {
+      out.push(t)
+      continue
+    }
+    if (EYE_TOKEN_RE.test(norm)) {
       dropped.push(t)
       continue
     }

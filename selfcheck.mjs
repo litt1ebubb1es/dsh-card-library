@@ -874,6 +874,15 @@ check('closedEyes 开关：眼睛词同样清掉',
   !String(shutD.json?.positive || '').toLowerCase().includes('heterochromia'),
   String(shutD.json?.positive || '').slice(0, 200))
 
+// ── v25：眼周特征不是「眼睛专属词」（泪痣 / 瞳距闭眼照样成立）────────
+// `EYE_TOKEN_RE` 的 `eyes?` 是子串命中，把 `mole under eye`（眼下泪痣）与
+// `close-set eyes`（瞳距）一起吃了。但痣长在眼睛下方、眼距是颅骨结构，
+// 闭不闭眼都在 —— 而这两项正是 crab_vampire 的招牌特征（n5 专门定的瞳距）。
+check('闭眼：泪痣 mole under eye 必须留着', shutGPos.includes('mole under eye'), shutGPos.slice(0, 240))
+check('闭眼：瞳距 close-set eyes 必须留着', shutGPos.includes('close-set eyes'), shutGPos.slice(0, 240))
+check('睁眼对照：泪痣与瞳距也在（没被改坏）',
+  shutBPos.includes('mole under eye') && shutBPos.includes('close-set eyes'), shutBPos.slice(0, 200))
+
 // ── v20：闭眼 × 视角视线 —— 视角选择器也不许要求睁眼 ────────────────
 // v13 只剥了角色段 / 脸光 / render 三段的眼睛词，视角段的 `looking at viewer`
 // 是从「视角选择器」漏回来的第四条缝：它同样在要求睁眼看镜头。
