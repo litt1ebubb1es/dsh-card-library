@@ -291,11 +291,21 @@ function stripFaceOnly(seg) {
  *
  * **只认「全闭」**：`half-closed eyes` / `eyes half closed` 眼睛还露着，虹膜看得见，
  * 异色瞳照样成立，动了反而丢信息 —— 那一档故意不管。
+ *
+ * v24：这句话以前只是注释，正则其实做不到。`half-closed eyes` 里含 `closed eyes` 子串、
+ * `\b` 在连字符后照样成立，于是 11 张半闭眼卡全被当成全闭（异色瞳被剥掉）。
+ * `sleeping` 也一样：`sleeping kimono`（睡袍）、`sleeping bag`（睡袋）都不是在睡觉。
+ * 现在先剔掉这两族再判，`one eye closed`（眨眼，另一只眼还睁着）也归半闭。
  */
-const EYES_SHUT_RE = /\b(closed eyes|eyes closed|eyes shut|eye closed|one eye closed|sleeping|asleep|eyes closed tightly)\b/i
+const HALF_EYES_RE = /\b(half[- ]closed eyes?|eyes half[- ]closed|one eye closed)\b/gi
+const SLEEPING_NOUN_RE = /\bsleeping\s+(?:kimono|robe|bag|mask|wear|dress|gown|shirt|cap|hat|pillow|beauty|suit|vest)\b/gi
+const EYES_SHUT_RE = /\b(closed eyes|eyes closed|eyes shut|eye closed|eyes closed tightly|sleeping|asleep)\b/i
 
 function isEyesShut(text) {
-  return EYES_SHUT_RE.test(String(text || ''))
+  const s = String(text || '')
+  if (!s) return false
+  const stripped = s.replace(HALF_EYES_RE, ' ').replace(SLEEPING_NOUN_RE, ' ')
+  return EYES_SHUT_RE.test(stripped)
 }
 
 /**

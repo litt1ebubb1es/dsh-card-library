@@ -832,6 +832,39 @@ check('半闭眼：异色瞳保留（眼睛还露着）', shutCPos.includes('het
 check('半闭眼：不报 eyes autofix', !(shutC.json?.autofixes || []).some((a) => a.kind === 'eyes'),
   (shutC.json?.autofixes || []).map((a) => a.kind).join(','))
 
+// ── v24：`half-closed eyes` 这种写法以前被当成全闭（含 closed eyes 子串）──
+// 上面那条用的是 `eyes half closed`（不含子串），所以一直是绿的；真实卡库里有 11 张
+// 写的是 `half-closed eyes`，全被误剥。这里换真实卡覆盖那个写法。
+const shutE = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { styleId: 'style_anime_cel', characterId: 'crab_vampire', poseId: 'pose_from_bathtub_edge' },
+})
+const shutEPos = String(shutE.json?.positive || '').toLowerCase()
+check('半闭眼（half-closed 写法）：异色瞳保留', shutEPos.includes('heterochromia'), shutEPos.slice(0, 220))
+check('半闭眼（half-closed 写法）：catchlight 保留', /catchlight/i.test(shutEPos), shutEPos.slice(0, 220))
+check('半闭眼（half-closed 写法）：不报 eyes autofix', !(shutE.json?.autofixes || []).some((a) => a.kind === 'eyes'),
+  (shutE.json?.autofixes || []).map((a) => a.kind).join(','))
+
+// `sleeping kimono`（睡袍）不是睡着 —— 以前 sleeping 这个词裸匹配，把异色瞳剥掉了
+const shutF = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { styleId: 'style_anime_cel', characterId: 'crab_vampire', poseId: 'pose_pose_bed_kneel' },
+})
+const shutFPos = String(shutF.json?.positive || '').toLowerCase()
+check('睡袍（sleeping kimono）：异色瞳保留', shutFPos.includes('heterochromia'), shutFPos.slice(0, 220))
+check('睡袍（sleeping kimono）：不报 eyes autofix', !(shutF.json?.autofixes || []).some((a) => a.kind === 'eyes'),
+  (shutF.json?.autofixes || []).map((a) => a.kind).join(','))
+
+// 真睡着的仍然要剥（别把 v24 修过头）
+const shutG = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { styleId: 'style_anime_cel', characterId: 'crab_vampire', poseId: 'pose_sofa_catnap' },
+})
+const shutGPos = String(shutG.json?.positive || '').toLowerCase()
+check('真睡着（sleeping）：眼睛词仍然剥掉', !shutGPos.includes('heterochromia'), shutGPos.slice(0, 220))
+check('真睡着（sleeping）：仍报 eyes autofix', (shutG.json?.autofixes || []).some((a) => a.kind === 'eyes'),
+  (shutG.json?.autofixes || []).map((a) => a.kind).join(','))
+
 // 显式开关 closedEyes:true 也走同一条路
 const shutD = await call('/dsh-card-library/compose', {
   method: 'POST',
