@@ -1,0 +1,28 @@
+{
+  "id": "prop_uchiwa",
+  "kind": "prop",
+  "name": "团扇",
+  "version": 1.0,
+  "group": "daily",
+  "group_title": "日常",
+  "description": "和风团扇，竹柄 + 纸面彩绘。夏天穿浴衣/和服时手里那把。",
+  "prop_tags": "uchiwa, hand fan, paper fan, holding fan",
+  "prop_nl": "A round paper fan with a bamboo handle, painted with a goldfish pattern.",
+  "hold": true,
+  "suggest_pose": "standing, holding fan, fan in hand",
+  "aspect": "portrait",
+  "thumb": "thumbs/prop_uchiwa.jpg",
+  "params": {
+    "model": "miaomiaoHarem_anima8Step10.safetensors",
+    "lora": "anima-turbo-lora-v0.1.safetensors @ 0.4",
+    "clip": "qwen_3_06b_base.safetensors (type=qwen_image)",
+    "vae": "qwen_image_vae.safetensors",
+    "steps": 12,
+    "cfg": 2.0,
+    "sampler": "euler",
+    "scheduler": "simple",
+    "resolution": "832x1216"
+  },
+  "notes": "只写物，不写持有者/场景/服装（n50 界线）。",
+  "source": "bilibili 《亚洲奇幻女子图鉴》BV1q8411e7aW"
+}

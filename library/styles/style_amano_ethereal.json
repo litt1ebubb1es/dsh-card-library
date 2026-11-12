@@ -1,0 +1,50 @@
+{
+  "id": "style_amano_ethereal",
+  "kind": "style",
+  "name": "★天野喜孝系 · 空灵粉彩飘带",
+  "version": 1.0,
+  "description": "粉彩渐变 + 极细墨线 + 金叶飘带 + 大片留白。几乎没有 shading 段，是四档里最干净的一档。",
+  "quality_prefix": "masterpiece, best quality, score 7, score 9, very aesthetic, ultra detailed, ",
+  "artist_segment": "@amano_yoshitaka, ",
+  "render": "japanese illustration, ethereal, dreamlike, floating, weightless, flowing ribbons, ribbon streamers, long trailing cloth, fine ink lineart, thin brush lines, delicate linework, pastel gradient, pale pink and pale blue gradient, soft pastel colors, gold leaf accents, gold ornament, decorative patterns, flat color with soft airbrush, layered translucent colors, flowing hair, hair floating, ornamental, art nouveau, negative space, empty background, pale gradient background, ",
+  "face_light": "face softly lit, even facial lighting, delicate features, soft highlight on cheek, no heavy shadow on face, catchlight in both eyes, ",
+  "negative": "worst quality, low quality, score 1, score 2, score 3, lowres, jpeg artifacts, 3d render, cgi, photorealistic, photo, glossy skin, shiny skin, oily skin, plastic skin, waxy skin, specular highlight, wet look, sweaty, glossy eyes, detailed eyes, big sparkling eyes, gradient shading, airbrush, soft shading, subsurface scattering, watermark, signature, artist name, text, logo, multiple girls, 2girls, male, 1boy, nude, naked, bat print, bat pattern, bat wings, bat motif, heavy shading, hard shadow, dark background, black background, neon, saturated colors, vivid colors, thick outlines, heavy lineart, vector lineart",
+  "post": {
+    "lift_shadows": {
+      "amount": 0.04,
+      "gamma": 1.2
+    },
+    "tone": {
+      "brightness": 1.04,
+      "saturation": 0.94,
+      "contrast": 0.97,
+      "smooth": true
+    },
+    "note": "四步全在「降」不在「加」：提亮 4%、降饱和 6%、SMOOTH 柔化线条、对比 −3%。不要 haze / bloom / grain。"
+  },
+  "params": {
+    "model": "miaomiaoHarem_anima8Step10.safetensors",
+    "lora": "anima-turbo-lora-v0.1.safetensors @ 0.4",
+    "clip": "qwen_3_06b_base.safetensors (type=qwen_image)",
+    "vae": "qwen_image_vae.safetensors",
+    "steps": 12,
+    "cfg": 2.0,
+    "sampler": "euler",
+    "scheduler": "simple",
+    "resolution": "832x1216"
+  },
+  "scene_hint": "simple background, white background, negative space, ",
+  "thumb": "thumbs/style_amano_ethereal.jpg",
+  "tags": [
+    "天野喜孝",
+    "空灵",
+    "粉彩",
+    "细墨线",
+    "飘带",
+    "金叶",
+    "留白",
+    "去AI感"
+  ],
+  "notes": "天野喜孝《飞天》方向。关键是没有 shading 段 —— fine ink lineart + pastel gradient + flat color + negative space 四件套把模型逼到平涂线稿状态。加任何光泽词立刻回到 AI 脸。",
+  "source": "bilibili style research 2026-11-11"
+}

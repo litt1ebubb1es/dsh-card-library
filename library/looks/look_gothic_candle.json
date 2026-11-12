@@ -1,0 +1,47 @@
+{
+  "id": "look_gothic_candle",
+  "kind": "look",
+  "name": "哥特蕾丝烛光裙",
+  "version": 1.0,
+  "description": "黑蕾丝高领 + 束腰 + 层叠裙摆 + 长手套 + 银十字。暗场单光源下最吃光的一套。",
+  "nsfw": false,
+  "tags": "black gothic dress, lace collar, high collar, corset, layered skirt, long sleeves, elbow gloves, silver cross pendant, dark stockings, ",
+  "look_tags": "black gothic dress, lace collar, high collar, corset, layered skirt, long sleeves, elbow gloves, silver cross pendant, dark stockings, ",
+  "pose_tags": "",
+  "fields": {
+    "outfit": "black gothic dress",
+    "top": "lace collar, high collar, corset",
+    "bottom": "layered skirt",
+    "accessory": "elbow gloves, silver cross pendant",
+    "cloth_color": "black",
+    "cloth_mat": "lace",
+    "cloth_state_sfw": "layered"
+  },
+  "body_decor": "silver cross pendant on chest",
+  "look_notes": "蕾丝高领是识别点，必须写 `lace collar + high collar` 两段 —— 只写 lace 会糊满全身。层叠裙摆配暗场要写 `layered skirt`，否则烛光下会糊成一片黑。",
+  "artist_segment": "",
+  "style_label": "哥特巴洛克水彩",
+  "negative_extra": "short skirt, mini skirt, modern clothes, t-shirt, jeans, sneakers, bright colors, white background",
+  "tag_split": {
+    "version": 3,
+    "cloth": 9,
+    "pose": 0,
+    "moved_pose": [],
+    "migrated_to": null
+  },
+  "legacy_pose_ref": null,
+  "params": {
+    "model": "miaomiaoHarem_anima8Step10.safetensors",
+    "lora": "anima-turbo-lora-v0.1.safetensors @ 0.4",
+    "clip": "qwen_3_06b_base.safetensors (type=qwen_image)",
+    "vae": "qwen_image_vae.safetensors",
+    "steps": 12,
+    "cfg": 2.0,
+    "sampler": "euler",
+    "scheduler": "simple",
+    "resolution": "832x1216"
+  },
+  "thumb": "thumbs/look_gothic_candle.jpg",
+  "source_dir": null,
+  "source": "bilibili BV1hh411w7E7 小岛文美《恶魔城》插画"
+}

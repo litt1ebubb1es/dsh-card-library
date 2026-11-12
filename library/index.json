@@ -5,12 +5,12 @@
  "base_path": "library",
  "counts": {
   "kinds": 6,
-  "styles": 7,
+  "styles": 16,
   "characters": 2,
-  "looks": 47,
+  "looks": 50,
   "scenes": 140,
-  "poses": 316,
-  "props": 122
+  "poses": 319,
+  "props": 124
  },
  "kinds": [
   {
@@ -46,6 +46,24 @@
  ],
  "styles": [
   {
+   "id": "style_amano_ethereal",
+   "name": "★天野喜孝系 · 空灵粉彩飘带",
+   "thumb": "thumbs/style_amano_ethereal.jpg",
+   "nsfw": false,
+   "desc": "粉彩渐变 + 极细墨线 + 金叶飘带 + 大片留白。几乎没有 shading 段，是四档里最干净的一档。",
+   "kw": "style_amano_ethereal, ★天野喜孝系 · 空灵粉彩飘带, 粉彩渐变 + 极细墨线 + 金叶飘带 + 大片留白。几乎没有 shading 段，是四档里最干净的一档。, @amano_yoshitaka, japanese illustration, ethereal, dreamlike, floating, weightless, flowing ribbons, ribbon streamers, long trailing cloth, fine ink lineart, thin brush lines, delicate linework, pastel gradient, pale pink and pale blue gradient, soft pastel colors, gold leaf accents, gold ornament, decorative patterns, flat color with soft airbrush, layered translucent colors, flowing hair, hair floating, ornamental, art nouveau, negative space, empty background, pale gradient background, face softly lit, even facial lighting, delicate features, soft highlight on cheek, no heavy shadow on face, catchlight in both eyes, simple background, white background, 天野喜孝 空灵 粉彩 细墨线 飘带 金叶 留白 去ai感",
+   "tags": "@amano_yoshitaka,"
+  },
+  {
+   "id": "style_amano_softfog",
+   "name": "★天野喜孝系 · 柔光雾版",
+   "thumb": "thumbs/style_amano_softfog.jpg",
+   "nsfw": false,
+   "desc": "天野喜孝档 + 柔光雾后期。粉彩渐变、金叶飘带、大片留白都保留，另外加一层暖白薄雾与柔光扩散 —— 观感更朦胧、更「画集印刷」，代价是细墨线被柔化约三分之一。",
+   "kw": "style_amano_softfog, ★天野喜孝系 · 柔光雾版, 天野喜孝档 + 柔光雾后期。粉彩渐变、金叶飘带、大片留白都保留，另外加一层暖白薄雾与柔光扩散 —— 观感更朦胧、更「画集印刷」，代价是细墨线被柔化约三分之一。, @amano_yoshitaka, japanese illustration, ethereal, dreamlike, floating, weightless, flowing ribbons, ribbon streamers, long trailing cloth, fine ink lineart, thin brush lines, delicate linework, pastel gradient, pale pink and pale blue gradient, soft pastel colors, gold leaf accents, gold ornament, decorative patterns, flat color with soft airbrush, layered translucent colors, flowing hair, hair floating, ornamental, art nouveau, negative space, empty background, pale gradient background, face softly lit, even facial lighting, delicate features, soft highlight on cheek, no heavy shadow on face, catchlight in both eyes, simple background, white background, 天野喜孝 柔光 雾感 粉彩 飘带 金叶 留白 画集印刷感",
+   "tags": "@amano_yoshitaka,"
+  },
+  {
    "id": "style_anime_cel",
    "name": "动漫赛璐璐（大眼档）",
    "thumb": "thumbs/style_anime_cel.jpg",
@@ -62,6 +80,33 @@
    "desc": "用户 2026-11-10 定案的小蟹默认配方：褶边密度 + 脸部完成度 + 轻盈感三者兼得。",
    "kw": "style_base_seven, 基准七画师 11+13+35, 用户 2026-11-10 定案的小蟹默认配方：褶边密度 + 脸部完成度 + 轻盈感三者兼得。, @mika pikazo, @torino aqua, @minaba hideo, @liduke, @piromizu, @nonco, @kou hiyoyo, smooth digital painting, soft gradient shading, airbrushed soft shading, semi-realistic, delicate soft rendering, soft edges, detailed hair strands, glossy hair highlights, backlit hair, dim ambient lighting, bloom, light particles, muted colors, low saturation, soft contrast, filmic color grading, detailed eyes with catchlight, cinematic composition, face fully lit, soft fill light on face, key light on face, bright face, illuminated face, glowing skin, luminous skin, skin catching the lamp light, gentle highlight on cheek, no shadow on face, even facial lighting, soft light wrapping the face, warm light on cheek and nose, catchlight in both eyes, 七画师 褶边 华丽 默认",
    "tags": "@mika pikazo, @torino aqua, @minaba hideo, @liduke, @piromizu, @nonco, @kou hiyoyo,"
+  },
+  {
+   "id": "style_gothic_baroque",
+   "name": "★哥特巴洛克水彩",
+   "thumb": "thumbs/style_gothic_baroque.jpg",
+   "nsfw": false,
+   "desc": "黑底 + 蜡烛 + 深红天鹅绒 + 金雕花框 + 水彩湿接。暗场单光源，半张脸沉在阴影里。抄自小岛文美《恶魔城》插画方向。",
+   "kw": "style_gothic_baroque, ★哥特巴洛克水彩, 黑底 + 蜡烛 + 深红天鹅绒 + 金雕花框 + 水彩湿接。暗场单光源，半张脸沉在阴影里。抄自小岛文美《恶魔城》插画方向。, @kojima_ayami, baroque, gothic, dark fantasy, watercolor (medium), gouache, wet on wet, color bleeding, deep shadow, chiaroscuro, strong contrast, dark background, deep crimson, burgundy, antique gold, gold ornament, gold trim, ornate frame, decorative border, filigree, lace, ruffles, candle light, dim lighting, vignette, elegant, solemn, melancholic, fine ink lineart, visible brush strokes, aged paper, paper texture, face lit by candle light, half of face in shadow, warm highlight on cheek, catchlight in both eyes, simple background, white background, negative space, 哥特 巴洛克 水彩 暗场 蜡烛 金饰 画框 去ai感",
+   "tags": "@kojima_ayami,"
+  },
+  {
+   "id": "style_halftone_poster",
+   "name": "★复古半调套印海报",
+   "thumb": "thumbs/style_halftone_poster.jpg",
+   "nsfw": false,
+   "desc": "白纸底 + 黑线 + 红蓝两色套印 + 半调网点。真印刷工艺感，不是滤镜。",
+   "kw": "style_halftone_poster, ★复古半调套印海报, 白纸底 + 黑线 + 红蓝两色套印 + 半调网点。真印刷工艺感，不是滤镜。, screen print, silkscreen print, halftone, halftone dots, screentone, limited palette, three colors only, cream paper, black ink, vermilion ink, flat color areas, bold shapes, poster art, graphic design, print misregistration, ink texture, coarse grain, aged paper, paper texture, slight paper yellowing, high contrast, hard edges, no gradient, retro print, vintage poster, face drawn with halftone dots, screentone shading on face, minimal shading on face, catchlight in both eyes, simple background, white background, negative space, 半调 套印 丝网印 海报 网点 两色 去ai感",
+   "tags": "半调 套印 丝网印 海报 网点 两色 去AI感"
+  },
+  {
+   "id": "style_ink_wash",
+   "name": "★水墨单色（单点红）",
+   "thumb": "thumbs/style_ink_wash.jpg",
+   "nsfw": false,
+   "desc": "墨线 + 灰阶晕染 + 一点红。大量留白，墨会往下淌。",
+   "kw": "style_ink_wash, ★水墨单色（单点红）, 墨线 + 灰阶晕染 + 一点红。大量留白，墨会往下淌。, sumi-e, ink wash painting, monochrome, black ink, grey wash, single accent color, red accent, brush strokes, dry brush, wet ink, bleeding ink, rice paper, washi, paper texture, fine ink lineart, varying line weight, tapered strokes, negative space, lots of empty space, minimal, simple background, white background, face lit by ambient light, minimal shading on face, catchlight in both eyes, 水墨 单色 墨线 留白 单点红 和纸 去ai感",
+   "tags": "水墨 单色 墨线 留白 单点红 和纸 去AI感"
   },
   {
    "id": "style_manga_fullcolor_v1",
@@ -82,6 +127,15 @@
    "tags": "黑白 漫画 墨线 网点 img2img 日漫"
   },
   {
+   "id": "style_mochizuki_cel",
+   "name": "★望月けい 精致赛璐璐",
+   "thumb": "thumbs/style_mochizuki_cel.jpg",
+   "nsfw": false,
+   "desc": "锐利细线 + 高饱和平涂 + 硬阴影形状 + 冷白背景。蓝白红三色主导，现代精致版赛璐璐。",
+   "kw": "style_mochizuki_cel, ★望月けい 精致赛璐璐, 锐利细线 + 高饱和平涂 + 硬阴影形状 + 冷白背景。蓝白红三色主导，现代精致版赛璐璐。, @mochizuki_kei, anime cel, cel shading, flat colors, crisp flat colors, thin sharp lineart, clean vector-like outline, high contrast, sharp shadow shapes, hard shadow edge, saturated colors, vivid colors, strong color blocking, detailed hair, hair strands, glossy hair highlight, simple background, pale background, flat lighting on face, hard shadow on face, sharp highlight on cheek, catchlight in both eyes, 赛璐璐 望月けい 细线 高饱和 硬阴影 平涂",
+   "tags": "@mochizuki_kei,"
+  },
+  {
    "id": "style_nsfw_boris",
    "name": "NSFW boris",
    "thumb": "thumbs/style_nsfw_boris.jpg",
@@ -91,6 +145,15 @@
    "tags": "@boris,"
   },
   {
+   "id": "style_retro90_cel",
+   "name": "★90s 复古赛璐璐",
+   "thumb": "thumbs/style_retro90_cel.jpg",
+   "nsfw": false,
+   "desc": "平涂 + 有限色板 + 硬阴影边 + 胶片颗粒。像 90 年代动画赛璐璐上色，不是现代 anime。",
+   "kw": "style_retro90_cel, ★90s 复古赛璐璐, 平涂 + 有限色板 + 硬阴影边 + 胶片颗粒。像 90 年代动画赛璐璐上色，不是现代 anime。, @sushio, retro artstyle, 1990s (style), anime cel, cel shading, flat colors, limited palette, two-tone shading, hard shadow edge, slight color bleed, print misregistration, film grain, thin black lineart, clean outline, dull colors, muted palette, sepia tint, aged film, city street, telephone pole, evening, detailed background, flat lighting on face, even facial lighting, minimal shading on face, small catchlight in both eyes, simple background, white background, negative space, 90s 赛璐璐 平涂 有限色板 硬阴影 胶片感 复古 去ai感",
+   "tags": "@sushio,"
+  },
+  {
    "id": "style_shadowverse_crisp",
    "name": "★Cygames 明亮插画（lack+redjuice）",
    "thumb": "thumbs/style_shadowverse_crisp.jpg",
@@ -98,6 +161,24 @@
    "desc": "参考用户 2026-11-10 给的 5 张 Shadowverse Worlds Beyond 官方倒计时插画复刻。目标是把 AI 感压下去：细彩线 + 三阶上色 + 硬阴影形状 + 明亮粉彩背景 + 白色星闪。与 ★柔光半写实（n58）是相反方向——那套靠低饱和柔焦，这套靠锐利结构与高明度。",
    "kw": "style_shadowverse_crisp, ★cygames 明亮插画（lack+redjuice）, 参考用户 2026-11-10 给的 5 张 shadowverse worlds beyond 官方倒计时插画复刻。目标是把 ai 感压下去：细彩线 + 三阶上色 + 硬阴影形状 + 明亮粉彩背景 + 白色星闪。与 ★柔光半写实（n58）是相反方向——那套靠低饱和柔焦，这套靠锐利结构与高明度。, @lack, @redjuice, anime style, anime coloring, crisp lineart, thin lineart, colored lineart, cel shading, three-tone shading, shadow shape, defined shadow, hard shadow edges, soft shadow transition, painterly rendering, detailed rendering, intricate details, vivid colors, saturated accents, fresh colors, transparent colors, detailed hair, individual hair strands, glossy hair, translucent hair, detailed eyes, glowing eyes, sharp highlights in eyes, delicate details, face brightly lit, luminous face, glowing skin, soft light wrapping the face, gentle highlight on cheek and nose, soft shadow on cheek, defined nose shadow, no heavy shadow on face, catchlight in both eyes, bright background, pastel background, gradient background, pale blue and lavender gradient, white glow, soft white aura, sparkle, star-shaped sparkles, cross-shaped sparkles, twinkling lights, glowing particles, dust motes, bokeh, backlit hair, light shining through hair, translucent hair edges, luminous atmosphere, airy, clean, cool white ambient light, soft pastel lighting, depth of field, cinematic composition, 明亮 细线 三阶上色 粉彩 去ai感 星闪 高完成度",
    "tags": "@lack, @redjuice,"
+  },
+  {
+   "id": "style_sketch_wash",
+   "name": "★淡彩线稿水彩",
+   "thumb": "thumbs/style_sketch_wash.jpg",
+   "nsfw": false,
+   "desc": "铅笔细线 + 一层薄水彩 + 纸纹。大量留白，脸几乎不上色。",
+   "kw": "style_sketch_wash, ★淡彩线稿水彩, 铅笔细线 + 一层薄水彩 + 纸纹。大量留白，脸几乎不上色。, watercolor (medium), colored pencil, loose sketch, sketch lines, visible paper texture, cold press paper, thin pencil lines, broken lines, loose lineart, light wash, pale colors, single layer of color, mostly white, lots of white space, unpainted areas, simple background, white background, face barely shaded, light wash on face, small catchlight in both eyes, negative space, 水彩 淡彩 线稿 铅笔 纸纹 留白 手绘感 去ai感",
+   "tags": "水彩 淡彩 线稿 铅笔 纸纹 留白 手绘感 去AI感"
+  },
+  {
+   "id": "style_ukiyoe_print",
+   "name": "★浮世绘木版",
+   "thumb": "thumbs/style_ukiyoe_print.jpg",
+   "nsfw": false,
+   "desc": "粗线平涂 + 青海波纹 + 靛蓝朱红。木版画的错位感和纸纹。",
+   "kw": "style_ukiyoe_print, ★浮世绘木版, 粗线平涂 + 青海波纹 + 靛蓝朱红。木版画的错位感和纸纹。, ukiyo-e, woodblock print, japanese traditional art, flat colors, flat color areas, bold outlines, limited palette, indigo and vermilion, decorative pattern, seigaiha, wave pattern, paper texture, washi, wood grain, profile view, stylized features, cartouche, seal, detailed background, flat lighting on face, no shading on face, small dark eyes, simple background, white background, negative space, 浮世绘 木版 青海波 平涂 粗线 靛蓝 朱红 去ai感",
+   "tags": "浮世绘 木版 青海波 平涂 粗线 靛蓝 朱红 去AI感"
   },
   {
    "id": "style_wlop_warm_soft",
@@ -283,6 +364,17 @@
    "tags": "witch hat, black cloak, layered dress, black layered dress, lace collar, corset, potion vials on belt, fingerless gloves, tall boots, silver ornament,"
   },
   {
+   "id": "look_gothic_candle",
+   "name": "哥特蕾丝烛光裙",
+   "thumb": "thumbs/look_gothic_candle.jpg",
+   "nsfw": false,
+   "desc": "黑蕾丝高领 + 束腰 + 层叠裙摆 + 长手套 + 银十字。暗场单光源下最吃光的一套。",
+   "look_tags": "black gothic dress, lace collar, high collar, corset, layered skirt, long sleeves, elbow gloves, silver cross pendant, dark stockings,",
+   "pose_tags": "",
+   "kw": "look_gothic_candle, 哥特蕾丝烛光裙, 黑蕾丝高领 + 束腰 + 层叠裙摆 + 长手套 + 银十字。暗场单光源下最吃光的一套。, black gothic dress, lace collar, high collar, corset, layered skirt, long sleeves, elbow gloves, silver cross pendant, dark stockings, {\"outfit\": \"black gothic dress\", \"top\": \"lace collar, corset\", \"bottom\": \"layered skirt\", \"accessory\": \"elbow gloves, silver cross pendant\", \"cloth_color\": \"black\", \"cloth_mat\": \"lace\", \"cloth_state_sfw\": \"layered\"}",
+   "tags": "black gothic dress, lace collar, high collar, corset, layered skirt, long sleeves, elbow gloves, silver cross pendant, dark stockings,"
+  },
+  {
    "id": "look_grey_orange_skirt",
    "name": "灰橙裙抱臂",
    "thumb": "thumbs/look_grey_orange_skirt.jpg",
@@ -292,6 +384,17 @@
    "pose_tags": "",
    "kw": "look_grey_orange_skirt, 灰橙裙抱臂, 灰上衣 + 橙裙 + 黑丝袜 + 靴，抱臂侧目, blouse, skirt, pantyhose, chunky heels, necklace, grey blouse, latex, backless, no makeup, nail polish, {\"top\": \"blouse\", \"bottom\": \"skirt\", \"socks\": \"pantyhose\", \"shoes\": \"chunky heels\", \"accessory\": \"necklace\", \"cloth_color\": \"grey\", \"cloth_mat\": \"latex\", \"cloth_state_sfw\": \"backless\"}",
    "tags": "blouse, skirt, pantyhose, chunky heels, necklace, grey blouse, latex, backless, no makeup, nail polish,"
+  },
+  {
+   "id": "look_kaftan_red",
+   "name": "红色卡夫坦长袍",
+   "thumb": "thumbs/look_kaftan_red.jpg",
+   "nsfw": false,
+   "desc": "中亚卡夫坦：红底金绣长袍 + 圆帽 + 长袖垂坠。抄自《亚洲奇幻女子图鉴》乌兹别克篇。",
+   "look_tags": "kaftan, long coat, red coat, gold embroidery, gold trim, round hat, wide sleeves, long dress, embroidered hem, layered robe, jewelry, earrings, necklace,",
+   "pose_tags": "",
+   "kw": "look_kaftan_red, 红色卡夫坦长袍, 中亚卡夫坦：红底金绣长袍 + 圆帽 + 长袖垂坠。抄自《亚洲奇幻女子图鉴》乌兹别克篇。, kaftan, long coat, red coat, gold embroidery, gold trim, round hat, wide sleeves, long dress, embroidered hem, layered robe, jewelry, earrings, necklace, {\"outfit\": \"kaftan\", \"top\": \"long coat\", \"bottom\": \"long dress\", \"accessory\": \"round hat, necklace\", \"cloth_color\": \"red\", \"cloth_mat\": \"silk\", \"cloth_state_sfw\": \"layered\"}",
+   "tags": "kaftan, long coat, red coat, gold embroidery, gold trim, round hat, wide sleeves, long dress, embroidered hem, layered robe, jewelry, earrings, necklace,"
   },
   {
    "id": "look_maid",
@@ -424,6 +527,17 @@
    "pose_tags": "",
    "kw": "look_pirate, 海盗船长, 三角帽 + 红色长大衣 + 白衬衫 + 束腰带 + 眼罩 + 弯刀 + 长靴，手插腰自信坏笑, pirate hat, tricorn hat, long coat, red coat, white shirt, sash, eyepatch, cutlass, boots, belt, {\"outfit\": \"red long coat\", \"top\": \"white shirt\", \"bottom\": \"trousers\", \"shoes\": \"boots\", \"accessory\": \"tricorn hat, sash\", \"cloth_color\": \"red\", \"cloth_mat\": \"wool\", \"cloth_state_sfw\": \"open coat\"}",
    "tags": "pirate hat, tricorn hat, long coat, red coat, white shirt, sash, eyepatch, cutlass, boots, belt,"
+  },
+  {
+   "id": "look_polka_pinafore",
+   "name": "波点背带裙 · 草帽",
+   "thumb": "thumbs/look_polka_pinafore.jpg",
+   "nsfw": false,
+   "desc": "草帽 + 白衬衫 + 深蓝波点背带裙 + 领巾 + 玛丽珍鞋。抄自《亚洲奇幻女子图鉴》连衣裙篇。",
+   "look_tags": "straw hat, white shirt, short sleeves, neckerchief, polka dot skirt, dark blue skirt, suspender skirt, white socks, mary janes,",
+   "pose_tags": "",
+   "kw": "look_polka_pinafore, 波点背带裙 · 草帽, 草帽 + 白衬衫 + 深蓝波点背带裙 + 领巾 + 玛丽珍鞋。抄自《亚洲奇幻女子图鉴》连衣裙篇。, straw hat, white shirt, short sleeves, neckerchief, polka dot skirt, dark blue skirt, suspender skirt, white socks, mary janes, {\"outfit\": \"suspender skirt\", \"top\": \"white shirt\", \"bottom\": \"polka dot skirt\", \"socks\": \"white socks\", \"shoes\": \"mary janes\", \"accessory\": \"straw hat, neckerchief\", \"cloth_color\": \"dark blue\", \"cloth_mat\": \"cotton\", \"cloth_state_sfw\": \"fitted\"}",
+   "tags": "straw hat, white shirt, short sleeves, neckerchief, polka dot skirt, dark blue skirt, suspender skirt, white socks, mary janes,"
   },
   {
    "id": "look_postman",
@@ -3455,6 +3569,20 @@
    "kw": "pose_cam_worm_sit, 贴地超广角 · 坐姿长腿（擦边）, 真贴地机位（离地 10–20cm）仰拍全身含脚；坐处随机（台阶 / 椅子 / 沙发）；画面内不得出现相机, sitting, hands on own thighs, smug, legs extended forward, sitting upright, hands resting on her thighs, legs extended toward viewer, seen from just above the floor as she sits with her legs stretched toward the viewer. her legs fill the frame in strong foreshortening. she smirks down."
   },
   {
+   "id": "pose_candle_lowgaze",
+   "name": "烛前垂眸",
+   "thumb": "thumbs/pose_candle_lowgaze.jpg",
+   "group": "from_ref",
+   "group_title": "来自参考",
+   "desc": "站姿，双手在胸前交叠，低头垂眸，眼半闭。适合暗场、祈祷、告别这类安静场面。",
+   "pose_tags": "standing, hands clasped, hands in front, head down, looking down, lowered gaze, eyes half closed, calm expression, closed mouth, upper body",
+   "camera": "upper body / from front",
+   "suggest_place": "",
+   "env_ref": "",
+   "aspect": "portrait",
+   "kw": "pose_candle_lowgaze, 烛前垂眸, 站姿，双手在胸前交叠，低头垂眸，眼半闭。适合暗场、祈祷、告别这类安静场面。, standing, hands clasped, hands in front, head down, looking down, lowered gaze, eyes half closed, calm expression, closed mouth, upper body"
+  },
+  {
    "id": "pose_car_ride",
    "name": "车后座 · 黄昏",
    "thumb": "thumbs/pose_car_ride.jpg",
@@ -4643,6 +4771,20 @@
    "env_ref": "sc_gymnastics_split",
    "aspect": "portrait",
    "kw": "pose_gymnastics_split, 体操 · 站立一字马（擦边）, 柔韧度展示的绷直腿线, standing split, leg up, flexibility, she holds a standing split on the rooftop with one leg raised high beside her head. her leotard stretches with the movement. morning light from the side., rooftop"
+  },
+  {
+   "id": "pose_hands_clasped_stand",
+   "name": "双手交叠站立",
+   "thumb": "thumbs/pose_hands_clasped_stand.jpg",
+   "group": "from_ref",
+   "group_title": "来自参考",
+   "desc": "站姿，双手在身前交叠，安静端庄。",
+   "pose_tags": "standing, hands clasped, hands in front, looking at viewer, calm expression, closed mouth, full body",
+   "camera": "full body / from front",
+   "suggest_place": "",
+   "env_ref": "",
+   "aspect": "portrait",
+   "kw": "pose_hands_clasped_stand, 双手交叠站立, 站姿，双手在身前交叠，安静端庄。, standing, hands clasped, hands in front, looking at viewer, calm expression, closed mouth, full body"
   },
   {
    "id": "pose_hotel_mirror",
@@ -6969,6 +7111,20 @@
    "kw": "pose_pov_hands_selfie, 第一人称 · 手持自拍, 手持自拍：举机的手臂伸向镜头，另一只手比耶（只有她自己的两只手）, standing, v, smile, arm extended towards viewer, looking at viewer, one hand makes a small v sign beside her cheek while her other arm runs in from the left edge of the frame. the arm is foreshortened by the short distance between her and the viewer. her face fills the upper half of the frame and she grins at the viewer. the street behind her is bright., street"
   },
   {
+   "id": "pose_profile_lookback",
+   "name": "侧身回望",
+   "thumb": "thumbs/pose_profile_lookback.jpg",
+   "group": "from_ref",
+   "group_title": "来自参考",
+   "desc": "身体侧向、头转回来越过肩膀看。立绘常用姿态。",
+   "pose_tags": "standing, from side, profile, looking back, looking over shoulder, turning head, upper body, calm expression, closed mouth",
+   "camera": "upper body / from side",
+   "suggest_place": "",
+   "env_ref": "",
+   "aspect": "portrait",
+   "kw": "pose_profile_lookback, 侧身回望, 身体侧向、头转回来越过肩膀看。立绘常用姿态。, standing, from side, profile, looking back, looking over shoulder, turning head, upper body, calm expression, closed mouth"
+  },
+  {
    "id": "pose_qipao",
    "name": "中华旗袍",
    "thumb": "thumbs/pose_qipao.jpg",
@@ -8238,6 +8394,19 @@
    "kw": "prop_glasses, 眼镜, 眼镜，知性/读书。, glasses, wearing glasses, round glasses, she wears round glasses., adjusting glasses"
   },
   {
+   "id": "prop_goldfish_bag",
+   "name": "金鱼袋",
+   "thumb": "thumbs/prop_goldfish_bag.jpg",
+   "group": "daily",
+   "group_title": "日常",
+   "desc": "和风祭典的金鱼袋：透明水袋里装着金鱼，系着绳。",
+   "prop_tags": "goldfish bag, water bag, holding bag",
+   "hold": true,
+   "suggest_pose": "standing, holding bag, bag in hand",
+   "aspect": "portrait",
+   "kw": "prop_goldfish_bag, 金鱼袋, 和风祭典的金鱼袋：透明水袋里装着金鱼，系着绳。, goldfish bag, water bag, holding bag, a clear water bag with a live goldfish inside, tied with a red string., standing, bag in hand"
+  },
+  {
    "id": "prop_grimoire",
    "name": "魔导书",
    "thumb": "thumbs/prop_grimoire.jpg",
@@ -9081,6 +9250,19 @@
    "suggest_pose": "holding tray, serving",
    "aspect": "both",
    "kw": "prop_tray, 托盘, 托盘，女仆/服务。, tray, holding tray, serving tray, she balances a serving tray on one hand., serving"
+  },
+  {
+   "id": "prop_uchiwa",
+   "name": "团扇",
+   "thumb": "thumbs/prop_uchiwa.jpg",
+   "group": "daily",
+   "group_title": "日常",
+   "desc": "和风团扇，竹柄 + 纸面彩绘。夏天穿浴衣/和服时手里那把。",
+   "prop_tags": "uchiwa, hand fan, paper fan, holding fan",
+   "hold": true,
+   "suggest_pose": "standing, holding fan, fan in hand",
+   "aspect": "portrait",
+   "kw": "prop_uchiwa, 团扇, 和风团扇，竹柄 + 纸面彩绘。夏天穿浴衣/和服时手里那把。, uchiwa, hand fan, paper fan, holding fan, a round paper fan with a bamboo handle, painted with a goldfish pattern., standing, fan in hand"
   },
   {
    "id": "prop_umbrella",

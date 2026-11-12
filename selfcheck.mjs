@@ -75,7 +75,7 @@ const counts = idx.json?.index?.counts || {}
 // img2img 专用画风卡（漫画墨线）—— 必须给出「要底图」的警告
 const mangaR = await call('/dsh-card-library/compose', { method: 'POST', body: { styleId: 'style_manga_ink_v1', characterId: 'crab_vampire' } })
 const mangaW = mangaR.json
-check('counts 齐全', counts.kinds === 6 && counts.styles === 7 && counts.characters === 2 && counts.looks === 47 && counts.scenes === 140 && counts.poses === 316 && counts.props === 122, counts)
+check('counts 齐全', counts.kinds === 6 && counts.styles === 16 && counts.characters === 2 && counts.looks === 50 && counts.scenes === 140 && counts.poses === 319 && counts.props === 124, counts)
 
 const one = await call('/dsh-card-library/card?kind=style&id=style_wlop_warm_soft')
 check('GET /card 画风卡', one.status === 200 && one.json?.card?.artist_segment?.includes('@wlop'), one.json?.error)
@@ -279,6 +279,185 @@ const viewWide = await call('/dsh-card-library/compose', {
 check('远景脸光降级', String(viewWide.json?.segments?.face_light || '').includes('ambient light'),
   viewWide.json?.segments?.face_light)
 
+// 脸光归画风卡：选了视角也要保住画风卡自己的 face_light（n94）
+const viewKeepsFace = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { styleId: 'style_gothic_baroque', view: { angle: 'front', gaze: 'front', shot: 2 } },
+})
+const keptFace = String(viewKeepsFace.json?.segments?.face_light || '')
+check('选视角后保留画风卡脸光（烛光半脸阴影）', keptFace.includes('half of face in shadow'), keptFace)
+check('选视角后不再塞通用脸光', !keptFace.includes('face fully lit'), keptFace)
+
+const viewKeepsFace2 = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { styleId: 'style_halftone_poster', view: { angle: 'right', gaze: 'front', shot: 3 } },
+})
+check('选视角后保留网点脸', String(viewKeepsFace2.json?.segments?.face_light || '').includes('halftone dots'),
+  viewKeepsFace2.json?.segments?.face_light)
+
+// 视角段本身不该再夹带脸光词
+check('视角段不夹带脸光', !/catchlight|face fully lit|ambient light/.test(vseg), vseg)
+
+// ── v5：冲突自动处理
+//
+// 裸露让位：画风卡负面里的压制词按语义槽位剔掉（不是按字面，minusPositive 剔不动）
+const nudeFix = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { styleId: 'style_shadowverse_crisp', lookId: 'nsfw_bathtub_edge' },
+})
+const nudeNeg = String(nudeFix.json?.negative || '')
+check('裸露造型：负面里没有 nipples', !/\bnipples\b/.test(nudeNeg), nudeNeg.slice(0, 120))
+check('裸露造型：负面里没有 bare shoulders', !/bare shoulders/.test(nudeNeg), nudeNeg.slice(0, 120))
+check('裸露造型：报出自动处理', (nudeFix.json?.autofixes || []).some((f) => f.kind === 'nude'),
+  nudeFix.json?.autofixes)
+check('裸露造型：正向仍保留 bottomless', String(nudeFix.json?.positive || '').includes('bottomless'),
+  nudeFix.json?.segments?.look)
+// 带颜色前缀 / 后缀 only 的变体也要剔（`blue panties` / `underwear only`）
+const nudeNeg2 = String(nudeFix.json?.negative || '')
+check('裸露造型：负面不留任何 panties 变体', !/panties/.test(nudeNeg2), nudeNeg2.slice(0, 120))
+check('裸露造型：负面不留 underwear only', !/underwear/.test(nudeNeg2), nudeNeg2.slice(0, 120))
+
+// 不裸的时候不许乱删画风卡负面 —— 否则会把画风的约束一起削掉
+const noNudeFix = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { styleId: 'style_amano_ethereal', lookId: 'look_red_hoodie' },
+})
+check('非裸露造型：不触发裸露让位', !(noNudeFix.json?.autofixes || []).some((f) => f.kind === 'nude'),
+  noNudeFix.json?.autofixes)
+check('非裸露造型：画风卡负面保持完整（有 nude 词）',
+  /\bnude\b/.test(String(noNudeFix.json?.negative || '')), String(noNudeFix.json?.negative || '').slice(0, 120))
+
+// 露肤让位：造型卡声明了「穿了但要露」，画风卡负面里逼着遮的词要剔掉
+const revealFix = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { styleId: 'style_shadowverse_crisp', lookId: 'look_ballet' },
+})
+const revealNeg = String(revealFix.json?.negative || '')
+check('露肤造型：负面剔掉 bare shoulders', !/bare shoulders/.test(revealNeg), revealNeg.slice(0, 120))
+check('露肤造型：负面剔掉 open shirt', !/open shirt/.test(revealNeg), revealNeg.slice(0, 120))
+check('露肤造型：报出自动处理', (revealFix.json?.autofixes || []).some((f) => f.kind === 'reveal'),
+  revealFix.json?.autofixes)
+// 防意外裸体的词不许动 —— 造型卡只说「露」，没说「全裸」
+check('露肤造型：防走光的 nipples 仍在负面里', /\bnipples\b/.test(revealNeg), revealNeg.slice(0, 120))
+check('露肤造型：正向保留 leotard', String(revealFix.json?.segments?.look_cloth || '').includes('leotard'),
+  revealFix.json?.segments?.look_cloth)
+
+// 不露的造型不许触发露肤让位（否则等于把画风卡的约束削掉一半）
+const coverFix = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { styleId: 'style_shadowverse_crisp', lookId: 'look_detective' },
+})
+check('普通造型：不触发露肤让位', !(coverFix.json?.autofixes || []).some((f) => f.kind === 'reveal'),
+  coverFix.json?.autofixes)
+check('普通造型：画风卡的 bare shoulders 仍保留', /bare shoulders/.test(String(coverFix.json?.negative || '')),
+  String(coverFix.json?.negative || '').slice(0, 120))
+
+// 光照让位：夜景场景 + 压夜景的画风负面
+const nightFix = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { styleId: 'style_wlop_warm_soft', sceneId: 'sc_amusement_night' },
+})
+const nightNeg = String(nightFix.json?.negative || '')
+check('夜景：负面剔掉 neon colors', !/neon colors/.test(nightNeg), nightNeg.slice(0, 120))
+check('夜景：负面剔掉 dark image', !/dark image/.test(nightNeg), nightNeg.slice(0, 120))
+check('夜景：正向保留 neon lights', String(nightFix.json?.positive || '').includes('neon lights'),
+  nightFix.json?.segments?.scene)
+check('夜景：报出自动处理', (nightFix.json?.autofixes || []).some((f) => f.kind === 'light'),
+  nightFix.json?.autofixes)
+
+// 白天场景不许动夜景词（画风卡的暗部约束要留着）
+// 注意别拿 sc_rain_street_lookback 当「白天」—— 它的 light_fx 就是 neon lights，
+// 触发霓虹让位是正确行为。
+const dayFix = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { styleId: 'style_wlop_warm_soft', sceneId: 'sc_balcony_laundry' },
+})
+check('非夜景：不触发光照让位', !(dayFix.json?.autofixes || []).some((f) => f.kind === 'light'),
+  dayFix.json?.autofixes)
+
+// 视线互斥：动作卡自己同时写「看镜头」和「回头」
+const gazeA = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { styleId: 'style_wlop_warm_soft', poseId: 'pose_from_school_rooftop_wave' },
+})
+const gazeSegA = String(gazeA.json?.segments?.pose || '')
+check('视线互斥：挥手卡只留一组', !(gazeSegA.includes('looking at viewer') && gazeSegA.includes('looking back')), gazeSegA)
+check('视线互斥：挥手卡留看镜头', gazeSegA.includes('looking at viewer'), gazeSegA)
+
+const gazeB = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { styleId: 'style_wlop_warm_soft', poseId: 'pose_postman' },
+})
+const gazeSegB = String(gazeB.json?.segments?.pose || '')
+check('视线互斥：邮差卡（from behind）留回头', gazeSegB.includes('looking back') && !gazeSegB.includes('looking at viewer'), gazeSegB)
+
+// 假警告已删：hold 道具不管有没有勾动作，都自带 holding 动词
+const propNoPose = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { styleId: 'style_wlop_warm_soft', propIds: ['prop_uchiwa'], includePose: false },
+})
+check('道具自带 holding 动词', String(propNoPose.json?.segments?.prop || '').startsWith('holding '),
+  propNoPose.json?.segments?.prop)
+check('不再报「没勾动作就没 holding」的假警告',
+  !(propNoPose.json?.warnings || []).some((w) => w.includes('摆到墙角')), propNoPose.json?.warnings)
+
+// 景别裁决（v6）：视角 > 动作卡 > 环境卡
+// 早先 poseSegment() 只返回 pose_tags，动作卡的 camera.shot_size 从没进过正向 ——
+// 「动作卡要全身 + 环境卡写 upper body」出来永远只有上半身，而且不报错。
+const SHOT_RE = /\b(wide shot|full body|small figure|cowboy shot|upper body|close-up|portrait|bust shot|extreme close-up)\b/gi
+const shotWordsOf = (t) => [...new Set((String(t || '').match(SHOT_RE) || []).map((x) => x.toLowerCase()))]
+
+const shotConflict = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { styleId: 'style_wlop_warm_soft', sceneId: 'sc_pov_hands_selfie', poseId: 'pose_amusement_night' },
+})
+check('景别冲突：按动作卡取 cowboy shot', shotWordsOf(shotConflict.json?.positive).includes('cowboy shot'),
+  shotWordsOf(shotConflict.json?.positive))
+check('景别冲突：环境卡的 upper body 被撤掉', !shotWordsOf(shotConflict.json?.positive).includes('upper body'),
+  shotWordsOf(shotConflict.json?.positive))
+check('景别冲突：报出自动处理', (shotConflict.json?.autofixes || []).some((f) => f.kind === 'shot'),
+  shotConflict.json?.autofixes)
+
+const shotSame = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { styleId: 'style_wlop_warm_soft', sceneId: 'sc_amusement_night', poseId: 'pose_amusement_night' },
+})
+check('景别一致：不报自动处理', !(shotSame.json?.autofixes || []).some((f) => f.kind === 'shot'),
+  shotSame.json?.autofixes)
+
+const shotPoseOnly = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { styleId: 'style_wlop_warm_soft', poseId: 'pose_beach_midsummer' },
+})
+check('只有动作卡：景别进正向', shotWordsOf(shotPoseOnly.json?.positive).includes('cowboy shot'),
+  shotWordsOf(shotPoseOnly.json?.positive))
+
+// 有 14 张老动作卡把景别写在 pose_tags 里、camera.shot_size 是空的（pose_ballet 就是其一），
+// 那些词本来就走 poseSegment 进正向，所以冲突检测也必须认它们。
+const shotLegacy = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { styleId: 'style_wlop_warm_soft', poseId: 'pose_ballet' },
+})
+check('老动作卡：pose_tags 里的景别照样认', shotWordsOf(shotLegacy.json?.positive).includes('full body'),
+  shotWordsOf(shotLegacy.json?.positive))
+
+const shotSceneOnly = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { styleId: 'style_wlop_warm_soft', sceneId: 'sc_pov_hands_selfie' },
+})
+check('只有环境卡：景别照旧', shotWordsOf(shotSceneOnly.json?.positive).includes('upper body'),
+  shotWordsOf(shotSceneOnly.json?.positive))
+
+const shotViewWins = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { styleId: 'style_wlop_warm_soft', poseId: 'pose_beach_midsummer', view: { angle: 'front', gaze: 'front', shot: 1 } },
+})
+check('选了视角：视角景别说了算', shotWordsOf(shotViewWins.json?.positive).includes('close-up'),
+  shotWordsOf(shotViewWins.json?.positive))
+check('选了视角：动作卡景别不进正向', !shotWordsOf(shotViewWins.json?.positive).includes('cowboy shot'),
+  shotWordsOf(shotViewWins.json?.positive))
+check('segments 带 shot 段', Boolean(shotPoseOnly.json?.segments?.shot), shotPoseOnly.json?.segments?.shot)
+
 // 镜像
 const viewFlip = await call('/dsh-card-library/compose', {
   method: 'POST',
@@ -316,6 +495,98 @@ if (tool) {
 check('工具输出含正向提示词', String(out).includes('正向提示词'), '')
 } else {
   check('工具已注册', false, null)
+}
+
+// ── 机位裁决（v7）──────────────────────────────────────────────
+const vpConflict = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { styleId: 'style_wlop_warm_soft', poseId: 'pose_cam_side_hairflip', sceneId: 'sc_forest_fog' },
+})
+const vpConflictPos = String(vpConflict.json?.positive || '')
+check('机位：动作卡机位进正向', /from side/i.test(vpConflictPos), vpConflictPos.slice(0, 160))
+check('机位：环境卡机位被撤掉', !/from behind/i.test(vpConflictPos), vpConflictPos.slice(0, 160))
+check('机位：报 viewpoint autofix',
+  (vpConflict.json?.autofixes || []).some((a) => a.kind === 'viewpoint'),
+  (vpConflict.json?.autofixes || []).map((a) => a.kind))
+check('机位：segments 带 viewpoint 段', Boolean(vpConflict.json?.segments?.viewpoint),
+  vpConflict.json?.segments?.viewpoint)
+
+const vpAlone = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { styleId: 'style_wlop_warm_soft', poseId: 'pose_cam_low_stretch' },
+})
+check('机位：只有动作卡时也进正向', /from below/i.test(String(vpAlone.json?.positive || '')),
+  String(vpAlone.json?.positive || '').slice(0, 160))
+check('机位：只有动作卡不报冲突',
+  !(vpAlone.json?.autofixes || []).some((a) => a.kind === 'viewpoint'),
+  (vpAlone.json?.autofixes || []).map((a) => a.kind))
+
+// 特殊机位：环境卡是 bird's eye 时，动作卡的 from side 仍要进正向（这是第一版写错的地方）
+const vpSpecial = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { styleId: 'style_wlop_warm_soft', poseId: 'pose_cam_side_hairflip', sceneId: 'sc_balcony_laundry' },
+})
+check('机位：特殊机位下动作卡机位仍进正向',
+  /from side/i.test(String(vpSpecial.json?.positive || '')),
+  String(vpSpecial.json?.positive || '').slice(0, 160))
+check('机位：特殊机位不自动裁决',
+  !(vpSpecial.json?.autofixes || []).some((a) => a.kind === 'viewpoint'),
+  (vpSpecial.json?.autofixes || []).map((a) => a.kind))
+check('机位：特殊机位给 warn', (vpSpecial.json?.warnings || []).some((w) => w.indexOf('特殊手法') >= 0),
+  (vpSpecial.json?.warnings || []).slice(0, 4))
+
+// 选了视角时动作卡机位不参与
+const vpView = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { styleId: 'style_wlop_warm_soft', poseId: 'pose_cam_side_hairflip', sceneId: 'sc_forest_fog', view: { angle: 'front', gaze: 'front', shot: 3 } },
+})
+check('机位：选视角后动作卡机位不进', !vpView.json?.segments?.viewpoint, vpView.json?.segments?.viewpoint)
+check('机位：选视角后视角机位生效',
+  /facing viewer|straight-on/i.test(String(vpView.json?.positive || '')),
+  String(vpView.json?.positive || '').slice(0, 200))
+check('机位：选视角后不报机位冲突',
+  !(vpView.json?.autofixes || []).some((a) => a.kind === 'viewpoint'),
+  (vpView.json?.autofixes || []).map((a) => a.kind))
+
+// ── 存卡规则：路由 + 工具 ──────────────────────────────────────────
+const rulesRes = await call('/dsh-card-library/rules')
+check('规则路由可用', rulesRes.status === 200 && rulesRes.json?.ok === true, rulesRes.status)
+check('规则条数 ≥ 12', Array.isArray(rulesRes.json?.rules) && rulesRes.json.rules.length >= 12,
+  rulesRes.json?.rules?.length)
+check('规则带严重级', (rulesRes.json?.rules || []).every((r) => ['error', 'warn'].includes(r.severity)),
+  (rulesRes.json?.rules || []).map((r) => r.severity).join(','))
+check('规则含职责边界那条', (rulesRes.json?.rules || []).some((r) => r.id === 'R2_boundary'), '')
+check('规则含存卡四连', (rulesRes.json?.rules || []).some((r) => r.id === 'R9_four_step'), '')
+check('规则含 Anima 格式', (rulesRes.json?.rules || []).some((r) => r.id === 'R4_tag_format'), '')
+check('规则文本非空', typeof rulesRes.json?.text === 'string' && rulesRes.json.text.length > 500,
+  rulesRes.json?.text?.length)
+check('字段白名单六类齐全', Object.keys(rulesRes.json?.fields || {}).length === 6,
+  Object.keys(rulesRes.json?.fields || {}).join(','))
+check('缩略图模板存在', Boolean(rulesRes.json?.thumbs && rulesRes.json.thumbs.pose), rulesRes.json?.thumbs)
+
+const lintRes = await call('/dsh-card-library/lint')
+check('体检路由可用', lintRes.status === 200 && typeof lintRes.json?.total === 'number', lintRes.status)
+check('体检活库 0 error', lintRes.json?.ok === true && (lintRes.json?.errors || []).length === 0,
+  (lintRes.json?.errors || []).map((e) => e.rule + ':' + e.id).slice(0, 5))
+check('体检能数到全部卡', (lintRes.json?.total || 0) > 600, lintRes.json?.total)
+check('体检给出缩略图撞图字段', Array.isArray(lintRes.json?.md5Dup), typeof lintRes.json?.md5Dup)
+
+const rulesTool = tools.find((t) => t.name === 'card_library_save_rules')
+if (rulesTool) {
+  const out = await rulesTool.execute({ verbose: true })
+  check('规则工具输出含职责边界', String(out).includes('职责边界'), String(out).slice(0, 60))
+  check('规则工具 verbose 带字段白名单', String(out).includes('字段白名单'), '')
+} else {
+  check('规则工具已注册', false, null)
+}
+
+const lintTool = tools.find((t) => t.name === 'card_library_lint')
+if (lintTool) {
+  const out = await lintTool.execute({})
+  check('体检工具输出含 PASS/FAIL', /PASS|FAIL/.test(String(out)), String(out).slice(0, 80))
+  check('体检工具输出含总数', /共 \d+ 张/.test(String(out)), String(out).slice(0, 80))
+} else {
+  check('体检工具已注册', false, null)
 }
 
 console.log('')

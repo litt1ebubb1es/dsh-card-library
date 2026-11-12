@@ -518,6 +518,16 @@ window.__ModuleLoader__.load({
             r.ok ? '配方已生成' : '缺卡：' + (r.missing || []).join(', ')),
           h('span', { style: { fontSize: 10, color: C.dim } },
             (r.params && r.params.resolution) || '')),
+        // 自动处理过的冲突用绿色标出来 —— 配方已经和卡里的原样不同了，
+        // 用户必须第一眼看见，否则会以为插件没按卡执行。
+        r.autofixes && r.autofixes.length ? h('div', {
+          style: {
+            fontSize: 10.5, lineHeight: 1.5, color: C.ok, padding: '4px 6px',
+            borderLeft: '2px solid ' + C.ok, background: C.soft2, borderRadius: 4,
+          },
+        }, r.autofixes.map(function (f, i) {
+          return h('div', { key: i }, '✔ ' + f.message)
+        })) : null,
         r.warnings && r.warnings.length ? h('div', {
           style: {
             fontSize: 10.5, lineHeight: 1.5, color: C.warn, padding: '4px 6px',
@@ -550,6 +560,127 @@ window.__ModuleLoader__.load({
             onClick: function () { props.onClear() },
           }, '清空'))
       )
+    }
+
+    /**
+     * 存卡规则 + 全库体检。
+     *
+     * 规则正文只存在 rules.js 里，面板不抄一份 —— 抄一份就会两边漂。
+     * 这里只做两件事：把 /rules 的清单画出来，把 /lint 的结果画出来。
+     */
+    function RulesPane() {
+      var rulesState = React.useState({ loading: true, error: null, data: null })
+      var rules = rulesState[0]
+      var setRules = rulesState[1]
+
+      var lintState = React.useState(null)
+      var lint = lintState[0]
+      var setLint = lintState[1]
+
+      var busyState = React.useState(false)
+      var busy = busyState[0]
+      var setBusy = busyState[1]
+
+      React.useEffect(function () {
+        var cancelled = false
+        fetch(PREFIX + '/rules')
+          .then(function (res) { return res.json() })
+          .then(function (payload) {
+            if (cancelled) return
+            if (!payload || !payload.ok) throw new Error((payload && payload.error) || '读取失败')
+            setRules({ loading: false, error: null, data: payload })
+          })
+          .catch(function (err) {
+            if (!cancelled) setRules({ loading: false, error: String((err && err.message) || err), data: null })
+          })
+        return function () { cancelled = true }
+      }, [])
+
+      function runLint() {
+        if (busy) return
+        setBusy(true)
+        fetch(PREFIX + '/lint')
+          .then(function (res) { return res.json() })
+          .then(function (payload) { setLint(payload) })
+          .catch(function (err) { setLint({ ok: false, error: String((err && err.message) || err) }) })
+          .then(function () { setBusy(false) })
+      }
+
+      if (rules.loading) {
+        return h('div', { style: { fontSize: 12, color: C.dim, padding: '10px 0' } }, '正在读取规则…')
+      }
+      if (rules.error || !rules.data) {
+        return h('div', { style: { fontSize: 12, color: C.warn, padding: '10px 0' } },
+          rules.error || '没有规则数据')
+      }
+
+      var list = rules.data.rules || []
+      var hard = list.filter(function (r) { return r.severity === 'error' })
+      var soft = list.filter(function (r) { return r.severity !== 'error' && !r.manual })
+      var manual = list.filter(function (r) { return r.manual })
+
+      function section(title, arr, color) {
+        if (!arr.length) return null
+        return h('div', { style: { marginBottom: 10 } },
+          h('div', {
+            style: { fontSize: 11, fontWeight: 600, color: color, marginBottom: 4, letterSpacing: 0.2 },
+          }, title + '（' + arr.length + '）'),
+          arr.map(function (r) {
+            return h('div', {
+              key: r.id,
+              style: {
+                fontSize: 10.5, lineHeight: 1.55, padding: '4px 6px', marginBottom: 3,
+                borderRadius: 4, background: C.soft, borderLeft: '2px solid ' + color,
+              },
+            },
+              h('div', { style: { color: C.text, fontWeight: 600 } }, r.title),
+              h('div', { style: { color: C.dim } }, r.why),
+              r.kinds && r.kinds.length
+                ? h('div', { style: { color: C.dim, fontSize: 10, marginTop: 1 } },
+                  '适用：' + r.kinds.map(function (k) { return KIND_LABEL[k] || k }).join(' / '))
+                : null)
+          }))
+      }
+
+      var lintBox = null
+      if (lint && !lint.error) {
+        var errs = lint.errors || []
+        var warns = lint.warnings || []
+        var dups = lint.md5Dup || []
+        lintBox = h('div', {
+          style: {
+            border: '1px solid ' + (lint.ok ? C.ok : C.warn), borderRadius: 8, padding: 8,
+            marginBottom: 10, background: C.soft, fontSize: 10.5, lineHeight: 1.55,
+          },
+        },
+          h('div', { style: { fontWeight: 600, color: lint.ok ? C.ok : C.warn, marginBottom: 3 } },
+            (lint.ok ? '✔ 体检通过' : '✖ 体检未通过') + '　' + (lint.total || 0) + ' 张卡　'
+            + errs.length + ' 错 / ' + warns.length + ' 警 / ' + dups.length + ' 组撞图'),
+          errs.slice(0, 12).map(function (e, i) {
+            return h('div', { key: 'e' + i, style: { color: C.warn } },
+              '✖ ' + e.id + '　[' + e.rule + '] ' + e.msg)
+          }),
+          errs.length > 12 ? h('div', { style: { color: C.dim } }, '…还有 ' + (errs.length - 12) + ' 条错误') : null,
+          warns.slice(0, 10).map(function (w, i) {
+            return h('div', { key: 'w' + i, style: { color: C.dim } },
+              '· ' + w.id + '　[' + w.rule + '] ' + w.msg)
+          }),
+          warns.length > 10 ? h('div', { style: { color: C.dim } }, '…还有 ' + (warns.length - 10) + ' 条提醒') : null)
+      } else if (lint && lint.error) {
+        lintBox = h('div', { style: { fontSize: 11, color: C.warn, marginBottom: 10 } }, lint.error)
+      }
+
+      return h('div', null,
+        h(Row, { style: { justifyContent: 'space-between', marginBottom: 8 } },
+          h('span', { style: { fontSize: 11, color: C.dim } }, '规则版本 ' + (rules.data.version || '?')),
+          h(Pill, { onClick: runLint, disabled: busy }, busy ? '体检中…' : '跑一次全库体检')),
+        lintBox,
+        h('div', {
+          style: { fontSize: 10.5, color: C.dim, lineHeight: 1.55, marginBottom: 8 },
+        }, '硬错会挡住入库；提醒是历史数据或需要人来判断的情况，不挡。'),
+        section('硬性规则', hard, C.warn),
+        section('提醒', soft, C.dim),
+        section('只能人工确认', manual, C.brand))
     }
 
     // ─────────────────────────────────────────────────────── 主体
@@ -594,6 +725,11 @@ window.__ModuleLoader__.load({
       var busyState = React.useState(false)
       var busy = busyState[0]
       var setBusy = busyState[1]
+
+      // 两个页签：选卡拼配方 / 看存卡规则与全库体检。
+      var tabState = React.useState('cards')
+      var tab = tabState[0]
+      var setTab = tabState[1]
 
       var load = React.useCallback(function () {
         setIdx(function (prev) { return Object.assign({}, prev, { loading: true, error: null }) })
@@ -711,11 +847,26 @@ window.__ModuleLoader__.load({
 
       // ── 头部
       var header = h(Row, { style: { justifyContent: 'space-between', marginBottom: 8 } },
-        h('span', { style: { fontSize: 12.5, fontWeight: 600, color: C.text } }, '卡片库'),
+        h(Row, { style: { gap: 4 } },
+          h(Pill, { active: tab === 'cards', onClick: function () { setTab('cards') } }, '选卡'),
+          h(Pill, { active: tab === 'rules', onClick: function () { setTab('rules') } }, '规则 / 体检')),
         h(Row, null,
           h('span', { style: { fontSize: 10.5, color: C.dim } },
-            idx.index ? selectedCount + '/' + TOTAL_SLOTS + ' 已选' : ''),
-          h(Pill, { onClick: load, title: '重新读取卡片库' }, '刷新')))
+            tab === 'cards' && idx.index ? selectedCount + '/' + TOTAL_SLOTS + ' 已选' : ''),
+          tab === 'cards' ? h(Pill, { onClick: load, title: '重新读取卡片库' }, '刷新') : null))
+
+      if (tab === 'rules') {
+        return h('div', {
+          style: {
+            display: 'flex', flexDirection: 'column', height: '100%', minHeight: 0,
+            padding: '12px 14px', boxSizing: 'border-box', color: C.text,
+            font: 'inherit', overflow: 'hidden',
+          },
+        },
+          header,
+          h('div', { style: { flex: 1, minHeight: 0, overflowY: 'auto', paddingRight: 2 } },
+            h(RulesPane)))
+      }
 
       if (idx.loading && !idx.index) {
         return h('div', { style: { padding: '12px 14px', fontSize: 12, color: C.dim } }, header, '正在读取卡片库…')

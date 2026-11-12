@@ -23,13 +23,13 @@
   "crisp": {
    "contrast": 1.03,
    "sat": 0.98,
-   "sharpen": 1
+   "sharpen": 1.0
   },
   "vignette": {
    "strength": 0.06
   },
   "grain": {
-   "sigma": 2,
+   "sigma": 2.0,
    "amount": 0.035
   },
   "note": "顺序：lift_shadows → glow → crisp → vignette → grain。不要 haze、不要大 bloom —— 这两样是 AI 感的来源（n58 那套是反方向）"
@@ -40,7 +40,7 @@
   "clip": "qwen_3_06b_base.safetensors (type=qwen_image)",
   "vae": "qwen_image_vae.safetensors",
   "steps": 12,
-  "cfg": 2,
+  "cfg": 2.0,
   "sampler": "euler",
   "scheduler": "simple",
   "resolution": "832x1216"

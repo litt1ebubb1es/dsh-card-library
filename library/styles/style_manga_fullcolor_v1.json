@@ -13,7 +13,7 @@
  "post": {
   "crisp": {
    "contrast": 1.02,
-   "sat": 1,
+   "sat": 1.0,
    "sharpen": 0.5
   },
   "note": "只做轻微 crisp。不要 haze、不要 bloom、不要 grain —— 这套画风本身就是干净的柔喷枪，任何雾化都会把它弄脏（n68 的 bloom 加在明亮画风上会糊成一片）。"
@@ -24,7 +24,7 @@
   "clip": "qwen_3_06b_base.safetensors (type=qwen_image)",
   "vae": "qwen_image_vae.safetensors",
   "steps": 12,
-  "cfg": 2,
+  "cfg": 2.0,
   "sampler": "euler",
   "scheduler": "simple",
   "resolution": "832x1216"

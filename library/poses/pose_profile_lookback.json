@@ -1,0 +1,22 @@
+{
+  "id": "pose_profile_lookback",
+  "kind": "pose",
+  "name": "侧身回望",
+  "version": 1.0,
+  "description": "身体侧向、头转回来越过肩膀看。立绘常用姿态。",
+  "group": "from_ref",
+  "group_title": "来自参考",
+  "pose_tags": "standing, from side, profile, looking back, looking over shoulder, turning head, upper body, calm expression, closed mouth",
+  "pose_nl": "",
+  "camera": {
+    "shot_size": "upper body",
+    "viewpoint": "from side"
+  },
+  "suggest_place": "",
+  "aspect": "portrait",
+  "thumb": "thumbs/pose_profile_lookback.jpg",
+  "env_ref": null,
+  "source": "look_pose_v1",
+  "legacy_look": null,
+  "notes": "抄自《亚洲奇幻女子图鉴》立绘姿态。"
+}

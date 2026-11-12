@@ -1,0 +1,47 @@
+{
+  "id": "style_retro90_cel",
+  "kind": "style",
+  "name": "★90s 复古赛璐璐",
+  "version": 1.0,
+  "description": "平涂 + 有限色板 + 硬阴影边 + 胶片颗粒。像 90 年代动画赛璐璐上色，不是现代 anime。",
+  "quality_prefix": "masterpiece, best quality, score 7, score 9, very aesthetic, ultra detailed, ",
+  "artist_segment": "@sushio, ",
+  "render": "retro artstyle, 1990s (style), anime cel, cel shading, flat colors, limited palette, two-tone shading, hard shadow edge, slight color bleed, print misregistration, film grain, thin black lineart, clean outline, dull colors, muted palette, sepia tint, aged film, city street, telephone pole, evening, detailed background, ",
+  "face_light": "flat lighting on face, even facial lighting, minimal shading on face, small catchlight in both eyes, ",
+  "negative": "worst quality, low quality, score 1, score 2, score 3, lowres, jpeg artifacts, 3d render, cgi, photorealistic, photo, glossy skin, shiny skin, oily skin, plastic skin, waxy skin, specular highlight, wet look, sweaty, glossy eyes, detailed eyes, big sparkling eyes, gradient shading, airbrush, soft shading, subsurface scattering, watermark, signature, artist name, text, logo, multiple girls, 2girls, male, 1boy, nude, naked, bat print, bat pattern, bat wings, bat motif, vivid colors, saturated colors, neon, modern anime style, thick outlines, vector lineart",
+  "post": {
+    "tone": {
+      "saturation": 0.78,
+      "contrast": 1.05
+    },
+    "paper": {
+      "strength": 0.05
+    },
+    "note": "降饱和到 0.78 + 轻纸纹（0.05）。纸纹是给平涂加一点印刷噪点，不能上颗粒滤镜。"
+  },
+  "params": {
+    "model": "miaomiaoHarem_anima8Step10.safetensors",
+    "lora": "anima-turbo-lora-v0.1.safetensors @ 0.4",
+    "clip": "qwen_3_06b_base.safetensors (type=qwen_image)",
+    "vae": "qwen_image_vae.safetensors",
+    "steps": 12,
+    "cfg": 2.0,
+    "sampler": "euler",
+    "scheduler": "simple",
+    "resolution": "832x1216"
+  },
+  "scene_hint": "simple background, white background, negative space, ",
+  "thumb": "thumbs/style_retro90_cel.jpg",
+  "tags": [
+    "90s",
+    "赛璐璐",
+    "平涂",
+    "有限色板",
+    "硬阴影",
+    "胶片感",
+    "复古",
+    "去AI感"
+  ],
+  "notes": "sushio（吊带袜天使/天元突破）方向。limited palette + hard shadow edge 是关键，两个一起写才会出「两块颜色」的赛璐璐，只写 cel shading 会滑回渐变。",
+  "source": "bilibili style research 2026-11-11"
+}

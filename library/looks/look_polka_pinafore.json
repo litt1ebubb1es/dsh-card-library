@@ -1,0 +1,49 @@
+{
+  "id": "look_polka_pinafore",
+  "kind": "look",
+  "name": "波点背带裙 · 草帽",
+  "version": 1.0,
+  "description": "草帽 + 白衬衫 + 深蓝波点背带裙 + 领巾 + 玛丽珍鞋。抄自《亚洲奇幻女子图鉴》连衣裙篇。",
+  "nsfw": false,
+  "tags": "straw hat, white shirt, short sleeves, neckerchief, polka dot skirt, dark blue skirt, suspender skirt, white socks, mary janes, ",
+  "look_tags": "straw hat, white shirt, short sleeves, neckerchief, polka dot skirt, dark blue skirt, suspender skirt, white socks, mary janes, ",
+  "pose_tags": "",
+  "fields": {
+    "outfit": "suspender skirt",
+    "top": "white shirt",
+    "bottom": "polka dot skirt",
+    "socks": "white socks",
+    "shoes": "mary janes",
+    "accessory": "straw hat, neckerchief",
+    "cloth_color": "dark blue",
+    "cloth_mat": "cotton",
+    "cloth_state_sfw": "fitted"
+  },
+  "body_decor": "",
+  "look_notes": "草帽 + 领巾 + 玛丽珍是这套的复古识别点，三个都要写；polka dot 必须绑 skirt，裸写会把点印到脸上。",
+  "artist_segment": "",
+  "style_label": "",
+  "negative_extra": "pants, jeans, boots, heels, modern clothes",
+  "tag_split": {
+    "version": 3,
+    "cloth": 10,
+    "pose": 0,
+    "moved_pose": [],
+    "migrated_to": null
+  },
+  "legacy_pose_ref": null,
+  "params": {
+    "model": "miaomiaoHarem_anima8Step10.safetensors",
+    "lora": "anima-turbo-lora-v0.1.safetensors @ 0.4",
+    "clip": "qwen_3_06b_base.safetensors (type=qwen_image)",
+    "vae": "qwen_image_vae.safetensors",
+    "steps": 12,
+    "cfg": 2.0,
+    "sampler": "euler",
+    "scheduler": "simple",
+    "resolution": "832x1216"
+  },
+  "thumb": "thumbs/look_polka_pinafore.jpg",
+  "source_dir": null,
+  "source": "bilibili 《亚洲奇幻女子图鉴》BV1q8411e7aW"
+}

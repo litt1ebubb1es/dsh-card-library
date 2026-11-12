@@ -1,0 +1,40 @@
+{
+  "id": "style_mochizuki_cel",
+  "kind": "style",
+  "name": "★望月けい 精致赛璐璐",
+  "version": 1.0,
+  "description": "锐利细线 + 高饱和平涂 + 硬阴影形状 + 冷白背景。蓝白红三色主导，现代精致版赛璐璐。",
+  "quality_prefix": "masterpiece, best quality, score 7, score 9, very aesthetic, ultra detailed, ",
+  "artist_segment": "@mochizuki_kei, ",
+  "render": "anime cel, cel shading, flat colors, crisp flat colors, thin sharp lineart, clean vector-like outline, high contrast, sharp shadow shapes, hard shadow edge, saturated colors, vivid colors, strong color blocking, detailed hair, hair strands, glossy hair highlight, simple background, pale background, ",
+  "face_light": "flat lighting on face, hard shadow on face, sharp highlight on cheek, catchlight in both eyes, ",
+  "negative": "worst quality, low quality, score 1, score 2, score 3, lowres, jpeg artifacts, 3d render, cgi, photorealistic, photo, glossy skin, shiny skin, oily skin, plastic skin, waxy skin, specular highlight, wet look, sweaty, glossy eyes, detailed eyes, big sparkling eyes, gradient shading, airbrush, soft shading, subsurface scattering, watermark, signature, artist name, text, logo, multiple girls, 2girls, male, 1boy, nude, naked, bat print, bat pattern, bat wings, bat motif, muted colors, dull colors, sepia, film grain, painterly, brush strokes, watercolor, soft shading, blurry",
+  "post": {
+    "contrast": 1.06,
+    "saturation": 1.06,
+    "note": "对比 +6%、饱和 +6%。这一档要锐要艳，不要纸纹、不要降饱和。"
+  },
+  "params": {
+    "model": "miaomiaoHarem_anima8Step10.safetensors",
+    "lora": "anima-turbo-lora-v0.1.safetensors @ 0.4",
+    "clip": "qwen_3_06b_base.safetensors (type=qwen_image)",
+    "vae": "qwen_image_vae.safetensors",
+    "steps": 12,
+    "cfg": 2.0,
+    "sampler": "euler",
+    "scheduler": "simple",
+    "resolution": "832x1216"
+  },
+  "scene_hint": "simple background, pale background, ",
+  "thumb": "thumbs/style_mochizuki_cel.jpg",
+  "tags": [
+    "赛璐璐",
+    "望月けい",
+    "细线",
+    "高饱和",
+    "硬阴影",
+    "平涂"
+  ],
+  "notes": "与 ★Cygames 明亮插画同属「加结构」路线，但更极端：线更细、色更艳、阴影全是硬边几何形。头发高光是一整块硬色块（`glossy hair highlight`），不是渐变。AI 感中等——皮肤仍有轻微反光，但平涂把立体感压掉了大半。",
+  "source": "bilibili BV1GL4y1a7uK 望月けい 画师推荐"
+}

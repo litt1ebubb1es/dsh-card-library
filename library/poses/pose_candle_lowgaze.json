@@ -1,0 +1,22 @@
+{
+  "id": "pose_candle_lowgaze",
+  "kind": "pose",
+  "name": "烛前垂眸",
+  "version": 1.0,
+  "description": "站姿，双手在胸前交叠，低头垂眸，眼半闭。适合暗场、祈祷、告别这类安静场面。",
+  "group": "from_ref",
+  "group_title": "来自参考",
+  "pose_tags": "standing, hands clasped, hands in front, head down, looking down, lowered gaze, eyes half closed, calm expression, closed mouth, upper body",
+  "pose_nl": "",
+  "camera": {
+    "shot_size": "upper body",
+    "viewpoint": "from front"
+  },
+  "suggest_place": "",
+  "aspect": "portrait",
+  "thumb": "thumbs/pose_candle_lowgaze.jpg",
+  "env_ref": null,
+  "source": "bilibili style research 2026-11-12",
+  "legacy_look": null,
+  "notes": "`lowered gaze` 与 `looking at viewer` 互斥，必须负面锁掉后者，否则模型会把头抬起来看镜头（实测）。`eyes half closed` 是让眼睛不出高光的关键，配合 `calm expression` 一起写。"
+}

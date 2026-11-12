@@ -15,6 +15,7 @@
 import { existsSync, readFileSync, statSync } from 'node:fs'
 import { join, resolve, normalize, sep, extname, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { SAVE_RULES, RULES_VERSION, THUMB_TEMPLATES, CARD_FIELDS, lintCard, lintLibrary, rulesText } from './rules.js'
 
 export const name = 'card-library-plugin'
 export const inject = ['webServer', 'tools']
@@ -30,15 +31,21 @@ const PLUGIN_ROOT = dirname(fileURLToPath(import.meta.url))
 /**
  * 库根，按优先级挑第一个存在的：
  *   1. 环境变量 CARD_LIBRARY_ROOT
- *   2. 随包分发的 `library/`（插件根下）
+ *   2. 从插件自身位置往上两级推工作区（`<ws>/_dsh_plugin/dsh-card-library` → `<ws>/_assets/cards_library`）
+ *      —— 不依赖 process.cwd()，fiber 重载后 cwd 会变，靠 cwd 推会拿到不存在的路径
  *   3. 当前工作区的 `_assets/cards_library` / `cards_library`
- * 都没有就返回 (2) —— 接口回空态，不抛异常。
+ *   4. 随包分发的 `library/`（插件根下）
+ * 都没有就返回 (4) —— 接口回空态，不抛异常。
  */
 function libraryRoot() {
   if (process.env.CARD_LIBRARY_ROOT) return resolve(process.env.CARD_LIBRARY_ROOT)
+  const candidates = []
+  // 插件在 <ws>/_dsh_plugin/<pkg>，往上一级是 _dsh_plugin，再上一级是工作区根。
+  for (const up of [resolve(PLUGIN_ROOT, '..', '..'), resolve(PLUGIN_ROOT, '..')]) {
+    candidates.push(join(up, '_assets', 'cards_library'), join(up, 'cards_library'))
+  }
   const cwd = process.cwd()
-  const candidates = [join(PLUGIN_ROOT, 'library')]
-  // 从当前目录往上找三层：工作区根里常见 `<ws>/_assets/cards_library`。
+  // 从当前目录往上找四层：工作区根里常见 `<ws>/_assets/cards_library`。
   let dir = cwd
   for (let i = 0; i < 4; i += 1) {
     candidates.push(join(dir, '_assets', 'cards_library'), join(dir, 'cards_library'), join(dir, 'library'))
@@ -46,8 +53,9 @@ function libraryRoot() {
     if (up === dir) break
     dir = up
   }
+  candidates.push(join(PLUGIN_ROOT, 'library'))
   for (const c of candidates) if (existsSync(c)) return resolve(c)
-  return resolve(candidates[0])
+  return resolve(join(PLUGIN_ROOT, 'library'))
 }
 
 /**
@@ -543,7 +551,12 @@ function viewSegments(view) {
     warnings.push('俯拍/仰拍做大特写，透视会严重变形')
   }
 
-  // ④ 脸光：远景/背影自动降级（n64）
+  // ④ 脸光：这里只决定「要不要脸光、要不要降级」，不提供脸光词本身（n94）
+  //
+  // 早先这里直接返回一段通用脸光词，compose 又用 `viewSeg.faceLight || 画风卡的脸光`
+  // 取值 —— 于是只要选了视角，画风卡自己的 face_light（半张脸沉在阴影 / 网点脸 /
+  // 烛光 / 硬阴影）整段被顶掉，换成通用的「脸全亮 + 双眼高光」。
+  // 现在改成只产出模式（none / far / normal），词一律由 resolveFaceLight 从画风卡取。
   //
   // 背影机位（back / back_left / back_right）且视线不是「回头」时，脸光必须整段清空 ——
   // 连降级版里的 `face visible` 都会把脸拽回来。实测（W2/W3）：只留降级版，
@@ -551,22 +564,20 @@ function viewSegments(view) {
   const far = shot.far || camId === 'back' || camId === 'above'
   const isBackCam = camId === 'back' || camId === 'back_left' || camId === 'back_right'
   const isLookBack = gazePos.indexOf('looking back') >= 0
-  const faceLight = (isBackCam && !isLookBack)
-    ? ''
-    : (far
-      ? 'face visible, face lit by ambient light, soft light on skin, warm light on cheek, no heavy shadow on face'
-      : 'face fully lit, catchlight in both eyes, gentle highlight on cheek')
+  const faceMode = (isBackCam && !isLookBack) ? 'none' : (far ? 'far' : 'normal')
 
   return {
     shotFar: shot.far === true,
     backCam: camId === 'back' || camId === 'back_left' || camId === 'back_right',
-    pos: [cam.pos, gazePos, shot.pos, faceLight].filter(Boolean).join(', '),
+    // 脸光不进 pos：视角只负责「机位 + 视线 + 景别」这三件方向性的事。
+    // 早先把它拼进 pos，等于逼画风卡让位（n94）。
+    pos: [cam.pos, gazePos, shot.pos].filter(Boolean).join(', '),
     neg: [cam.neg, gazeNeg].filter(Boolean).join(', '),
     camera: { shot_size: shot.pos, viewpoint: cam.pos },
     notes,
     warnings,
     flip: view.flip === true,
-    faceLight,
+    faceMode,
     far,
   }
 }
@@ -596,6 +607,10 @@ function minusPositive(negSeg, posText) {
 function sceneSegment(scene, opts) {
   if (!scene) return ''
   const skipCam = opts && opts.skipCamera
+  // dropShot：景别被动作卡接管（v6）。只丢景别，机位/comp/dof 照旧。
+  const dropShot = opts && opts.dropShot
+  // dropViewpoint：机位被动作卡接管（v7）。只丢机位，景别/comp/dof 照旧。
+  const dropViewpoint = opts && opts.dropViewpoint
   const tags = scene.tags || {}
   const camera = scene.camera || {}
   const parts = []
@@ -606,18 +621,27 @@ function sceneSegment(scene, opts) {
   for (const slot of SCENE_CAMERA_ORDER) {
     // 选了视角时，机位/景别由视角决定，环境卡只补 comp / dof
     if (skipCam && (slot === 'shot_size' || slot === 'viewpoint')) continue
+    if (dropShot && slot === 'shot_size') continue
+    if (dropViewpoint && slot === 'viewpoint') continue
     const v = clean(camera[slot])
     if (v) parts.push(v)
   }
   const extra = clean(scene.extra)
   if (extra) parts.push(extra)
   const extraCam = clean(scene.extra_camera)
-  // 远景补充同理：skipCam 时把里面的景别/视角词滤掉，只留场景描述
+  // 远景补充同理：skipCam / dropShot 时把里面的景别/视角词滤掉，只留场景描述。
+  // 早先这里用的是一张手写白名单，漏了 upper body / close-up / cowboy shot，
+  // 于是「环境卡近景 × 动作卡全身」还是会在 extra_camera 里残留一份 —— 现在统一走
+  // shotWordLevel()，不再手写。
   if (extraCam) {
-    if (skipCam) {
-      const kept = extraCam.split(',')
+    if (skipCam || dropShot || dropViewpoint) {
+      let kept = extraCam.split(',')
         .map((t) => t.trim())
-        .filter((t) => t && !/^(wide shot|full body|small figure|from behind|from above|from below|from side|from front)$/i.test(t))
+        .filter((t) => t && !(skipCam && /^(from behind|from above|from below|from side|from front)$/i.test(t)))
+        .filter((t) => shotWordLevel(t) == null)
+      if (dropViewpoint) {
+        kept = kept.filter((t) => viewpointSet(t).length === 0)
+      }
       if (kept.length) parts.push(kept.join(', '))
     } else {
       parts.push(extraCam)
@@ -635,6 +659,8 @@ function sceneSegment(scene, opts) {
  */
 const FAR_SHOT_RE = /wide shot|full body|small figure|vast landscape|distant view|wide landscape|from behind|from outside|sense of scale/i
 
+const FAR_FACE_LIGHT = 'face visible, face lit by ambient light, soft light on skin, warm light on cheek, no heavy shadow on face'
+
 function faceLightFor(faceLight, scene) {
   if (!faceLight) return ''
   if (!scene) return faceLight
@@ -642,14 +668,41 @@ function faceLightFor(faceLight, scene) {
     scene.extra_camera, scene.extra].filter(Boolean).join(', ')
   if (!FAR_SHOT_RE.test(camText)) return faceLight
   // 远景版：只保留「亮」，去掉所有逼迫近景的词
-  return 'face visible, face lit by ambient light, soft light on skin, warm light on cheek, no heavy shadow on face'
+  return FAR_FACE_LIGHT
+}
+
+/**
+ * 脸光的唯一出口（n94）。
+ *
+ * 规则：**脸光归画风卡**。视角只管机位 / 视线 / 景别这三件方向性的事，
+ * 不再自带一段通用脸光去顶掉画风卡的描述。
+ *
+ * 早先的写法是 `viewSeg.faceLight || faceLightFor(style.face_light, scene)`，
+ * 而 viewSeg.faceLight 恒为非空 —— 结果只要一选视角，画风卡的
+ * 「half of face in shadow」「face drawn with halftone dots」「candle light」
+ * 全部消失，换成通用的「脸全亮 + 双眼高光」，暗场画风当场废掉。
+ *
+ * 唯一的例外是远景 / 背影 / 俯拍（faceMode 由 viewSegments 判定）：
+ * 那里必须让位给降级版或清空，否则模型强行拉脸部特写（n64 实测）。
+ * 这个例外是有意保留的，不是漏改。
+ */
+function resolveFaceLight(styleFaceLight, scene, viewSeg) {
+  const styleFace = styleFaceLight || ''
+  if (!viewSeg || !viewSeg.pos) return faceLightFor(styleFace, scene)
+  if (viewSeg.faceMode === 'none') return ''
+  if (viewSeg.faceMode === 'far') {
+    // 远景：脸的像素本来就不够看清光照细节，此时「不逼特写」比「保住画风光照」重要
+    return styleFace ? FAR_FACE_LIGHT : ''
+  }
+  // 正常景别：画风卡说什么就是什么；画风卡没写才用通用兜底
+  return styleFace || 'face fully lit, catchlight in both eyes, gentle highlight on cheek'
 }
 
 /**
  * 配方自检：把「选出来的卡互相打架」这件事在生成前就说清楚。
  * 这些都是实测踩过的（n58–n61、卡片库天台那轮、环境/动作拆分那轮）。
  */
-function buildWarnings(scene, style, look, pose, usePose, props, viewSeg) {
+function buildWarnings(scene, style, look, pose, usePose, props, viewSeg, viewFix) {
   const out = []
   const list = (props || []).filter(Boolean)
   // 画风卡声明了 mode=img2img（init_required）时，text2img 直跑画不出它的画法 ——
@@ -678,10 +731,11 @@ function buildWarnings(scene, style, look, pose, usePose, props, viewSeg) {
     out.push('造型卡的动作/表情/景别默认没进配方（会和场景打架）—— 需要就勾「带动作」')
   }
   // 道具：hold 需要动词，穿戴类怕手部动作
+  //
+  // 这里原来有一条「没勾带动作就没有 holding 动词」的警告 —— 是假的：
+  // propsSegment() 无论 usePose 都会补 holding，实测 prop_uchiwa + includePose:false
+  // 出来的正向照样是 `holding uchiwa`。删掉，别再骗人。
   const held = list.filter((p) => p.hold)
-  if (held.length && !usePose) {
-    out.push('道具卡是需要拿在手里的（hold），但没勾「带动作」—— 没有 holding 动词，道具可能被摆到墙角')
-  }
   for (const p of list) {
     if (!p.hold && usePose && /holding|hands?\b/i.test(clean(pose?.pose_tags))) {
       out.push(`「${p.name}」是穿戴类（hold=false），但动作里有手部动作 —— 两者可能打架`)
@@ -701,6 +755,13 @@ function buildWarnings(scene, style, look, pose, usePose, props, viewSeg) {
   if (!scene) return out
   const cam = scene.camera || {}
   const camText = [cam.shot_size, cam.viewpoint, scene.extra_camera].filter(Boolean).join(', ')
+  // 机位冲突（v7）：特殊机位（pov / fisheye / dutch angle / bird's eye …）不自动裁决，
+  // 只在这里提醒 —— 环境卡的 bird's eye view 常常是场景本身的性质（从楼上往下拍），
+  // 自动删掉会把场景毁掉；机器分不出「场景性质」和「卡片冲突」，交给人。
+  if (viewFix && viewFix.special && viewFix.special.length) {
+    const s = viewFix.special.join(' / ')
+    out.push(`机位里有特殊手法「${s}」—— 这类机位和环境卡/动作卡耦合很紧，不会自动裁决，请自己确认要不要保留`)
+  }
   if (FAR_SHOT_RE.test(camText) && style?.face_light) {
     out.push('远景场景：脸部补光已降级，否则模型会强行拉成脸部特写')
   }
@@ -708,6 +769,343 @@ function buildWarnings(scene, style, look, pose, usePose, props, viewSeg) {
     out.push('背影视角会吃掉异色瞳 —— 想露脸就把视角换成 from side / three-quarter view')
   }
   return out
+}
+
+/* ════════════════════════════════════════════════════════════════
+   冲突自动处理（v5）
+   ════════════════════════════════════════════════════════════════
+   冲突分两种，处理方式完全不同：
+
+     auto —— 机械可判、修了不会更糟。直接改配方，并把「改了什么」报出来。
+             典型：画风卡的负面里写着 `nude`，造型卡却声明了 bottomless；
+             动作卡自己同时写着 `looking at viewer` 和 `looking back`。
+
+     warn —— 没有唯一正确答案，猜错比不猜更糟。只提醒，绝不动配方。
+             典型：手里拿了 4 件东西（该丢哪件？）、动作卡原本在床边现在配街边。
+
+   为什么 warn 不自动修：自动修意味着替用户做审美判断。前面 n85/n93 那些教训
+   已经说明，模型对「删词」的响应远非线性 —— 删错一个词整张图就废了。
+   所以只自动修「同一个槽位出现两个互斥值」这类不可能两全的情况。
+*/
+
+/** 造型卡正向里出现这些词 = 它要裸露。 */
+const NUDE_POS_RE = /\b(nude|naked|bottomless|topless|no panties|completely nude|bare crotch)\b/i
+
+/**
+ * 画风卡负面里这些词会压死裸露。
+ *
+ * n85 实测：明亮全彩画风卡的负面写了 `nude, naked`，配 bottomless 造型卡出图时
+ * 人物莫名穿好衣服 —— 而且 minusPositive 剔不掉，因为造型卡写的是
+ * `bottomless, no panties`，跟 `nude` 不是同一个词。
+ * 所以这里按「语义槽位」剔，不按字面剔。
+ *
+ * 两头都要放宽：`blue panties` / `white panties` 前面带颜色，`underwear only`
+ * 后面带 only —— 严格的 `^...$` 整词匹配会把它们全漏掉，实测 amano + 床上裸
+ * 就残留了这两个。
+ */
+const NUDE_NEG_RE = /^(?:[a-z]+\s+)?(nude|naked|topless|bottomless|nipples?|areola|cleavage|deep cleavage|sideboob|underboob|exposed (?:chest|breasts?)|bare (?:chest|shoulders?|breasts?)|covered (?:crotch|groin|ass|pussy)|clothing|clothed|partially clothed|underwear|panties|bikini bottom|swimsuit|thong)(?:\s+only)?$/i
+
+/**
+ * 露肤让位：造型卡自己声明了「露」，画风卡负面里逼着「遮」的词就得让位。
+ *
+ * 和裸露那条不是一回事。裸露是「一件不穿」，这里说的是「穿了但要露」——
+ * 吊带、露肩、低胸、开襟、连体紧身衣、比基尼、浴巾。
+ *
+ * 实测（shadowverse 负面最狠，24 个压制词）：`look_ballet` 的 leotard、
+ * `look_tomb_raider` 的 bodysuit、`look_tribal_hunter` 的 bikini、`nsfw_towel_slip`
+ * 的 bare shoulders，全被 `bare shoulders / open shirt / cleavage` 压成高领长袖。
+ *
+ * 注意只剔「遮」的那一批，`nipples / areola / topless / nude` 不剔 ——
+ * 那些是防意外裸体的，造型卡没说要裸就得留着。
+ */
+const REVEAL_POS_RE = /\b(cleavage|bare shoulders?|bare chest|off shoulder|strapless|tube top|low cut|deep neckline|plunging neckline|open shirt|unbuttoned|open robe|open collar|see-through|sheer|no bra|lingerie|underwear|bikini|swimsuit|leotard|bodysuit|sports bra|camisole|slip dress)\b/i
+
+const COVER_NEG_RE = /^(open shirt|unbuttoned shirt|open robe|undone clothes|open collar|bare shoulders?|off shoulder|strapless|tube top|chest window|collarbone window|exposed chest|exposed breasts|breasts out|cleavage|deep cleavage|low cut|deep neckline|plunging neckline|sideboob|underboob)$/i
+
+/**
+ * 环境卡说了什么光，画风卡负面里压这种光的词就得让位。
+ *
+ * 同一个道理：`neon colors` 与 `neon lights` 不是同一个词，minusPositive 剔不掉，
+ * 但模型读到负面里的 neon 就会把霓虹压掉 —— 夜景卡选了个「禁霓虹」的画风，
+ * 出来一片死黑。
+ */
+const LIGHT_RULES = [
+  {
+    label: '夜景',
+    scene: /\b(night|midnight|nighttime)\b/i,
+    drop: /^(night|dark background|black background|dark navy background|dark image|dark photo|underexposed|low key lighting)$/i,
+  },
+  {
+    label: '霓虹',
+    scene: /\b(neon lights?|neon signs?|lantern|festival lights|illuminated)\b/i,
+    drop: /^(neon|neon colors|neon pink|hot pink|magenta|vivid cyan|electric blue|fluorescent|neon laser)$/i,
+  },
+  {
+    label: '暖光',
+    scene: /\b(sunset|golden hour|dusk|warm light|sunrise)\b/i,
+    drop: /^(blue tint|cold color cast|cyan lighting|blue dominant|teal and orange|cyan skin)$/i,
+  },
+]
+
+/** 视线词分两组：看镜头 / 回头。同一张动作卡里两组并存 = 互斥。 */const GAZE_VIEWER_RE = /^(looking at viewer|eye contact)$/i
+const GAZE_BACK_RE = /^(looking back|looking over shoulder|looking back over shoulder)$/i
+
+/**
+ * 动作卡内部视线矛盾 → 按机位裁决。
+ *
+ * 实测两张卡中招：`pose_from_school_rooftop_wave`（looking at viewer + looking back）、
+ * `pose_postman`（同样两个，但 camera 写了 from behind）。
+ * 规则：机位在背后就留「回头」，否则留「看镜头」—— 因为 from behind + 看镜头
+ * 是模型唯一无法同时满足的组合，它会牺牲机位去画脸。
+ */
+function dedupePoseGaze(poseTags, viewpoint) {
+  const text = clean(poseTags)
+  if (!text) return { text: '', dropped: [] }
+  const toks = text.split(',').map((t) => t.trim()).filter(Boolean)
+  const hasViewer = toks.some((t) => GAZE_VIEWER_RE.test(t))
+  const hasBack = toks.some((t) => GAZE_BACK_RE.test(t))
+  if (!hasViewer || !hasBack) return { text, dropped: [] }
+  const keepBack = /from behind/i.test(clean(viewpoint))
+  const kill = keepBack ? GAZE_VIEWER_RE : GAZE_BACK_RE
+  const dropped = toks.filter((t) => kill.test(t))
+  const kept = toks.filter((t) => !kill.test(t))
+  return { text: kept.join(', '), dropped }
+}
+
+/* ════════════════════════════════════════════════════════════════
+   景别裁决（v6）
+   ════════════════════════════════════════════════════════════════
+   动作卡的 camera.shot_size 一直被静默丢掉 —— poseSegment() 只返回 pose_tags，
+   景别词一个都进不了正向。于是「动作卡要全身（standing, jumping）＋ 环境卡写 upper body」
+   拼出来的正向里只有 upper body：动作被截掉半截，而且不报任何错。
+
+   全库统计：环境卡带近景 17 张 × 动作卡带中远景 160 张 = 2720 组会中招。
+
+   优先级和视角系统保持一致：**视角 > 动作卡 > 环境卡**。
+   理由：视角是用户当场选的；动作卡是显式选的，而且景别是「动作画不画得出来」的
+   必要条件；环境卡的 shot_size 只是「这张场景通常怎么拍」，属于默认值。
+
+   只接管景别，不接管机位 —— 动作卡里 `full body / from side` 的 from side 部分
+   仍然丢掉，机位归环境卡和视角管。
+   ════════════════════════════════════════════════════════════════ */
+const SHOT_WORDS = [
+  { re: /^wide shot$/i, level: 5 },
+  { re: /^small figure$/i, level: 5 },
+  { re: /^full body$/i, level: 4 },
+  { re: /^cowboy shot$/i, level: 3 },
+  { re: /^upper body$/i, level: 2 },
+  { re: /^(close-up|portrait|bust shot)$/i, level: 1 },
+  { re: /^(extreme close-up|very close-up)$/i, level: 0 },
+]
+
+const SHOT_CN = ['大特写', '特写', '上半身', '七分身', '全身', '远景']
+
+/** 档位 → 代表词（做远景判定用，别从正则里反向抠字符串）。 */
+const SHOT_REP_BY_LEVEL = {
+  5: 'wide shot',
+  4: 'full body',
+  3: 'cowboy shot',
+  2: 'upper body',
+  1: 'close-up',
+  0: 'extreme close-up',
+}
+
+/** 按 / 和逗号拆开 —— 卡里的 shot_size 写成 `full body / from side` 这种复合值。 */
+function shotTokens(text) {
+  return String(text || '').split(/[/,]/).map((t) => t.trim()).filter(Boolean)
+}
+
+function shotWordLevel(tok) {
+  for (const w of SHOT_WORDS) if (w.re.test(tok)) return w.level
+  return null
+}
+
+/** 取最宽的那一档：`wide shot / full body / small figure` 应该算远景。 */
+function shotLevel(text) {
+  let best = null
+  for (const t of shotTokens(text)) {
+    const lv = shotWordLevel(t)
+    if (lv == null) continue
+    if (best == null || lv > best) best = lv
+  }
+  return best
+}
+
+function shotWords(text) {
+  const out = []
+  for (const t of shotTokens(text)) {
+    if (shotWordLevel(t) == null) continue
+    if (out.indexOf(t) < 0) out.push(t)
+  }
+  return out
+}
+
+/** 从一段提示词里剔掉景别词（环境卡的 extra_camera 会混进来）。 */
+function stripShotWords(seg) {
+  if (!seg) return ''
+  const out = []
+  for (const raw of String(seg).split(',')) {
+    const t = raw.trim()
+    if (!t) continue
+    if (shotWordLevel(t) != null) continue
+    out.push(t)
+  }
+  return out.join(', ')
+}
+
+/**
+ * 景别裁决（v6）：视角 > 动作卡 > 环境卡。
+ *
+ * 返回 { pos, level, source, sceneDrop, conflict }
+ *   pos       —— 要补进正向的景别词（可能为空）
+ *   sceneDrop —— 环境卡的 shot_size 是否要让位
+ *   conflict  —— 动作卡与环境卡景别不一致（用于 autofix 文案）
+ *
+ * 只在「没选视角」时调用：选了视角，景别已经由视角段决定，环境卡早就不出 shot_size。
+ */
+function resolveShotSize(pose, scene, poseSegText) {
+  const poseShot = clean(pose?.camera?.shot_size || '')
+  const sceneShot = clean(scene?.camera?.shot_size || '')
+  // 有 14 张老动作卡把景别写在 pose_tags 里、camera.shot_size 是空的
+  // （pose_ballet 的 full body、pose_detective 的 cowboy shot …）。
+  // 那些词本来就会经 poseSegment 进正向，所以这里也要认，否则冲突检测看不见它们。
+  const poseLv = shotLevel(poseShot) != null ? shotLevel(poseShot) : shotLevel(poseSegText)
+  const sceneLv = shotLevel(sceneShot)
+  if (poseLv == null) {
+    return { pos: '', level: sceneLv, source: sceneLv == null ? 'none' : 'scene', sceneDrop: false, conflict: false }
+  }
+  const conflict = sceneLv != null && sceneLv !== poseLv
+  const words = shotWords(poseShot)
+  return {
+    pos: words.join(', '),
+    level: poseLv,
+    source: 'pose',
+    sceneDrop: true,
+    conflict,
+    poseLevel: poseLv,
+    sceneLevel: sceneLv,
+  }
+}
+
+/* ════════════════════════════════════════════════════════════════
+   机位裁决（v7）：视角 > 动作卡 > 环境卡
+   ════════════════════════════════════════════════════════════════
+
+   v6 只修了景别。机位（camera.viewpoint）有一模一样的毛病：
+   `poseSegment()` 只返回 pose_tags，动作卡的 camera.viewpoint 从来没进过正向。
+   全库 240 张动作卡有 viewpoint，其中只有 21 张把词也写进了 pose_tags ——
+   另外 219 张的机位是**静默丢弃**的（`pose_balcony_laundry` 的 bird's eye view、
+   `pose_cam_dutch_wall` 的 dutch angle、`pose_cam_low_stretch` 的 from below …）。
+   动作卡 × 环境卡交叉 25833 组，机位互斥 19685 组（76.2%）。
+
+   但机位比景别危险得多，所以裁决分两档：
+
+   · **基础机位**（from front / from side / from behind / from above / from below）
+     —— 自动裁决，动作卡说了算，环境卡让位。
+     理由：这类机位和姿势是耦合的（`from below` 的姿势换 `from above` 会变形），
+     动作卡是用户显式选的、并且是照着它出的图，所以以它为准。
+
+   · **特殊机位**（pov / fisheye / dutch angle / bird's eye / worm's eye /
+     over-the-shoulder / foreshortening / panorama）—— **只 warn，不动配方**。
+     理由：这类机位是「摄影手法」而不是「从哪边看」，环境卡的
+     `bird's eye view` 常常就是场景本身的性质（从楼上往下拍），
+     自动删掉会把场景整个毁掉。机器分不出「场景性质」和「卡片冲突」，交给人。
+   ════════════════════════════════════════════════════════════════ */
+
+/** 基础机位：可自动裁决的那一档。key 是归一化后的方位，值是代表词。 */
+const VIEWPOINT_BASE = [
+  { id: 'front', re: /^from front$|^straight-on$|^facing viewer$/i, cn: '正面' },
+  { id: 'side', re: /^from side$|^profile$|^side view$/i, cn: '侧面' },
+  { id: 'behind', re: /^from behind$|^back view$|^seen from behind$/i, cn: '背面' },
+  { id: 'above', re: /^from above$|^high angle$|^overhead$/i, cn: '俯拍' },
+  { id: 'below', re: /^from below$|^low angle$|^from down below$/i, cn: '仰拍' },
+]
+
+/** 特殊机位：只 warn。命中即视为「摄影手法」，不参与自动让位。 */
+const VIEWPOINT_SPECIAL_RE = /\bpov\b|first-person|fisheye|dutch angle|bird'?s eye|worm'?s eye|over-the-shoulder|foreshortening|panorama|selfie|^pov\b/i
+
+/** 把一段机位文本拆成归一化的基础机位 id 集合（`from side, from behind` → {side, behind}）。 */
+function viewpointSet(text) {
+  const out = []
+  for (const tok of String(text || '').split(/[/,]/).map((t) => t.trim()).filter(Boolean)) {
+    for (const v of VIEWPOINT_BASE) {
+      if (v.re.test(tok) && out.indexOf(v.id) < 0) out.push(v.id)
+    }
+  }
+  return out
+}
+
+function viewpointCN(ids) {
+  return (ids || []).map((id) => (VIEWPOINT_BASE.find((v) => v.id === id) || {}).cn || id).join('+')
+}
+
+/** 从一段文本里剔掉基础机位词（环境卡的 extra_camera 会混进来）。 */
+function stripViewpointWords(seg) {
+  if (!seg) return ''
+  const out = []
+  for (const raw of String(seg).split(',')) {
+    const t = raw.trim()
+    if (!t) continue
+    if (viewpointSet(t).length) continue
+    out.push(t)
+  }
+  return out.join(', ')
+}
+
+/**
+ * 机位裁决。返回：
+ *   pos        —— 要补进正向的机位词（动作卡声明的机位，除非选了视角）
+ *   sceneDrop  —— 环境卡的 viewpoint 是否要让位
+ *   conflict   —— 两边基础机位互斥（用于 autofix 文案）
+ *   special    —— 命中的特殊机位（只用于 warn，不影响 sceneDrop）
+ *
+ * 关键取舍：**动作卡的机位永远进正向**（只要没选视角），哪怕其中一方是特殊机位 ——
+ * 早先写成「任一方特殊就两边都不动」，结果环境卡是 `bird's eye view` 时
+ * 动作卡的 `from side` 也跟着丢了，等于把 v7 想修的问题又制造了一遍。
+ * 特殊机位只影响「环境卡的机位要不要被撤」，不影响「动作卡的机位要不要进」。
+ */
+function resolveViewpoint(pose, scene) {
+  const poseVp = clean(pose?.camera?.viewpoint || '')
+  const sceneVp = clean(scene?.camera?.viewpoint || '')
+  const poseSpecial = !!poseVp && VIEWPOINT_SPECIAL_RE.test(poseVp)
+  const sceneSpecial = !!sceneVp && VIEWPOINT_SPECIAL_RE.test(sceneVp)
+  const special = [poseSpecial ? poseVp : '', sceneSpecial ? sceneVp : ''].filter(Boolean)
+
+  // 特殊机位不参与「撤环境卡机位」的裁决 —— 那类机位常常是场景本身的性质
+  if (poseSpecial || sceneSpecial) {
+    return { pos: poseVp, sceneDrop: false, conflict: false, special, poseVp, sceneVp }
+  }
+
+  const poseIds = viewpointSet(poseVp)
+  const sceneIds = viewpointSet(sceneVp)
+  if (!poseIds.length) {
+    return { pos: '', sceneDrop: false, conflict: false, special: [], poseVp, sceneVp }
+  }
+  const overlap = poseIds.some((id) => sceneIds.indexOf(id) >= 0)
+  const conflict = sceneIds.length > 0 && !overlap
+  return {
+    pos: poseVp,
+    sceneDrop: true,
+    conflict,
+    special: [],
+    poseVp,
+    sceneVp,
+    poseIds,
+    sceneIds,
+  }
+}
+
+/** 按槽位剔负面词，返回 { kept, dropped }。 */
+function dropNegativeSlots(negSeg, shouldDrop) {
+  const out = []
+  const dropped = []
+  for (const raw of String(negSeg || '').split(',')) {
+    const t = raw.trim()
+    if (!t) continue
+    if (shouldDrop(t)) dropped.push(t)
+    else out.push(t)
+  }
+  return { kept: out.join(', '), dropped }
 }
 
 function compose(input) {
@@ -749,7 +1147,10 @@ function compose(input) {
   // 动作来源优先级：动作卡 > 造型卡 legacy_pose_ref（v4 迁出的那批）> 造型卡自带 pose_tags。
   // 动作卡是显式选的，一旦选了就以它为准；造型卡的动作默认不进配方，
   // 因为它会和用户选的环境/动作卡打架（更衣间那张就是典型：卡里写 walking + crossed arms）。
-  const poseSeg = poseSegment(pose)
+  // 动作卡的视线互斥（看镜头 vs 回头）：先按机位裁决，别让它俩同时进正向。
+  // 动作卡自己的 camera.viewpoint 优先，其次看视角选择器。
+  const poseGazeFix = dedupePoseGaze(poseSegment(pose), (pose?.camera && pose.camera.viewpoint) || '')
+  const poseSeg = poseGazeFix.text
   const usePose = input.includePose !== false && (!!poseSeg || input.includePose === true)
   let actSeg = ''
   if (usePose && poseSeg) actSeg = poseSeg
@@ -762,24 +1163,130 @@ function compose(input) {
   // 道具跟在动作后面：先说明「在做什么」，再说明「手里拿着什么」
   const propSeg = propsSegment(props)
   const viewSeg = viewSegments(view)
+  // 景别裁决（v6）：视角 > 动作卡 > 环境卡。
+  // 没选视角时动作卡的 shot_size 才有机会进正向 —— 早先它被整个丢掉，
+  // 于是「动作卡要全身 + 环境卡写 upper body」出来永远只有上半身。
+  const shotFix = viewSeg.pos ? null : resolveShotSize(pose, scene, poseSeg)
+  const poseShotSeg = shotFix ? shotFix.pos : ''
+  // 机位裁决（v7）：视角 > 动作卡 > 环境卡。
+  // 和景别同理 —— 动作卡的 camera.viewpoint 早先也没进正向，219 张卡静默丢弃。
+  const viewFix = viewSeg.pos ? null : resolveViewpoint(pose, scene)
+  const poseViewSeg = viewFix ? viewFix.pos : ''
   // 选了视角时，环境卡的机位/景别让位给视角，只保留 comp / dof
-  const sceneSeg = sceneSegment(scene, { skipCamera: !!viewSeg.pos })
-  // 脸光：视角优先（视角自己会算远景降级），没视角才走环境卡判定
-  const faceLight = viewSeg.faceLight || faceLightFor(style?.face_light || '', scene)
+  const sceneSeg = sceneSegment(scene, {
+    skipCamera: !!viewSeg.pos,
+    dropShot: !!(shotFix && shotFix.sceneDrop),
+    dropViewpoint: !!(viewFix && viewFix.sceneDrop),
+  })
+  // 脸光：归画风卡。视角只提供 faceMode（正常 / 远景降级 / 背影清空），不提供词。
+  // 景别被动作卡接管后，远景判定也要跟着改 —— 否则动作卡要全身、环境卡写 upper body，
+  // 脸光会按 upper body 判成「不降级」，把画面硬拉回特写（n64 那个坑）。
+  // 机位接管同理：动作卡要 from behind，脸光必须按背影判，否则正面脸会被拽回来。
+  const sceneForFace = (() => {
+    if (!shotFix || !shotFix.sceneDrop) {
+      if (!(viewFix && viewFix.sceneDrop)) return scene
+    }
+    const cam = {}
+    if (shotFix && shotFix.sceneDrop && shotFix.level != null) cam.shot_size = SHOT_REP_BY_LEVEL[shotFix.level] || ''
+    if (viewFix && viewFix.sceneDrop && viewFix.pos) cam.viewpoint = viewFix.pos
+    return {
+      camera: cam,
+      extra_camera: stripShotWords(stripViewpointWords(clean(scene?.extra_camera))),
+    }
+  })()
+  const faceLight = resolveFaceLight(style?.face_light || '', sceneForFace, viewSeg)
   const render = style?.render || ''
 
   // 拼装顺序：视角段紧跟在场景之后 —— 场景说明「在哪」，视角说明「从哪儿看、往哪儿看」。
   // 放在场景之前会被场景的 camera 词盖掉，放在最后又压不住 render 段的 detailed eyes。
-  const positive = joinSeg(q, art, charSeg, lookSeg, propSeg, sceneSeg, viewSeg.pos, faceLight, render)
+  // 动作卡景别/机位跟在动作段后面（它是在说「这个动作要拍多宽、从哪边拍」）。
+  const positive = joinSeg(q, art, charSeg, lookSeg, poseShotSeg, poseViewSeg, propSeg, sceneSeg, viewSeg.pos, faceLight, render)
+  // ── 自动冲突处理：负面按语义槽位让位 ────────────────────────────
+  //
+  // 顺序要紧：先做「裸露让位」，再做「光照让位」，最后才 minusPositive。
+  // 前者是把不该在负面里的词删掉，后者是删正负交集 —— 顺序反了，交集删完
+  // 就分不清某个词是被谁删的。
+  const autofixes = []
+  const wantsNude = NUDE_POS_RE.test(positive)
+  const wantsReveal = REVEAL_POS_RE.test(positive)
+  const sceneLightText = [sceneSeg, scene?.env_hint || '', scene?.env_nl || ''].join(', ')
+  const lightDrops = []
+  for (const rule of LIGHT_RULES) {
+    if (rule.scene.test(sceneLightText)) lightDrops.push(rule)
+  }
+
   const negParts = [
     style?.negative || '',
     character?.negative || '',
     look?.negative_extra || '',
     viewSeg.neg,
   ]
+  const negJoined = joinSeg(...negParts)
+  const nudeFixed = dropNegativeSlots(negJoined, (t) => wantsNude && NUDE_NEG_RE.test(t))
+  if (nudeFixed.dropped.length) {
+    autofixes.push({
+      kind: 'nude',
+      auto: true,
+      message: `造型要裸露，已从负面剔掉 ${nudeFixed.dropped.length} 个压制词：${nudeFixed.dropped.slice(0, 6).join(' / ')}` +
+        (nudeFixed.dropped.length > 6 ? ' …' : ''),
+    })
+  }
+  // 露肤让位：只在「要露但没全裸」时做。全裸时上一步已经把整片都删了。
+  let negAfterNude = nudeFixed.kept
+  if (wantsReveal && !wantsNude) {
+    const r = dropNegativeSlots(negAfterNude, (t) => COVER_NEG_RE.test(t))
+    if (r.dropped.length) {
+      negAfterNude = r.kept
+      autofixes.push({
+        kind: 'reveal',
+        auto: true,
+        message: `造型声明了露肤（露肩/低胸/开襟/连体衣），已从负面剔掉 ${r.dropped.length} 个「逼着遮」的词：${r.dropped.slice(0, 6).join(' / ')}`,
+      })
+    }
+  }
+  for (const rule of lightDrops) {
+    const r = dropNegativeSlots(negAfterNude, (t) => rule.drop.test(t))
+    if (!r.dropped.length) continue
+    negAfterNude = r.kept
+    autofixes.push({
+      kind: 'light',
+      auto: true,
+      message: `场景是${rule.label}，已从负面剔掉压这档光的词：${r.dropped.join(' / ')}`,
+    })
+  }
+  if (poseGazeFix.dropped.length) {
+    autofixes.push({
+      kind: 'gaze',
+      auto: true,
+      message: `动作卡自己同时写了「看镜头」和「回头」，按机位留了一组，删掉：${poseGazeFix.dropped.join(' / ')}`,
+    })
+  }
+  // 景别让位：动作卡的 shot_size 进正向，环境卡的 shot_size 撤掉。
+  // 只在两边不一致时报 —— 一致时用户看不出配方有变化，报了反而噪音。
+  if (shotFix && shotFix.conflict) {
+    const a = SHOT_CN[shotFix.sceneLevel] || '?'
+    const b = SHOT_CN[shotFix.poseLevel] || '?'
+    autofixes.push({
+      kind: 'shot',
+      auto: true,
+      message: `景别冲突：环境卡是「${a}」，动作卡是「${b}」—— 按动作卡取「${b}」，已撤掉环境卡的景别词（否则动作被截掉半截）`,
+    })
+  }
+  // 机位让位（v7）：动作卡的基础机位进正向，环境卡的机位撤掉。
+  // 同样只在不一致时报。
+  if (viewFix && viewFix.conflict) {
+    const a = viewpointCN(viewFix.sceneIds) || '?'
+    const b = viewpointCN(viewFix.poseIds) || '?'
+    autofixes.push({
+      kind: 'viewpoint',
+      auto: true,
+      message: `机位冲突：环境卡是「${a}」，动作卡是「${b}」—— 按动作卡取「${b}」，已撤掉环境卡的机位词（否则动作被拍变形）`,
+    })
+  }
+
   // 最后一道保险：负向里凡是正向已经写了的词，全部剔除。
   // 两段有交集时模型会二选一，「正面看镜头」比「背影回头」强势，实测直接翻脸。
-  const negative = minusPositive(joinSeg(...negParts), positive)
+  const negative = minusPositive(negAfterNude, positive)
 
   // 参数优先级：画风卡最硬。
   //
@@ -825,6 +1332,8 @@ function compose(input) {
       prop: clean(propSeg),
       props: props.map((p) => ({ id: p.id, name: p.name, tags: clean(p.prop_tags || ''), hold: !!p.hold })),
       scene: sceneSeg,
+      shot: clean(poseShotSeg),
+      viewpoint: clean(poseViewSeg),
       view: clean(viewSeg.pos),
       view_negative: clean(viewSeg.neg),
       view_notes: viewSeg.notes,
@@ -840,7 +1349,11 @@ function compose(input) {
     },
     includePose: usePose,
     flip: viewSeg.flip,
-    warnings: buildWarnings(scene, style, look, pose, usePose, props, viewSeg)
+    // autofixes = 已经自动改掉的冲突（配方里确实变了）
+    // warnings   = 只提醒、没动的冲突
+    // 两者分开，客户端和配方文本都能分别显示，不会混成一片。
+    autofixes,
+    warnings: buildWarnings(scene, style, look, pose, usePose, props, viewSeg, viewFix)
       .concat(propConflicts(propsAll))
       .concat(viewSeg.warnings),
     positive,
@@ -884,6 +1397,12 @@ function recipeText(r) {
   const p = r.params || {}
   lines.push(`参数：${p.model || '?'} / LoRA ${p.lora || '?'} / ${p.steps || '?'}步 cfg${p.cfg || '?'} ${p.sampler || '?'}/${p.scheduler || '?'} / ${p.resolution || '?'}`)
   if (r.flip) lines.push('后期：需要左右镜像（ImageOps.mirror）')
+  // 自动处理过的冲突放在最前：用户得先知道配方已经不是卡里的原样了。
+  if (r.autofixes && r.autofixes.length) {
+    lines.push('')
+    lines.push('已自动处理（配方已改）：')
+    for (const f of r.autofixes) lines.push('✔ ' + f.message)
+  }
   if (r.warnings && r.warnings.length) {
     lines.push('')
     lines.push('注意：')
@@ -1012,6 +1531,34 @@ async function handle(req, res, url) {
     return sendJson(res, 200, Object.assign({ ok: r.ok, missing: r.missing }, r, { text: recipeText(r) }))
   }
 
+  // 存卡规则：面板的「规则」页直接读这份，不用把规则抄在 client.js 里。
+  if (path === ROUTE + '/rules') {
+    return sendJson(res, 200, {
+      ok: true,
+      version: RULES_VERSION,
+      rules: SAVE_RULES.map((r) => ({
+        id: r.id,
+        title: r.title,
+        why: r.why,
+        kinds: r.kinds,
+        severity: r.severity,
+        manual: !!r.manual,
+      })),
+      fields: CARD_FIELDS,
+      thumbs: THUMB_TEMPLATES,
+      text: rulesText(),
+    })
+  }
+
+  // 全库体检：默认跑活库，也可以指到别处（导出包上线前自检用）。
+  if (path === ROUTE + '/lint') {
+    const rel = url.searchParams.get('root') || ''
+    const target = rel ? safeResolve(rel) : libraryRoot()
+    if (!target) return sendJson(res, 400, { ok: false, error: 'bad root' })
+    const r = lintLibrary(target, { exportMode: url.searchParams.get('export') === '1' })
+    return sendJson(res, 200, Object.assign({ ok: r.ok, root: target, version: RULES_VERSION }, r))
+  }
+
   return sendJson(res, 404, { ok: false, error: 'unknown ' + req.method + ' ' + path })
 }
 
@@ -1090,6 +1637,90 @@ export function apply(ctx) {
       log('已注册工具 card_library_compose')
     } catch (e) {
       log('工具注册失败：' + String(e?.message ?? e))
+    }
+
+    // 存卡规则本身也要能被模型读到 —— 否则下次写存卡脚本还是靠记忆。
+    try {
+      ctx.tools.register({
+        name: 'card_library_save_rules',
+        description: '读取「往卡片库存新卡」的硬性规则：六类卡职责边界、id 命名、缩略图规格、Anima 格式（下划线转空格 + 画师加 @）、存卡四连、以及每条规则的严重级（error 会阻塞、warn 只提示、manual 要人来判断）。写任何存卡/拆卡脚本之前先读它。',
+        parameters: {
+          type: 'object',
+          properties: {
+            verbose: { type: 'boolean', description: 'true 时连字段白名单与缩略图模板一起返回' },
+          },
+          additionalProperties: false,
+        },
+        output: {
+          schema: { type: 'string' },
+          render: (_args, value) => [{ type: 'text', text: String(value) }],
+        },
+        isConcurrencySafe: () => true,
+        execute: (args) => {
+          const verbose = !!(args && args.verbose)
+          const lines = [rulesText()]
+          if (verbose) {
+            lines.push('', '── 字段白名单 ──')
+            for (const [k, v] of Object.entries(CARD_FIELDS)) lines.push(k + '：' + v.join(', '))
+            lines.push('', '── 缩略图规格 ──')
+            for (const [k, v] of Object.entries(THUMB_TEMPLATES)) {
+              lines.push(k + '：' + (typeof v === 'string' ? v : JSON.stringify(v)))
+            }
+          }
+          return lines.join('\n')
+        },
+      })
+      log('已注册工具 card_library_save_rules')
+    } catch (e) {
+      log('规则工具注册失败：' + String(e?.message ?? e))
+    }
+
+    // 全库体检工具：出完一批卡、或往 GitHub 导出之前跑一次。
+    try {
+      ctx.tools.register({
+        name: 'card_library_lint',
+        description: '体检卡片库：按存卡规则逐张检查，返回 errors（必须修）/ warnings（历史遗留，人工判断）/ 缩略图 md5 撞图。写完卡、拆完卡、导出到 GitHub 之前都应该跑一次。默认检查当前工作区的 _assets/cards_library。',
+        parameters: {
+          type: 'object',
+          properties: {
+            root: { type: 'string', description: '可选：库目录（工作区相对路径）。默认活库 _assets/cards_library' },
+            exportMode: { type: 'boolean', description: '导出模式：额外检查 preview 是否指向库外' },
+          },
+          additionalProperties: false,
+        },
+        output: {
+          schema: { type: 'string' },
+          render: (_args, value) => [{ type: 'text', text: String(value) }],
+        },
+        isConcurrencySafe: () => true,
+        execute: (args) => {
+          const a = args || {}
+          const rel = typeof a.root === 'string' && a.root ? a.root : ''
+          const target = rel ? safeResolve(rel) : libraryRoot()
+          if (!target) return '库目录不存在：' + rel
+          const r = lintLibrary(target, { exportMode: !!a.exportMode })
+          const out = [
+            `库根：${target}`,
+            `共 ${r.total} 张 · errors ${r.errors.length} · warnings ${r.warnings.length} · ${r.ok ? 'PASS' : 'FAIL'}`,
+          ]
+          if (r.errors.length) {
+            out.push('', '── errors（必须修）──')
+            for (const e of r.errors) out.push(`✗ [${e.rule}] ${e.kind}/${e.id} — ${e.msg}`)
+          }
+          if (r.warnings.length) {
+            out.push('', '── warnings（历史遗留，人工判断）──')
+            for (const w of r.warnings) out.push(`! [${w.rule}] ${w.kind}/${w.id} — ${w.msg}`)
+          }
+          if (r.md5Dup && r.md5Dup.length) {
+            out.push('', '── 缩略图 md5 撞图 ──')
+            for (const g of r.md5Dup) out.push('= ' + g.join(' == '))
+          }
+          return out.join('\n')
+        },
+      })
+      log('已注册工具 card_library_lint')
+    } catch (e) {
+      log('体检工具注册失败：' + String(e?.message ?? e))
     }
   }
 }

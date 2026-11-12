@@ -1,0 +1,22 @@
+{
+  "id": "pose_hands_clasped_stand",
+  "kind": "pose",
+  "name": "双手交叠站立",
+  "version": 1.0,
+  "description": "站姿，双手在身前交叠，安静端庄。",
+  "group": "from_ref",
+  "group_title": "来自参考",
+  "pose_tags": "standing, hands clasped, hands in front, looking at viewer, calm expression, closed mouth, full body",
+  "pose_nl": "",
+  "camera": {
+    "shot_size": "full body",
+    "viewpoint": "from front"
+  },
+  "suggest_place": "",
+  "aspect": "portrait",
+  "thumb": "thumbs/pose_hands_clasped_stand.jpg",
+  "env_ref": null,
+  "source": "look_pose_v1",
+  "legacy_look": null,
+  "notes": "抄自《亚洲奇幻女子图鉴》立绘姿态。"
+}

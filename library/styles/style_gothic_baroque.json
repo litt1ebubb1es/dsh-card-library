@@ -1,0 +1,50 @@
+{
+  "id": "style_gothic_baroque",
+  "kind": "style",
+  "name": "★哥特巴洛克水彩",
+  "version": 1.0,
+  "description": "黑底 + 蜡烛 + 深红天鹅绒 + 金雕花框 + 水彩湿接。暗场单光源，半张脸沉在阴影里。抄自小岛文美《恶魔城》插画方向。",
+  "quality_prefix": "masterpiece, best quality, score 7, score 9, very aesthetic, ultra detailed, ",
+  "artist_segment": "@kojima_ayami, ",
+  "render": "baroque, gothic, dark fantasy, watercolor (medium), gouache, wet on wet, color bleeding, deep shadow, chiaroscuro, strong contrast, dark background, deep crimson, burgundy, antique gold, gold ornament, gold trim, ornate frame, decorative border, filigree, lace, ruffles, candle light, dim lighting, vignette, elegant, solemn, melancholic, fine ink lineart, visible brush strokes, aged paper, paper texture, ",
+  "face_light": "face lit by candle light, half of face in shadow, warm highlight on cheek, catchlight in both eyes, ",
+  "negative": "worst quality, low quality, score 1, score 2, score 3, lowres, jpeg artifacts, 3d render, cgi, photorealistic, photo, glossy skin, shiny skin, oily skin, plastic skin, waxy skin, specular highlight, wet look, sweaty, glossy eyes, detailed eyes, big sparkling eyes, gradient shading, airbrush, soft shading, subsurface scattering, watermark, signature, artist name, text, logo, multiple girls, 2girls, male, 1boy, nude, naked, bat print, bat pattern, bat wings, bat motif, bright colors, pastel, flat colors, cel shading, white background, simple background, cute, chibi, neon, modern, pop",
+  "post": {
+    "contrast": 1.08,
+    "saturation": 0.96,
+    "paper": {
+      "strength": 0.09,
+      "tint": [
+        255,
+        246,
+        228
+      ]
+    },
+    "note": "对比 +8%、饱和 −4%、暖白纸纹 0.09。暗场要保黑，不要 lift_shadows。"
+  },
+  "params": {
+    "model": "miaomiaoHarem_anima8Step10.safetensors",
+    "lora": "anima-turbo-lora-v0.1.safetensors @ 0.4",
+    "clip": "qwen_3_06b_base.safetensors (type=qwen_image)",
+    "vae": "qwen_image_vae.safetensors",
+    "steps": 12,
+    "cfg": 2.0,
+    "sampler": "euler",
+    "scheduler": "simple",
+    "resolution": "832x1216"
+  },
+  "scene_hint": "simple background, white background, negative space, ",
+  "thumb": "thumbs/style_gothic_baroque.jpg",
+  "tags": [
+    "哥特",
+    "巴洛克",
+    "水彩",
+    "暗场",
+    "蜡烛",
+    "金饰",
+    "画框",
+    "去AI感"
+  ],
+  "notes": "小岛文美《恶魔城》方向。命根子是 `watercolor + color bleeding + deep shadow + candle light` 四件套，金框靠 `ornate frame, decorative border` 单独撑。这一档最像画集翻拍，主体会偏小（画框吃掉面积）。\n\n【与视角的冲突】面板选了视角（view）之后，视角段会用自己的 \face fully lit 盖掉本卡的 half of face in shadow（index.js:775）。好在 candle light / deep shadow / chiaroscuro 写在 render 段里，暗场氛围不受影响，只是「半张脸沉在阴影」这一条会丢。要保住它就别选视角、或把视角景别往近推。",
+  "source": "bilibili BV1hh411w7E7 小岛文美《恶魔城》插画欣赏"
+}

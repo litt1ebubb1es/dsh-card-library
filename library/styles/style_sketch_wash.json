@@ -1,0 +1,47 @@
+{
+  "id": "style_sketch_wash",
+  "kind": "style",
+  "name": "★淡彩线稿水彩",
+  "version": 1.0,
+  "description": "铅笔细线 + 一层薄水彩 + 纸纹。大量留白，脸几乎不上色。",
+  "quality_prefix": "masterpiece, best quality, score 7, score 9, very aesthetic, ultra detailed, ",
+  "artist_segment": "",
+  "render": "watercolor (medium), colored pencil, loose sketch, sketch lines, visible paper texture, cold press paper, thin pencil lines, broken lines, loose lineart, light wash, pale colors, single layer of color, mostly white, lots of white space, unpainted areas, simple background, white background, ",
+  "face_light": "face barely shaded, light wash on face, small catchlight in both eyes, ",
+  "negative": "worst quality, low quality, score 1, score 2, score 3, lowres, jpeg artifacts, 3d render, cgi, photorealistic, photo, glossy skin, shiny skin, oily skin, plastic skin, waxy skin, specular highlight, wet look, sweaty, glossy eyes, detailed eyes, big sparkling eyes, gradient shading, airbrush, soft shading, subsurface scattering, watermark, signature, artist name, text, logo, multiple girls, 2girls, male, 1boy, nude, naked, bat print, bat pattern, bat wings, bat motif, heavy shading, dense hatching, muddy colors, thick paint, impasto, oil painting, saturated colors",
+  "post": {
+    "tone": {
+      "saturation": 0.92,
+      "brightness": 1.03
+    },
+    "paper": {
+      "strength": 0.1
+    },
+    "note": "纸纹 0.10 是这套画风的骨架 —— 没有纸纹就只是一张白底淡色图。别加锐化，锐化会把铅笔线变成墨线。"
+  },
+  "params": {
+    "model": "miaomiaoHarem_anima8Step10.safetensors",
+    "lora": "anima-turbo-lora-v0.1.safetensors @ 0.4",
+    "clip": "qwen_3_06b_base.safetensors (type=qwen_image)",
+    "vae": "qwen_image_vae.safetensors",
+    "steps": 12,
+    "cfg": 2.0,
+    "sampler": "euler",
+    "scheduler": "simple",
+    "resolution": "832x1216"
+  },
+  "scene_hint": "simple background, white background, negative space, ",
+  "thumb": "thumbs/style_sketch_wash.jpg",
+  "tags": [
+    "水彩",
+    "淡彩",
+    "线稿",
+    "铅笔",
+    "纸纹",
+    "留白",
+    "手绘感",
+    "去AI感"
+  ],
+  "notes": "loose sketch + broken lines 是关键：线必须是「断的、抖的」，写 clean lineart 会变成矢量描边。face 只上极薄一层色。",
+  "source": "bilibili style research 2026-11-11"
+}

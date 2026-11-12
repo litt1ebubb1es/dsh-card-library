@@ -1,0 +1,28 @@
+{
+  "id": "prop_goldfish_bag",
+  "kind": "prop",
+  "name": "金鱼袋",
+  "version": 1.0,
+  "group": "daily",
+  "group_title": "日常",
+  "description": "和风祭典的金鱼袋：透明水袋里装着金鱼，系着绳。",
+  "prop_tags": "goldfish bag, water bag, holding bag",
+  "prop_nl": "A clear water bag with a live goldfish inside, tied with a red string.",
+  "hold": true,
+  "suggest_pose": "standing, holding bag, bag in hand",
+  "aspect": "portrait",
+  "thumb": "thumbs/prop_goldfish_bag.jpg",
+  "params": {
+    "model": "miaomiaoHarem_anima8Step10.safetensors",
+    "lora": "anima-turbo-lora-v0.1.safetensors @ 0.4",
+    "clip": "qwen_3_06b_base.safetensors (type=qwen_image)",
+    "vae": "qwen_image_vae.safetensors",
+    "steps": 12,
+    "cfg": 2.0,
+    "sampler": "euler",
+    "scheduler": "simple",
+    "resolution": "832x1216"
+  },
+  "notes": "只写物，不写持有者/场景/服装（n50 界线）。",
+  "source": "bilibili 《亚洲奇幻女子图鉴》BV1q8411e7aW"
+}

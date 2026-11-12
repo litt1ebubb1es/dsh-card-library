@@ -1,0 +1,46 @@
+{
+  "id": "style_ukiyoe_print",
+  "kind": "style",
+  "name": "★浮世绘木版",
+  "version": 1.0,
+  "description": "粗线平涂 + 青海波纹 + 靛蓝朱红。木版画的错位感和纸纹。",
+  "quality_prefix": "masterpiece, best quality, score 7, score 9, very aesthetic, ultra detailed, ",
+  "artist_segment": "",
+  "render": "ukiyo-e, woodblock print, japanese traditional art, flat colors, flat color areas, bold outlines, limited palette, indigo and vermilion, decorative pattern, seigaiha, wave pattern, paper texture, washi, wood grain, profile view, stylized features, cartouche, seal, detailed background, ",
+  "face_light": "flat lighting on face, no shading on face, small dark eyes, ",
+  "negative": "worst quality, low quality, score 1, score 2, score 3, lowres, jpeg artifacts, 3d render, cgi, photorealistic, photo, glossy skin, shiny skin, oily skin, plastic skin, waxy skin, specular highlight, wet look, sweaty, glossy eyes, detailed eyes, big sparkling eyes, gradient shading, airbrush, soft shading, subsurface scattering, watermark, signature, artist name, text, logo, multiple girls, 2girls, male, 1boy, nude, naked, bat print, bat pattern, bat wings, bat motif, 3d, realistic, gradient, soft shading, airbrush, modern anime style, glossy",
+  "post": {
+    "tone": {
+      "contrast": 1.03
+    },
+    "paper": {
+      "strength": 0.09
+    },
+    "note": "只加对比 1.03 + 纸纹 0.09。浮世绘的平涂不能被任何柔化处理碰到。"
+  },
+  "params": {
+    "model": "miaomiaoHarem_anima8Step10.safetensors",
+    "lora": "anima-turbo-lora-v0.1.safetensors @ 0.4",
+    "clip": "qwen_3_06b_base.safetensors (type=qwen_image)",
+    "vae": "qwen_image_vae.safetensors",
+    "steps": 12,
+    "cfg": 2.0,
+    "sampler": "euler",
+    "scheduler": "simple",
+    "resolution": "832x1216"
+  },
+  "scene_hint": "simple background, white background, negative space, ",
+  "thumb": "thumbs/style_ukiyoe_print.jpg",
+  "tags": [
+    "浮世绘",
+    "木版",
+    "青海波",
+    "平涂",
+    "粗线",
+    "靛蓝",
+    "朱红",
+    "去AI感"
+  ],
+  "notes": "seigaiha（青海波）是标签库里真有的 tag（pc=2700），直接写就出浪纹。bold outlines + flat color areas 缺一不可。",
+  "source": "bilibili style research 2026-11-11"
+}

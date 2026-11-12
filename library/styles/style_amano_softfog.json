@@ -1,0 +1,61 @@
+{
+  "id": "style_amano_softfog",
+  "kind": "style",
+  "name": "★天野喜孝系 · 柔光雾版",
+  "version": 1.0,
+  "description": "天野喜孝档 + 柔光雾后期。粉彩渐变、金叶飘带、大片留白都保留，另外加一层暖白薄雾与柔光扩散 —— 观感更朦胧、更「画集印刷」，代价是细墨线被柔化约三分之一。",
+  "quality_prefix": "masterpiece, best quality, score 7, score 9, very aesthetic, ultra detailed, ",
+  "artist_segment": "@amano_yoshitaka, ",
+  "render": "japanese illustration, ethereal, dreamlike, floating, weightless, flowing ribbons, ribbon streamers, long trailing cloth, fine ink lineart, thin brush lines, delicate linework, pastel gradient, pale pink and pale blue gradient, soft pastel colors, gold leaf accents, gold ornament, decorative patterns, flat color with soft airbrush, layered translucent colors, flowing hair, hair floating, ornamental, art nouveau, negative space, empty background, pale gradient background, ",
+  "face_light": "face softly lit, even facial lighting, delicate features, soft highlight on cheek, no heavy shadow on face, catchlight in both eyes, ",
+  "negative": "worst quality, low quality, score 1, score 2, score 3, lowres, jpeg artifacts, 3d render, cgi, photorealistic, photo, glossy skin, shiny skin, oily skin, plastic skin, waxy skin, specular highlight, wet look, sweaty, glossy eyes, detailed eyes, big sparkling eyes, gradient shading, soft shading, subsurface scattering, watermark, signature, artist name, text, logo, multiple girls, 2girls, male, 1boy, nude, naked, bat print, bat pattern, bat wings, bat motif, heavy shading, hard shadow, dark background, black background, neon, saturated colors, vivid colors, thick outlines, heavy lineart, vector lineart, close-up, portrait, upper body, cropped, headshot",
+  "post": {
+    "lift_shadows": {
+      "amount": 0.04,
+      "gamma": 1.2
+    },
+    "tone": {
+      "brightness": 1.04,
+      "saturation": 0.94,
+      "contrast": 0.97,
+      "smooth": true
+    },
+    "haze": {
+      "lift": 0.05,
+      "contrast": 0.16,
+      "sat": 0.86,
+      "blur_r": 1.8,
+      "blur_blend": 0.24,
+      "bloom_threshold": 0.68,
+      "bloom_radius": 13,
+      "bloom_intensity": 0.26
+    },
+    "note": "haze 参数是四档实测里定下来的中间值：比 n58 的 wlop 档（lift .06 / contrast .20 / sat .80 / blur 2.0 / blend .30 / bloom .65,14,.35）轻一档，比纯轻雾重一档。判断标准是 Sobel 边缘能量 —— 无雾 7.9、本档 5.1、n58 档 4.3、重雾 2.8。超过 5.5 就开始吃细墨线，低于 4.5 就糊成一片。"
+  },
+  "params": {
+    "model": "miaomiaoHarem_anima8Step10.safetensors",
+    "lora": "anima-turbo-lora-v0.1.safetensors @ 0.4",
+    "clip": "qwen_3_06b_base.safetensors (type=qwen_image)",
+    "vae": "qwen_image_vae.safetensors",
+    "steps": 12,
+    "cfg": 2.0,
+    "sampler": "euler",
+    "scheduler": "simple",
+    "resolution": "832x1216"
+  },
+  "scene_hint": "simple background, white background, negative space, ",
+  "thumb": "thumbs/style_amano_softfog.jpg",
+  "tags": [
+    "天野喜孝",
+    "柔光",
+    "雾感",
+    "粉彩",
+    "飘带",
+    "金叶",
+    "留白",
+    "画集印刷感"
+  ],
+  "notes": "和 style_amano_ethereal 的唯一差别就是 post 多了 haze。正向段一模一样 —— 雾是后期给的，不要往正向里加 fog / mist / hazy 这类词，加了模型会去画雾，把留白弄脏。要更朦胧就调 haze 的 blur_blend，别动提示词。",
+  "variant_of": "style_amano_ethereal",
+  "source": "bilibili style research 2026-11-11 / soft-fog variant"
+}

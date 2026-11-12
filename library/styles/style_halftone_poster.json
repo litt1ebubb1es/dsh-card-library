@@ -1,0 +1,49 @@
+{
+  "id": "style_halftone_poster",
+  "kind": "style",
+  "name": "★复古半调套印海报",
+  "version": 1.0,
+  "description": "白纸底 + 黑线 + 红蓝两色套印 + 半调网点。真印刷工艺感，不是滤镜。",
+  "quality_prefix": "masterpiece, best quality, score 7, score 9, very aesthetic, ultra detailed, ",
+  "artist_segment": "",
+  "render": "screen print, silkscreen print, halftone, halftone dots, screentone, limited palette, three colors only, cream paper, black ink, vermilion ink, flat color areas, bold shapes, poster art, graphic design, print misregistration, ink texture, coarse grain, aged paper, paper texture, slight paper yellowing, high contrast, hard edges, no gradient, retro print, vintage poster, face drawn with halftone dots, screentone shading on face, minimal shading on face, catchlight in both eyes, ",
+  "face_light": "face drawn with halftone dots, screentone shading on face, minimal shading on face, catchlight in both eyes, ",
+  "negative": "worst quality, low quality, score 1, score 2, score 3, lowres, jpeg artifacts, 3d render, cgi, photorealistic, photo, glossy skin, shiny skin, oily skin, plastic skin, waxy skin, specular highlight, wet look, sweaty, glossy eyes, detailed eyes, big sparkling eyes, gradient shading, airbrush, soft shading, subsurface scattering, watermark, signature, artist name, text, logo, multiple girls, 2girls, male, 1boy, nude, naked, bat print, bat pattern, bat wings, bat motif, half colored face, split face, two-tone face, red face, blue face, colored skin, face paint, half red face, half blue face, gradient, blurry, glossy, depth of field, realistic skin, bright saturated colors, rainbow, many colors",
+  "post": {
+    "contrast": 1.12,
+    "saturation": 0.88,
+    "paper": {
+      "strength": 0.13,
+      "tint": [
+        255,
+        246,
+        226
+      ]
+    },
+    "note": "对比 +12%、饱和 −12%、暖白纸纹 0.13（最重的一档）。印刷品就该偏黄偏糙。"
+  },
+  "params": {
+    "model": "miaomiaoHarem_anima8Step10.safetensors",
+    "lora": "anima-turbo-lora-v0.1.safetensors @ 0.4",
+    "clip": "qwen_3_06b_base.safetensors (type=qwen_image)",
+    "vae": "qwen_image_vae.safetensors",
+    "steps": 12,
+    "cfg": 2.0,
+    "sampler": "euler",
+    "scheduler": "simple",
+    "resolution": "832x1216"
+  },
+  "scene_hint": "simple background, white background, negative space, ",
+  "thumb": "thumbs/style_halftone_poster.jpg",
+  "tags": [
+    "半调",
+    "套印",
+    "丝网印",
+    "海报",
+    "网点",
+    "两色",
+    "去AI感"
+  ],
+  "notes": "**脸光段绝不能写 `two-tone face`** —— 模型会理解成「半边脸刷纯红、半边脸刷纯蓝」，直接毁容（实测）。正确写法是 `face drawn with halftone dots, screentone shading on face`，并在负面点名锁掉 `half colored face, split face, red face, blue face`。\n\n【与视角的冲突】同样地，视角会盖掉本卡的 \face drawn with halftone dots（face_light 段）。但这两句在 render 段里也写了一份，所以半调脸仍然成立 —— 这是故意重复的，不要当成冗余删掉。",
+  "source": "bilibili 复古版画/海报调研（无具体画师，纯工艺词）"
+}

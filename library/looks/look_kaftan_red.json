@@ -1,0 +1,47 @@
+{
+  "id": "look_kaftan_red",
+  "kind": "look",
+  "name": "红色卡夫坦长袍",
+  "version": 1.0,
+  "description": "中亚卡夫坦：红底金绣长袍 + 圆帽 + 长袖垂坠。抄自《亚洲奇幻女子图鉴》乌兹别克篇。",
+  "nsfw": false,
+  "tags": "kaftan, long coat, red coat, gold embroidery, gold trim, round hat, wide sleeves, long dress, embroidered hem, layered robe, jewelry, earrings, necklace, ",
+  "look_tags": "kaftan, long coat, red coat, gold embroidery, gold trim, round hat, wide sleeves, long dress, embroidered hem, layered robe, jewelry, earrings, necklace, ",
+  "pose_tags": "",
+  "fields": {
+    "outfit": "kaftan",
+    "top": "long coat",
+    "bottom": "long dress",
+    "accessory": "round hat, earrings, necklace",
+    "cloth_color": "red",
+    "cloth_mat": "silk",
+    "cloth_state_sfw": "layered"
+  },
+  "body_decor": "gold embroidery on chest, embroidered hem",
+  "look_notes": "红底 + 金绣 + 圆帽三件套是中亚卡夫坦的识别点。gold embroidery 要绑在 chest/hem 上，裸写会糊满全身。",
+  "artist_segment": "",
+  "style_label": "",
+  "negative_extra": "modern clothes, t-shirt, jeans, sneakers, short skirt",
+  "tag_split": {
+    "version": 3,
+    "cloth": 14,
+    "pose": 0,
+    "moved_pose": [],
+    "migrated_to": null
+  },
+  "legacy_pose_ref": null,
+  "params": {
+    "model": "miaomiaoHarem_anima8Step10.safetensors",
+    "lora": "anima-turbo-lora-v0.1.safetensors @ 0.4",
+    "clip": "qwen_3_06b_base.safetensors (type=qwen_image)",
+    "vae": "qwen_image_vae.safetensors",
+    "steps": 12,
+    "cfg": 2.0,
+    "sampler": "euler",
+    "scheduler": "simple",
+    "resolution": "832x1216"
+  },
+  "thumb": "thumbs/look_kaftan_red.jpg",
+  "source_dir": null,
+  "source": "bilibili 《亚洲奇幻女子图鉴》BV1q8411e7aW"
+}

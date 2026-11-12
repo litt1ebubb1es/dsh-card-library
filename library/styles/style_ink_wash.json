@@ -1,0 +1,46 @@
+{
+  "id": "style_ink_wash",
+  "kind": "style",
+  "name": "★水墨单色（单点红）",
+  "version": 1.0,
+  "description": "墨线 + 灰阶晕染 + 一点红。大量留白，墨会往下淌。",
+  "quality_prefix": "masterpiece, best quality, score 7, score 9, very aesthetic, ultra detailed, ",
+  "artist_segment": "",
+  "render": "sumi-e, ink wash painting, monochrome, black ink, grey wash, single accent color, red accent, brush strokes, dry brush, wet ink, bleeding ink, rice paper, washi, paper texture, fine ink lineart, varying line weight, tapered strokes, negative space, lots of empty space, minimal, simple background, white background, ",
+  "face_light": "face lit by ambient light, minimal shading on face, catchlight in both eyes, ",
+  "negative": "worst quality, low quality, score 1, score 2, score 3, lowres, jpeg artifacts, 3d render, cgi, photorealistic, photo, glossy skin, shiny skin, oily skin, plastic skin, waxy skin, specular highlight, wet look, sweaty, glossy eyes, detailed eyes, big sparkling eyes, gradient shading, airbrush, soft shading, subsurface scattering, watermark, signature, artist name, text, logo, multiple girls, 2girls, male, 1boy, nude, naked, bat print, bat pattern, bat wings, bat motif, full color, colorful, saturated, dense hatching, heavy shading, dark background, black background",
+  "post": {
+    "tone": {
+      "saturation": 0.55,
+      "contrast": 1.02
+    },
+    "paper": {
+      "strength": 0.12
+    },
+    "note": "饱和降到 0.55 把彩图压成墨灰；纸纹 0.12。要保留 `single accent color, red accent` —— 全灰会闷死。"
+  },
+  "params": {
+    "model": "miaomiaoHarem_anima8Step10.safetensors",
+    "lora": "anima-turbo-lora-v0.1.safetensors @ 0.4",
+    "clip": "qwen_3_06b_base.safetensors (type=qwen_image)",
+    "vae": "qwen_image_vae.safetensors",
+    "steps": 12,
+    "cfg": 2.0,
+    "sampler": "euler",
+    "scheduler": "simple",
+    "resolution": "832x1216"
+  },
+  "scene_hint": "simple background, white background, negative space, ",
+  "thumb": "thumbs/style_ink_wash.jpg",
+  "tags": [
+    "水墨",
+    "单色",
+    "墨线",
+    "留白",
+    "单点红",
+    "和纸",
+    "去AI感"
+  ],
+  "notes": "sumi-e + monochrome + spot accent 三件套。dripping ink 是意外收获（模型自己加的下淌墨），很适合做封面。",
+  "source": "bilibili style research 2026-11-11"
+}

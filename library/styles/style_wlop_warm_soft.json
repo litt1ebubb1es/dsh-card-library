@@ -18,7 +18,7 @@
    "lift": 0.06,
    "contrast": 0.2,
    "sat": 0.8,
-   "blur_r": 2,
+   "blur_r": 2.0,
    "blur_blend": 0.3
   },
   "bloom": {
@@ -34,7 +34,7 @@
   "clip": "qwen_3_06b_base.safetensors (type=qwen_image)",
   "vae": "qwen_image_vae.safetensors",
   "steps": 12,
-  "cfg": 2,
+  "cfg": 2.0,
   "sampler": "euler",
   "scheduler": "simple",
   "resolution": "832x1216"
