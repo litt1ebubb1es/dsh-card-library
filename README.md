@@ -77,6 +77,7 @@
 | 参数元数据 | 卡里的 `params` 混着非采样键：`safe_composition`（"sitting, upper body, cowboy shot" 一句提示词）、`denoise_note` / `note`（中文说明）、`seed`（23 张造型卡各绑一个固定值） | **只搬采样键**，其余剔掉 —— 下游按「键=值」喂采样器会被中文长句噎住；`params.seed` 与顶层 `seed` 还会说两套话（前者钉死 650000，后者 null 交给调用方随机） |
 | 人数 | 动作卡是双人 / 群体（count_lock 写着 2girls / 1boy, hetero / group sex，35 张），但正向只有角色段的 1girl, solo，负面还压着 2girls / multiple girls / male | **count_lock 进正向 + 角色段 solo 剥掉 + 负面压多人剔掉** —— 三条一起改，缺一条就画不出第二个人：count_lock 从没进过配方（459 张卡声明过），角色段三处都钉着 1girl, solo，23 张造型卡 + 15 张画风卡的负面本意是「别画成多人」 |
 | 脚上穿不穿 | 动作卡写 `bare feet` / `barefoot`（25 张，`pose_beach_midsummer` / `pose_poolside_summer` / `pose_ccc_cowgirl` …），造型卡却配了具体鞋款（34 张：`leather boots` / `mary janes` / `pointe shoes` …） | **撤掉造型卡的鞋** —— 脚上要么穿要么不穿，两句话都在正向里模型只能二选一，实测给赤脚画出一双棕色系带靴（19 张赤足动作卡 × 34 张带鞋造型卡 = 646 组） |
+| 整套装束 | 动作卡的 `pose_tags` 里残留整套装束词（`nurse` / `maid` / `serafuku` / `office lady` / `miko` / `yukata` …，17 张：`pose_nurse_rounds` / `pose_maid_serving` / `pose_jk_bike_ride` / `pose_ol_overtime` …），造型卡已经穿了另一套（17 张：`look_military` / `look_qipao` / `look_maid` / `look_nurse` …） | **撤掉动作卡里的装束 token** —— 两套衣服同时进正向会糊在一起：实测军装外面长出白色荷叶边围裙、水手服领子长在旗袍上（17 × 17 交叉 289 组，跨族 248 组） |
 
 优先级一律 **视角 > 动作卡 > 环境卡**。
 
@@ -95,6 +96,12 @@
 **人数让位只动人数档**：单人档（全库绝大多数）一个字都不改 —— 角色段照留 `1girl, solo`，负面照压 `2girls`（那是「别画成多人」的正确意图）。画风卡负面这次也一起剔：人数不像画法，画风卡对「画几个人」没有主张权。
 
 **脚上穿不穿分两档，因为「脚是不是画面主体」决定删错的代价**：脚不是主体时（19 张，`bare feet` 只是顺带一句）撤掉造型卡的鞋 —— 鞋在这些构图里只是边角，撤掉不伤画面，留着反而让模型在赤脚上画出一双靴子；脚是主体时（`pose_near_foot_bare` / `pose_near_nsfw_soles`，带 `feet focus` + `head out of frame`）**只 warn 不动配方** —— 穿鞋的脚部特写也成立，撤错整张图就废。反向也管：造型卡赤足 × 动作卡带鞋（12 组，`pose_sock_*` 那一族）撤造型卡的赤足，动作卡点名的鞋更具体。
+
+**整套装束让位只撤「装束 token」，同一条里的其他词一个字不动**：`pose_nurse_rounds` 的 `leg up, embarrassed, blush, nurse, white thighhighs` 只撤 `nurse`，`leg up` / `embarrassed` / `blush` / `white thighhighs` 全留（`white thighhighs` 不是装束族，是腿袜）。原文留在 `segments.action_raw` 里给面板与调试用，`segments.action` 是剥过的版本。
+
+**同族也撤**：`pose_pose_shrine_kneel` 的 `miko` × `look_summer_festival` 的 `yukata` —— 两个都属「和服」族，仍然撤动作卡那份、留浴衣。理由是造型卡才是「穿什么」的权威（DESIGN_v4 的六类卡职责），动作卡管的是姿势，它顺手写下的装束只是当初出图时的背景板。
+
+**造型卡没有任何装束族时一律保留**（33 张，如 `look_alchemist` / `look_kaftan_red`）：那时动作卡的装束是唯一线索 —— 护士动作配冒险者会真画出护士装，用户可能就要这个效果，自动删掉等于擅自决定了衣服。
 
 **鞋词表必须排除 `sitting on heels`**（跪坐坐在脚跟上）—— `heels` 在这里是身体部位不是鞋，同 n102 的 `ring\b` 把 `wear·ing` 当成戒指那个坑。
 
@@ -229,7 +236,7 @@ cd _dsh_plugin/dsh-card-library
 node selfcheck.mjs
 ```
 
-282 项断言：六类 counts、卡片字段、缩略图、越界防护、compose 正/负面、参数优先级、动作卡开关、道具卡、外域 Host 403、脸光归属、景别裁决、机位裁决、头出画清脸光、对焦脸让位、道具重名去重、画幅裁决、画法让位、景深裁决、构图补全、人数裁决、闭眼让位、闭眼×视角视线、脚上穿不穿、场景让位、地点让位、参数元数据、道具泛名、道具 id 去重、存卡规则、全库体检、模型工具输出。
+301 项断言：六类 counts、卡片字段、缩略图、越界防护、compose 正/负面、参数优先级、动作卡开关、道具卡、外域 Host 403、脸光归属、景别裁决、机位裁决、头出画清脸光、对焦脸让位、道具重名去重、画幅裁决、画法让位、景深裁决、构图补全、人数裁决、闭眼让位、闭眼×视角视线、脚上穿不穿、整套装束、场景让位、地点让位、参数元数据、道具泛名、道具 id 去重、存卡规则、全库体检、模型工具输出。
 
 ## 路由
 

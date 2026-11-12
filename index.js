@@ -1100,6 +1100,83 @@ function resolveFootwear(lookText, pose, poseSegText) {
 }
 
 /**
+ * 整套装束让位（v22）。
+ *
+ * 动作卡的 `pose_tags` 里偶尔会带一整套装束词 —— `nurse` / `office lady` /
+ * `serafuku` / `maid` / `miko` / `yukata`，那是当初从「某套衣服 + 某个动作」的
+ * 组合里拆卡时没拆干净的残留（DESIGN_v4 规定「穿什么」只归造型卡）。
+ *
+ * 造型卡有装束时，动作卡那份就是在说第二套衣服：
+ * - `pose_nurse_rounds`（nurse）× `look_military`（military uniform）
+ *   → 正向同时有军装与护士，模型把白大褂糊在军装外面
+ * - `pose_jk_bike_ride`（serafuku）× `look_qipao`（qipao）
+ *   → 水手服领子长在旗袍上
+ *
+ * 全库 17 张动作卡带装束族 × 17 张造型卡带装束族 = 289 组，其中**跨族 248 组**。
+ * 同族（`pose_pose_shrine_kneel` 的 miko × `look_summer_festival` 的 yukata）不撤 ——
+ * 巫女穿浴衣是成立的，那是同一套和服的两种说法。
+ *
+ * 造型卡没有任何装束族时（33 张，`look_alchemist` / `look_cyberpunk` …）
+ * 动作卡那份**必须留着** —— 那时它是唯一的衣服线索（`pose_nurse_rounds` 配冒险者
+ * 会真的画出护士装，这是用户可能想要的）。
+ *
+ * 只撤「装束 token」，同一个 token 里的其它信息（`leg up, embarrassed, blush`）不动。
+ */
+const OUTFIT_FAMILIES = [
+  { label: '护士', re: /\b(nurse|nurse uniform|nurse cap)\b/i },
+  { label: '学校', re: /\b(serafuku|sailor uniform|school uniform|gym uniform|buruma|sukumizu|blazer uniform|jk uniform)\b/i },
+  { label: '女仆', re: /\b(maid|maid outfit|maid dress|maid headdress)\b/i },
+  { label: 'OL', re: /\b(office lady|business suit|blazer suit|office uniform|pencil skirt)\b/i },
+  { label: '军警', re: /\b(military uniform|police uniform|policewoman|army uniform)\b/i },
+  { label: '和服', re: /\b(kimono|yukata|miko|hakama|japanese clothes|sleeping kimono)\b/i },
+  { label: '泳装', re: /\b(swimsuit|bikini|one-piece swimsuit|school swimsuit)\b/i },
+  { label: '睡衣', re: /\b(pajamas|nightgown|negligee|sleepwear)\b/i },
+  { label: '舞者', re: /\b(leotard|ballet outfit|tutu)\b/i },
+  { label: '运动', re: /\b(track suit|racing suit|jersey|sports uniform)\b/i },
+  { label: '礼服', re: /\b(wedding dress|evening gown|ball gown)\b/i },
+  { label: '中式', re: /\b(qipao|cheongsam|hanfu)\b/i },
+  { label: '服务', re: /\b(flight attendant uniform|waitress|bunny girl|cheerleader|idol costume)\b/i },
+]
+
+function outfitFamiliesOf(text) {
+  const out = new Set()
+  for (const raw of String(text || '').split(',')) {
+    const t = raw.trim()
+    if (!t) continue
+    for (const fam of OUTFIT_FAMILIES) if (fam.re.test(t)) out.add(fam.label)
+  }
+  return out
+}
+
+/**
+ * 返回 { text, dropped, families, keptFamilies }：
+ * - text 是剥过跨族装束的动作段（或原样）
+ * - dropped 是被撤掉的 token
+ * - families / keptFamilies 给 autofix 与 warning 用
+ */
+function resolveOutfit(lookText, poseSegText) {
+  const poseText = String(poseSegText || '')
+  const lookFams = outfitFamiliesOf(lookText)
+  if (!poseText || !lookFams.size) return { text: poseText, dropped: [], families: [], keptFamilies: [...lookFams] }
+
+  const kept = []
+  const dropped = []
+  const families = []
+  for (const raw of poseText.split(',')) {
+    const t = raw.trim()
+    if (!t) continue
+    const fams = [...outfitFamiliesOf(t)]
+    if (!fams.length) { kept.push(t); continue }
+    // 同族（造型卡已经有这一族）→ 撤；跨族 → 也撤（造型卡才是权威）
+    // 唯一保留的情况：造型卡没有任何装束族（上面已 return）
+    dropped.push(t)
+    for (const f of fams) if (families.indexOf(f) < 0) families.push(f)
+  }
+  if (!dropped.length) return { text: poseText, dropped: [], families: [], keptFamilies: [...lookFams] }
+  return { text: kept.join(', '), dropped, families, keptFamilies: [...lookFams] }
+}
+
+/**
  * 「画面里没有场景」—— 和 headless / 对焦脸是同一族冲突（v14）。
  *
  * 六张画风卡的 render 里写着 `simple background` / `white background` /
@@ -1892,7 +1969,13 @@ function compose(input) {
   // 脚是主体（feet focus）时只 warn，因为穿鞋的特写也成立。
   const footFix = resolveFootwear(lookCloth, pose, actSegForRecipe)
   const lookClothFixed = footFix.text
-  const lookSeg = joinSeg(lookClothFixed, actSegForRecipe)
+
+  // 整套装束让位（v22）：动作卡里残留的装束词（nurse / office lady / serafuku …）
+  // 遇上造型卡的装束时是第二套衣服，撤掉动作卡那份。造型卡没有任何装束族时保留 ——
+  // 那时它是唯一的衣服线索。同族（miko × yukata）也撤，造型卡才是权威。
+  const outfitFix = resolveOutfit(lookClothFixed, actSegForRecipe)
+  const actSegOutfit = outfitFix.text
+  const lookSeg = joinSeg(lookClothFixed, actSegOutfit)
 
   // 人数裁决（v19）：档位统一由动作卡说话（pose_tags > count_lock > 环境卡 count_lock）。
   // 非单人档时，角色段里钉死的 `1girl, solo` 必须剥掉 —— 它和 `2girls, yuri` /
@@ -2208,6 +2291,15 @@ function compose(input) {
     })
   }
 
+  // 整套装束让位（v22）：动作卡里残留的装束词遇上造型卡的装束 = 第二套衣服。
+  if (outfitFix.dropped.length) {
+    autofixes.push({
+      kind: 'outfit',
+      auto: true,
+      message: `动作卡里带着整套装束（${outfitFix.dropped.join(' / ')}），但造型卡已经穿了「${outfitFix.keptFamilies.join(' / ')}」—— 已撤掉动作卡那份（否则两套衣服会糊在一起：军装外面套白大褂、水手服领子长在旗袍上）`,
+    })
+  }
+
   // 参数元数据（v16）：卡里的 params 除了采样键还混着元数据 ——
   // `safe_composition`（"sitting, upper body, cowboy shot" 一句提示词）、
   // `denoise_note`（一段中文说明）、`note`、`seed`。无条件 copy 的后果是
@@ -2334,7 +2426,8 @@ function compose(input) {
       look_cloth: clean(lookClothFixed),
       look_pose: clean(lookPose),
       pose: clean(poseSeg),
-      action: clean(actSegForRecipe),
+      action: clean(actSegOutfit),
+      action_raw: clean(actSegForRecipe),
       prop: clean(propSeg),
       props: props.map((p) => ({ id: p.id, name: p.name, tags: clean(p.prop_tags || ''), hold: !!p.hold })),
       scene: sceneSeg,

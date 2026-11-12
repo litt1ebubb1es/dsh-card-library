@@ -1352,6 +1352,80 @@ check('脚上穿不穿：两边都带鞋不报冲突',
 check('脚上穿不穿：两边都带鞋时造型卡的鞋保留',
   SHOE_RE_SC.test(footF.json?.segments?.look_cloth || ''))
 
+// ── v22：整套装束让位（动作卡的装束词 × 造型卡的装束）────────────────
+const OUTFIT_RE_SC = /\b(nurse|office lady|serafuku|maid|miko|yukata|kimono|military uniform|qipao|leotard|pajamas)\b/i
+
+const outfitA = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { styleId: 'style_anime_cel', characterId: 'crab_vampire', lookId: 'look_military', poseId: 'pose_nurse_rounds' },
+})
+check('整套装束：动作段的 nurse 被撤',
+  !/\bnurse\b/i.test(outfitA.json?.segments?.action || ''),
+  String(outfitA.json?.segments?.action || '').slice(0, 120))
+check('整套装束：正向里 nurse 消失',
+  !/\bnurse\b/i.test(outfitA.json?.positive || ''))
+check('整套装束：报 outfit autofix',
+  (outfitA.json?.autofixes || []).some((a) => a.kind === 'outfit'),
+  (outfitA.json?.autofixes || []).map((a) => a.kind).join(','))
+check('整套装束：autofix 文案提到造型卡的族',
+  (outfitA.json?.autofixes || []).some((a) => a.kind === 'outfit' && /军警/.test(a.message)))
+check('整套装束：动作本体不受影响（leg up 还在）',
+  /leg up/i.test(outfitA.json?.segments?.action || ''))
+check('整套装束：造型卡的军装还在',
+  /military uniform/i.test(outfitA.json?.segments?.look_cloth || ''))
+check('整套装束：装束 token 之外的词不受影响（embarrassed / white thighhighs）',
+  /embarrassed/i.test(outfitA.json?.segments?.action || '') && /white thighhighs/i.test(outfitA.json?.segments?.action || ''))
+check('整套装束：action_raw 保留原文',
+  /\bnurse\b/i.test(outfitA.json?.segments?.action_raw || ''))
+
+const outfitB = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { styleId: 'style_anime_cel', characterId: 'crab_vampire', lookId: 'look_qipao', poseId: 'pose_jk_bike_ride' },
+})
+check('整套装束：跨族 serafuku 被撤（旗袍造型）',
+  !/serafuku/i.test(outfitB.json?.segments?.action || ''),
+  String(outfitB.json?.segments?.action || '').slice(0, 120))
+check('整套装束：旗袍还在', /qipao/i.test(outfitB.json?.segments?.look_cloth || ''))
+check('整套装束：报 outfit（旗袍）',
+  (outfitB.json?.autofixes || []).some((a) => a.kind === 'outfit'))
+
+const outfitC = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { styleId: 'style_anime_cel', characterId: 'crab_vampire', lookId: 'look_alchemist', poseId: 'pose_nurse_rounds' },
+})
+check('整套装束：造型卡无装束族时 nurse 必须保留',
+  /\bnurse\b/i.test(outfitC.json?.segments?.action || ''),
+  String(outfitC.json?.segments?.action || '').slice(0, 120))
+check('整套装束：造型卡无装束族时不报 outfit',
+  !(outfitC.json?.autofixes || []).some((a) => a.kind === 'outfit'))
+
+const outfitD = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { styleId: 'style_anime_cel', characterId: 'crab_vampire', poseId: 'pose_nurse_rounds' },
+})
+check('整套装束：没选造型卡时 nurse 必须保留',
+  /\bnurse\b/i.test(outfitD.json?.segments?.action || ''),
+  String(outfitD.json?.segments?.action || '').slice(0, 120))
+check('整套装束：没选造型卡时不报 outfit',
+  !(outfitD.json?.autofixes || []).some((a) => a.kind === 'outfit'))
+
+const outfitE = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { styleId: 'style_anime_cel', characterId: 'crab_vampire', lookId: 'look_summer_festival', poseId: 'pose_pose_shrine_kneel' },
+})
+check('整套装束：同族（miko × 浴衣）也撤，造型卡是权威',
+  !/\bmiko\b/i.test(outfitE.json?.segments?.action || ''),
+  String(outfitE.json?.segments?.action || '').slice(0, 120))
+check('整套装束：浴衣还在', /yukata/i.test(outfitE.json?.segments?.look_cloth || ''))
+
+const outfitF = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { styleId: 'style_anime_cel', characterId: 'crab_vampire', lookId: 'look_military', poseId: 'pose_ballet' },
+})
+check('整套装束：动作卡没装束词时不报 outfit',
+  !(outfitF.json?.autofixes || []).some((a) => a.kind === 'outfit'))
+check('整套装束：军装不受影响', /military uniform/i.test(outfitF.json?.segments?.look_cloth || ''))
+
 // ── 存卡规则：路由 + 工具 ──────────────────────────────────────────
 const rulesRes = await call('/dsh-card-library/rules')
 check('规则路由可用', rulesRes.status === 200 && rulesRes.json?.ok === true, rulesRes.status)
