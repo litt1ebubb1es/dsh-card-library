@@ -585,13 +585,34 @@ function propsSegment(props, lookText) {
   return { text: parts.join(', '), dropped, held: heldClean }
 }
 
-/** 多道具的冲突检测（只说真会画坏的那几种）。 */
+/**
+ * 超上限的警告（v28）：点名被丢掉的是哪几件。
+ *
+ * 老实现把这条塞在 `propConflicts(propsAll)` 里，只说「选了 5 件道具」，
+ * 不说是哪件被丢 —— 用户得自己数。而真正被砍掉的就是 `slice(PROP_MAX)` 之后的那些。
+ */
+function propOverflow(propsAll) {
+  const out = []
+  const all = (propsAll || []).filter(Boolean)
+  if (all.length <= PROP_MAX) return out
+  const lost = all.slice(PROP_MAX)
+  const names = lost.map((p) => p.name || p.id).join(' / ')
+  out.push(`选了 ${all.length} 件道具 —— 超过 ${PROP_MAX} 件模型必然漏画，建议减到 3 件以内；已按顺序只保留前 ${PROP_MAX} 件，被丢掉的是：${names}`)
+  return out
+}
+
+/**
+ * 多道具的冲突检测（只说真会画坏的那几种）。
+ *
+ * v28：入参必须是**真正进配方**的那批道具，不是全集。
+ * 老实现传 `propsAll`，于是被 v10 `propdup` 撤掉的道具还在参与「同部位叠」检查 ——
+ * 实测 `look_painter`（自带 beret）+ `prop_beret`（已撤）+ `prop_crown`，
+ * 正向里只剩 `crown`，却仍报「「贝雷帽」和「王冠」都占头部饰品」。
+ * 「手里同时拿了 N 件」同理（5 件时报 5，实际只进 4）。
+ */
 function propConflicts(props) {
   const out = []
   const list = (props || []).filter(Boolean)
-  if (list.length > PROP_MAX) {
-    out.push(`选了 ${list.length} 件道具 —— 超过 ${PROP_MAX} 件模型必然漏画，建议减到 3 件以内`)
-  }
   const held = list.filter((p) => p.hold)
   if (held.length > 2) {
     out.push(`手里同时拿了 ${held.length} 件东西 —— 两只手画不下，模型会丢一两件`)
@@ -2148,6 +2169,12 @@ function compose(input) {
   // v10：穿戴类道具若造型卡已经穿了同一件，就删掉道具那一份（否则同一件东西进正向两三次）
   const propFix = propsSegment(props, lookCloth)
   const propSeg = propFix.text
+  // v28：真正进配方的道具 = 前 PROP_MAX 件里、没有被 propdup 撤掉的那些。
+  // 「同部位叠」和「手里拿几件」必须按这一批算 —— 早先按 propsAll 算，
+  // 于是被撤掉的道具还在参与检查，报出「「贝雷帽」和「王冠」都占头部饰品」这种
+  // 正向里根本没有贝雷帽的假警告。
+  const propDroppedIds = new Set((propFix.dropped || []).map((p) => p && p.id))
+  const propsEffective = props.filter((p) => p && !propDroppedIds.has(p.id))
   const viewSegRaw = viewSegments(view)
   // 闭眼 / 睡着时视角段的视线词也要让位（v20）：`looking at viewer` 是在要求睁眼，
   // 留着它模型就会把眼睛睁开，把 v13 剥掉的眼睛词从这条缝里漏回来。
@@ -2658,7 +2685,8 @@ function compose(input) {
     // 两者分开，客户端和配方文本都能分别显示，不会混成一片。
     autofixes,
     warnings: buildWarnings(scene, style, look, pose, usePose, props, viewSeg, viewFix)
-      .concat(propConflicts(propsAll))
+      .concat(propOverflow(propsAll))
+      .concat(propConflicts(propsEffective))
       .concat(viewSeg.warnings)
       .concat(aspectWarnings),
     positive,

@@ -456,16 +456,24 @@ check('部位槽不误报：围巾 + 王冠不算撞槽',
   !(slotFalse.json?.warnings || []).some((w) => w.includes('都占')), slotFalse.json?.warnings)
 
 // 真撞槽必须还报得出来（修左边界不能把功能一起删掉）
+//
+// v28：这条早先用「look_gothic_candle + prop_necklace + prop_choker」——
+// 但那张造型卡自带 `silver cross pendant`，prop_necklace 被 propdup 撤掉了，
+// 剩下的 choker 一件不可能撞槽。那条断言一直是靠**假警告**通过的。
+// 换成两件都真进配方的：领带 + 颈环，同属颈部饰品。
 const slotTrue = await call('/dsh-card-library/compose', {
   method: 'POST',
   body: {
     styleId: 'style_wlop_warm_soft', characterId: 'crab_vampire',
-    lookId: 'look_gothic_candle', sceneId: 'sc_balcony_laundry', poseId: 'pose_ballet',
-    propIds: ['prop_necklace', 'prop_choker'],
+    poseId: 'pose_ballet',
+    propIds: ['prop_necktie', 'prop_choker'],
   },
 })
-check('部位槽真撞槽仍报警：项链 + 颈环',
+check('部位槽真撞槽仍报警：领带 + 颈环',
   (slotTrue.json?.warnings || []).some((w) => w.includes('都占颈部饰品')), slotTrue.json?.warnings)
+check('部位槽真撞槽：两件都真进了配方',
+  /necktie/i.test(slotTrue.json?.segments?.prop || '') && /choker/i.test(slotTrue.json?.segments?.prop || ''),
+  slotTrue.json?.segments?.prop)
 
 // 景别裁决（v6）：视角 > 动作卡 > 环境卡
 // 早先 poseSegment() 只返回 pose_tags，动作卡的 camera.shot_size 从没进过正向 ——
@@ -1640,6 +1648,54 @@ const propNegG = await call('/dsh-card-library/compose', {
   body: { styleId: 'style_anime_cel', characterId: 'crab_vampire', lookId: 'look_maid', poseId: 'pose_ballet', propIds: ['prop_beret'] },
 })
 check('手持物让位：穿戴类道具不触发', !propNegKinds(propNegG.json || {}).includes('propneg'))
+
+// ── v28：道具冲突检查只看「真正进配方的道具」──────────────────────────
+//
+// 老实现把 `propsAll` 传给 propConflicts，于是被 v10 propdup 撤掉的道具还在
+// 参与「同部位叠」检查：`look_painter`（自带 beret）+ `prop_beret`（已撤）+
+// `prop_crown`，正向里只剩 crown，却仍报「「贝雷帽」和「王冠」都占头部饰品」。
+// 「手里同时拿了 N 件」同理（5 件时报 5，实际只进 4）。超上限也不说丢的是哪件。
+const propWarn = (j) => (j?.warnings || []).join(' || ')
+
+const propEffA = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { styleId: 'style_anime_cel', characterId: 'crab_vampire', lookId: 'look_painter', poseId: 'pose_ballet', propIds: ['prop_beret', 'prop_crown'] },
+})
+check('道具冲突按生效集：被 propdup 撤掉的道具不再触发同部位叠',
+  !/都占头部饰品/.test(propWarn(propEffA.json)), propWarn(propEffA.json))
+check('道具冲突按生效集：propdup autofix 仍在',
+  (propEffA.json?.autofixes || []).some((a) => a.kind === 'propdup'))
+
+const propEffB = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { styleId: 'style_anime_cel', characterId: 'crab_vampire', poseId: 'pose_ballet', propIds: ['prop_beret', 'prop_crown'] },
+})
+check('道具冲突按生效集：两件都真进配方时仍报',
+  /都占头部饰品/.test(propWarn(propEffB.json)), propWarn(propEffB.json))
+
+const propEffC = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { styleId: 'style_anime_cel', characterId: 'crab_vampire', lookId: 'look_ballet', poseId: 'pose_ballet', propIds: ['prop_boots', 'prop_slippers'] },
+})
+check('道具冲突按生效集：鞋槽同样不报假警告',
+  !/都占鞋/.test(propWarn(propEffC.json)), propWarn(propEffC.json))
+
+const propEffD = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { styleId: 'style_anime_cel', characterId: 'crab_vampire', poseId: 'pose_ballet', propIds: ['prop_cup', 'prop_book', 'prop_apple', 'prop_sword', 'prop_lantern'] },
+})
+check('道具超上限：点名被丢掉的是哪一件',
+  /被丢掉的是：提灯/.test(propWarn(propEffD.json)), propWarn(propEffD.json))
+check('道具超上限：手里按实际进配方的 4 件算（不是 5 件）',
+  /手里同时拿了 4 件东西/.test(propWarn(propEffD.json)), propWarn(propEffD.json))
+check('道具超上限：正向里没有第 5 件',
+  !/lantern/i.test(propEffD.json?.segments?.prop || ''), propEffD.json?.segments?.prop)
+
+const propEffE = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { styleId: 'style_anime_cel', characterId: 'crab_vampire', poseId: 'pose_ballet', propIds: ['prop_cup', 'prop_book', 'prop_apple', 'prop_sword'] },
+})
+check('道具正好 4 件：不报超上限', !/超过 4 件/.test(propWarn(propEffE.json)), propWarn(propEffE.json))
 
 // ── 存卡规则：路由 + 工具 ──────────────────────────────────────────
 const rulesRes = await call('/dsh-card-library/rules')
