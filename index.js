@@ -1184,6 +1184,46 @@ function resolveViewpoint(pose, scene) {
   }
 }
 
+/* ════════════════════════════════════════════════════════════════
+   画幅裁决（v11）：环境卡（具体值）> 动作卡（具体值）> 画风卡参数
+   ════════════════════════════════════════════════════════════════
+
+   aspect 是 'portrait' / 'landscape' / 'both'。全库 140 张环境卡、319 张动作卡
+   都声明了 aspect，但代码只读过环境卡那一份 —— 没选环境卡时一律 832x1216，
+   74 张横构图动作卡（all fours / cowgirl position 这类）被硬塞进竖画布，
+   两侧直接裁掉。这跟 v6/v7 是同一个毛病：字段声明了，但从来没进配方。
+
+   优先级：
+   - 环境卡声明了具体画幅 → 用它（环境决定空间，动作让步）
+   - 环境卡是 both 或没选 → 用动作卡的（这不是裁决，是「补上被丢弃的声明」）
+   - 两边都声明具体且不同 → 环境卡赢，只 warn。换画布会毁掉环境构图，
+     和 v5 的分寸一致：没有唯一正确答案的事不动配方，只提醒。
+*/
+function resolveAspect(pose, scene) {
+  const norm = (v) => {
+    const s = clean(v || '').toLowerCase()
+    return s === 'portrait' || s === 'landscape' ? s : ''
+  }
+  const poseAspect = norm(pose?.aspect)
+  const sceneAspect = norm(scene?.aspect)
+  if (sceneAspect) {
+    return {
+      aspect: sceneAspect,
+      source: 'scene',
+      conflict: !!poseAspect && poseAspect !== sceneAspect,
+      poseAspect,
+      sceneAspect,
+    }
+  }
+  if (poseAspect) {
+    return { aspect: poseAspect, source: 'pose', conflict: false, poseAspect, sceneAspect }
+  }
+  return { aspect: '', source: 'none', conflict: false, poseAspect, sceneAspect }
+}
+
+const ASPECT_CN = { portrait: '竖构图', landscape: '横构图' }
+const ASPECT_RES = { portrait: '832x1216', landscape: '1216x832' }
+
 /** 按槽位剔负面词，返回 { kept, dropped }。 */
 function dropNegativeSlots(negSeg, shouldDrop) {
   const out = []
@@ -1298,6 +1338,11 @@ function compose(input) {
   // 放在场景之前会被场景的 camera 词盖掉，放在最后又压不住 render 段的 detailed eyes。
   // 动作卡景别/机位跟在动作段后面（它是在说「这个动作要拍多宽、从哪边拍」）。
   const positive = joinSeg(q, art, charSeg, lookSeg, poseShotSeg, poseViewSeg, propSeg, sceneSeg, viewSeg.pos, faceLight, render)
+  // 画幅裁决（v11）：环境卡 > 动作卡 > 画风卡参数。
+  // 动作卡的 aspect 早先从来没读过 —— 74 张横构图动作卡（all fours / cowgirl position）
+  // 没配环境卡时被塞进 832x1216 竖画布，左右两侧直接裁掉。
+  // 声明必须在这里：下面 autofix 与 warning 两段都要用 aspectFix。
+  const aspectFix = resolveAspect(pose, scene)
   // ── 自动冲突处理：负面按语义槽位让位 ────────────────────────────
   //
   // 顺序要紧：先做「裸露让位」，再做「光照让位」，最后才 minusPositive。
@@ -1412,6 +1457,16 @@ function compose(input) {
     })
   }
 
+  // 画幅冲突（v11）：环境卡说横、动作卡说竖（或反过来）。
+  // 这是唯一一个「不自动改」的画幅情况 —— 换画布会毁掉环境构图，
+  // 和 v5 的分寸一致：没有唯一正确答案的事只提醒。
+  const aspectWarnings = []
+  if (aspectFix.conflict) {
+    aspectWarnings.push(
+      `画幅冲突：环境卡是「${ASPECT_CN[aspectFix.sceneAspect] || aspectFix.sceneAspect}」，动作卡是「${ASPECT_CN[aspectFix.poseAspect] || aspectFix.poseAspect}」—— 按环境卡取 ${ASPECT_RES[aspectFix.sceneAspect]}，动作卡那份画幅已忽略`,
+    )
+  }
+
   // 最后一道保险：负向里凡是正向已经写了的词，全部剔除。
   // 两段有交集时模型会二选一，「正面看镜头」比「背影回头」强势，实测直接翻脸。
   const negative = minusPositive(negAfterNude, positive)
@@ -1428,9 +1483,15 @@ function compose(input) {
       if (params[k] === undefined || params[k] === null || params[k] === '') params[k] = v
     }
   }
-  // 场景推荐画幅
-  if (scene?.aspect === 'landscape') params.resolution = '1216x832'
-  else if (scene?.aspect === 'portrait') params.resolution = params.resolution || '832x1216'
+  // 画幅落到参数上（v11）。放在 params 合并之后 —— 画风卡参数里也有 resolution，
+  // 合并时会被 look/character 的 params 补空，画幅裁决必须最后拍板。
+  // （aspectFix 在 positive 之后、autofix 之前就已算好。）
+  if (aspectFix.aspect) {
+    params.resolution = ASPECT_RES[aspectFix.aspect]
+    // img2img 专用画风卡的分辨率是「必须这么高」的硬约束（1280x1807 才能保住分镜框），
+    // 不能被横构图改成 1216x832 —— 那会同时把分镜和长宽比一起毁掉。
+    if (style && style.mode === 'img2img') params.resolution = style?.params?.resolution || params.resolution
+  }
 
   const seed = Number.isFinite(input.seed) ? Math.trunc(input.seed) : null
 
@@ -1483,7 +1544,8 @@ function compose(input) {
     autofixes,
     warnings: buildWarnings(scene, style, look, pose, usePose, props, viewSeg, viewFix)
       .concat(propConflicts(propsAll))
-      .concat(viewSeg.warnings),
+      .concat(viewSeg.warnings)
+      .concat(aspectWarnings),
     positive,
     negative,
     params,

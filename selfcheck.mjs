@@ -699,6 +699,54 @@ check('对焦脸：headless 时景深词不该被连带删',
   !/focus on face/i.test(String(ffC.json?.segments?.scene || '')),
   ffC.json?.segments?.scene)
 
+// ── v11：画幅（aspect）裁决 —— 动作卡那份也得算 ─────────────────────
+// 改之前只有环境卡的 aspect 被读过：74 张横构图动作卡（all fours / cowgirl
+// position 这类）没配环境卡时被塞进 832x1216 竖画布，左右两侧直接裁掉。
+const aspA = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { styleId: 'style_gothic_baroque', characterId: 'crab_vampire', poseId: 'pose_ccc_cowgirl' },
+})
+check('画幅：横构图动作卡没配环境卡时取横画布',
+  aspA.json?.params?.resolution === '1216x832', aspA.json?.params?.resolution)
+const aspB = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { styleId: 'style_gothic_baroque', characterId: 'crab_vampire', poseId: 'pose_ballet' },
+})
+check('画幅：竖构图动作卡没配环境卡时取竖画布',
+  aspB.json?.params?.resolution === '832x1216', aspB.json?.params?.resolution)
+const aspC = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: {
+    styleId: 'style_gothic_baroque', characterId: 'crab_vampire',
+    poseId: 'pose_ccc_cowgirl', sceneId: 'sc_bathroom_mirror',
+  },
+})
+check('画幅：环境卡与动作卡冲突时按环境卡取',
+  aspC.json?.params?.resolution === '832x1216', aspC.json?.params?.resolution)
+check('画幅：冲突时报 warning（不是 autofix，配方没改）',
+  (aspC.json?.warnings || []).some((w) => /画幅冲突/.test(String(w))) &&
+  !(aspC.json?.autofixes || []).some((a) => a.kind === 'aspect'),
+  aspC.json?.params?.resolution)
+const aspD = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: {
+    styleId: 'style_gothic_baroque', characterId: 'crab_vampire',
+    poseId: 'pose_ccc_cowgirl', sceneId: 'sc_ccc_footjob',
+  },
+})
+check('画幅：两边一致时不报画幅冲突',
+  !(aspD.json?.warnings || []).some((w) => /画幅冲突/.test(String(w))),
+  aspD.json?.params?.resolution)
+const aspE = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: {
+    styleId: 'style_manga_ink_v1', characterId: 'crab_vampire',
+    poseId: 'pose_ccc_cowgirl', sceneId: 'sc_ccc_footjob',
+  },
+})
+check('画幅：img2img 画风卡的分辨率是硬约束，不被画幅改掉',
+  aspE.json?.params?.resolution === '1280x1807', aspE.json?.params?.resolution)
+
 // ── 存卡规则：路由 + 工具 ──────────────────────────────────────────
 const rulesRes = await call('/dsh-card-library/rules')
 check('规则路由可用', rulesRes.status === 200 && rulesRes.json?.ok === true, rulesRes.status)
