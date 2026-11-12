@@ -428,6 +428,48 @@ function propMainTokens(tags) {
 }
 
 /**
+ * 动词 / 介词开头的短语不是名词，不能拿来当道具名。
+ *
+ * v17：`prop_mask_oni` 的 tags 是 `mask, fox mask, kitsune mask` —— 想取更具体的
+ * 「kitsune mask」。但 `prop_camera` 的 tags 是 `camera, holding camera, looking
+ * through camera`，第三个是动作短语；`prop_skateboard` 是 `standing on skateboard`。
+ * 全库 9 张卡会被这种短语误取（riding bicycle / rolling dice / eating doughnut /
+ * reading newspaper / hugging pillow …），必须挡掉。
+ */
+const PROP_PHRASE_RE = /^(holding|wearing|eating|drinking|reading|riding|rolling|looking|standing|sitting|hugging|wrapped|with|on|in|at|through|under|by)\b/i
+
+/**
+ * 道具卡 → 手持主名词（v17）。
+ *
+ * 老实现取「第一个非 holding/wearing 的 token」，等于永远取卡里最泛的那个词：
+ * `prop_mask_oni` → `mask`（狐面退化成普通面具）、`prop_cake` → `cake`
+ * （草莓奶油蛋糕退化成一块蛋糕）。而卡里明明写着更具体的名词。
+ *
+ * 新规则：在 token 里挑「以主名词结尾、比主名词长、不是动词短语」的最长那个。
+ * - `red apple` 以 `apple` 结尾 → 取它（`apple` → `red apple`）
+ * - `candlelight` 不以 `candle` 结尾 → 不取（`prop_candle` 保持不变）
+ * - `kitsune mask` 以 `mask` 结尾 → 取它，顺带解决 `prop_mask` / `prop_mask_oni`
+ *   同时选中时拼出 `holding mask and mask` 的撞车
+ *
+ * 实测：81 张手持卡里 30 张变具体、9 张被动词规则挡下、提议后主名词全部唯一。
+ */
+function propMainNoun(tags) {
+  const tokens = clean(tags).split(',').map((t) => t.trim()).filter(Boolean)
+  const nouns = tokens.filter((t) => !WEAR_PREFIX_RE.test(t))
+  const main = (nouns[0] || tokens[0] || '').trim()
+  if (!main) return ''
+  const mainLower = main.toLowerCase()
+  let best = main
+  for (const t of nouns) {
+    if (t.length <= best.length) continue
+    if (PROP_PHRASE_RE.test(t)) continue
+    if (!t.toLowerCase().endsWith(mainLower)) continue
+    best = t
+  }
+  return best
+}
+
+/**
  * 造型段里是否已经出现了这个名词。
  *
  * 不能只做整串相等 —— `look_flower_field` 写的是 `flower crown`，道具写的是 `crown`，
@@ -462,9 +504,10 @@ function propsSegment(props, lookText) {
       // 卡里的 tags 常常是「umbrella, holding umbrella, open umbrella」这种同义堆叠。
       // 多件合并时只能留主名词，否则会拼出 "holding umbrella, holding umbrella,
       // open umbrella and handbag" —— 模型反而一件都画不清。
-      const tokens = tags.split(',').map((t) => t.trim()).filter(Boolean)
-      const nouns = tokens.filter((t) => !/^holding\b/i.test(t) && !/^wearing\b/i.test(t))
-      held.push((nouns[0] || tokens[0] || '').trim())
+      //
+      // v17：主名词不能取「第一个」，要取卡里最具体的那一个（propMainNoun）。
+      // 否则 `prop_mask_oni` 会退化成 `holding mask`，狐面变普通面具。
+      held.push(propMainNoun(tags))
     } else {
       const main = propMainTokens(tags)
       if (main.length && main.some((t) => lookHasNoun(lookTokens, t))) {
@@ -1497,9 +1540,19 @@ function compose(input) {
   const pose = input.poseId ? loadCard('pose', input.poseId) : null
 
   // 道具支持多选（v4）。propIds 优先，老字段 propId 兼容成单元素数组。
-  const propIds = Array.isArray(input.propIds) && input.propIds.length
+  //
+  // v17：重复 id 必须先去重。面板的 toggle 逻辑本身不会产生重复，但 API / 模型工具 /
+  // 手写脚本会 —— 实测 `["prop_uchiwa","prop_uchiwa"]` 拼出 `holding uchiwa and uchiwa`，
+  // 三件时更荒谬（还触发「两只手画不下」的警告，而实际只有一只手在拿东西）。
+  const propIdsRaw = Array.isArray(input.propIds) && input.propIds.length
     ? input.propIds.filter((x) => typeof x === 'string' && x)
     : (input.propId ? [input.propId] : [])
+  const propIds = []
+  const propDupIds = []
+  for (const id of propIdsRaw) {
+    if (propIds.indexOf(id) >= 0) { if (propDupIds.indexOf(id) < 0) propDupIds.push(id); continue }
+    propIds.push(id)
+  }
   // 全部读出来（缺卡检测要看全集），但真正进配方的只有前 PROP_MAX 件
   const propsAll = propIds.map((id) => loadCard('prop', id)).filter(Boolean)
   const props = propsAll.slice(0, PROP_MAX)
@@ -1773,6 +1826,17 @@ function compose(input) {
       kind: 'propdup',
       auto: true,
       message: `「${names}」造型卡已经穿了 —— 已撤掉道具那一份（否则同一件东西会进正向两三次，模型画出双份）`,
+    })
+  }
+  // 重复道具 id（v17）：面板的 toggle 不会产生重复，但 API / 模型工具 / 手写脚本会。
+  // 实测 ["prop_uchiwa","prop_uchiwa"] 拼出 `holding uchiwa and uchiwa`，三件时更荒谬，
+  // 而且还会触发「手里同时拿了 3 件东西」的假警告（实际只有一只手在拿）。
+  if (propDupIds.length) {
+    const names = propDupIds.map((id) => (propsAll.find((p) => p && p.id === id) || {}).name || id).join(' / ')
+    autofixes.push({
+      kind: 'propdup_id',
+      auto: true,
+      message: `「${names}」被重复选了 —— 已按一件处理（否则会拼出 holding A and A，还会误报「拿了多件东西」）`,
     })
   }
 

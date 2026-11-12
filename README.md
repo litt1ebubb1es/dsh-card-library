@@ -64,6 +64,8 @@
 | 头出画 | 动作卡显式写 `head out of frame`（腿特写 / 臀特写那一族） | **整段清空脸光** —— `catchlight in both eyes` 是在要求画眼睛，画面里没头时模型只能硬塞一个头进来 |
 | 对焦脸 | 上一条成立，同时环境卡的 `camera.dof` 写着 `focus on face` | **撤掉这条对焦** —— 它和脸光同族，都是在要求「把焦点落在脸上」，同样只能靠塞一个头来满足 |
 | 道具重名 | 穿戴类道具（`hold=false`）的主名词，造型卡的 `look_tags` 里已经有了 | **撤掉道具那一份** —— 同一件东西进正向两三次，模型不会画成两顶帽子，而是把它当成更强的指令（帽子被放大、颜色被推艳） |
+| 道具重复 id | 同一个 `propId` 被传了两次（面板 toggle 不会，但 API / 模型工具 / 手写脚本会） | **按一件处理** —— 否则拼出 `holding uchiwa and uchiwa`，三件时更荒谬，还会误报「手里同时拿了 3 件东西」 |
+| 道具泛名 | 道具卡写着更具体的名词（`prop_mask_oni` 的 `mask, fox mask, kitsune mask`、`prop_cake` 的 `cake, … , strawberry shortcake`），老逻辑只取第一个 | **取最具体的那个名词** —— 否则狐面退化成普通面具、草莓蛋糕退化成一块蛋糕；顺带解决 `prop_mask` + `prop_mask_oni` 同时选中时拼出 `holding mask and mask` |
 | 画幅 | 动作卡声明 `landscape`（`all fours` / `cowgirl position` 这类横向体位，全库 74 张），没配环境卡 | **按动作卡给 1216x832** —— 早先只有环境卡的 `aspect` 被读过，这些姿势被硬塞进竖画布，两侧直接裁掉 |
 | 画法 | 角色卡 / 造型卡的负面里写着画风卡自己主张的画法词（`cel shading` / `flat colors` / `painterly` …） | **剔掉那一条** —— 19 张造型卡共用一段「柔光半写实」样板负面，换赛璐璐 / 平涂 / 水彩画风卡时等于一边要一边不要 |
 | 闭眼 | 动作卡写 `closed eyes` / `sleeping`（全库 13 张），正向却带着 `heterochromia` / `symbol-shaped pupils` / `blue eyes` / `red eyes` / `catchlight in both eyes` | **撤掉眼睛专属词**（角色段、脸光、render 三处一起剥）—— 闭着眼画不出异色瞳和瞳孔高光，留着只会把脸拽回正面、逼角色睁眼 |
@@ -80,6 +82,8 @@
 **对焦脸只丢那一档 dof**：`depth of field, blurry background` / `deep focus` 跟脸没关系，头出画时照样保留 —— 只有 `focus on face` 这一类要撤。
 
 **道具重名按词边界比，不是整串相等**：造型卡写 `flower crown`、道具写 `crown`，也要判成重复。反过来 `earring` 不会被 `ring` 命中（前面是字母不是空格）—— 部位槽正则必须两边都有 `\b`，早先 `ring\b` 少了个左边界，把 `wear·ing` 里的 ring 当成戒指，124 张道具里 33 张被误判成「手部饰品」。
+
+**道具泛名只升不降，动词短语一律挡下**：主名词取「以第一个名词结尾、比它长、且不以动词/介词开头」的最长 token —— `red apple` ✓、`kitsune mask` ✓，而 `candlelight` 不以 `candle` 结尾 ✗、`looking through camera` / `standing on skateboard` / `eating doughnut` 是动作短语 ✗。全库 81 张手持卡里 30 张会变具体、9 张被动词规则挡下，提议后主名词全部唯一。**重复 id 去重是防 API 调用方的**：面板 toggle 不会产生重复，但模型工具和手写脚本会，所以去重必须放在读取 `propIds` 的第一步，而不是信面板。
 
 **画幅冲突是唯一一个不动配方的画幅情况**：环境卡说横、动作卡说竖（或反之）时，**按环境卡取**并只报 warn —— 换画布会毁掉环境构图，跟特殊机位同一档处理。另外 img2img 专用画风卡的分辨率（`1280x1807`，保住分镜框用）是硬约束，不参与画幅裁决。
 
@@ -206,7 +210,7 @@ cd _dsh_plugin/dsh-card-library
 node selfcheck.mjs
 ```
 
-212 项断言：六类 counts、卡片字段、缩略图、越界防护、compose 正/负面、参数优先级、动作卡开关、道具卡、外域 Host 403、脸光归属、景别裁决、机位裁决、头出画清脸光、对焦脸让位、道具重名去重、画幅裁决、画法让位、闭眼让位、场景让位、地点让位、参数元数据、存卡规则、全库体检、模型工具输出。
+224 项断言：六类 counts、卡片字段、缩略图、越界防护、compose 正/负面、参数优先级、动作卡开关、道具卡、外域 Host 403、脸光归属、景别裁决、机位裁决、头出画清脸光、对焦脸让位、道具重名去重、画幅裁决、画法让位、闭眼让位、场景让位、地点让位、参数元数据、道具泛名、道具 id 去重、存卡规则、全库体检、模型工具输出。
 
 ## 路由
 

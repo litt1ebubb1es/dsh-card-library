@@ -1013,6 +1013,80 @@ check('参数元数据：显式 seed 走顶层，params 里不出现第二个 se
 check('参数元数据：配方文本的参数行不含中文说明',
   !/保原图|结构稳|分镜溶解/.test((pmB.json?.text || '').split('\n').find((l) => l.startsWith('参数：')) || ''))
 
+// ── v17：道具 id 去重 + 主名词取「最具体」────────────────────────────
+// 重复 id：面板 toggle 不会产生，但 API / 模型工具 / 手写脚本会。
+// 主名词：老实现永远取卡里第一个 token，等于永远取最泛的词。
+const propOne = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { styleId: 'style_wlop_warm_soft', characterId: 'crab_vampire', propIds: ['prop_uchiwa'] },
+})
+const propDup2 = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { styleId: 'style_wlop_warm_soft', characterId: 'crab_vampire', propIds: ['prop_uchiwa', 'prop_uchiwa'] },
+})
+const propDup3 = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { styleId: 'style_wlop_warm_soft', characterId: 'crab_vampire', propIds: ['prop_uchiwa', 'prop_uchiwa', 'prop_uchiwa'] },
+})
+const propWordCount = (text, w) => (String(text || '').match(new RegExp('\\b' + w + '\\b', 'gi')) || []).length
+
+check('道具 id 去重：重复两件时 uchiwa 只出现一次',
+  propWordCount(propDup2.json?.positive, 'uchiwa') === 1, propDup2.json?.segments?.prop)
+check('道具 id 去重：不拼出 holding A and A',
+  !/uchiwa and uchiwa/i.test(propDup2.json?.positive || ''), propDup2.json?.segments?.prop)
+check('道具 id 去重：报 propdup_id',
+  (propDup2.json?.autofixes || []).some((a) => a.kind === 'propdup_id'), propDup2.json?.autofixes)
+check('道具 id 去重：三件重复也只画一件',
+  propWordCount(propDup3.json?.positive, 'uchiwa') === 1, propDup3.json?.segments?.prop)
+check('道具 id 去重：不再误报「拿了 3 件东西」',
+  !(propDup3.json?.warnings || []).some((w) => /拿了 3 件/.test(w)), propDup3.json?.warnings)
+check('道具 id 去重：单件时不报 propdup_id',
+  !(propOne.json?.autofixes || []).some((a) => a.kind === 'propdup_id'), propOne.json?.autofixes)
+
+const propOni = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { styleId: 'style_wlop_warm_soft', characterId: 'crab_vampire', propIds: ['prop_mask_oni'] },
+})
+check('道具主名词：狐面取 kitsune mask（不是裸 mask）',
+  /holding kitsune mask/i.test(propOni.json?.positive || ''), propOni.json?.segments?.prop)
+
+const propMaskBoth = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { styleId: 'style_wlop_warm_soft', characterId: 'crab_vampire', propIds: ['prop_mask', 'prop_mask_oni'] },
+})
+check('道具主名词：面具 + 狐面拼成 mask and kitsune mask（撞车消失）',
+  /holding mask and kitsune mask/i.test(propMaskBoth.json?.positive || ''), propMaskBoth.json?.segments?.prop)
+
+const propCam = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { styleId: 'style_wlop_warm_soft', characterId: 'crab_vampire', propIds: ['prop_camera'] },
+})
+check('道具主名词：动词短语不许当名词（camera 不是 looking through camera）',
+  /holding camera\b/i.test(propCam.json?.positive || '') && !/holding looking through/i.test(propCam.json?.positive || ''),
+  propCam.json?.segments?.prop)
+
+const propSkate = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { styleId: 'style_wlop_warm_soft', characterId: 'crab_vampire', propIds: ['prop_skateboard'] },
+})
+check('道具主名词：standing on skateboard 被挡下',
+  /holding skateboard\b/i.test(propSkate.json?.positive || '') && !/holding standing on/i.test(propSkate.json?.positive || ''),
+  propSkate.json?.segments?.prop)
+
+const propCup = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { styleId: 'style_wlop_warm_soft', characterId: 'crab_vampire', propIds: ['prop_cup'] },
+})
+check('道具主名词：cup 变 ceramic cup', /holding ceramic cup/i.test(propCup.json?.positive || ''), propCup.json?.segments?.prop)
+
+const propCandle = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { styleId: 'style_wlop_warm_soft', characterId: 'crab_vampire', propIds: ['prop_candle'] },
+})
+check('道具主名词：candlelight 不被当成 candle 的具体形式',
+  /holding candle\b/i.test(propCandle.json?.positive || '') && !/candlelight/i.test(propCandle.json?.segments?.prop || ''),
+  propCandle.json?.segments?.prop)
+
 // ── 存卡规则：路由 + 工具 ──────────────────────────────────────────
 const rulesRes = await call('/dsh-card-library/rules')
 check('规则路由可用', rulesRes.status === 200 && rulesRes.json?.ok === true, rulesRes.status)
