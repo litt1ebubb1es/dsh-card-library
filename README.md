@@ -69,6 +69,7 @@
 | 画幅 | 动作卡声明 `landscape`（`all fours` / `cowgirl position` 这类横向体位，全库 74 张），没配环境卡 | **按动作卡给 1216x832** —— 早先只有环境卡的 `aspect` 被读过，这些姿势被硬塞进竖画布，两侧直接裁掉 |
 | 画法 | 角色卡 / 造型卡的负面里写着画风卡自己主张的画法词（`cel shading` / `flat colors` / `painterly` …） | **剔掉那一条** —— 19 张造型卡共用一段「柔光半写实」样板负面，换赛璐璐 / 平涂 / 水彩画风卡时等于一边要一边不要 |
 | 闭眼 | 动作卡写 `closed eyes` / `sleeping`（全库 13 张），正向却带着 `heterochromia` / `symbol-shaped pupils` / `blue eyes` / `red eyes` / `catchlight in both eyes` | **撤掉眼睛专属词**（角色段、脸光、render 三处一起剥）—— 闭着眼画不出异色瞳和瞳孔高光，留着只会把脸拽回正面、逼角色睁眼 |
+| 闭眼 × 视角 | 动作卡写闭眼 / 睡着，同时又选了视角（`gaze` 会拼出 `looking at viewer, eye contact` 或 `looking back`） | **撤掉视角段的视线词** —— 闭着眼做不到「看镜头 / 回头」，模型唯一的满足方式是把眼睛睁开，于是 v13 剥掉的眼睛词又从这条缝漏回来 |
 | 空白背景 | 选了环境卡（140 张全部带 `place`），画风卡的 `render` 却写着 `simple background` / `white background` / `empty background` / `pale gradient background`（6 张） | **从 render 段撤掉空白背景词** —— 场景段要森林/街道、渲染段同时要求白底，等于一边要背景一边不要 |
 | 地点 | 画风卡 `render` 里写死一个具体地点（`style_retro90_cel` 的 `city street` / `telephone pole`），和环境卡的 `place` 对不上（130 张非街景环境卡） | **撤掉 render 段的地点词** —— 两段各说一个地方，模型会挑一个或画出拼接背景（海滩上长出一条城市天际线） |
 | 景深 | 动作卡的 `camera.dof` 写着 `deep focus`，环境卡的 `camera.dof` 写着 `depth of field, blurry background`（3 张 × 5 张） | **按动作卡取，撤掉环境卡那份** —— 背景不能既糊又清晰。早先动作卡的 `dof` 一个词都没进过正向（23 张全丢），只有环境卡说了算 |
@@ -97,6 +98,8 @@
 **画法让位只剔「画风卡自己主张的那一族」**：八族是赛璐璐 / 平涂 / 厚涂 / 线稿 / 水彩 / 半调 / 版画 / 渐变。`style_shadowverse_crisp` 正向写 `cel shading`、负面却压 `flat colors` —— 意思是「要赛璐璐分色、但不要平涂」，这是它刻意的取舍，动了就把画风改掉了，所以**画风卡自己的负面一个字都不动**。清的只是角色卡 / 造型卡 / 视角那一串：`crab_vampire` 的 negative 也带着 `cel shading, flat colors, painterly`，19 张造型卡只是复制了同一段样板。
 
 **闭眼让位只认全闭**：`half-closed eyes` / `eyes half closed` 眼睛还露着、虹膜看得见，异色瞳照样成立，动了反而丢信息 —— 那一档故意不管。剥的只有 `eyes / pupils / irises / catchlight / lashes / heterochromia`，**光照与画法一律保留**（`candle light`、`half of face in shadow`、`halftone dots` 全留着）。
+
+**闭眼 × 视角是两条不同的缝**：v13 剥的是「卡里的眼睛词」（角色段 / 脸光 / render），v20 剥的是「视角选择器拼出来的视线词」。后者改卡改不掉 —— 它来自面板上的视角选择器，用户看不出问题出在哪。所以单独报一条 `gaze` autofix。**只剥视线，机位（`from front`）与景别（`close-up`）一个字不动**：睡着的人也可以从正面拍、也可以是大特写。
 
 **场景让位只删「字面空白」一族**：`white / simple / plain / empty / solid / blank / pale background`、`pale pink background`、`pale gradient background`。**`negative space` 一个字不动** —— 那是构图留白，是天野喜孝 / 水墨那档的命根子，跟「背景是什么」无关。另外**没选环境卡时一律不动**：那时候画风卡写白底是对的（缩略图、卡牌展示都靠它），只有环境卡的 `tags.place` 非空才算「要背景」。
 
@@ -221,7 +224,7 @@ cd _dsh_plugin/dsh-card-library
 node selfcheck.mjs
 ```
 
-258 项断言：六类 counts、卡片字段、缩略图、越界防护、compose 正/负面、参数优先级、动作卡开关、道具卡、外域 Host 403、脸光归属、景别裁决、机位裁决、头出画清脸光、对焦脸让位、道具重名去重、画幅裁决、画法让位、景深裁决、构图补全、人数裁决、闭眼让位、场景让位、地点让位、参数元数据、道具泛名、道具 id 去重、存卡规则、全库体检、模型工具输出。
+267 项断言：六类 counts、卡片字段、缩略图、越界防护、compose 正/负面、参数优先级、动作卡开关、道具卡、外域 Host 403、脸光归属、景别裁决、机位裁决、头出画清脸光、对焦脸让位、道具重名去重、画幅裁决、画法让位、景深裁决、构图补全、人数裁决、闭眼让位、闭眼×视角视线、场景让位、地点让位、参数元数据、道具泛名、道具 id 去重、存卡规则、全库体检、模型工具输出。
 
 ## 路由
 

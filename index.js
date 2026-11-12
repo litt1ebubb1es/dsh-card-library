@@ -324,6 +324,34 @@ function stripEyeTokens(seg) {
 }
 
 /**
+ * 视线词（视角选择器 viewSegments 产出的那一族）：闭眼 / 睡着时一律让位。
+ *
+ * v20：`looking at viewer, eye contact` 是在要求角色睁眼看镜头；`looking back`
+ * 要转头找镜头；`looking up/down` 要眼球转动。闭着眼这些都做不到，模型唯一的
+ * 满足方式是把眼睛睁开 —— 于是 v13 辛苦剥掉的眼睛词，又从视角段漏了回来。
+ * 实测（`_probe_r16.mjs`）：睡着 + 视角正面 → 正向同时有 `sleeping` 和
+ * `looking at viewer, eye contact`；不选视角（对照组）就没有这问题。
+ *
+ * 只剥「视线」，机位（from front / from behind）与景别（upper body）一个字不动。
+ */
+const GAZE_ALL_RE = /^(looking at viewer|eye contact|looking back|looking over shoulder|looking back over shoulder|looking ahead|looking forward|looking to the side|looking away|facing away|looking up|looking down)$/i
+function stripGazeWords(seg) {
+  if (!seg) return { text: '', dropped: [] }
+  const out = []
+  const dropped = []
+  for (const raw of String(seg).split(',')) {
+    const t = raw.trim()
+    if (!t) continue
+    if (GAZE_ALL_RE.test(t)) {
+      dropped.push(t)
+      continue
+    }
+    out.push(t)
+  }
+  return { text: out.join(', '), dropped }
+}
+
+/**
  * 角色卡 → 角色提示词段。
  *
  * v4 起角色卡拆成两半：body_segment（身材/肤色/体型）+ feature_segment（种族特征、
@@ -1787,7 +1815,12 @@ function compose(input) {
   // v10：穿戴类道具若造型卡已经穿了同一件，就删掉道具那一份（否则同一件东西进正向两三次）
   const propFix = propsSegment(props, lookCloth)
   const propSeg = propFix.text
-  const viewSeg = viewSegments(view)
+  const viewSegRaw = viewSegments(view)
+  // 闭眼 / 睡着时视角段的视线词也要让位（v20）：`looking at viewer` 是在要求睁眼，
+  // 留着它模型就会把眼睛睁开，把 v13 剥掉的眼睛词从这条缝里漏回来。
+  const viewGazeFix = eyesShut ? stripGazeWords(viewSegRaw.pos) : { text: viewSegRaw.pos, dropped: [] }
+  const viewSeg = { ...viewSegRaw, pos: viewGazeFix.text }
+  const viewSegGazeDropped = viewGazeFix.dropped
   // 景别裁决（v6）：视角 > 动作卡 > 环境卡。
   // 没选视角时动作卡的 shot_size 才有机会进正向 —— 早先它被整个丢掉，
   // 于是「动作卡要全身 + 环境卡写 upper body」出来永远只有上半身。
@@ -2111,6 +2144,16 @@ function compose(input) {
         message: `动作卡写了闭眼 / 睡着 —— 已撤掉眼睛专属词：${eyeDropped.join(' / ')}（闭着眼画不出异色瞳和瞳孔高光，留着只会把脸拽回正面、逼角色睁眼）`,
       })
     }
+  }
+
+  // 闭眼 × 视角视线（v20）：视角段的 `looking at viewer` 同样是在要求睁眼。
+  // 单独报一条，因为它的来源是「视角选择器」而不是卡，用户改卡改不掉它。
+  if (viewSegGazeDropped.length) {
+    autofixes.push({
+      kind: 'gaze',
+      auto: true,
+      message: `动作卡写了闭眼 / 睡着，视角选择器却要求「${viewSegGazeDropped.join(' / ')}」—— 已撤掉视角段的视线词（机位与景别不动；闭着眼做不到「看镜头 / 回头」，留着只会逼角色睁眼）`,
+    })
   }
 
   // 场景让位（v14）：选了带 place 的环境卡时，画风卡 render 里的「空白背景」族作废。

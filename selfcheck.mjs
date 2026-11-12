@@ -841,6 +841,51 @@ check('closedEyes 开关：眼睛词同样清掉',
   !String(shutD.json?.positive || '').toLowerCase().includes('heterochromia'),
   String(shutD.json?.positive || '').slice(0, 200))
 
+// ── v20：闭眼 × 视角视线 —— 视角选择器也不许要求睁眼 ────────────────
+// v13 只剥了角色段 / 脸光 / render 三段的眼睛词，视角段的 `looking at viewer`
+// 是从「视角选择器」漏回来的第四条缝：它同样在要求睁眼看镜头。
+const gazeShutA = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: {
+    styleId: 'style_wlop_warm_soft', characterId: 'crab_vampire', poseId: 'pose_sofa_catnap',
+    view: { angle: 'front', gaze: 'front', shot: 2 },
+  },
+})
+const gazeAPos = String(gazeShutA.json?.positive || '').toLowerCase()
+check('闭眼×视角：不留 looking at viewer', !gazeAPos.includes('looking at viewer'), gazeAPos.slice(0, 240))
+check('闭眼×视角：不留 eye contact', !gazeAPos.includes('eye contact'), gazeAPos.slice(0, 240))
+check('闭眼×视角：机位词必须留着', gazeAPos.includes('from front'), String(gazeShutA.json?.segments?.view || ''))
+check('闭眼×视角：景别词必须留着', gazeAPos.includes('upper body'), String(gazeShutA.json?.segments?.view || ''))
+check('闭眼×视角：报 gaze autofix', (gazeShutA.json?.autofixes || []).some((a) => a.kind === 'gaze'),
+  (gazeShutA.json?.autofixes || []).map((a) => a.kind).join(','))
+
+// 回头档同样让位（`looking back` 要转头找镜头）
+const gazeShutB = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: {
+    styleId: 'style_wlop_warm_soft', characterId: 'crab_vampire', poseId: 'pose_sofa_catnap',
+    view: { angle: 'front', gaze: 'back', shot: 2 },
+  },
+})
+const gazeBPos = String(gazeShutB.json?.positive || '').toLowerCase()
+check('闭眼×回头视角：不留 looking back', !gazeBPos.includes('looking back'), gazeBPos.slice(0, 240))
+check('闭眼×回头视角：报 gaze autofix', (gazeShutB.json?.autofixes || []).some((a) => a.kind === 'gaze'),
+  (gazeShutB.json?.autofixes || []).map((a) => a.kind).join(','))
+
+// 睁眼动作卡（对照）：视角视线一个字都不许动
+const gazeShutC = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: {
+    styleId: 'style_wlop_warm_soft', characterId: 'crab_vampire', poseId: 'pose_ballet',
+    view: { angle: 'front', gaze: 'front', shot: 2 },
+  },
+})
+const gazeCPos = String(gazeShutC.json?.positive || '').toLowerCase()
+check('睁眼对照：视角视线保留', gazeCPos.includes('looking at viewer'), gazeCPos.slice(0, 240))
+check('睁眼对照：不报 gaze autofix', !(gazeShutC.json?.autofixes || []).some((a) => a.kind === 'gaze'),
+  (gazeShutC.json?.autofixes || []).map((a) => a.kind).join(','))
+
+
 // ── v14：场景让位 —— 选了环境卡时，画风卡的「空白背景」族必须撤 ──────
 // 6 张画风卡的 render 写着 simple / white / empty / pale gradient background
 // （那是「没环境卡时别乱加背景」用的）。140 张环境卡全部带 place，
