@@ -1618,6 +1618,82 @@ function nonSamplingKeys(src) {
 }
 
 
+/* ═══════════════════════════════════════════════════════════════════
+   人数裁决（v19）
+
+   `count_lock` 从建库起就在每张环境卡 / 动作卡上（140 + 319 张全有），
+   但 index.js 里**一次都没读过** —— grep `count_lock` 是 0 次引用。
+
+   于是「画面里有几个人」只有一个来源在说话：角色卡 `feature_segment`
+   里钉死的 `1girl, solo`。而动作卡的 pose_tags 写的是 `2girls, yuri` /
+   `group sex` / `two boys`。两边直接对撞：
+
+     正向 = "… 1girl, solo, … standing, 2girls, yuri, …"
+     负面 = "… 2girls, multiple girls, 1boy, multiple boys …"
+
+   负面那几个词来自 23 张造型卡的样板负面和 15 张画风卡的负面，本意是
+   「别画成多人」—— 单人场景下是对的；一旦选了双人动作卡，就成了
+   正向要 2girls、负面压 2girls（同 v12 画法让位的病根，只是换了个族）。
+
+   三条一起修：
+   ① 档位（solo / duo / group）统一裁决：动作卡 pose_tags > 动作卡 count_lock
+      > 环境卡 count_lock。pose_tags 里的人数词是真进正向的那一份，最可信。
+   ② 非单人档时，从角色段剥掉 `1girl, solo` —— 同槽位互斥，只能二选一。
+   ③ 非单人档时，从负面剔掉「压多人」的词 —— 否则正向要、负面压。
+
+   单人档（占全库绝大多数）一个字都不动。画风卡负面这次**也一起剔** ——
+   人数不像画法，画风卡对「画几个人」没有主张权。
+   ═══════════════════════════════════════════════════════════════════ */
+
+// 人数档：取「最大档」而不是「先遇到就返回」——
+// `1girl, 1boy, hetero` 三个 token 分别是 solo/duo/duo，结果必须是 duo。
+const COUNT_WORD_TIERS = [
+  { tier: 'group', re: /^(3girls|4girls|multiple girls|multiple boys|2boys|group|group sex|threesome|orgy|surrounded|two boys)$/i },
+  { tier: 'duo', re: /^(2girls|1boy|hetero|yuri|couple|pair|both girls in frame)$/i },
+  { tier: 'solo', re: /^(1girl|solo)$/i },
+]
+const COUNT_TIER_RANK = { solo: 1, duo: 2, group: 3 }
+const COUNT_TIER_CN = { solo: '单人', duo: '双人', group: '多人' }
+
+function countTierOf(text) {
+  let best = 0
+  for (const raw of String(text || '').split(',')) {
+    const t = raw.trim()
+    if (!t) continue
+    for (const row of COUNT_WORD_TIERS) {
+      if (!row.re.test(t)) continue
+      const v = COUNT_TIER_RANK[row.tier]
+      if (v > best) best = v
+      break
+    }
+  }
+  return ['', 'solo', 'duo', 'group'][best]
+}
+
+// 角色段里「锁定单人」的那两个词。
+const SOLO_CHAR_RE = /^(1girl|1girls|solo)$/i
+// 负面里「压多人」的那一族。`male` / `person` / `people` 也算 ——
+// hetero 与 group 都要男人，双人百合要第二个人，留着就是拆台。
+const MULTI_NEG_RE = /^(2girls|3girls|multiple girls|1boy|2boys|multiple boys|group sex|group|hetero|yuri|couple|pair|male|person|people)$/i
+
+function resolveCount(pose, scene, poseSegText) {
+  const poseTagsTier = countTierOf(poseSegText)
+  const poseLockTier = countTierOf(pose && pose.count_lock)
+  const sceneLockTier = countTierOf(scene && scene.count_lock)
+  const poseTier = poseTagsTier || poseLockTier
+  // 档位只由动作卡决定。环境卡的 count_lock 是「成对生成」留下的溯源元数据
+  // （140 张里 18 张多人），不是用户意图 —— 让它定人数会把单人动作卡画成双人。
+  // 动作卡什么都没说时，按单人算：角色段本来就钉着 `1girl, solo`。
+  const tier = poseTier || 'solo'
+  // 只有「两边都声明了具体档位且不同」才算冲突，且只 warn。
+  const conflict = !!(poseTier && sceneLockTier && poseTier !== sceneLockTier)
+  // 正向补词：档位不是单人、且动作卡 pose_tags 自己没说时，把 count_lock 拼进去。
+  // 这是「补上被丢弃的声明」，不是裁决。
+  const lockText = clean((pose && pose.count_lock) || '')
+  const pos = tier !== 'solo' && !poseTagsTier ? lockText : ''
+  return { tier, pos, conflict, poseTier, sceneTier: sceneLockTier, poseTagsTier }
+}
+
 /** 按槽位剔负面词，返回 { kept, dropped }。 */
 function dropNegativeSlots(negSeg, shouldDrop) {
   const out = []
@@ -1698,6 +1774,15 @@ function compose(input) {
   const actSegForRecipe = viewTakeover ? stripViewTakeover(actSeg) : actSeg
   const lookSeg = joinSeg(lookCloth, actSegForRecipe)
 
+  // 人数裁决（v19）：档位统一由动作卡说话（pose_tags > count_lock > 环境卡 count_lock）。
+  // 非单人档时，角色段里钉死的 `1girl, solo` 必须剥掉 —— 它和 `2girls, yuri` /
+  // `group sex` 是同槽位互斥，只能二选一。单人档（全库绝大多数）一个字不动。
+  const countFix = resolveCount(pose, scene, actSegForRecipe)
+  const multiPerson = !!countFix.tier && countFix.tier !== 'solo'
+  const charSegCounted = multiPerson
+    ? dropNegativeSlots(charSeg, (t) => SOLO_CHAR_RE.test(t)).kept
+    : charSeg
+
   // 道具跟在动作后面：先说明「在做什么」，再说明「手里拿着什么」
   // v10：穿戴类道具若造型卡已经穿了同一件，就删掉道具那一份（否则同一件东西进正向两三次）
   const propFix = propsSegment(props, lookCloth)
@@ -1769,7 +1854,7 @@ function compose(input) {
   // 拼装顺序：视角段紧跟在场景之后 —— 场景说明「在哪」，视角说明「从哪儿看、往哪儿看」。
   // 放在场景之前会被场景的 camera 词盖掉，放在最后又压不住 render 段的 detailed eyes。
   // 动作卡景别/机位跟在动作段后面（它是在说「这个动作要拍多宽、从哪边拍」）。
-  const positive = joinSeg(q, art, charSeg, lookSeg, poseShotSeg, poseViewSeg, poseCompSeg, poseDofSeg, propSeg, sceneSeg, viewSeg.pos, faceLight, render)
+  const positive = joinSeg(q, art, charSegCounted, lookSeg, countFix.pos, poseShotSeg, poseViewSeg, poseCompSeg, poseDofSeg, propSeg, sceneSeg, viewSeg.pos, faceLight, render)
   // 画幅裁决（v11）：环境卡 > 动作卡 > 画风卡参数。
   // 动作卡的 aspect 早先从来没读过 —— 74 张横构图动作卡（all fours / cowgirl position）
   // 没配环境卡时被塞进 832x1216 竖画布，左右两侧直接裁掉。
@@ -1844,7 +1929,25 @@ function compose(input) {
     mediumFix.kept,
   ]
   const negJoined = joinSeg(...negParts)
-  const nudeFixed = dropNegativeSlots(negJoined, (t) => wantsNude && NUDE_NEG_RE.test(t))
+  // 人数让位（v19）：非单人档时，负面里「压多人」的那一族必须剔掉。
+  // 它们来自 23 张造型卡的样板负面 + 15 张画风卡的负面，本意是「别画成多人」——
+  // 单人场景下是对的，选了双人 / 群体动作卡就成了正向要、负面压。
+  // 画风卡那份这次也一起剔：人数不像画法，画风卡对「画几个人」没有主张权。
+  let negCountFixed = negJoined
+  if (multiPerson) {
+    const cr = dropNegativeSlots(negJoined, (t) => MULTI_NEG_RE.test(t))
+    if (cr.dropped.length) {
+      negCountFixed = cr.kept
+      const uniq = [...new Set(cr.dropped)]
+      autofixes.push({
+        kind: 'count',
+        auto: true,
+        message: `动作卡是${COUNT_TIER_CN[countFix.tier]}（${countFix.tier}），已从负面剔掉 ${uniq.length} 个「压多人」的词：${uniq.slice(0, 6).join(' / ')}` +
+          (uniq.length > 6 ? ' …' : '') + '（否则正向要几个人、负面同时压几个人）',
+      })
+    }
+  }
+  const nudeFixed = dropNegativeSlots(negCountFixed, (t) => wantsNude && NUDE_NEG_RE.test(t))
   if (nudeFixed.dropped.length) {
     autofixes.push({
       kind: 'nude',
@@ -2042,6 +2145,14 @@ function compose(input) {
     )
   }
 
+  // 人数档位冲突（v19）：动作卡与环境卡都声明了具体档位且不同。
+  // 按动作卡取（人物是动作的主体），只 warn —— 换掉场景的人数设定会毁构图。
+  if (countFix.conflict) {
+    aspectWarnings.push(
+      `人数冲突：环境卡是「${COUNT_TIER_CN[countFix.sceneTier] || countFix.sceneTier}」，动作卡是「${COUNT_TIER_CN[countFix.poseTier] || countFix.poseTier}」—— 按动作卡取「${COUNT_TIER_CN[countFix.tier] || countFix.tier}」`,
+    )
+  }
+
   // 最后一道保险：负向里凡是正向已经写了的词，全部剔除。
   // 两段有交集时模型会二选一，「正面看镜头」比「背影回头」强势，实测直接翻脸。
   const negative = minusPositive(negAfterNude, positive)
@@ -2063,9 +2174,11 @@ function compose(input) {
     segments: {
       quality: clean(q),
       artist: clean(art),
-      character: clean(charSeg),
+      character: clean(charSegCounted),
       character_body: clean(character?.body_segment || ''),
       character_feature: clean(character?.feature_segment || ''),
+      count: clean(countFix.pos),
+      count_tier: countFix.tier || '',
       look: clean(lookSeg),
       look_cloth: clean(lookCloth),
       look_pose: clean(lookPose),

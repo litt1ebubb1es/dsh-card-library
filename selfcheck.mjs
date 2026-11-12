@@ -1170,6 +1170,77 @@ check('景深/构图：动作卡没声明时两段都为空',
   !noDof.json?.segments?.dof && !noDof.json?.segments?.comp,
   JSON.stringify({ dof: noDof.json?.segments?.dof, comp: noDof.json?.segments?.comp }))
 
+// ── v19：人数裁决（count_lock 进配方 / 角色段 solo 让位 / 负面压多人让位）──
+const cDuo = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { styleId: 'style_wlop_warm_soft', characterId: 'crab_vampire', poseId: 'pose_duo_hand_in_hand' },
+})
+check('人数：count_lock 的 2girls 进正向（pose_tags 没说时）',
+  /(^|,\s*)2girls(\s*,|$)/.test(cDuo.json?.positive || ''), cDuo.json?.segments?.count)
+check('人数：segments.count_tier 记为 duo', cDuo.json?.segments?.count_tier === 'duo',
+  cDuo.json?.segments?.count_tier)
+check('人数：非单人档时角色段剥掉 solo',
+  !/(^|,\s*)solo(\s*,|$)/.test(cDuo.json?.segments?.character || ''), cDuo.json?.segments?.character)
+check('人数：正向不同时出现 solo 与 2girls',
+  !(/(^|,\s*)solo(\s*,|$)/.test(cDuo.json?.positive || '') && /2girls/.test(cDuo.json?.positive || '')),
+  cDuo.json?.positive)
+check('人数：报 count autofix', (cDuo.json?.autofixes || []).some((a) => a.kind === 'count'),
+  JSON.stringify(cDuo.json?.autofixes))
+
+const cDuoNeg = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { styleId: 'style_wlop_warm_soft', characterId: 'crab_vampire', poseId: 'pose_duo_hand_in_hand', lookId: 'look_alchemist' },
+})
+check('人数：负面不再压 2girls',
+  !/(^|,\s*)2girls(\s*,|$)/.test(cDuoNeg.json?.negative || ''), (cDuoNeg.json?.negative || '').slice(0, 160))
+check('人数：负面不再压 multiple girls', !/multiple girls/.test(cDuoNeg.json?.negative || ''))
+check('人数：负面不再压 male',
+  !/(^|,\s*)male(\s*,|$)/.test(cDuoNeg.json?.negative || ''))
+check('人数：画风卡那份的 person 也剔掉',
+  !/(^|,\s*)person(\s*,|$)/.test(cDuoNeg.json?.negative || ''))
+
+const cGroup = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { styleId: 'style_wlop_warm_soft', characterId: 'crab_vampire', poseId: 'pose_ccc_dp_group' },
+})
+check('人数：群体档 count_tier = group', cGroup.json?.segments?.count_tier === 'group',
+  cGroup.json?.segments?.count_tier)
+check('人数：群体档正向含 group sex', /group sex/.test(cGroup.json?.positive || ''),
+  cGroup.json?.segments?.count)
+check('人数：群体档正向不含 solo', !/(^|,\s*)solo(\s*,|$)/.test(cGroup.json?.positive || ''))
+
+const cSolo = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { styleId: 'style_wlop_warm_soft', characterId: 'crab_vampire', poseId: 'pose_ballet', lookId: 'look_alchemist' },
+})
+check('人数：单人档 count_tier = solo', cSolo.json?.segments?.count_tier === 'solo',
+  cSolo.json?.segments?.count_tier)
+check('人数：单人档不补人数词', !cSolo.json?.segments?.count, cSolo.json?.segments?.count)
+check('人数：单人档角色段仍带 solo', /solo/.test(cSolo.json?.segments?.character || ''),
+  cSolo.json?.segments?.character)
+check('人数：单人档不出 count autofix',
+  !(cSolo.json?.autofixes || []).some((a) => a.kind === 'count'))
+check('人数：单人档负面仍压 2girls（该留）', /2girls/.test(cSolo.json?.negative || ''))
+
+const cClash = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { styleId: 'style_wlop_warm_soft', characterId: 'crab_vampire', poseId: 'pose_duo_selfie', sceneId: 'sc_bedroom_sleepshirt' },
+})
+check('人数：冲突按动作卡取 duo', cClash.json?.segments?.count_tier === 'duo',
+  cClash.json?.segments?.count_tier)
+check('人数：冲突只 warn 不出 autofix',
+  !(cClash.json?.autofixes || []).some((a) => a.kind === 'count_conflict'),
+  JSON.stringify(cClash.json?.autofixes))
+
+const cSceneOnly = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { styleId: 'style_wlop_warm_soft', characterId: 'crab_vampire', poseId: 'pose_ballet', sceneId: 'sc_duo_hand_in_hand' },
+})
+check('人数：动作卡没说时按单人，环境卡人数不构成冲突',
+  cSceneOnly.json?.segments?.count_tier === 'solo' &&
+  !(cSceneOnly.json?.warnings || []).some((w) => w.includes('人数冲突')),
+  JSON.stringify({ tier: cSceneOnly.json?.segments?.count_tier, w: cSceneOnly.json?.warnings }))
+
 // ── 存卡规则：路由 + 工具 ──────────────────────────────────────────
 const rulesRes = await call('/dsh-card-library/rules')
 check('规则路由可用', rulesRes.status === 200 && rulesRes.json?.ok === true, rulesRes.status)
