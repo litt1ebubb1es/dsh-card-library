@@ -1697,6 +1697,87 @@ const propEffE = await call('/dsh-card-library/compose', {
 })
 check('道具正好 4 件：不报超上限', !/超过 4 件/.test(propWarn(propEffE.json)), propWarn(propEffE.json))
 
+// ── v29：动作卡自带的 holding X 让位给用户选的道具 ──────────────────────
+//
+// 动作卡 `pose_tags` 里本来就有「手里拿什么」（`pose_photographer` 的
+// `holding camera`、`pose_maid` 的 `holding tray`、`pose_from_summer_festival`
+// 的 `holding fan` + `other hand holding goldfish bag`）。用户又选了手持道具时，
+// 正向里就有两套「手里拿什么」—— 模型会丢掉其中一件。
+// 分寸：没选手持道具时一个字不动；`holding hands` / `holding own leg` /
+// `holding skirt down` / `both hands on camera` 一律不撤；`wearing X` 不动。
+const holdN = (j) => (String(j?.positive || '').match(/\bholding\b/gi) || []).length
+const poseHoldBase = { styleId: 'style_anime_cel', characterId: 'crab_vampire' }
+
+const phA = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { ...poseHoldBase, poseId: 'pose_from_night_reader', propIds: ['prop_book'] },
+})
+check('手持物让位：同名道具只剩一处 holding', holdN(phA.json) === 1, holdN(phA.json))
+check('手持物让位：动作段里的 holding book 已撤', !/holding book/i.test(phA.json?.segments?.action || ''), phA.json?.segments?.action)
+check('手持物让位：道具段仍是 holding open book', /holding open book/i.test(phA.json?.segments?.prop || ''), phA.json?.segments?.prop)
+check('手持物让位：报 posehold', (phA.json?.autofixes || []).some((a) => a.kind === 'posehold'))
+check('手持物让位：非手持词一个不少', /reading/.test(phA.json?.segments?.action || '') && /sitting/.test(phA.json?.segments?.action || ''), phA.json?.segments?.action)
+
+const phB = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { ...poseHoldBase, poseId: 'pose_from_night_reader', propIds: ['prop_cup'] },
+})
+check('手持物让位：拿的不是同一件也撤（两套占手指令）', holdN(phB.json) === 1, holdN(phB.json))
+check('手持物让位：不同名也报 posehold', (phB.json?.autofixes || []).some((a) => a.kind === 'posehold'))
+
+const phC = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { ...poseHoldBase, poseId: 'pose_from_night_reader' },
+})
+check('手持物让位：没选道具时动作卡的 holding book 保留', /holding book/i.test(phC.json?.segments?.action || ''), phC.json?.segments?.action)
+check('手持物让位：没选道具时不报 posehold', !(phC.json?.autofixes || []).some((a) => a.kind === 'posehold'))
+
+const phD = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { ...poseHoldBase, poseId: 'pose_from_summer_festival', propIds: ['prop_uchiwa'] },
+})
+check('手持物让位：中段 holding（other hand holding X）也撤', holdN(phD.json) === 1, holdN(phD.json))
+check('手持物让位：one hand on fan 保留（不是 holding 短语）', /one hand on fan/i.test(phD.json?.segments?.action || ''), phD.json?.segments?.action)
+
+const phE = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { ...poseHoldBase, poseId: 'pose_photographer', propIds: ['prop_camera'] },
+})
+check('手持物让位：both hands on camera 保留（手的位置词）', /both hands on camera/i.test(phE.json?.segments?.action || ''), phE.json?.segments?.action)
+check('手持物让位：camera to eye 保留', /camera to eye/i.test(phE.json?.segments?.action || ''), phE.json?.segments?.action)
+
+const phF = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { ...poseHoldBase, poseId: 'pose_duo_hand_in_hand', propIds: ['prop_uchiwa'] },
+})
+check('手持物让位：holding hands 不撤（双人动作不是道具）', /holding hands/i.test(phF.json?.segments?.action || ''), phF.json?.segments?.action)
+
+const phG = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { ...poseHoldBase, poseId: 'pose_pose_wind_hold_skirt', propIds: ['prop_uchiwa'] },
+})
+check('手持物让位：hands on own skirt 不撤（衣物不是道具）', /hands on own skirt/i.test(phG.json?.segments?.action || ''), phG.json?.segments?.action)
+
+const phH = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { ...poseHoldBase, poseId: 'pose_from_night_reader', propIds: ['prop_beret'] },
+})
+check('手持物让位：只选穿戴道具时不算「选了手持道具」', /holding book/i.test(phH.json?.segments?.action || ''), phH.json?.segments?.action)
+check('手持物让位：只选穿戴道具时不报 posehold', !(phH.json?.autofixes || []).some((a) => a.kind === 'posehold'))
+
+const phI = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { ...poseHoldBase, poseId: 'pose_ballet', propIds: ['prop_book'] },
+})
+check('手持物让位：动作卡本来没 holding 时不报', !(phI.json?.autofixes || []).some((a) => a.kind === 'posehold'))
+
+const phJ = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { ...poseHoldBase, poseId: 'pose_maid', propIds: ['prop_tray'] },
+})
+check('手持物让位：segments.action 是剥过的那份', !/holding tray/i.test(phJ.json?.segments?.action || ''), phJ.json?.segments?.action)
+check('手持物让位：segments.action_raw 保留原文', /holding tray/i.test(phJ.json?.segments?.action_raw || ''), phJ.json?.segments?.action_raw)
+
 // ── 存卡规则：路由 + 工具 ──────────────────────────────────────────
 const rulesRes = await call('/dsh-card-library/rules')
 check('规则路由可用', rulesRes.status === 200 && rulesRes.json?.ok === true, rulesRes.status)

@@ -548,6 +548,40 @@ function lookHasNoun (lookTokens, noun) {
   return false
 }
 
+/**
+ * 动作卡自带的 `holding X` 让位（v29）。
+ *
+ * 32 张动作卡在 `pose_tags` 里就写着「手里拿着什么」（`pose_photographer` 的
+ * `holding camera`、`pose_maid` 的 `holding tray`、`pose_wide_rain_street` 的
+ * `holding umbrella`…）。用户又选了道具卡时，正向里会出现**两套占手指令**：
+ *
+ *   动作段 `holding camera` + 道具段 `holding camera` → `holding` 出现 2 次
+ *   `pose_from_summer_festival` 更极端：`holding fan` + `one hand on fan` +
+ *   `other hand holding goldfish bag`，再叠道具就是 3 处占手 —— 模型只能丢东西。
+ *
+ * 分寸（和 v22 整套装束同一个道理：造型 / 道具卡才是权威，动作卡只是「原本在做什么」）：
+ * - 用户**没选**任何手持道具 → 一个字不动（那时动作卡的 holding 是唯一线索）。
+ * - 用户选了手持道具 → 撤掉动作段里的 `holding X` / `carrying X` 这类**占手**短语。
+ * - **不撤**：`holding hands`（牵手，是双人动作不是道具）、`holding own leg` /
+ *   `holding skirt down`（身体 / 衣物）、`both hands on camera`（手的位置，不是拿东西）。
+ * - `holding` 不必在词首 —— `other hand holding goldfish bag` 也算占手
+ *   （`pose_from_summer_festival` 就是靠这条漏过去的）。
+ * - 穿戴类的 `wearing X` 一律不动 —— 那是 v10 / v22 的地盘。
+ */
+const HOLD_PHRASE_RE = /\b(?:holding|carrying)\s+(?!hands?\b|own\b|her\b|his\b|up\b|down\b|back\b)\S/i
+function stripPoseHolds(actText, hasHeldProp) {
+  if (!actText || !hasHeldProp) return { text: String(actText || ''), dropped: [] }
+  const out = []
+  const dropped = []
+  for (const raw of String(actText).split(',')) {
+    const t = raw.trim()
+    if (!t) continue
+    if (HOLD_PHRASE_RE.test(t)) { dropped.push(t); continue }
+    out.push(t)
+  }
+  return { text: out.join(', '), dropped }
+}
+
 function propsSegment(props, lookText) {
   const list = (props || []).filter(Boolean).slice(0, PROP_MAX)
   if (!list.length) return { text: '', dropped: [] }
@@ -2136,6 +2170,17 @@ function compose(input) {
   const viewTakeover = !!(input.view && typeof input.view === 'object' && input.view.angle)
   const actSegForRecipe = viewTakeover ? stripViewTakeover(actSeg) : actSeg
 
+  // 道具要先算：v29 的「动作卡自带 holding 让位」需要知道用户到底选了哪几件。
+  // v10：穿戴类道具若造型卡已经穿了同一件，就删掉道具那一份（否则同一件东西进正向两三次）
+  const propFix = propsSegment(props, lookCloth)
+  const propSeg = propFix.text
+  // v28：真正进配方的道具 = 前 PROP_MAX 件里、没有被 propdup 撤掉的那些。
+  // 「同部位叠」和「手里拿几件」必须按这一批算 —— 早先按 propsAll 算，
+  // 于是被撤掉的道具还在参与检查，报出「「贝雷帽」和「王冠」都占头部饰品」这种
+  // 正向里根本没有贝雷帽的假警告。
+  const propDroppedIds = new Set((propFix.dropped || []).map((p) => p && p.id))
+  const propsEffective = props.filter((p) => p && !propDroppedIds.has(p.id))
+
   // 脚上穿不穿（v21）：动作卡说赤足、造型卡配了鞋 → 同槽位互斥，只能二选一。
   // 脚不是画面主体时撤鞋（鞋只是边角，留着会把「赤脚」毁掉）；
   // 脚是主体（feet focus）时只 warn，因为穿鞋的特写也成立。
@@ -2148,13 +2193,18 @@ function compose(input) {
   const outfitFix = resolveOutfit(lookClothFixed, actSegForRecipe)
   const actSegOutfit = outfitFix.text
 
+  // 动作卡自带的手持短语让位（v29）：用户选了手持道具，动作卡里的 `holding X`
+  // 就是第二套占手指令（实测 holding 出现 2-3 次，模型只能丢东西）。
+  const poseHoldFix = stripPoseHolds(actSegOutfit, (propFix.held || []).length > 0)
+  const actSegHold = poseHoldFix.text
+
   // 「穿好衣服」防护词让位（v26）：4 张奇幻造型卡的 look_tags 里钉着
   // `fully clothed, wearing clothes, covered chest, covered torso`（防走光），
   // 配上要裸露 / 露肤的动作卡时，正向会同时要「穿好」和「completely nude」。
   // v5 只剔负面里的裸词，正向这一对从来没管过。只撤防护词，衣服本体不动。
-  const guardFix = resolveCoverGuard(lookClothFixed, actSegOutfit)
+  const guardFix = resolveCoverGuard(lookClothFixed, actSegHold)
   const lookClothGuarded = guardFix.text
-  const lookSeg = joinSeg(lookClothGuarded, actSegOutfit)
+  const lookSeg = joinSeg(lookClothGuarded, actSegHold)
 
   // 人数裁决（v19）：档位统一由动作卡说话（pose_tags > count_lock > 环境卡 count_lock）。
   // 非单人档时，角色段里钉死的 `1girl, solo` 必须剥掉 —— 它和 `2girls, yuri` /
@@ -2165,16 +2215,6 @@ function compose(input) {
     ? dropNegativeSlots(charSeg, (t) => SOLO_CHAR_RE.test(t)).kept
     : charSeg
 
-  // 道具跟在动作后面：先说明「在做什么」，再说明「手里拿着什么」
-  // v10：穿戴类道具若造型卡已经穿了同一件，就删掉道具那一份（否则同一件东西进正向两三次）
-  const propFix = propsSegment(props, lookCloth)
-  const propSeg = propFix.text
-  // v28：真正进配方的道具 = 前 PROP_MAX 件里、没有被 propdup 撤掉的那些。
-  // 「同部位叠」和「手里拿几件」必须按这一批算 —— 早先按 propsAll 算，
-  // 于是被撤掉的道具还在参与检查，报出「「贝雷帽」和「王冠」都占头部饰品」这种
-  // 正向里根本没有贝雷帽的假警告。
-  const propDroppedIds = new Set((propFix.dropped || []).map((p) => p && p.id))
-  const propsEffective = props.filter((p) => p && !propDroppedIds.has(p.id))
   const viewSegRaw = viewSegments(view)
   // 闭眼 / 睡着时视角段的视线词也要让位（v20）：`looking at viewer` 是在要求睁眼，
   // 留着它模型就会把眼睛睁开，把 v13 剥掉的眼睛词从这条缝里漏回来。
@@ -2514,6 +2554,15 @@ function compose(input) {
     })
   }
 
+  // 动作卡自带的手持短语让位（v29）：动作卡写着「手里拿 X」，用户又选了手持道具。
+  if (poseHoldFix.dropped.length) {
+    autofixes.push({
+      kind: 'posehold',
+      auto: true,
+      message: `动作卡自带「${poseHoldFix.dropped.join(' / ')}」，但你已经选了道具「${(propFix.held || []).join(' / ')}」—— 已撤掉动作卡里的占手短语（否则正向里有两套「手里拿什么」，模型会丢掉其中一件；手的位置词如 both hands on X 保留）`,
+    })
+  }
+
   // 参数元数据（v16）：卡里的 params 除了采样键还混着元数据 ——
   // `safe_composition`（"sitting, upper body, cowboy shot" 一句提示词）、
   // `denoise_note`（一段中文说明）、`note`、`seed`。无条件 copy 的后果是
@@ -2655,7 +2704,7 @@ function compose(input) {
       look_cloth: clean(lookClothGuarded),
       look_pose: clean(lookPose),
       pose: clean(poseSeg),
-      action: clean(actSegOutfit),
+      action: clean(actSegHold),
       action_raw: clean(actSegForRecipe),
       prop: clean(propSeg),
       prop_held: (propFix.held || []).slice(),

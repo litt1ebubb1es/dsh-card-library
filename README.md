@@ -82,6 +82,7 @@
 | 防护词 | 造型卡正向的 `look_tags` 里钉着「穿好衣服」的防护词（`fully clothed` / `wearing clothes` / `covered chest` / `covered torso`，4 张奇幻造型卡：`look_bell_watcher` / `look_elven_priestess` / `look_night_reader` / `look_tomb_raider`），动作卡却要裸（`completely nude` / `topless` / `cleavage` / `shirt lift` …） | **撤掉造型卡的防护词** —— v5 只在【负面】里剔裸词，这 4 张把防护写在了【正向】，两边互不相干，模型只能在「穿」和「不穿」之间瞎猜（368 组） |
 | 道具负面 | 造型卡 / 画风卡的负面里钉着「别在手里多出东西」的黑名单（19 张造型卡的 `holding cup` / `holding book` / `holding bag`，`style_wlop_warm_soft` 的 `beer` / `cigarette`），而用户明确选了那件道具 | **剔掉「压的正是这件」的那几条** —— 正向是 `holding ceramic cup`、负面是 `holding cup`，`minusPositive` 只做整串子串包含，剔不掉（v17 把主名词升级成更具体之后这条缝更宽了） |
 | 道具计数 | 选了 5 件以上道具、或造型卡已经穿了同一件（该道具被撤） | **冲突检查只看真正进配方的道具** —— 早先按「全集」算，被撤掉的道具还在参与「同部位叠」检查，报出「贝雷帽和王冠都占头部饰品」这种正向里根本没有贝雷帽的假警告；超上限时也会点名被丢掉的是哪一件 |
+| 手持短语 | 动作卡 `pose_tags` 里自带 `holding clipboard` / `holding camera`，用户又选了手持道具 → 撤掉动作卡那份占手短语（否则正向里两套「手里拿什么」，模型丢掉其中一件） |
 
 优先级一律 **视角 > 动作卡 > 环境卡**。
 
@@ -112,6 +113,25 @@
 `look_painter`（自带贝雷帽）+ `prop_beret`（被撤）+ `prop_crown` 只报一次 `propdup`，
 不再报「贝雷帽和王冠都占头部饰品」—— 正向里根本没有贝雷帽。「手里同时拿了 N 件」同理，
 按实际件数算。超上限的警告会点名被丢掉的是哪一件（`提灯`），不再只说「选了 5 件」。
+
+**手持短语只撤「占手」的那一份，手的位置词一个字不动**
+
+动作卡的 `pose_tags` 里本来就写着「手里拿什么」（`pose_nurse` 的 `holding clipboard`、
+`pose_photographer` 的 `holding camera`、`pose_from_summer_festival` 的 `holding fan` +
+`other hand holding goldfish bag`）。用户又选了手持道具时，正向里就有两套「手里拿什么」，
+模型只会挑一件 —— cfg 2.0 下常常把道具整个丢掉，cfg 4.5 下变成两手各拿一件。
+
+撤的判据是 `HOLD_PHRASE_RE = /\b(?:holding|carrying)\s+(?!hands?\b|own\b|her\b|his\b|up\b|down\b|back\b)\S/i`：
+
+- `holding` **不必在词首** —— `other hand holding goldfish bag` 也算占手（漏了这条就只撤一半）。
+- 撤：`holding clipboard` / `holding camera` / `carrying tray`。
+- 不撤：`holding hands`（牵手，双人动作不是道具）、`holding own leg` / `hands on own skirt`
+  （身体与衣物）、`both hands on camera` / `camera to eye`（手的位置，不是拿东西）。
+- `wearing X` 一律不动 —— 那是「道具重名」与「整套装束」的地盘。
+- **没选手持道具时一个字不动**；只选穿戴类道具（`hold=false`）也不触发。
+
+影响面：动作卡自带占手短语 32 张 × 手持道具 81 件 = 2592 组组合，其中同名重叠 17 组
+（动作拿的正是你选的那件，正向里会出现 `holding book` + `holding open book` 两处）。
 
 
 
@@ -262,7 +282,7 @@ cd _dsh_plugin/dsh-card-library
 node selfcheck.mjs
 ```
 
-360 项断言（含道具计数按生效集）：六类 counts、卡片字段、缩略图、越界防护、compose 正/负面、参数优先级、动作卡开关、道具卡、外域 Host 403、脸光归属、景别裁决、机位裁决、头出画清脸光、对焦脸让位、道具重名去重、画幅裁决、画法让位、景深裁决、构图补全、人数裁决、防护词让位、手持物让位、闭眼让位、闭眼×视角视线、半闭眼与睡袍误判、眼周特征豁免、脚上穿不穿、整套装束、场景让位、地点让位、参数元数据、道具泛名、道具 id 去重、存卡规则、全库体检、模型工具输出。
+380 项断言（含道具计数按生效集、手持短语让位）：六类 counts、卡片字段、缩略图、越界防护、compose 正/负面、参数优先级、动作卡开关、道具卡、外域 Host 403、脸光归属、景别裁决、机位裁决、头出画清脸光、对焦脸让位、道具重名去重、画幅裁决、画法让位、景深裁决、构图补全、人数裁决、防护词让位、手持物让位、闭眼让位、闭眼×视角视线、半闭眼与睡袍误判、眼周特征豁免、脚上穿不穿、整套装束、场景让位、地点让位、参数元数据、道具泛名、道具 id 去重、存卡规则、全库体检、模型工具输出。
 
 ## 路由
 
