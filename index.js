@@ -844,6 +844,46 @@ function isFaceFocus(text) {
 }
 
 /**
+ * 「画面里没有场景」—— 和 headless / 对焦脸是同一族冲突（v14）。
+ *
+ * 六张画风卡的 render 里写着 `simple background` / `white background` /
+ * `empty background` / `pale gradient background`，那是「没有环境卡时别乱加背景」用的。
+ * 一旦选了环境卡（全库 140 张全部带 `tags.place`），这两段就是在互相拆台：
+ * 场景段要森林 / 街道 / 教室，render 段同时要求「空背景、白底」。
+ *
+ * 实测（`_probe_bg2.mjs` 8 画风 × 6 场景 = 48 组）：28 组里正向同时出现
+ * 具体场景词与字面空白词。影响面 6 张画风卡 × 140 张环境卡 = 840 组。
+ *
+ * 只删「字面空白」这一族。`negative space` 是**构图留白**（天野喜孝那档的命根子），
+ * 和「背景是什么」无关，一个字不动。
+ */
+const BLANK_BG_RE = /\b(?:white background|simple background|plain background|empty background|solid background|blank background|pale background|pale pink background|pale gradient background)\b/gi
+
+function stripBlankBg(seg) {
+  if (!seg) return { text: '', dropped: [] }
+  const dropped = []
+  const out = []
+  for (const raw of String(seg).split(',')) {
+    const t = raw.trim()
+    if (!t) continue
+    BLANK_BG_RE.lastIndex = 0
+    if (BLANK_BG_RE.test(t)) { dropped.push(t); continue }
+    out.push(t)
+  }
+  return { text: out.join(', '), dropped }
+}
+
+/**
+ * 环境卡到底要不要背景？有 `tags.place` 就算要（全库 140 张都有）。
+ * 没选环境卡时返回 false —— 那时候画风卡写白底是对的，不该动。
+ */
+function sceneWantsBackground(scene) {
+  if (!scene) return false
+  const place = clean((scene.tags && scene.tags.place) || '')
+  return !!place
+}
+
+/**
  * 配方自检：把「选出来的卡互相打架」这件事在生成前就说清楚。
  * 这些都是实测踩过的（n58–n61、卡片库天台那轮、环境/动作拆分那轮）。
  */
@@ -1461,8 +1501,13 @@ function compose(input) {
   const faceLight = resolveFaceLight(style?.face_light || '', sceneForFace, viewSeg, headless, eyesShut)
   // render 段也有眼睛词（`detailed eyes` / `glossy eyes` / `catchlight`），闭眼时同样作废。
   // 只剥眼睛标签，`smooth digital painting` / `cel shading` / `bloom` 这些画法词一个不动。
+  // 场景让位（v14）：选了带 place 的环境卡时，render 里的「空白背景」族同样作废 ——
+  // 场景段要森林/街道，render 段要求白底，等于一边要背景一边不要。
+  // `negative space`（构图留白）不在此列，那是画风卡的一部分，一个字不动。
+  const sceneBgWanted = sceneWantsBackground(scene)
   const renderRaw = style?.render || ''
-  const render = eyesShut ? stripEyeTokens(renderRaw).text : renderRaw
+  const blankBgFix = sceneBgWanted ? stripBlankBg(renderRaw) : { text: renderRaw, dropped: [] }
+  const render = eyesShut ? stripEyeTokens(blankBgFix.text).text : blankBgFix.text
 
   // 拼装顺序：视角段紧跟在场景之后 —— 场景说明「在哪」，视角说明「从哪儿看、往哪儿看」。
   // 放在场景之前会被场景的 camera 词盖掉，放在最后又压不住 render 段的 detailed eyes。
@@ -1627,6 +1672,17 @@ function compose(input) {
         message: `动作卡写了闭眼 / 睡着 —— 已撤掉眼睛专属词：${eyeDropped.join(' / ')}（闭着眼画不出异色瞳和瞳孔高光，留着只会把脸拽回正面、逼角色睁眼）`,
       })
     }
+  }
+
+  // 场景让位（v14）：选了带 place 的环境卡时，画风卡 render 里的「空白背景」族作废。
+  // 全库 6 张画风卡写着 simple/white/empty/pale gradient background（无环境卡时防乱加背景用），
+  // 140 张环境卡全部带 place —— 两边同时存在就是「要森林」和「要白底」互相拆台。
+  if (blankBgFix.dropped.length) {
+    autofixes.push({
+      kind: 'bgblank',
+      auto: true,
+      message: `选了环境卡（有具体场景），已从画风卡的渲染段撤掉空白背景词：${blankBgFix.dropped.join(' / ')}（否则场景段要森林/街道，渲染段同时要求白底，两边拆台）`,
+    })
   }
 
   // 画幅冲突（v11）：环境卡说横、动作卡说竖（或反过来）。

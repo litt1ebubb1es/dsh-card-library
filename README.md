@@ -67,6 +67,7 @@
 | 画幅 | 动作卡声明 `landscape`（`all fours` / `cowgirl position` 这类横向体位，全库 74 张），没配环境卡 | **按动作卡给 1216x832** —— 早先只有环境卡的 `aspect` 被读过，这些姿势被硬塞进竖画布，两侧直接裁掉 |
 | 画法 | 角色卡 / 造型卡的负面里写着画风卡自己主张的画法词（`cel shading` / `flat colors` / `painterly` …） | **剔掉那一条** —— 19 张造型卡共用一段「柔光半写实」样板负面，换赛璐璐 / 平涂 / 水彩画风卡时等于一边要一边不要 |
 | 闭眼 | 动作卡写 `closed eyes` / `sleeping`（全库 13 张），正向却带着 `heterochromia` / `symbol-shaped pupils` / `blue eyes` / `red eyes` / `catchlight in both eyes` | **撤掉眼睛专属词**（角色段、脸光、render 三处一起剥）—— 闭着眼画不出异色瞳和瞳孔高光，留着只会把脸拽回正面、逼角色睁眼 |
+| 空白背景 | 选了环境卡（140 张全部带 `place`），画风卡的 `render` 却写着 `simple background` / `white background` / `empty background` / `pale gradient background`（6 张） | **从 render 段撤掉空白背景词** —— 场景段要森林/街道、渲染段同时要求白底，等于一边要背景一边不要 |
 
 优先级一律 **视角 > 动作卡 > 环境卡**。
 
@@ -83,6 +84,8 @@
 **画法让位只剔「画风卡自己主张的那一族」**：八族是赛璐璐 / 平涂 / 厚涂 / 线稿 / 水彩 / 半调 / 版画 / 渐变。`style_shadowverse_crisp` 正向写 `cel shading`、负面却压 `flat colors` —— 意思是「要赛璐璐分色、但不要平涂」，这是它刻意的取舍，动了就把画风改掉了，所以**画风卡自己的负面一个字都不动**。清的只是角色卡 / 造型卡 / 视角那一串：`crab_vampire` 的 negative 也带着 `cel shading, flat colors, painterly`，19 张造型卡只是复制了同一段样板。
 
 **闭眼让位只认全闭**：`half-closed eyes` / `eyes half closed` 眼睛还露着、虹膜看得见，异色瞳照样成立，动了反而丢信息 —— 那一档故意不管。剥的只有 `eyes / pupils / irises / catchlight / lashes / heterochromia`，**光照与画法一律保留**（`candle light`、`half of face in shadow`、`halftone dots` 全留着）。
+
+**场景让位只删「字面空白」一族**：`white / simple / plain / empty / solid / blank / pale background`、`pale pink background`、`pale gradient background`。**`negative space` 一个字不动** —— 那是构图留白，是天野喜孝 / 水墨那档的命根子，跟「背景是什么」无关。另外**没选环境卡时一律不动**：那时候画风卡写白底是对的（缩略图、卡牌展示都靠它），只有环境卡的 `tags.place` 非空才算「要背景」。
 
 **注意块（黄色）**：剩下的都是没法机械判断的（远景吃掉异色瞳、背影吃异色瞳、动作卡原本在别的场景、特殊机位冲突…）。
 
@@ -197,7 +200,7 @@ cd _dsh_plugin/dsh-card-library
 node selfcheck.mjs
 ```
 
-176 项断言：六类 counts、卡片字段、缩略图、越界防护、compose 正/负面、参数优先级、动作卡开关、道具卡、外域 Host 403、脸光归属、景别裁决、机位裁决、头出画清脸光、对焦脸让位、道具重名去重、画幅裁决、画法让位、闭眼让位、存卡规则、全库体检、模型工具输出。
+188 项断言：六类 counts、卡片字段、缩略图、越界防护、compose 正/负面、参数优先级、动作卡开关、道具卡、外域 Host 403、脸光归属、景别裁决、机位裁决、头出画清脸光、对焦脸让位、道具重名去重、画幅裁决、画法让位、闭眼让位、场景让位、存卡规则、全库体检、模型工具输出。
 
 ## 路由
 

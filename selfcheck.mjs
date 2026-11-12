@@ -841,6 +841,64 @@ check('closedEyes 开关：眼睛词同样清掉',
   !String(shutD.json?.positive || '').toLowerCase().includes('heterochromia'),
   String(shutD.json?.positive || '').slice(0, 200))
 
+// ── v14：场景让位 —— 选了环境卡时，画风卡的「空白背景」族必须撤 ──────
+// 6 张画风卡的 render 写着 simple / white / empty / pale gradient background
+// （那是「没环境卡时别乱加背景」用的）。140 张环境卡全部带 place，
+// 两边同时存在就是「要森林」和「要白底」互相拆台。
+const BLANK_BG_RE = /\b(white background|simple background|plain background|empty background|solid background|blank background|pale background|pale pink background|pale gradient background)\b/i
+
+const bgA = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { styleId: 'style_amano_ethereal', characterId: 'crab_vampire', sceneId: 'sc_forest_fog' },
+})
+const bgAPos = String(bgA.json?.positive || '')
+const bgARender = String(bgA.json?.segments?.render || '')
+check('场景让位：空白背景词已从正向撤掉', !BLANK_BG_RE.test(bgAPos), bgAPos.slice(0, 200))
+check('场景让位：render 段里也不留', !BLANK_BG_RE.test(bgARender), bgARender.slice(0, 200))
+check('场景让位：报 bgblank autofix',
+  (bgA.json?.autofixes || []).some((a) => a.kind === 'bgblank'),
+  (bgA.json?.autofixes || []).map((a) => a.kind).join(','))
+check('场景让位：场景段照旧在（森林/雾没被误删）',
+  /forest/i.test(String(bgA.json?.segments?.scene || '')), String(bgA.json?.segments?.scene || ''))
+check('场景让位：negative space（构图留白）必须留着',
+  /negative space/i.test(bgAPos), bgAPos.slice(0, 240))
+
+// 没选环境卡时，白底是画风卡自己的选择，不许动
+const bgB = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { styleId: 'style_amano_ethereal', characterId: 'crab_vampire' },
+})
+const bgBPos = String(bgB.json?.positive || '')
+check('场景让位：没选环境卡时保留白底', BLANK_BG_RE.test(bgBPos), bgBPos.slice(0, 200))
+check('场景让位：没选环境卡时不报 bgblank',
+  !(bgB.json?.autofixes || []).some((a) => a.kind === 'bgblank'),
+  (bgB.json?.autofixes || []).map((a) => a.kind).join(','))
+
+// render 里本来就没有空白词的画风卡不该被报
+const bgC = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { styleId: 'style_gothic_baroque', characterId: 'crab_vampire', sceneId: 'sc_forest_fog' },
+})
+check('场景让位：无空白词的画风卡不报 bgblank',
+  !(bgC.json?.autofixes || []).some((a) => a.kind === 'bgblank'),
+  (bgC.json?.autofixes || []).map((a) => a.kind).join(','))
+
+// 水墨 / 望月 / 淡彩 / 全彩条漫 四张也要过
+for (const [styleId, sceneId] of [
+  ['style_ink_wash', 'sc_wide_forest_path'],
+  ['style_mochizuki_cel', 'sc_sock_cafe_crossed'],
+  ['style_sketch_wash', 'sc_rain_street_lookback'],
+  ['style_manga_fullcolor_v1', 'sc_wide_alley_lookback'],
+]) {
+  const r = await call('/dsh-card-library/compose', {
+    method: 'POST',
+    body: { styleId, characterId: 'crab_vampire', sceneId },
+  })
+  check(`场景让位：${styleId} 空白背景词已撤`,
+    !BLANK_BG_RE.test(String(r.json?.positive || '')),
+    String(r.json?.positive || '').slice(0, 200))
+}
+
 // ── 存卡规则：路由 + 工具 ──────────────────────────────────────────
 const rulesRes = await call('/dsh-card-library/rules')
 check('规则路由可用', rulesRes.status === 200 && rulesRes.json?.ok === true, rulesRes.status)
