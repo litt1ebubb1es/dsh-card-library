@@ -884,6 +884,71 @@ function sceneWantsBackground(scene) {
 }
 
 /**
+ * 画风卡 render 段里的「具体地点」（v15）—— v14 只处理了「字面空白」那一族，
+ * 但 render 里还有另一种背景声明：**写死一个地点**。
+ *
+ * 全库只有 `style_retro90_cel` 一张：`… sepia tint, aged film, city street,
+ * telephone pole, evening, detailed background`。它是 90 年代 OVA 的街景设定，
+ * 配街景环境卡时是对的，配卧室 / 浴室 / 海滩时就变成「一边说在卧室、
+ * 一边说在街上」。影响面 1 张画风卡 × 130 张非街景环境卡。
+ *
+ * 和 v14 的区别与分寸：
+ * - v14 撤的是「不要背景」，v15 撤的是「背景在别处」—— 同一族的另一半。
+ * - **只撤地点词**（city street / telephone pole 这类可指认的地点与街景元素）。
+ * - `detailed background` 是**密度词**（`style_manga_ink_v1` 靠它保住信息量），
+ *   不是地点，一个字不动 —— 这是本版最容易搞错的地方。
+ * - `evening` 这类时间/光词不在这里撤：晚上在卧室并不矛盾，交给 warning 提醒。
+ */
+const STYLE_PLACE_RE = /\b(?:city street|cityscape|street|alley|telephone pole|power line|rooftop|forest|classroom|bedroom|bathroom|kitchen|cafe|office|beach|flower field|meadow|ruins|shrine|temple|station|train interior|car interior|landscape)\b/gi
+
+/**
+ * 环境卡的 place 和这个地点词对不对得上？
+ * 双向包含：`street` 认 `city street`，`flower field` 认 `field`。
+ * 另外认「同族」：`telephone pole` / `power line` 属于街景，环境卡是 street /
+ * alley / crosswalk 时不该被当成「另一个地方」撤掉 —— 它们是街景的构件，
+ * 不是别的地点（v15 第一版把电线杆当成冲突撤了，`_probe_v15.mjs` ②组测出）。
+ */
+const PLACE_FAMILY = {
+  'telephone pole': ['street', 'city street', 'alley', 'crosswalk', 'bridge', 'rooftop'],
+  'power line': ['street', 'city street', 'alley', 'crosswalk', 'bridge', 'rooftop'],
+  street: ['alley', 'crosswalk', 'city street'],
+  alley: ['street', 'city street', 'crosswalk'],
+  crosswalk: ['street', 'city street', 'alley'],
+}
+
+function placeMatchesScene(word, place) {
+  const w = String(word || '').toLowerCase().trim()
+  const p = String(place || '').toLowerCase().trim()
+  if (!w || !p) return false
+  if (p === w || p.includes(w) || w.includes(p)) return true
+  const fam = PLACE_FAMILY[w]
+  if (fam && fam.some((f) => p === f || p.includes(f) || f.includes(p))) return true
+  return false
+}
+
+/**
+ * 撤掉 render 段里与环境卡冲突的地点词。
+ * 返回 { text, dropped }，dropped 是真正被撤掉的原文片段（报 autofix 用）。
+ */
+function stripStylePlace(seg, place) {
+  if (!seg || !place) return { text: String(seg || ''), dropped: [] }
+  const dropped = []
+  const out = []
+  for (const raw of String(seg).split(',')) {
+    const t = raw.trim()
+    if (!t) continue
+    STYLE_PLACE_RE.lastIndex = 0
+    const m = t.match(STYLE_PLACE_RE)
+    if (m && !m.some((w) => placeMatchesScene(w, place))) {
+      dropped.push(t)
+      continue
+    }
+    out.push(t)
+  }
+  return { text: out.join(', '), dropped }
+}
+
+/**
  * 配方自检：把「选出来的卡互相打架」这件事在生成前就说清楚。
  * 这些都是实测踩过的（n58–n61、卡片库天台那轮、环境/动作拆分那轮）。
  */
@@ -1507,7 +1572,13 @@ function compose(input) {
   const sceneBgWanted = sceneWantsBackground(scene)
   const renderRaw = style?.render || ''
   const blankBgFix = sceneBgWanted ? stripBlankBg(renderRaw) : { text: renderRaw, dropped: [] }
-  const render = eyesShut ? stripEyeTokens(blankBgFix.text).text : blankBgFix.text
+  // 具体地点让位（v15）：render 里写死的地点（`city street` / `telephone pole`），
+  // 和环境卡的 place 对不上就撤掉。只撤地点词，`detailed background`（密度词）不动。
+  const scenePlace = clean((scene && scene.tags && scene.tags.place) || '')
+  const placeFix = scenePlace
+    ? stripStylePlace(blankBgFix.text, scenePlace)
+    : { text: blankBgFix.text, dropped: [] }
+  const render = eyesShut ? stripEyeTokens(placeFix.text).text : placeFix.text
 
   // 拼装顺序：视角段紧跟在场景之后 —— 场景说明「在哪」，视角说明「从哪儿看、往哪儿看」。
   // 放在场景之前会被场景的 camera 词盖掉，放在最后又压不住 render 段的 detailed eyes。
@@ -1682,6 +1753,17 @@ function compose(input) {
       kind: 'bgblank',
       auto: true,
       message: `选了环境卡（有具体场景），已从画风卡的渲染段撤掉空白背景词：${blankBgFix.dropped.join(' / ')}（否则场景段要森林/街道，渲染段同时要求白底，两边拆台）`,
+    })
+  }
+
+  // 地点让位（v15）：render 里写死的地点与环境卡对不上。
+  // 全库只有 `style_retro90_cel`（`city street` / `telephone pole`）这一张，
+  // 配卧室 / 浴室 / 海滩时会变成「一边说在卧室、一边说在街上」。
+  if (placeFix.dropped.length) {
+    autofixes.push({
+      kind: 'place',
+      auto: true,
+      message: `画风卡的渲染段写着「${placeFix.dropped.join(' / ')}」，但环境卡是「${scenePlace}」—— 已撤掉渲染段的地点词（否则两段各说一个地方，模型会挑一个或画出拼接背景）`,
     })
   }
 

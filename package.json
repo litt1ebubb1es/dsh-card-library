@@ -1,6 +1,6 @@
 {
   "name": "dsh-card-library",
-  "version": "1.1.7",
+  "version": "1.1.8",
   "private": false,
   "description": "卡片库：画风卡 / 角色卡 / 造型卡 / 环境卡 / 动作卡 / 道具卡，右侧栏可视化挑选并组合成出图配方；内置存卡规则与全库体检",
   "type": "module",

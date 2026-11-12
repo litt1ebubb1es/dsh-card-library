@@ -68,6 +68,7 @@
 | 画法 | 角色卡 / 造型卡的负面里写着画风卡自己主张的画法词（`cel shading` / `flat colors` / `painterly` …） | **剔掉那一条** —— 19 张造型卡共用一段「柔光半写实」样板负面，换赛璐璐 / 平涂 / 水彩画风卡时等于一边要一边不要 |
 | 闭眼 | 动作卡写 `closed eyes` / `sleeping`（全库 13 张），正向却带着 `heterochromia` / `symbol-shaped pupils` / `blue eyes` / `red eyes` / `catchlight in both eyes` | **撤掉眼睛专属词**（角色段、脸光、render 三处一起剥）—— 闭着眼画不出异色瞳和瞳孔高光，留着只会把脸拽回正面、逼角色睁眼 |
 | 空白背景 | 选了环境卡（140 张全部带 `place`），画风卡的 `render` 却写着 `simple background` / `white background` / `empty background` / `pale gradient background`（6 张） | **从 render 段撤掉空白背景词** —— 场景段要森林/街道、渲染段同时要求白底，等于一边要背景一边不要 |
+| 地点 | 画风卡 `render` 里写死一个具体地点（`style_retro90_cel` 的 `city street` / `telephone pole`），和环境卡的 `place` 对不上（130 张非街景环境卡） | **撤掉 render 段的地点词** —— 两段各说一个地方，模型会挑一个或画出拼接背景（海滩上长出一条城市天际线） |
 
 优先级一律 **视角 > 动作卡 > 环境卡**。
 
@@ -86,6 +87,8 @@
 **闭眼让位只认全闭**：`half-closed eyes` / `eyes half closed` 眼睛还露着、虹膜看得见，异色瞳照样成立，动了反而丢信息 —— 那一档故意不管。剥的只有 `eyes / pupils / irises / catchlight / lashes / heterochromia`，**光照与画法一律保留**（`candle light`、`half of face in shadow`、`halftone dots` 全留着）。
 
 **场景让位只删「字面空白」一族**：`white / simple / plain / empty / solid / blank / pale background`、`pale pink background`、`pale gradient background`。**`negative space` 一个字不动** —— 那是构图留白，是天野喜孝 / 水墨那档的命根子，跟「背景是什么」无关。另外**没选环境卡时一律不动**：那时候画风卡写白底是对的（缩略图、卡牌展示都靠它），只有环境卡的 `tags.place` 非空才算「要背景」。
+
+**地点让位只撤「地点词」，其余三档一律不动**：`detailed background` 是**密度词**不是地点（墨线卡靠它保住信息量，撤了画面变空）、`evening` / `dark background` / `candle light` 是**时间与光**（在卧室并不矛盾）、**没选环境卡时也不撤**（那时画风卡自带的街景设定是对的）。判定按**同族表**走：`telephone pole` / `power line` 属街景构件，配 `street` / `alley` / `crosswalk` / `bridge` / `rooftop` 都算匹配，不会被误撤 —— 早先只做双向子串包含，街景环境卡配 retro90 时电线杆被当成「另一个地点」撤掉了。
 
 **注意块（黄色）**：剩下的都是没法机械判断的（远景吃掉异色瞳、背影吃异色瞳、动作卡原本在别的场景、特殊机位冲突…）。
 
@@ -200,7 +203,7 @@ cd _dsh_plugin/dsh-card-library
 node selfcheck.mjs
 ```
 
-188 项断言：六类 counts、卡片字段、缩略图、越界防护、compose 正/负面、参数优先级、动作卡开关、道具卡、外域 Host 403、脸光归属、景别裁决、机位裁决、头出画清脸光、对焦脸让位、道具重名去重、画幅裁决、画法让位、闭眼让位、场景让位、存卡规则、全库体检、模型工具输出。
+200 项断言：六类 counts、卡片字段、缩略图、越界防护、compose 正/负面、参数优先级、动作卡开关、道具卡、外域 Host 403、脸光归属、景别裁决、机位裁决、头出画清脸光、对焦脸让位、道具重名去重、画幅裁决、画法让位、闭眼让位、场景让位、地点让位、存卡规则、全库体检、模型工具输出。
 
 ## 路由
 

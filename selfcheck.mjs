@@ -899,6 +899,67 @@ for (const [styleId, sceneId] of [
     String(r.json?.positive || '').slice(0, 200))
 }
 
+// ── v15：地点让位 —— render 里写死的具体地点要跟环境卡对齐 ──────────
+// 全库只有 style_retro90_cel 一张：`city street, telephone pole` 是 90 年代 OVA 的
+// 街景设定，配卧室 / 浴室 / 海滩时两段各说一个地方。detailed background 是密度词不是地点。
+const STYLE_PLACE_RE = /\b(city street|telephone pole)\b/i
+
+const plA = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { styleId: 'style_retro90_cel', characterId: 'crab_vampire', sceneId: 'sc_bedroom_sleepshirt' },
+})
+const plARender = String(plA.json?.segments?.render || '')
+check('地点让位：retro90×卧室 render 不再有 city street', !STYLE_PLACE_RE.test(plARender), plARender.slice(-200))
+check('地点让位：retro90×卧室 报 place autofix',
+  (plA.json?.autofixes || []).some((a) => a.kind === 'place'),
+  (plA.json?.autofixes || []).map((a) => a.kind).join(','))
+check('地点让位：detailed background（密度词）必须留着',
+  /detailed background/i.test(plARender), plARender.slice(-200))
+check('地点让位：evening（时间词）不归本规则管，必须留着',
+  /evening/i.test(plARender), plARender.slice(-200))
+check('地点让位：画法词一个不少（cel shading / flat colors / film grain）',
+  /cel shading/i.test(plARender) && /flat colors/i.test(plARender) && /film grain/i.test(plARender),
+  plARender.slice(0, 200))
+
+// 街景环境卡 + 街景 render：同族，必须保留且不报
+const plB = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { styleId: 'style_retro90_cel', characterId: 'crab_vampire', sceneId: 'sc_rain_street_lookback' },
+})
+check('地点让位：街景环境卡时 city street 保留',
+  /city street/i.test(String(plB.json?.segments?.render || '')),
+  String(plB.json?.segments?.render || '').slice(-200))
+check('地点让位：街景环境卡时不报 place（telephone pole 属街景构件，同族不撤）',
+  !(plB.json?.autofixes || []).some((a) => a.kind === 'place'),
+  (plB.json?.autofixes || []).map((a) => a.kind).join(','))
+
+// 没选环境卡：画风卡自带街景设定是对的，不许动
+const plC = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { styleId: 'style_retro90_cel', characterId: 'crab_vampire' },
+})
+check('地点让位：没选环境卡时 city street 保留',
+  /city street/i.test(String(plC.json?.segments?.render || '')),
+  String(plC.json?.segments?.render || '').slice(-200))
+check('地点让位：没选环境卡时不报 place',
+  !(plC.json?.autofixes || []).some((a) => a.kind === 'place'),
+  (plC.json?.autofixes || []).map((a) => a.kind).join(','))
+
+// render 里没有地点词的画风卡不该被报（哥特只有光词、墨线只有密度词）
+for (const [styleId, sceneId] of [
+  ['style_gothic_baroque', 'sc_beach_midsummer'],
+  ['style_manga_ink_v1', 'sc_bedroom_sleepshirt'],
+  ['style_ukiyoe_print', 'sc_bedroom_sleepshirt'],
+]) {
+  const r = await call('/dsh-card-library/compose', {
+    method: 'POST',
+    body: { styleId, characterId: 'crab_vampire', sceneId },
+  })
+  check(`地点让位：${styleId} 无地点词不报 place`,
+    !(r.json?.autofixes || []).some((a) => a.kind === 'place'),
+    (r.json?.autofixes || []).map((a) => a.kind).join(','))
+}
+
 // ── 存卡规则：路由 + 工具 ──────────────────────────────────────────
 const rulesRes = await call('/dsh-card-library/rules')
 check('规则路由可用', rulesRes.status === 200 && rulesRes.json?.ok === true, rulesRes.status)
