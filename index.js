@@ -279,6 +279,51 @@ function stripFaceOnly(seg) {
 }
 
 /**
+ * 闭眼 / 睡着（v13）。
+ *
+ * 动作卡写 `closed eyes` / `sleeping` / `eyes shut` 时，正向里那些「必须睁着眼才看得见」
+ * 的词全部作废：`heterochromia`（异色瞳）、`symbol-shaped pupils`（瞳孔形状）、
+ * `catchlight in both eyes`（眼里的高光）、`detailed eyes`。
+ *
+ * 这些词不但画不出来，还会**反过来把脸拽向镜头** —— 模型为了把它们表达出来，
+ * 只能让角色睁眼或者把脸转正，闭眼/睡着的动作当场废掉。
+ * 全库 13 张全闭眼动作卡（另有 13 张只写 `half-closed eyes`）× 16 张画风卡。
+ *
+ * **只认「全闭」**：`half-closed eyes` / `eyes half closed` 眼睛还露着，虹膜看得见，
+ * 异色瞳照样成立，动了反而丢信息 —— 那一档故意不管。
+ */
+const EYES_SHUT_RE = /\b(closed eyes|eyes closed|eyes shut|eye closed|one eye closed|sleeping|asleep|eyes closed tightly)\b/i
+
+function isEyesShut(text) {
+  return EYES_SHUT_RE.test(String(text || ''))
+}
+
+/**
+ * 词级：任何带 eyes / pupils / irises / catchlight / lashes / heterochromia 的标签都算眼睛专属。
+ *
+ * 判定前先把下划线换成空格 —— 角色卡 `character_segment_closed_eyes` 里存的是
+ * `symbol-shaped_pupils` / `heterochromia` 这种带下划线的原始形式，而 `\b` 不认下划线，
+ * 直接测会漏掉（实测漏了 symbol-shaped_pupils）。
+ */
+const EYE_TOKEN_RE = /\b(eyes?|pupils?|irises?|catchlights?|eyelashes|lashes|heterochromia)\b/i
+
+function stripEyeTokens(seg) {
+  if (!seg) return { text: '', dropped: [] }
+  const out = []
+  const dropped = []
+  for (const raw of String(seg).split(',')) {
+    const t = raw.trim()
+    if (!t) continue
+    if (EYE_TOKEN_RE.test(t.replace(/_/g, ' '))) {
+      dropped.push(t)
+      continue
+    }
+    out.push(t)
+  }
+  return { text: out.join(', '), dropped }
+}
+
+/**
  * 角色卡 → 角色提示词段。
  *
  * v4 起角色卡拆成两半：body_segment（身材/肤色/体型）+ feature_segment（种族特征、
@@ -286,19 +331,23 @@ function stripFaceOnly(seg) {
  * 塞在 character_segment 里，换个造型就会跟造型卡打架。
  * character_segment 保留（脚本里拼成 body+feature），老卡没有新字段时直接用它。
  */
-function characterSegment(character, closedEyes, backView) {
+function characterSegment(character, closedEyes, backView, eyesShut) {
   if (!character) return ''
   if (closedEyes && character.character_segment_closed_eyes) {
-    return clean(character.character_segment_closed_eyes)
+    const seg = clean(character.character_segment_closed_eyes)
+    return eyesShut ? stripEyeTokens(seg).text : seg
   }
   const body = clean(character.body_segment || '')
   const feature = clean(character.feature_segment || '')
   if (body || feature) {
     const seg = joinSeg(body, feature)
-    return backView ? stripFaceOnly(seg) : seg
+    // 顺序：先按背影剥脸，再按闭眼剥眼睛 —— 两边都不成立时才原样输出。
+    const back = backView ? stripFaceOnly(seg) : seg
+    return eyesShut ? stripEyeTokens(back).text : back
   }
   const legacy = clean(character.character_segment || '')
-  return backView ? stripFaceOnly(legacy) : legacy
+  const back = backView ? stripFaceOnly(legacy) : legacy
+  return eyesShut ? stripEyeTokens(back).text : back
 }
 
 /**
@@ -740,19 +789,26 @@ function faceLightFor(faceLight, scene) {
  * 那里必须让位给降级版或清空，否则模型强行拉脸部特写（n64 实测）。
  * 这个例外是有意保留的，不是漏改。
  */
-function resolveFaceLight(styleFaceLight, scene, viewSeg, headless) {
+function resolveFaceLight(styleFaceLight, scene, viewSeg, headless, eyesShut) {
   const styleFace = styleFaceLight || ''
   // 画面里根本没有头（动作卡写了 head out of frame）—— 任何脸光词都是纯噪音。
   // 「catchlight in both eyes」在一条只拍腿的构图里只会把模型逼出一个头来（n100）。
   if (headless) return ''
-  if (!viewSeg || !viewSeg.pos) return faceLightFor(styleFace, scene)
+  const done = (text) => {
+    // 闭眼 / 睡着（v13）：脸光里只有 `catchlight in both eyes` 这类眼睛词作废，
+    // 「candle light / half of face in shadow / halftone dots」这些**光照与画法**必须留着
+    // —— 那是画风卡的命根子，一起删掉就等于把画风关了。
+    if (!eyesShut) return text
+    return stripEyeTokens(text).text
+  }
+  if (!viewSeg || !viewSeg.pos) return done(faceLightFor(styleFace, scene))
   if (viewSeg.faceMode === 'none') return ''
   if (viewSeg.faceMode === 'far') {
     // 远景：脸的像素本来就不够看清光照细节，此时「不逼特写」比「保住画风光照」重要
-    return styleFace ? FAR_FACE_LIGHT : ''
+    return done(styleFace ? FAR_FACE_LIGHT : '')
   }
   // 正常景别：画风卡说什么就是什么；画风卡没写才用通用兜底
-  return styleFace || 'face fully lit, catchlight in both eyes, gentle highlight on cheek'
+  return done(styleFace || 'face fully lit, catchlight in both eyes, gentle highlight on cheek')
 }
 
 /**
@@ -1333,10 +1389,15 @@ function compose(input) {
 
   const q = style?.quality_prefix || 'masterpiece, best quality, score_7, score_9, very aesthetic, ultra detailed, '
   const art = style?.artist_segment || ''
+  // 闭眼 / 睡着（v13）：必须在这里先判，因为角色段、脸光、render 三段都要让位。
+  // 来源取「动作卡 pose_tags + 造型卡动作 + 显式 closedEyes」，不用 pose_nl（散文不进提示词）。
+  const eyesShut = input.closedEyes === true
+    || isEyesShut(poseSegment(pose))
+    || isEyesShut(lookPoseSegment(look))
   // 背影机位（back / back_left / back_right）下剥掉脸部专属特征，否则模型为了画
   // 异色瞳会把脸强行转过来（bisect 实测：角色段是唯一把背影翻成正脸的那一段）。
   const viewBack = !!(view && (view.angle === 'back' || view.angle === 'back_left' || view.angle === 'back_right'))
-  const charSeg = characterSegment(character, input.closedEyes === true, viewBack)
+  const charSeg = characterSegment(character, input.closedEyes === true, viewBack, eyesShut)
   const lookCloth = lookClothSegment(look)
   const lookPose = lookPoseSegment(look)
   // 动作来源优先级：动作卡 > 造型卡 legacy_pose_ref（v4 迁出的那批）> 造型卡自带 pose_tags。
@@ -1397,8 +1458,11 @@ function compose(input) {
       extra_camera: stripShotWords(stripViewpointWords(clean(scene?.extra_camera))),
     }
   })()
-  const faceLight = resolveFaceLight(style?.face_light || '', sceneForFace, viewSeg, headless)
-  const render = style?.render || ''
+  const faceLight = resolveFaceLight(style?.face_light || '', sceneForFace, viewSeg, headless, eyesShut)
+  // render 段也有眼睛词（`detailed eyes` / `glossy eyes` / `catchlight`），闭眼时同样作废。
+  // 只剥眼睛标签，`smooth digital painting` / `cel shading` / `bloom` 这些画法词一个不动。
+  const renderRaw = style?.render || ''
+  const render = eyesShut ? stripEyeTokens(renderRaw).text : renderRaw
 
   // 拼装顺序：视角段紧跟在场景之后 —— 场景说明「在哪」，视角说明「从哪儿看、往哪儿看」。
   // 放在场景之前会被场景的 camera 词盖掉，放在最后又压不住 render 段的 detailed eyes。
@@ -1536,6 +1600,33 @@ function compose(input) {
       auto: true,
       message: `「${names}」造型卡已经穿了 —— 已撤掉道具那一份（否则同一件东西会进正向两三次，模型画出双份）`,
     })
+  }
+
+  // 闭眼 / 睡着（v13）：眼睛专属词在角色段、脸光段、render 段里都作废。
+  // 这三段都是「必须睁眼才成立」的描述，留着只会把脸拽正 / 逼角色睁眼。
+  if (eyesShut) {
+    const rawEye = [
+      clean(character?.body_segment || ''),
+      clean(character?.feature_segment || ''),
+      clean(character?.character_segment || ''),
+      clean(character?.character_segment_closed_eyes || ''),
+      style?.face_light || '',
+      style?.render || '',
+    ].join(', ')
+    const seenEye = new Set()
+    const eyeDropped = stripEyeTokens(rawEye).dropped.filter((t) => {
+      const k = t.toLowerCase()
+      if (seenEye.has(k)) return false
+      seenEye.add(k)
+      return true
+    })
+    if (eyeDropped.length) {
+      autofixes.push({
+        kind: 'eyes',
+        auto: true,
+        message: `动作卡写了闭眼 / 睡着 —— 已撤掉眼睛专属词：${eyeDropped.join(' / ')}（闭着眼画不出异色瞳和瞳孔高光，留着只会把脸拽回正面、逼角色睁眼）`,
+      })
+    }
   }
 
   // 画幅冲突（v11）：环境卡说横、动作卡说竖（或反过来）。

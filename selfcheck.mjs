@@ -794,6 +794,53 @@ check('画法：画风卡不主张该族时 cel shading 仍留在负面',
   String(medD.json?.negative || '').toLowerCase().includes('cel shading'),
   String(medD.json?.negative || '').toLowerCase().includes('cel shading'))
 
+// ── v13：闭眼 / 睡着 —— 眼睛专属词必须让位 ────────────────────────
+// 动作卡写 closed eyes / sleeping 时，正向里「必须睁眼才看得见」的词全作废：
+// heterochromia / symbol-shaped pupils / blue eyes / red eyes / catchlight in both eyes。
+// 这些词画不出来，还会把脸拽正、逼角色睁眼。
+const shutA = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { styleId: 'style_gothic_baroque', characterId: 'crab_vampire', poseId: 'pose_sofa_catnap' },
+})
+const shutPos = String(shutA.json?.positive || '').toLowerCase()
+const shutFace = String(shutA.json?.segments?.face_light || '')
+check('闭眼：角色段不留异色瞳', !shutPos.includes('heterochromia'), shutPos.slice(0, 200))
+check('闭眼：角色段不留瞳孔形状', !shutPos.includes('symbol-shaped pupils'), shutPos.slice(0, 200))
+check('闭眼：脸光段不留 catchlight', !/catchlight/i.test(shutFace), shutFace)
+check('闭眼：报 eyes autofix', (shutA.json?.autofixes || []).some((a) => a.kind === 'eyes'),
+  (shutA.json?.autofixes || []).map((a) => a.kind).join(','))
+check('闭眼：脸光的烛光与半脸阴影必须留着', /candle light/i.test(shutFace) && /half of face in shadow/i.test(shutFace), shutFace)
+check('闭眼：发型与身材不受影响', shutPos.includes('white hair') && shutPos.includes('thick thighs'), shutPos.slice(0, 200))
+
+// 睁眼动作卡（对照）：异色瞳与 catchlight 一个都不许少
+const shutB = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { styleId: 'style_gothic_baroque', characterId: 'crab_vampire', poseId: 'pose_ballet' },
+})
+const shutBPos = String(shutB.json?.positive || '').toLowerCase()
+check('睁眼对照：异色瞳保留', shutBPos.includes('heterochromia'), shutBPos.slice(0, 200))
+check('睁眼对照：不报 eyes autofix', !(shutB.json?.autofixes || []).some((a) => a.kind === 'eyes'),
+  (shutB.json?.autofixes || []).map((a) => a.kind).join(','))
+
+// 半闭眼不算全闭 —— 虹膜还露着，异色瞳照样成立，动了反而丢信息
+const shutC = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { styleId: 'style_gothic_baroque', characterId: 'crab_vampire', poseId: 'pose_candle_lowgaze' },
+})
+const shutCPos = String(shutC.json?.positive || '').toLowerCase()
+check('半闭眼：异色瞳保留（眼睛还露着）', shutCPos.includes('heterochromia'), shutCPos.slice(0, 200))
+check('半闭眼：不报 eyes autofix', !(shutC.json?.autofixes || []).some((a) => a.kind === 'eyes'),
+  (shutC.json?.autofixes || []).map((a) => a.kind).join(','))
+
+// 显式开关 closedEyes:true 也走同一条路
+const shutD = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { styleId: 'style_gothic_baroque', characterId: 'crab_vampire', poseId: 'pose_sofa_catnap', closedEyes: true },
+})
+check('closedEyes 开关：眼睛词同样清掉',
+  !String(shutD.json?.positive || '').toLowerCase().includes('heterochromia'),
+  String(shutD.json?.positive || '').slice(0, 200))
+
 // ── 存卡规则：路由 + 工具 ──────────────────────────────────────────
 const rulesRes = await call('/dsh-card-library/rules')
 check('规则路由可用', rulesRes.status === 200 && rulesRes.json?.ok === true, rulesRes.status)
