@@ -254,6 +254,57 @@ function lookPoseSegment(look) {
 }
 
 /**
+ * 造型卡的妆造层（v30）：`body_decor` 三个子键从来没进过配方。
+ *
+ * 21 张造型卡写了它（48 个值），插件只读 `look_tags`，于是 ——
+ *   有 6 张卡把值手动抄进了 `look_tags`（抄了就没丢，纯属巧合）；
+ *   剩下 15 张卡的妆造静默消失：`look_ballet` 的舞台妆、`look_qipao` 的淡妆 +
+ *   法式美甲、`look_military` 的素颜、`look_red_hoodie` 的腮红和泪痣、全丢。
+ * 这不是「卡写错了」，是字段没接线（v6 景别 / v7 机位 / v11 画幅 / v18 景深
+ * 都是同一个毛病：卡里有值，代码不读）。
+ *
+ * 为什么不能无脑拼进正向：`skin_detail` 里 3 张卡写着 `glistening skin`
+ * （home_sweeping_grey / look_beige_sweater / look_grey_orange_skirt）。
+ * 那是油光词（n17 实测结论：正向写光泽皮肤必出塑料感），而且 11/16 张画风卡的
+ * 负面里就钉着 `glossy / shiny / oily / specular / plastic skin / waxy skin`
+ * —— 正向要油光、负面要哑光，两边拆台，模型只会给出最难看的那一种。
+ * 所以油光族整条剔掉并报出来，其余照拼。
+ *
+ * 只认精确词，不能放宽成 `/glossy/`：`glossy lips` 是唇妆（正当），
+ * 被它连带剔掉的会是整条唇部描述（同 n102 的 `ring\b` / n119 的 `handbag` 坑）。
+ */
+const OILY_SKIN_RE = /^(glistening skin|shiny skin|glossy skin|oily skin|sweaty skin|wet skin|dewy skin|smooth skin|soft skin|specular|subsurface scattering|glossy|shiny)$/i
+
+function bodyDecorSegment(look) {
+  const decor = look && look.body_decor
+  if (!decor) return { text: '', kept: [], dropped: [] }
+  // 老卡把 body_decor 写成字符串（2 张：一句首饰/刺绣描述），原样当一段用。
+  if (typeof decor === 'string') {
+    const t = clean(decor)
+    if (!t) return { text: '', kept: [], dropped: [] }
+    const toks = t.split(',').map((x) => x.trim()).filter(Boolean)
+    const kept = toks.filter((x) => !OILY_SKIN_RE.test(x))
+    const dropped = toks.filter((x) => OILY_SKIN_RE.test(x))
+    return { text: kept.join(', '), kept, dropped }
+  }
+  if (typeof decor !== 'object') return { text: '', kept: [], dropped: [] }
+  const order = ['makeup', 'nails', 'skin_detail']
+  const kept = []
+  const dropped = []
+  for (const key of order) {
+    const v = clean(decor[key])
+    if (!v) continue
+    for (const tok of v.split(',')) {
+      const t = tok.trim()
+      if (!t) continue
+      if (OILY_SKIN_RE.test(t)) { dropped.push(t); continue }
+      kept.push(t)
+    }
+  }
+  return { text: kept.join(', '), kept, dropped }
+}
+
+/**
  * 背影机位下，角色卡里「必须看得见脸才能表现」的词全部剥掉。
  *
  * 实测（bisect 七张，同 seed 只加一段）：裸配方能出真背影；加画师段、render 段、
@@ -2153,7 +2204,11 @@ function compose(input) {
   // 异色瞳会把脸强行转过来（bisect 实测：角色段是唯一把背影翻成正脸的那一段）。
   const viewBack = !!(view && (view.angle === 'back' || view.angle === 'back_left' || view.angle === 'back_right'))
   const charSeg = characterSegment(character, input.closedEyes === true, viewBack, eyesShut)
-  const lookCloth = lookClothSegment(look)
+  // 妆造层（v30）：`body_decor` 的 makeup / nails / skin_detail 一直没接线，
+  // 21 张卡里 15 张的妆造静默丢失。拼在造型段尾部（joinSeg 会按大小写去重，
+  // 手动抄进 look_tags 的那 6 张不会重复）。油光族整条剔掉 —— 见 bodyDecorSegment。
+  const decorFix = bodyDecorSegment(look)
+  const lookCloth = joinSeg(lookClothSegment(look), decorFix.text)
   const lookPose = lookPoseSegment(look)
   // 动作来源优先级：动作卡 > 造型卡 legacy_pose_ref（v4 迁出的那批）> 造型卡自带 pose_tags。
   // 动作卡是显式选的，一旦选了就以它为准；造型卡的动作默认不进配方，
@@ -2554,6 +2609,19 @@ function compose(input) {
     })
   }
 
+  // 妆造层的油光族（v30）：`body_decor.skin_detail` 里 3 张卡写着 `glistening skin`。
+  // 那是 n17 明确否掉的油光词，而且 11/16 张画风卡的负面里钉着
+  // `glossy / shiny / oily / specular / plastic skin / waxy skin` —— 正向要油光、
+  // 负面要哑光，两边拆台，模型只会给出最难看的那一种。
+  // 只剔精确词，`glossy lips`（唇妆）不受影响。
+  if (decorFix.dropped.length) {
+    autofixes.push({
+      kind: 'decoroily',
+      auto: true,
+      message: `造型卡的妆造里写着油光皮肤：${decorFix.dropped.join(' / ')} —— 已剔掉（正向要光泽皮肤、画风卡负面要哑光，两边拆台；皮肤质感归画风卡管，妆造卡只该说化了什么妆）`,
+    })
+  }
+
   // 动作卡自带的手持短语让位（v29）：动作卡写着「手里拿 X」，用户又选了手持道具。
   if (poseHoldFix.dropped.length) {
     autofixes.push({
@@ -2702,6 +2770,7 @@ function compose(input) {
       count_tier: countFix.tier || '',
       look: clean(lookSeg),
       look_cloth: clean(lookClothGuarded),
+      look_decor: clean(decorFix.text),
       look_pose: clean(lookPose),
       pose: clean(poseSeg),
       action: clean(actSegHold),

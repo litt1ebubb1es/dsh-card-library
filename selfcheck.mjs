@@ -1778,6 +1778,98 @@ const phJ = await call('/dsh-card-library/compose', {
 check('手持物让位：segments.action 是剥过的那份', !/holding tray/i.test(phJ.json?.segments?.action || ''), phJ.json?.segments?.action)
 check('手持物让位：segments.action_raw 保留原文', /holding tray/i.test(phJ.json?.segments?.action_raw || ''), phJ.json?.segments?.action_raw)
 
+// ── v30：造型卡的妆造层 body_decor 从来没进过配方 ──────────────────────────
+//
+// 21 张造型卡写了 `body_decor`（makeup / nails / skin_detail 三个子键、48 个值），
+// 插件只读 `look_tags`。有 6 张卡把值手动抄进了 look_tags（纯属巧合），
+// 剩下 15 张的妆造静默消失：`look_ballet` 的舞台妆、`look_qipao` 的淡妆 + 法式美甲、
+// `look_military` 的素颜、`look_red_hoodie` 的腮红和泪痣 —— 全丢。
+// 同一族毛病：v6 景别 / v7 机位 / v11 画幅 / v18 景深，都是「卡里有值、代码不读」。
+//
+// 但 `skin_detail` 里有 3 张卡写着 `glistening skin`（油光词，n17 明确否掉），
+// 而 11/16 张画风卡的负面里就钉着 glossy / shiny / oily / specular / plastic skin
+// —— 正向要油光、负面要哑光，两边拆台。所以油光族整条剔掉并报出来。
+const decorHas = (j, w) => new RegExp('\\b' + w.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '\\b', 'i')
+  .test(String(j?.segments?.look || ''))
+const decorCount = (j, w) => (String(j?.segments?.look || '')
+  .match(new RegExp('\\b' + w.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '\\b', 'gi')) || []).length
+const decorBase = { styleId: 'style_anime_cel', characterId: 'crab_vampire' }
+
+const dcA = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { ...decorBase, lookId: 'look_ballet' },
+})
+check('妆造层：stage makeup 进造型段', decorHas(dcA.json, 'stage makeup'), dcA.json?.segments?.look_decor)
+check('妆造层：nail polish 进造型段', decorHas(dcA.json, 'nail polish'), dcA.json?.segments?.look_decor)
+check('妆造层：segments.look_decor 单独可见', /stage makeup/i.test(dcA.json?.segments?.look_decor || ''), dcA.json?.segments?.look_decor)
+check('妆造层：没油光时不报 decoroily', !(dcA.json?.autofixes || []).some((a) => a.kind === 'decoroily'))
+
+const dcB = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { ...decorBase, lookId: 'home_sweeping_grey' },
+})
+check('妆造层：glistening skin 不进造型段', !decorHas(dcB.json, 'glistening skin'), dcB.json?.segments?.look)
+check('妆造层：剔了油光要报 decoroily', (dcB.json?.autofixes || []).some((a) => a.kind === 'decoroily'))
+check('妆造层：同一张卡的 colored eyelashes 保留', decorHas(dcB.json, 'colored eyelashes'), dcB.json?.segments?.look_decor)
+
+const dcC = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { ...decorBase, lookId: 'look_bell_watcher' },
+})
+check('妆造层：手动抄进 look_tags 的卡不重复（glossy lips 只 1 次）', decorCount(dcC.json, 'glossy lips') === 1, decorCount(dcC.json, 'glossy lips'))
+check('妆造层：visible collarbone 只 1 次', decorCount(dcC.json, 'visible collarbone') === 1, decorCount(dcC.json, 'visible collarbone'))
+check('妆造层：glossy lips 不被当成油光词剔掉（唇妆正当）', decorHas(dcC.json, 'glossy lips'), dcC.json?.segments?.look_decor)
+
+const dcD = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { ...decorBase, lookId: 'look_red_hoodie' },
+})
+check('妆造层：blush 进造型段', decorHas(dcD.json, 'blush'), dcD.json?.segments?.look_decor)
+check('妆造层：mole under eye 进造型段', decorHas(dcD.json, 'mole under eye'), dcD.json?.segments?.look_decor)
+
+const dcE = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { ...decorBase, lookId: 'look_mountaineer' },
+})
+check('妆造层：rosy cheeks 进造型段', decorHas(dcE.json, 'rosy cheeks'), dcE.json?.segments?.look_decor)
+
+const dcF = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { ...decorBase, lookId: 'look_military' },
+})
+check('妆造层：no makeup 进造型段', decorHas(dcF.json, 'no makeup'), dcF.json?.segments?.look_decor)
+
+const dcG = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { ...decorBase, lookId: 'look_qipao' },
+})
+check('妆造层：light makeup 进造型段', decorHas(dcG.json, 'light makeup'), dcG.json?.segments?.look_decor)
+check('妆造层：french manicure 进造型段', decorHas(dcG.json, 'french manicure'), dcG.json?.segments?.look_decor)
+
+const dcH = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { ...decorBase, lookId: 'look_alchemist' },
+})
+check('妆造层：body_decor 为空对象时不报 decoroily', !(dcH.json?.autofixes || []).some((a) => a.kind === 'decoroily'))
+check('妆造层：body_decor 为空对象时 look_decor 为空', !dcH.json?.segments?.look_decor, dcH.json?.segments?.look_decor)
+check('妆造层：body_decor 为空对象时造型段照旧', String(dcH.json?.segments?.look || '').length > 20)
+
+// 有 3 张老卡的 body_decor 是**字符串**（不是对象）：look_gothic_candle 的
+// `silver cross pendant on chest`、look_kaftan_red 的 `gold embroidery on chest, embroidered hem`、
+// look_polka_pinafore 的 `''`。字符串形式也要读，否则这三张的首饰/刺绣描述继续丢。
+const dcH2 = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { ...decorBase, lookId: 'look_kaftan_red' },
+})
+check('妆造层：字符串形式的 body_decor 也进造型段', /gold embroidery on chest/i.test(dcH2.json?.segments?.look_decor || ''), dcH2.json?.segments?.look_decor)
+check('妆造层：字符串形式的 body_decor 不报 decoroily', !(dcH2.json?.autofixes || []).some((a) => a.kind === 'decoroily'))
+
+const dcI = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { ...decorBase, lookId: 'look_elven_priestess' },
+})
+check('妆造层：mole under eye 与闭眼无关，闭眼时也保留（走 v25 豁免）', decorHas(dcI.json, 'mole under eye'), dcI.json?.segments?.look_decor)
+
 // ── 存卡规则：路由 + 工具 ──────────────────────────────────────────
 const rulesRes = await call('/dsh-card-library/rules')
 check('规则路由可用', rulesRes.status === 200 && rulesRes.json?.ok === true, rulesRes.status)

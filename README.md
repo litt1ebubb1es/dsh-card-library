@@ -83,6 +83,7 @@
 | 道具负面 | 造型卡 / 画风卡的负面里钉着「别在手里多出东西」的黑名单（19 张造型卡的 `holding cup` / `holding book` / `holding bag`，`style_wlop_warm_soft` 的 `beer` / `cigarette`），而用户明确选了那件道具 | **剔掉「压的正是这件」的那几条** —— 正向是 `holding ceramic cup`、负面是 `holding cup`，`minusPositive` 只做整串子串包含，剔不掉（v17 把主名词升级成更具体之后这条缝更宽了） |
 | 道具计数 | 选了 5 件以上道具、或造型卡已经穿了同一件（该道具被撤） | **冲突检查只看真正进配方的道具** —— 早先按「全集」算，被撤掉的道具还在参与「同部位叠」检查，报出「贝雷帽和王冠都占头部饰品」这种正向里根本没有贝雷帽的假警告；超上限时也会点名被丢掉的是哪一件 |
 | 手持短语 | 动作卡 `pose_tags` 里自带 `holding clipboard` / `holding camera`，用户又选了手持道具 → 撤掉动作卡那份占手短语（否则正向里两套「手里拿什么」，模型丢掉其中一件） |
+| 妆造层 | 造型卡的 `body_decor`（`makeup` / `nails` / `skin_detail` 三个子键，21 张卡非空、48 个值）从来没进过配方 —— 只有 6 张卡碰巧把值手抄进了 `look_tags`，剩下 15 张的妆造静默消失（`look_ballet` 的舞台妆、`look_qipao` 的淡妆 + 法式美甲、`look_military` 的素颜、`look_red_hoodie` 的腮红和泪痣） | **三个子键按 makeup → nails → skin_detail 拼进造型段**，但 `skin_detail` 里的油光族（`glistening skin` / `glossy skin` / `shiny skin` …，3 张卡写着）整条剔掉并报 `decoroily` —— 正向要油光、11/16 张画风卡的负面要哑光，两边拆台；皮肤质感归画风卡管，妆造卡只该说化了什么妆 |
 
 优先级一律 **视角 > 动作卡 > 环境卡**。
 
@@ -129,6 +130,31 @@
   （身体与衣物）、`both hands on camera` / `camera to eye`（手的位置，不是拿东西）。
 - `wearing X` 一律不动 —— 那是「道具重名」与「整套装束」的地盘。
 - **没选手持道具时一个字不动**；只选穿戴类道具（`hold=false`）也不触发。
+
+**妆造层补全，但油光族一条都不放进来**
+
+`body_decor` 是造型卡里唯一描述「脸上/手上细节」的字段，三个子键
+（`makeup` / `nails` / `skin_detail`），21 张卡非空、48 个值。早先插件只读
+`look_tags`，这个字段从来没进过配方 —— 15/21 张卡的妆造静默消失
+（`look_ballet` 的 `stage makeup`、`look_qipao` 的 `light makeup` + `french manicure`、
+`look_military` 的 `no makeup`、`look_red_hoodie` 的 `blush` + `mole under eye`）。
+另外 6 张没丢，是因为当初把值手抄了一份进 `look_tags` —— 那是巧合，不是设计。
+
+拼装顺序固定 `makeup → nails → skin_detail`，`segments.look_decor` 单独可见。
+
+**但 `skin_detail` 里的油光族整条剔掉**（`glistening skin` / `shiny skin` /
+`glossy skin` / `oily skin` / `sweaty skin` / `wet skin` / `dewy skin` /
+`specular` / `subsurface scattering` …）：3 张卡写着 `glistening skin`，而
+11/16 张画风卡的负面里就钉着 `glossy / shiny / oily / specular / plastic skin` ——
+正向要油光、负面要哑光，两边拆台。皮肤质感归画风卡管，妆造卡只该说化了什么妆。
+剔了会报 `decoroily`。
+
+`glossy lips` 是唇妆、正当，**不能**被 `/glossy/` 连带剔掉（同 `ring\b` 与
+`handbag` 那两处坑）—— 所以油光族用精确词表、逐 token 全等比，不用子串。
+
+`body_decor` 有三种形态：对象（21 张）、字符串（3 张：`look_gothic_candle` 的
+`silver cross pendant on chest`、`look_kaftan_red` 的 `gold embroidery on chest,
+embroidered hem`、`look_polka_pinafore` 的 `''`）、缺失。字符串形式也照读。
 
 影响面：动作卡自带占手短语 32 张 × 手持道具 81 件 = 2592 组组合，其中同名重叠 17 组
 （动作拿的正是你选的那件，正向里会出现 `holding book` + `holding open book` 两处）。
@@ -282,7 +308,7 @@ cd _dsh_plugin/dsh-card-library
 node selfcheck.mjs
 ```
 
-380 项断言（含道具计数按生效集、手持短语让位）：六类 counts、卡片字段、缩略图、越界防护、compose 正/负面、参数优先级、动作卡开关、道具卡、外域 Host 403、脸光归属、景别裁决、机位裁决、头出画清脸光、对焦脸让位、道具重名去重、画幅裁决、画法让位、景深裁决、构图补全、人数裁决、防护词让位、手持物让位、闭眼让位、闭眼×视角视线、半闭眼与睡袍误判、眼周特征豁免、脚上穿不穿、整套装束、场景让位、地点让位、参数元数据、道具泛名、道具 id 去重、存卡规则、全库体检、模型工具输出。
+402 项断言（含妆造层补全、道具计数按生效集、手持短语让位）：六类 counts、卡片字段、缩略图、越界防护、compose 正/负面、参数优先级、动作卡开关、道具卡、外域 Host 403、脸光归属、景别裁决、机位裁决、头出画清脸光、对焦脸让位、道具重名去重、画幅裁决、画法让位、景深裁决、构图补全、人数裁决、防护词让位、手持物让位、闭眼让位、闭眼×视角视线、半闭眼与睡袍误判、眼周特征豁免、脚上穿不穿、整套装束、场景让位、地点让位、参数元数据、道具泛名、道具 id 去重、妆造层、油光词剔除、存卡规则、全库体检、模型工具输出。
 
 ## 路由
 
