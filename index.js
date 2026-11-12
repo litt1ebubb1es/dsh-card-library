@@ -611,6 +611,9 @@ function sceneSegment(scene, opts) {
   const dropShot = opts && opts.dropShot
   // dropViewpoint：机位被动作卡接管（v7）。只丢机位，景别/comp/dof 照旧。
   const dropViewpoint = opts && opts.dropViewpoint
+  // dropFaceFocus：头不在画框里（v9）。只丢「对焦在脸上」那一档 dof，
+  // 其余 dof（景深虚化 / deep focus）照旧 —— 那些跟脸没关系。
+  const dropFaceFocus = opts && opts.dropFaceFocus
   const tags = scene.tags || {}
   const camera = scene.camera || {}
   const parts = []
@@ -624,7 +627,9 @@ function sceneSegment(scene, opts) {
     if (dropShot && slot === 'shot_size') continue
     if (dropViewpoint && slot === 'viewpoint') continue
     const v = clean(camera[slot])
-    if (v) parts.push(v)
+    if (!v) continue
+    if (dropFaceFocus && slot === 'dof' && isFaceFocus(v)) continue
+    parts.push(v)
   }
   const extra = clean(scene.extra)
   if (extra) parts.push(extra)
@@ -634,13 +639,16 @@ function sceneSegment(scene, opts) {
   // 于是「环境卡近景 × 动作卡全身」还是会在 extra_camera 里残留一份 —— 现在统一走
   // shotWordLevel()，不再手写。
   if (extraCam) {
-    if (skipCam || dropShot || dropViewpoint) {
+    if (skipCam || dropShot || dropViewpoint || dropFaceFocus) {
       let kept = extraCam.split(',')
         .map((t) => t.trim())
         .filter((t) => t && !(skipCam && /^(from behind|from above|from below|from side|from front)$/i.test(t)))
         .filter((t) => shotWordLevel(t) == null)
       if (dropViewpoint) {
         kept = kept.filter((t) => viewpointSet(t).length === 0)
+      }
+      if (dropFaceFocus) {
+        kept = kept.filter((t) => !isFaceFocus(t))
       }
       if (kept.length) parts.push(kept.join(', '))
     } else {
@@ -715,6 +723,22 @@ const HEADLESS_RE = /\bhead out of frame\b|\bhead not (?:visible|in frame)\b|\bn
 
 function isHeadless(text) {
   return HEADLESS_RE.test(String(text || ''))
+}
+
+/**
+ * 「对焦在脸上」—— 和 headless 是同一族冲突（v9）。
+ *
+ * 场景卡的 camera.dof 里写着 `focus on face` 时，等于在要求「把焦点落在脸上」。
+ * 头都不在画框里的时候，这条和 `catchlight in both eyes` 一样，只能靠塞一个头进来满足。
+ * 全库 6 张场景卡带这个值 × 25 张 headless 动作卡 = 150 组。
+ *
+ * 只认「对焦在脸」这一档 —— `depth of field, blurry background` / `deep focus`
+ * 跟脸没关系，headless 时照样要留。
+ */
+const FACE_FOCUS_RE = /\bfocus on (?:the )?face\b|\bface focus\b|\bfacial focus\b|\bfocus on (?:her|his) face\b/i
+
+function isFaceFocus(text) {
+  return FACE_FOCUS_RE.test(String(text || ''))
 }
 
 /**
@@ -1191,11 +1215,17 @@ function compose(input) {
   // 和景别同理 —— 动作卡的 camera.viewpoint 早先也没进正向，219 张卡静默丢弃。
   const viewFix = viewSeg.pos ? null : resolveViewpoint(pose, scene)
   const poseViewSeg = viewFix ? viewFix.pos : ''
+  // 头在不在画框里（v8）：看真正进正向的动作段 + 视角。
+  // 动作卡写了 `head out of frame`，脸光就该清空 —— 否则模型为了画眼睛硬塞一个头。
+  // 视角接管时动作段会被剥掉视线/机位词，但 `head out of frame` 不在剥离名单里，所以照样能判。
+  // v9 起这个判定要提前到 sceneSegment 之前 —— 场景段的 dof 也得跟着让位。
+  const headless = isHeadless(actSegForRecipe) || isHeadless(viewSeg.pos)
   // 选了视角时，环境卡的机位/景别让位给视角，只保留 comp / dof
   const sceneSeg = sceneSegment(scene, {
     skipCamera: !!viewSeg.pos,
     dropShot: !!(shotFix && shotFix.sceneDrop),
     dropViewpoint: !!(viewFix && viewFix.sceneDrop),
+    dropFaceFocus: headless,
   })
   // 脸光：归画风卡。视角只提供 faceMode（正常 / 远景降级 / 背影清空），不提供词。
   // 景别被动作卡接管后，远景判定也要跟着改 —— 否则动作卡要全身、环境卡写 upper body，
@@ -1213,10 +1243,6 @@ function compose(input) {
       extra_camera: stripShotWords(stripViewpointWords(clean(scene?.extra_camera))),
     }
   })()
-  // 头在不在画框里（v8）：看真正进正向的动作段 + 视角。
-  // 动作卡写了 `head out of frame`，脸光就该清空 —— 否则模型为了画眼睛硬塞一个头。
-  // 视角接管时动作段会被剥掉视线/机位词，但 `head out of frame` 不在剥离名单里，所以照样能判。
-  const headless = isHeadless(actSegForRecipe) || isHeadless(viewSeg.pos)
   const faceLight = resolveFaceLight(style?.face_light || '', sceneForFace, viewSeg, headless)
   const render = style?.render || ''
 
@@ -1314,6 +1340,16 @@ function compose(input) {
       kind: 'headless',
       auto: true,
       message: '动作卡写了「头不在画框里」—— 已清空脸光段（否则模型为了画眼睛会硬塞一个头进来，把构图毁掉）',
+    })
+  }
+  // 对焦在脸上（v9）：环境卡的 camera.dof 写着 focus on face，但头不在画框里。
+  // 和脸光同族 —— 它同样是在要求「把焦点落在脸上」，只能靠塞一个头进来满足。
+  // 只丢这一档 dof，景深虚化 / deep focus 跟脸无关，照旧保留。
+  if (headless && isFaceFocus(clean(scene?.camera?.dof)) ) {
+    autofixes.push({
+      kind: 'facefocus',
+      auto: true,
+      message: '环境卡要求「对焦在脸上」，但动作卡说头不在画框里 —— 已撤掉这条对焦（否则它会把镜头拉回来找脸）',
     })
   }
 

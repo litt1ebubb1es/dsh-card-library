@@ -593,6 +593,46 @@ check('无脸光画风：不空报 headless',
   !(hdE.json?.autofixes || []).some((a) => a.kind === 'headless'),
   (hdE.json?.autofixes || []).map((a) => a.kind))
 
+// ── v9：头出画时，环境卡的「对焦在脸上」也要撤 ──────────────────────
+const ffA = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: {
+    styleId: 'style_gothic_baroque', characterId: 'crab_vampire',
+    poseId: 'pose_near_leg_hem', sceneId: 'sc_bathroom_mirror',
+  },
+})
+check('对焦脸：headless 时场景段不含 focus on face',
+  !/focus on face/i.test(String(ffA.json?.segments?.scene || '')),
+  ffA.json?.segments?.scene)
+check('对焦脸：报 facefocus autofix',
+  (ffA.json?.autofixes || []).some((a) => a.kind === 'facefocus'),
+  (ffA.json?.autofixes || []).map((a) => a.kind))
+const ffB = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: {
+    styleId: 'style_gothic_baroque', characterId: 'crab_vampire',
+    poseId: 'pose_ballet', sceneId: 'sc_bathroom_mirror',
+  },
+})
+check('对焦脸：正常动作时 focus on face 保留',
+  /focus on face/i.test(String(ffB.json?.segments?.scene || '')),
+  ffB.json?.segments?.scene)
+check('对焦脸：正常动作时不报 facefocus',
+  !(ffB.json?.autofixes || []).some((a) => a.kind === 'facefocus'),
+  (ffB.json?.autofixes || []).map((a) => a.kind))
+// 景深虚化跟脸无关，headless 时不能一起删
+const ffC = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: {
+    styleId: 'style_gothic_baroque', characterId: 'crab_vampire',
+    poseId: 'pose_near_leg_hem', sceneId: 'sc_library_quiet',
+  },
+})
+check('对焦脸：headless 时景深词不该被连带删',
+  /depth of field|blurry background|deep focus/i.test(String(ffC.json?.segments?.scene || '')) ||
+  !/focus on face/i.test(String(ffC.json?.segments?.scene || '')),
+  ffC.json?.segments?.scene)
+
 // ── 存卡规则：路由 + 工具 ──────────────────────────────────────────
 const rulesRes = await call('/dsh-card-library/rules')
 check('规则路由可用', rulesRes.status === 200 && rulesRes.json?.ok === true, rulesRes.status)
