@@ -580,7 +580,9 @@ function propsSegment(props, lookText) {
   if (heldClean.length === 1) parts.push('holding ' + heldClean[0])
   else if (heldClean.length > 1) parts.push('holding ' + heldClean.join(' and '))
   parts.push(...worn)
-  return { text: parts.join(', '), dropped }
+  // v27：把「手里拿的那几件的名字」也带出去 —— 负面里有一批造型卡的
+  // `holding cup` / `holding book` / `holding bag` 黑名单，要按这些名字去剔。
+  return { text: parts.join(', '), dropped, held: heldClean }
 }
 
 /** 多道具的冲突检测（只说真会画坏的那几种）。 */
@@ -2011,6 +2013,42 @@ function dropNegativeSlots(negSeg, shouldDrop) {
   return { kept: out.join(', '), dropped }
 }
 
+/**
+ * 手持物让位（v27）：造型卡 / 画风卡的负面里常有一串「别在手里多出东西」的黑名单
+ * （19 张造型卡共用的 `holding cup, holding mug, coffee cup, holding phone,
+ * holding book, holding bag`，以及 `sword` / `thermoses` 这类裸名词）。
+ *
+ * 单人场景下这条黑名单是对的 —— 它就是用来防「造型卡莫名多出一只手拿着杯子」的。
+ * 但用户**明确选了道具卡**时，正向是 `holding ceramic cup`，负面是 `holding cup`：
+ * `minusPositive` 只做整串子串包含，`" holding cup "` 不在 `" holding ceramic cup "`
+ * 里 —— 剔不掉，于是正向要杯子、负面同时压杯子。
+ *
+ * v17 把主名词从 `cup` 升级成 `ceramic cup` 之后，这个缝反而变宽了：
+ * 81 张手持道具里有 30 张的主名词含空格，全都躲得过这条整串匹配。
+ *
+ * 分寸：**只剔「压的正是用户选的这件东西」的那几条**，不动其余黑名单
+ * （`holding phone` 留着 —— 用户没选手机，那条仍然在防「多出一只手」）。
+ */
+function dropPropNegatives(negSeg, heldNouns) {
+  const nouns = (heldNouns || []).map((n) => String(n || '').toLowerCase().trim()).filter(Boolean)
+  if (!nouns.length) return { kept: String(negSeg || ''), dropped: [] }
+  const hits = (t) => {
+    const low = String(t || '').toLowerCase().trim()
+    if (!low) return false
+    const bare = low.replace(/^holding\s+/, '')
+    for (const n of nouns) {
+      // 整串相等：负面 `cup` ⇢ 正向 `cup`
+      if (bare === n) return true
+      // 负面是泛词、正向是具体词：负面 `cup` ⇢ 正向 `ceramic cup`
+      if (n.endsWith(' ' + bare)) return true
+      // 负面是具体词、正向是泛词（少见，但对称处理）：负面 `ceramic cup` ⇢ 正向 `cup`
+      if (bare.endsWith(' ' + n)) return true
+    }
+    return false
+  }
+  return dropNegativeSlots(negSeg, hits)
+}
+
 function compose(input) {
   const style = input.styleId ? loadCard('style', input.styleId) : null
   const character = input.characterId ? loadCard('character', input.characterId) : null
@@ -2265,11 +2303,22 @@ function compose(input) {
     mediumFix.kept,
   ]
   const negJoined = joinSeg(...negParts)
+  // 手持物让位（v27）：用户明确选了道具卡，负面里那条「别在手里多出东西」的
+  // 黑名单就变成了正向要、负面压。只剔「压的正是这件」的那几条，其余不动。
+  const propNegFix = dropPropNegatives(negJoined, propFix.held)
+  if (propNegFix.dropped.length) {
+    const uniq = [...new Set(propNegFix.dropped)]
+    autofixes.push({
+      kind: 'propneg',
+      auto: true,
+      message: `你选了道具「${(propFix.held || []).join(' / ')}」，但造型卡 / 画风卡的负面里钉着压它的黑名单：${uniq.join(' / ')} —— 已剔掉这几条（其余「别在手里多出东西」的黑名单原样保留；否则正向要这件、负面同时压这件）`,
+    })
+  }
   // 人数让位（v19）：非单人档时，负面里「压多人」的那一族必须剔掉。
   // 它们来自 23 张造型卡的样板负面 + 15 张画风卡的负面，本意是「别画成多人」——
   // 单人场景下是对的，选了双人 / 群体动作卡就成了正向要、负面压。
   // 画风卡那份这次也一起剔：人数不像画法，画风卡对「画几个人」没有主张权。
-  let negCountFixed = negJoined
+  let negCountFixed = propNegFix.kept
   if (multiPerson) {
     const cr = dropNegativeSlots(negJoined, (t) => MULTI_NEG_RE.test(t))
     if (cr.dropped.length) {
@@ -2582,6 +2631,7 @@ function compose(input) {
       action: clean(actSegOutfit),
       action_raw: clean(actSegForRecipe),
       prop: clean(propSeg),
+      prop_held: (propFix.held || []).slice(),
       props: props.map((p) => ({ id: p.id, name: p.name, tags: clean(p.prop_tags || ''), hold: !!p.hold })),
       scene: sceneSeg,
       shot: clean(poseShotSeg),

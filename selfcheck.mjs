@@ -1565,6 +1565,82 @@ const guardD = await call('/dsh-card-library/compose', {
 check('防护词让位：无防护词的造型卡不报 coverguard',
   !(guardD.json?.autofixes || []).some((a) => a.kind === 'coverguard'))
 
+// ── 手持物让位（v27）：负面里的「别多出手持物」黑名单 ────────────────
+//
+// 19 张造型卡的样板负面写着 `holding cup / holding mug / holding phone /
+// holding book / holding bag`，本意是「别在手里多出东西」。用户明确选了道具卡时，
+// 正向是 `holding ceramic cup`、负面是 `holding cup` —— minusPositive 只做整串
+// 子串包含，剔不掉。v17 把主名词升级成更具体的之后这个缝更宽了（81 张手持道具
+// 里 30 张主名词含空格）。
+const propNegTok = (j) => String(j.negative || '').split(',').map((t) => t.trim()).filter(Boolean)
+const propNegKinds = (j) => (j.autofixes || []).map((a) => a.kind)
+
+const propNegA = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { styleId: 'style_anime_cel', characterId: 'crab_vampire', lookId: 'look_alchemist', poseId: 'pose_ballet', propIds: ['prop_cup'] },
+})
+const pnaTok = propNegTok(propNegA.json || {})
+check('手持物让位：报 propneg autofix', propNegKinds(propNegA.json || {}).includes('propneg'), propNegKinds(propNegA.json || {}).join(','))
+check('手持物让位：负面不再有 holding cup', !pnaTok.includes('holding cup'), pnaTok.filter((t) => /cup/i.test(t)).join('|'))
+check('手持物让位：负面不再有裸 cup', !pnaTok.includes('cup'))
+check('手持物让位：正向仍要杯子', /holding ceramic cup/.test(String(propNegA.json?.positive || '')))
+check('手持物让位：文案写明是道具', /道具/.test(((propNegA.json?.autofixes || []).find((a) => a.kind === 'propneg') || {}).message || ''))
+// 其余黑名单必须原样留着 —— 用户没选手机，那条仍在防「多出一只手」
+check('手持物让位：holding phone 仍留着（没选手机）', pnaTok.includes('holding phone'), pnaTok.filter((t) => /^holding /.test(t)).join('|'))
+check('手持物让位：holding book 仍留着', pnaTok.includes('holding book'))
+check('手持物让位：holding bag 仍留着', pnaTok.includes('holding bag'))
+check('手持物让位：segments.prop_held 暴露主名词',
+  Array.isArray(propNegA.json?.segments?.prop_held) && propNegA.json.segments.prop_held.includes('ceramic cup'),
+  JSON.stringify(propNegA.json?.segments?.prop_held))
+
+// 换一件道具：只剔对应那条
+const propNegB = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { styleId: 'style_anime_cel', characterId: 'crab_vampire', lookId: 'look_mcd_rooftop_bite', poseId: 'pose_ballet', propIds: ['prop_book'] },
+})
+const pnbTok = propNegTok(propNegB.json || {})
+check('手持物让位：选书时 holding book 剔掉', !pnbTok.includes('holding book'))
+check('手持物让位：选书时 holding cup 仍留着', pnbTok.includes('holding cup'))
+check('手持物让位：选书时正向要 open book', /holding open book/.test(String(propNegB.json?.positive || '')))
+
+// 两件道具：两条都剔，第三条留着
+const propNegC = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { styleId: 'style_anime_cel', characterId: 'crab_vampire', lookId: 'look_alchemist', poseId: 'pose_ballet', propIds: ['prop_cup', 'prop_book'] },
+})
+const pncTok = propNegTok(propNegC.json || {})
+check('手持物让位：两件都剔', !pncTok.includes('holding cup') && !pncTok.includes('holding book'))
+check('手持物让位：第三类黑名单仍留着', pncTok.includes('holding bag'))
+
+// 画风卡负面里的裸名词（wlop 的 beer / cigarette）也要让位
+const propNegD = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { styleId: 'style_wlop_warm_soft', characterId: 'crab_vampire', lookId: 'look_maid', poseId: 'pose_ballet', propIds: ['prop_beer'] },
+})
+const pndTok = propNegTok(propNegD.json || {})
+check('手持物让位：画风卡黑名单也让位', propNegKinds(propNegD.json || {}).includes('propneg'))
+check('手持物让位：选啤酒时 beer 剔掉', !pndTok.includes('beer'))
+check('手持物让位：选啤酒时 cigarette 仍留着', pndTok.includes('cigarette'))
+
+// 反例：造型卡负面没有手持词、没选道具、穿戴类道具 —— 都不该报
+const propNegE = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { styleId: 'style_anime_cel', characterId: 'crab_vampire', lookId: 'look_maid', poseId: 'pose_ballet', propIds: ['prop_cup'] },
+})
+check('手持物让位：无黑名单的造型卡不报', !propNegKinds(propNegE.json || {}).includes('propneg'))
+const propNegF = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { styleId: 'style_anime_cel', characterId: 'crab_vampire', lookId: 'look_alchemist', poseId: 'pose_ballet' },
+})
+check('手持物让位：没选道具时不报', !propNegKinds(propNegF.json || {}).includes('propneg'))
+check('手持物让位：没选道具时黑名单全留着',
+  propNegTok(propNegF.json || {}).includes('holding cup') && propNegTok(propNegF.json || {}).includes('holding book'))
+const propNegG = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { styleId: 'style_anime_cel', characterId: 'crab_vampire', lookId: 'look_maid', poseId: 'pose_ballet', propIds: ['prop_beret'] },
+})
+check('手持物让位：穿戴类道具不触发', !propNegKinds(propNegG.json || {}).includes('propneg'))
+
 // ── 存卡规则：路由 + 工具 ──────────────────────────────────────────
 const rulesRes = await call('/dsh-card-library/rules')
 check('规则路由可用', rulesRes.status === 200 && rulesRes.json?.ok === true, rulesRes.status)

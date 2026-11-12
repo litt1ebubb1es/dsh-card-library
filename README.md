@@ -80,6 +80,7 @@
 | 脚上穿不穿 | 动作卡写 `bare feet` / `barefoot`（25 张，`pose_beach_midsummer` / `pose_poolside_summer` / `pose_ccc_cowgirl` …），造型卡却配了具体鞋款（34 张：`leather boots` / `mary janes` / `pointe shoes` …） | **撤掉造型卡的鞋** —— 脚上要么穿要么不穿，两句话都在正向里模型只能二选一，实测给赤脚画出一双棕色系带靴（19 张赤足动作卡 × 34 张带鞋造型卡 = 646 组） |
 | 整套装束 | 动作卡的 `pose_tags` 里残留整套装束词（`nurse` / `maid` / `serafuku` / `office lady` / `miko` / `yukata` …，17 张：`pose_nurse_rounds` / `pose_maid_serving` / `pose_jk_bike_ride` / `pose_ol_overtime` …），造型卡已经穿了另一套（17 张：`look_military` / `look_qipao` / `look_maid` / `look_nurse` …） | **撤掉动作卡里的装束 token** —— 两套衣服同时进正向会糊在一起：实测军装外面长出白色荷叶边围裙、水手服领子长在旗袍上（17 × 17 交叉 289 组，跨族 248 组） |
 | 防护词 | 造型卡正向的 `look_tags` 里钉着「穿好衣服」的防护词（`fully clothed` / `wearing clothes` / `covered chest` / `covered torso`，4 张奇幻造型卡：`look_bell_watcher` / `look_elven_priestess` / `look_night_reader` / `look_tomb_raider`），动作卡却要裸（`completely nude` / `topless` / `cleavage` / `shirt lift` …） | **撤掉造型卡的防护词** —— v5 只在【负面】里剔裸词，这 4 张把防护写在了【正向】，两边互不相干，模型只能在「穿」和「不穿」之间瞎猜（368 组） |
+| 道具负面 | 造型卡 / 画风卡的负面里钉着「别在手里多出东西」的黑名单（19 张造型卡的 `holding cup` / `holding book` / `holding bag`，`style_wlop_warm_soft` 的 `beer` / `cigarette`），而用户明确选了那件道具 | **剔掉「压的正是这件」的那几条** —— 正向是 `holding ceramic cup`、负面是 `holding cup`，`minusPositive` 只做整串子串包含，剔不掉（v17 把主名词升级成更具体之后这条缝更宽了） |
 
 优先级一律 **视角 > 动作卡 > 环境卡**。
 
@@ -104,6 +105,8 @@
 **防护词让位只撤防护词，衣服本体一个字不动**：`look_tomb_raider` 的 `hooded cloak, multiple belts, fingerless gloves, thigh boots, dagger, armored bodysuit` 全部保留，只撤 `fully clothed / wearing clothes / covered chest / covered torso`。半脱、敞开、露肩、开衩都还要靠这些衣服画出来 —— 把衣服一起撤了，画面会变成「什么都没穿站在床上」，而不是「护甲半脱」。
 
 **全裸时四个槽位一起撤，只露一处时只撤那一档**：动作卡写 `completely nude` / `nude with accessories only` / `see-through` 时，四个槽（胸部 / 腰腹 / 下体 / 全身）全部生效 —— 否则会出现「`fully clothed` 撤了、`covered chest` 却还留着」这种半吊子结果（实测第一版就是这样）。只露胸（`cleavage` / `topless` / `open shirt`）时只撤胸部那一档，`covered torso` 该留着；只露肩（`off shoulder`）连胸部档都不触发。
+**手持物让位只剔「压的正是用户选的这件」的那几条**：选了 `prop_goldfish_bag`，`holding bag` / `bag` 被剔掉；`holding phone` / `holding book` 这类没选的黑名单原样保留，仍在防「手里多出一只手」。复合词后缀按**空格**判定 —— `goldfish bag` 命中 `bag`，`handbag` 不命中（放开会误伤 `cocktail→tail`、`dice→ice`、`microphone→phone`）；`leather handbag` 配 `holding bag` 属于这条边界之外，属刻意保留。穿戴类道具（`hold=false`）不进名单，不触发。
+
 
 **造型卡自己同时写防护与露肤时不动**：那是卡内自相矛盾（`covered chest` 和 `cleavage` 在同一张卡里），不是跨卡冲突，插件不替你决定；只有「造型卡要捂 + 动作卡要露」这一种跨卡情形才撤。
 
@@ -252,7 +255,7 @@ cd _dsh_plugin/dsh-card-library
 node selfcheck.mjs
 ```
 
-330 项断言：六类 counts、卡片字段、缩略图、越界防护、compose 正/负面、参数优先级、动作卡开关、道具卡、外域 Host 403、脸光归属、景别裁决、机位裁决、头出画清脸光、对焦脸让位、道具重名去重、画幅裁决、画法让位、景深裁决、构图补全、人数裁决、防护词让位、闭眼让位、闭眼×视角视线、半闭眼与睡袍误判、眼周特征豁免、脚上穿不穿、整套装束、场景让位、地点让位、参数元数据、道具泛名、道具 id 去重、存卡规则、全库体检、模型工具输出。
+351 项断言：六类 counts、卡片字段、缩略图、越界防护、compose 正/负面、参数优先级、动作卡开关、道具卡、外域 Host 403、脸光归属、景别裁决、机位裁决、头出画清脸光、对焦脸让位、道具重名去重、画幅裁决、画法让位、景深裁决、构图补全、人数裁决、防护词让位、手持物让位、闭眼让位、闭眼×视角视线、半闭眼与睡袍误判、眼周特征豁免、脚上穿不穿、整套装束、场景让位、地点让位、参数元数据、道具泛名、道具 id 去重、存卡规则、全库体检、模型工具输出。
 
 ## 路由
 
