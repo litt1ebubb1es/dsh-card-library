@@ -1219,6 +1219,77 @@ function resolveOutfit(lookText, poseSegText) {
 }
 
 /**
+ * 「穿好衣服」防护词让位（v26）—— v5 只管负面那一半，这一半从来没管过。
+ *
+ * 4 张造型卡（`look_bell_watcher` / `look_elven_priestess` / `look_night_reader` /
+ * `look_tomb_raider`）的 **look_tags（正向）** 里写着 `fully clothed, wearing clothes,
+ * covered chest, covered torso`。它们来自「奇幻造型别走光」那套防护（n38/n39），
+ * 单人正常姿势下是对的。
+ *
+ * 但一旦配上要裸露 / 露肤的动作卡，正向里就同时出现「穿好衣服」与「completely nude」：
+ * 实测 `look_tomb_raider × pose_ccc_anal` → 正向 = `fully clothed, wearing clothes,
+ * covered chest, covered torso … completely nude`，autofix 只报了 `nude`（那是 v5 在
+ * 剔**负面**里的 nude），正向这一对没人管。模型只能在「穿」和「不穿」之间瞎猜。
+ *
+ * 影响面（按槽位）：胸部 4×18=72、腰腹 4×5=20、全身 4×69=276，合计 368 组。
+ *
+ * 分寸：只撤「防护词」，服装本体（hooded cloak / armored bodysuit）一个字不动 ——
+ * 半脱、敞开、露肩都还要靠这些衣服画出来。造型卡自己同时写防护与露肤时不动
+ * （那是卡内自相矛盾，不是跨卡冲突）。
+ */
+const COVER_GUARD_SLOTS = [
+  {
+    label: '胸部',
+    guard: /^(covered chest|covered breasts?|covered nipples|modest chest)$/i,
+    trigger: /\b(cleavage|bare chest|exposed chest|topless|see-through|sheer|nipple slip|breasts? out|open shirt|unbuttoned|deep neckline|plunging neckline|sideboob|underboob|wet clothes|soaked clothes|nude with accessories only)\b/i,
+  },
+  {
+    label: '腰腹',
+    guard: /^(covered torso|covered navel|covered midriff)$/i,
+    trigger: /\b(midriff|navel|bare midriff|shirt lift|clothes pull|midriff peek)\b/i,
+  },
+  {
+    label: '下体',
+    guard: /^(covered crotch|covered groin|covered pussy)$/i,
+    trigger: /\b(bottomless|no panties|panties aside|completely nude|nude with accessories only|bare crotch|skirt pull)\b/i,
+  },
+  {
+    label: '全身',
+    guard: /^(fully clothed|wearing clothes|clothed|dressed)$/i,
+    trigger: /\b(nude|naked|bottomless|topless|no panties|completely nude|nude with accessories only|see-through|sheer|open shirt|unbuttoned|shirt lift|clothes pull|panties aside|skirt pull|cleavage|bare chest|bare shoulders?|off shoulder|strapless|tube top|nipple slip|lingerie|underwear|bikini|swimsuit|leotard|wet clothes|soaked clothes|midriff peek)\b/i,
+  },
+]
+
+function resolveCoverGuard(lookText, actText) {
+  const look = String(lookText || '')
+  const act = String(actText || '')
+  if (!look || !act) return { text: look, dropped: [], slots: [] }
+  // 全裸 / 全透明是「所有槽位都露」—— 必须让四个槽一起生效，否则会出现
+  // 「completely nude 撤了 fully clothed，却留着 covered chest」这种半吊子结果。
+  const ALL_SLOTS_RE = /\b(completely nude|nude with accessories only|naked|nude|see-through|sheer)\b/i
+  const active = ALL_SLOTS_RE.test(act)
+    ? COVER_GUARD_SLOTS
+    : COVER_GUARD_SLOTS.filter((s) => s.trigger.test(act))
+  if (!active.length) return { text: look, dropped: [], slots: [] }
+  const kept = []
+  const dropped = []
+  const slots = []
+  for (const raw of look.split(',')) {
+    const t = raw.trim()
+    if (!t) continue
+    const hit = active.filter((s) => s.guard.test(t))
+    if (hit.length) {
+      dropped.push(t)
+      for (const s of hit) if (slots.indexOf(s.label) < 0) slots.push(s.label)
+      continue
+    }
+    kept.push(t)
+  }
+  if (!dropped.length) return { text: look, dropped: [], slots: [] }
+  return { text: kept.join(', '), dropped, slots }
+}
+
+/**
  * 「画面里没有场景」—— 和 headless / 对焦脸是同一族冲突（v14）。
  *
  * 六张画风卡的 render 里写着 `simple background` / `white background` /
@@ -2017,7 +2088,14 @@ function compose(input) {
   // 那时它是唯一的衣服线索。同族（miko × yukata）也撤，造型卡才是权威。
   const outfitFix = resolveOutfit(lookClothFixed, actSegForRecipe)
   const actSegOutfit = outfitFix.text
-  const lookSeg = joinSeg(lookClothFixed, actSegOutfit)
+
+  // 「穿好衣服」防护词让位（v26）：4 张奇幻造型卡的 look_tags 里钉着
+  // `fully clothed, wearing clothes, covered chest, covered torso`（防走光），
+  // 配上要裸露 / 露肤的动作卡时，正向会同时要「穿好」和「completely nude」。
+  // v5 只剔负面里的裸词，正向这一对从来没管过。只撤防护词，衣服本体不动。
+  const guardFix = resolveCoverGuard(lookClothFixed, actSegOutfit)
+  const lookClothGuarded = guardFix.text
+  const lookSeg = joinSeg(lookClothGuarded, actSegOutfit)
 
   // 人数裁决（v19）：档位统一由动作卡说话（pose_tags > count_lock > 环境卡 count_lock）。
   // 非单人档时，角色段里钉死的 `1girl, solo` 必须剥掉 —— 它和 `2girls, yuri` /
@@ -2350,6 +2428,16 @@ function compose(input) {
     })
   }
 
+  // 「穿好衣服」防护词让位（v26）：造型卡正向里的 `fully clothed` / `covered chest`
+  // 遇上要裸露 / 露肤的动作卡 —— 这是 v5 漏掉的那一半（v5 只剔负面里的裸词）。
+  if (guardFix.dropped.length) {
+    autofixes.push({
+      kind: 'coverguard',
+      auto: true,
+      message: `动作卡要露（${guardFix.slots.join(' / ')}），造型卡却钉着「穿好衣服」的防护词：${guardFix.dropped.join(' / ')} —— 已撤掉造型卡的防护词（否则正向一边要裸、一边要捂，模型只能瞎猜；衣服本体一个字没动）`,
+    })
+  }
+
   // 参数元数据（v16）：卡里的 params 除了采样键还混着元数据 ——
   // `safe_composition`（"sitting, upper body, cowboy shot" 一句提示词）、
   // `denoise_note`（一段中文说明）、`note`、`seed`。无条件 copy 的后果是
@@ -2488,7 +2576,7 @@ function compose(input) {
       count: clean(countFix.pos),
       count_tier: countFix.tier || '',
       look: clean(lookSeg),
-      look_cloth: clean(lookClothFixed),
+      look_cloth: clean(lookClothGuarded),
       look_pose: clean(lookPose),
       pose: clean(poseSeg),
       action: clean(actSegOutfit),

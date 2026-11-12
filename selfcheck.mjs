@@ -1508,6 +1508,63 @@ const compC = await call('/dsh-card-library/compose', {
 check('环境卡 comp 画幅词：没有画幅词的 comp 一个字不动（negative space）',
   (compC.json?.warnings || []).every((w) => !w.includes('构图槽里写着画幅词')))
 
+// ── v26：「穿好衣服」防护词让位（v5 只管负面，正向这一半从来没管）──────
+// 4 张奇幻造型卡的 look_tags 里钉着 `fully clothed / wearing clothes /
+// covered chest / covered torso`（防走光）。配上要裸露的动作卡时，正向会同时
+// 要「穿好」和「completely nude」。只撤防护词，衣服本体一个字不动。
+const COVER_GUARD_RE = /\b(fully clothed|wearing clothes|covered chest|covered torso|covered navel)\b/i
+
+const guardA = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { styleId: 'style_anime_cel', characterId: 'crab_vampire', lookId: 'look_tomb_raider', poseId: 'pose_ccc_anal', sceneId: 'sc_bedroom_sleepshirt' },
+})
+const guardAPos = String(guardA.json?.positive || '')
+check('防护词让位：全裸动作时造型卡的防护词全撤', !COVER_GUARD_RE.test(guardAPos), guardAPos.slice(0, 240))
+check('防护词让位：报 coverguard autofix',
+  (guardA.json?.autofixes || []).some((a) => a.kind === 'coverguard'),
+  (guardA.json?.autofixes || []).map((a) => a.kind).join(','))
+check('防护词让位：衣服本体一个字不动（hooded cloak）',
+  /hooded cloak/i.test(String(guardA.json?.segments?.look_cloth || '')))
+check('防护词让位：护甲本体一个字不动（armored bodysuit）',
+  /armored bodysuit/i.test(String(guardA.json?.segments?.look_cloth || '')))
+check('防护词让位：look_cloth 段也不留防护词',
+  !COVER_GUARD_RE.test(String(guardA.json?.segments?.look_cloth || '')))
+
+// 只露胸不算「全身都露」—— 只撤胸部那一档，腰腹的 covered torso 该留着
+const guardB = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { styleId: 'style_anime_cel', characterId: 'crab_vampire', lookId: 'look_night_reader', poseId: 'pose_near_nsfw_cleavage', sceneId: 'sc_balcony_laundry' },
+})
+const guardBPos = String(guardB.json?.positive || '')
+check('防护词让位：只露胸时 covered chest 撤掉', !/covered chest/i.test(guardBPos), guardBPos.slice(0, 240))
+check('防护词让位：只露胸时 covered torso 留着（按槽位分档）',
+  /covered torso/i.test(guardBPos))
+
+// 露肩不在「露胸」这一档里 —— covered chest 该原样留着（off shoulder 只露肩头）
+const guardE = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { styleId: 'style_anime_cel', characterId: 'crab_vampire', lookId: 'look_night_reader', poseId: 'pose_offshoulder_night', sceneId: 'sc_balcony_laundry' },
+})
+check('防护词让位：只露肩不撤 covered chest（不算露胸）',
+  /covered chest/i.test(String(guardE.json?.positive || '')))
+
+// 普通动作：防护词原样保留，一条 autofix 都不报
+const guardC = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { styleId: 'style_anime_cel', characterId: 'crab_vampire', lookId: 'look_tomb_raider', poseId: 'pose_ballet', sceneId: 'sc_bedroom_sleepshirt' },
+})
+check('防护词让位：普通动作时防护词保留', COVER_GUARD_RE.test(String(guardC.json?.positive || '')))
+check('防护词让位：普通动作时不报 coverguard',
+  !(guardC.json?.autofixes || []).some((a) => a.kind === 'coverguard'))
+
+// 没有防护词的造型卡：不报、不误删
+const guardD = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { styleId: 'style_anime_cel', characterId: 'crab_vampire', lookId: 'look_maid', poseId: 'pose_ccc_anal', sceneId: 'sc_bedroom_sleepshirt' },
+})
+check('防护词让位：无防护词的造型卡不报 coverguard',
+  !(guardD.json?.autofixes || []).some((a) => a.kind === 'coverguard'))
+
 // ── 存卡规则：路由 + 工具 ──────────────────────────────────────────
 const rulesRes = await call('/dsh-card-library/rules')
 check('规则路由可用', rulesRes.status === 200 && rulesRes.json?.ok === true, rulesRes.status)

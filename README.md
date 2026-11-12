@@ -79,6 +79,7 @@
 | 人数 | 动作卡是双人 / 群体（count_lock 写着 2girls / 1boy, hetero / group sex，35 张），但正向只有角色段的 1girl, solo，负面还压着 2girls / multiple girls / male | **count_lock 进正向 + 角色段 solo 剥掉 + 负面压多人剔掉** —— 三条一起改，缺一条就画不出第二个人：count_lock 从没进过配方（459 张卡声明过），角色段三处都钉着 1girl, solo，23 张造型卡 + 15 张画风卡的负面本意是「别画成多人」 |
 | 脚上穿不穿 | 动作卡写 `bare feet` / `barefoot`（25 张，`pose_beach_midsummer` / `pose_poolside_summer` / `pose_ccc_cowgirl` …），造型卡却配了具体鞋款（34 张：`leather boots` / `mary janes` / `pointe shoes` …） | **撤掉造型卡的鞋** —— 脚上要么穿要么不穿，两句话都在正向里模型只能二选一，实测给赤脚画出一双棕色系带靴（19 张赤足动作卡 × 34 张带鞋造型卡 = 646 组） |
 | 整套装束 | 动作卡的 `pose_tags` 里残留整套装束词（`nurse` / `maid` / `serafuku` / `office lady` / `miko` / `yukata` …，17 张：`pose_nurse_rounds` / `pose_maid_serving` / `pose_jk_bike_ride` / `pose_ol_overtime` …），造型卡已经穿了另一套（17 张：`look_military` / `look_qipao` / `look_maid` / `look_nurse` …） | **撤掉动作卡里的装束 token** —— 两套衣服同时进正向会糊在一起：实测军装外面长出白色荷叶边围裙、水手服领子长在旗袍上（17 × 17 交叉 289 组，跨族 248 组） |
+| 防护词 | 造型卡正向的 `look_tags` 里钉着「穿好衣服」的防护词（`fully clothed` / `wearing clothes` / `covered chest` / `covered torso`，4 张奇幻造型卡：`look_bell_watcher` / `look_elven_priestess` / `look_night_reader` / `look_tomb_raider`），动作卡却要裸（`completely nude` / `topless` / `cleavage` / `shirt lift` …） | **撤掉造型卡的防护词** —— v5 只在【负面】里剔裸词，这 4 张把防护写在了【正向】，两边互不相干，模型只能在「穿」和「不穿」之间瞎猜（368 组） |
 
 优先级一律 **视角 > 动作卡 > 环境卡**。
 
@@ -99,6 +100,12 @@
 **脚上穿不穿分两档，因为「脚是不是画面主体」决定删错的代价**：脚不是主体时（19 张，`bare feet` 只是顺带一句）撤掉造型卡的鞋 —— 鞋在这些构图里只是边角，撤掉不伤画面，留着反而让模型在赤脚上画出一双靴子；脚是主体时（`pose_near_foot_bare` / `pose_near_nsfw_soles`，带 `feet focus` + `head out of frame`）**只 warn 不动配方** —— 穿鞋的脚部特写也成立，撤错整张图就废。反向也管：造型卡赤足 × 动作卡带鞋（12 组，`pose_sock_*` 那一族）撤造型卡的赤足，动作卡点名的鞋更具体。
 
 **整套装束让位只撤「装束 token」，同一条里的其他词一个字不动**：`pose_nurse_rounds` 的 `leg up, embarrassed, blush, nurse, white thighhighs` 只撤 `nurse`，`leg up` / `embarrassed` / `blush` / `white thighhighs` 全留（`white thighhighs` 不是装束族，是腿袜）。原文留在 `segments.action_raw` 里给面板与调试用，`segments.action` 是剥过的版本。
+
+**防护词让位只撤防护词，衣服本体一个字不动**：`look_tomb_raider` 的 `hooded cloak, multiple belts, fingerless gloves, thigh boots, dagger, armored bodysuit` 全部保留，只撤 `fully clothed / wearing clothes / covered chest / covered torso`。半脱、敞开、露肩、开衩都还要靠这些衣服画出来 —— 把衣服一起撤了，画面会变成「什么都没穿站在床上」，而不是「护甲半脱」。
+
+**全裸时四个槽位一起撤，只露一处时只撤那一档**：动作卡写 `completely nude` / `nude with accessories only` / `see-through` 时，四个槽（胸部 / 腰腹 / 下体 / 全身）全部生效 —— 否则会出现「`fully clothed` 撤了、`covered chest` 却还留着」这种半吊子结果（实测第一版就是这样）。只露胸（`cleavage` / `topless` / `open shirt`）时只撤胸部那一档，`covered torso` 该留着；只露肩（`off shoulder`）连胸部档都不触发。
+
+**造型卡自己同时写防护与露肤时不动**：那是卡内自相矛盾（`covered chest` 和 `cleavage` 在同一张卡里），不是跨卡冲突，插件不替你决定；只有「造型卡要捂 + 动作卡要露」这一种跨卡情形才撤。
 
 **同族也撤**：`pose_pose_shrine_kneel` 的 `miko` × `look_summer_festival` 的 `yukata` —— 两个都属「和服」族，仍然撤动作卡那份、留浴衣。理由是造型卡才是「穿什么」的权威（DESIGN_v4 的六类卡职责），动作卡管的是姿势，它顺手写下的装束只是当初出图时的背景板。
 
@@ -245,7 +252,7 @@ cd _dsh_plugin/dsh-card-library
 node selfcheck.mjs
 ```
 
-319 项断言：六类 counts、卡片字段、缩略图、越界防护、compose 正/负面、参数优先级、动作卡开关、道具卡、外域 Host 403、脸光归属、景别裁决、机位裁决、头出画清脸光、对焦脸让位、道具重名去重、画幅裁决、画法让位、景深裁决、构图补全、人数裁决、闭眼让位、闭眼×视角视线、半闭眼与睡袍误判、眼周特征豁免、脚上穿不穿、整套装束、场景让位、地点让位、参数元数据、道具泛名、道具 id 去重、存卡规则、全库体检、模型工具输出。
+330 项断言：六类 counts、卡片字段、缩略图、越界防护、compose 正/负面、参数优先级、动作卡开关、道具卡、外域 Host 403、脸光归属、景别裁决、机位裁决、头出画清脸光、对焦脸让位、道具重名去重、画幅裁决、画法让位、景深裁决、构图补全、人数裁决、防护词让位、闭眼让位、闭眼×视角视线、半闭眼与睡袍误判、眼周特征豁免、脚上穿不穿、整套装束、场景让位、地点让位、参数元数据、道具泛名、道具 id 去重、存卡规则、全库体检、模型工具输出。
 
 ## 路由
 
