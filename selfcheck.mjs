@@ -401,6 +401,72 @@ check('道具自带 holding 动词', String(propNoPose.json?.segments?.prop || '
 check('不再报「没勾动作就没 holding」的假警告',
   !(propNoPose.json?.warnings || []).some((w) => w.includes('摆到墙角')), propNoPose.json?.warnings)
 
+// ── v10：穿戴道具与造型重复（propdup）+ 部位槽正则的左边界
+const dupHat = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: {
+    styleId: 'style_wlop_warm_soft', characterId: 'crab_vampire',
+    lookId: 'look_painter', sceneId: 'sc_balcony_laundry', poseId: 'pose_ballet',
+    propIds: ['prop_beret'],
+  },
+})
+const dupHatPos = String(dupHat.json?.positive || '')
+check('穿戴道具重复：造型已带的贝雷帽只出现一次', (dupHatPos.match(/\bberet\b/gi) || []).length === 1, dupHatPos)
+check('穿戴道具重复：报 propdup',
+  (dupHat.json?.autofixes || []).some((f) => f.kind === 'propdup'), dupHat.json?.autofixes)
+check('穿戴道具重复：道具段被清空', String(dupHat.json?.segments?.prop || '') === '', dupHat.json?.segments?.prop)
+
+// 复合名词：造型写 `flower crown`，道具写 `crown` —— 按词边界也要判成重复
+const dupCrown = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: {
+    styleId: 'style_wlop_warm_soft', characterId: 'crab_vampire',
+    lookId: 'look_flower_field', sceneId: 'sc_balcony_laundry', poseId: 'pose_ballet',
+    propIds: ['prop_crown'],
+  },
+})
+check('穿戴道具重复：flower crown 也算已穿（复合名词按词边界比）',
+  (dupCrown.json?.autofixes || []).some((f) => f.kind === 'propdup'), dupCrown.json?.autofixes)
+
+// 异款帽子可共存，不能误删
+const diffHat = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: {
+    styleId: 'style_wlop_warm_soft', characterId: 'crab_vampire',
+    lookId: 'look_nurse', sceneId: 'sc_balcony_laundry', poseId: 'pose_ballet',
+    propIds: ['prop_beanie'],
+  },
+})
+const diffHatPos = String(diffHat.json?.positive || '')
+check('异款帽子共存：护士帽 + 毛线帽都保留',
+  /nurse cap/i.test(diffHatPos) && /beanie/i.test(diffHatPos), diffHatPos)
+check('异款帽子共存：不报 propdup',
+  !(diffHat.json?.autofixes || []).some((f) => f.kind === 'propdup'), diffHat.json?.autofixes)
+
+// 部位槽正则的左边界：围巾 + 王冠不是同一个槽（旧正则把 wearing 里的 ring 当戒指）
+const slotFalse = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: {
+    styleId: 'style_wlop_warm_soft', characterId: 'crab_vampire',
+    lookId: 'look_gothic_candle', sceneId: 'sc_balcony_laundry', poseId: 'pose_ballet',
+    propIds: ['prop_scarf', 'prop_crown'],
+  },
+})
+check('部位槽不误报：围巾 + 王冠不算撞槽',
+  !(slotFalse.json?.warnings || []).some((w) => w.includes('都占')), slotFalse.json?.warnings)
+
+// 真撞槽必须还报得出来（修左边界不能把功能一起删掉）
+const slotTrue = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: {
+    styleId: 'style_wlop_warm_soft', characterId: 'crab_vampire',
+    lookId: 'look_gothic_candle', sceneId: 'sc_balcony_laundry', poseId: 'pose_ballet',
+    propIds: ['prop_necklace', 'prop_choker'],
+  },
+})
+check('部位槽真撞槽仍报警：项链 + 颈环',
+  (slotTrue.json?.warnings || []).some((w) => w.includes('都占颈部饰品')), slotTrue.json?.warnings)
+
 // 景别裁决（v6）：视角 > 动作卡 > 环境卡
 // 早先 poseSegment() 只返回 pose_tags，动作卡的 camera.shot_size 从没进过正向 ——
 // 「动作卡要全身 + 环境卡写 upper body」出来永远只有上半身，而且不报错。

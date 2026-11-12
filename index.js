@@ -354,21 +354,58 @@ function propSegment(prop) {
 }
 
 /**
- * 多道具合成（v4）。
+ * 多道具合成（v4 / v10）。
  *
  * 为什么不能简单拼三遍 `holding X, holding Y`：模型看到多个 holding 只会画一个。
  * 正确写法是合并成一个动词 —— `holding umbrella and sword`。
  * 穿戴类（hold=false）不走 holding，直接各自拼。
  *
+ * v10：穿戴类道具如果**造型卡已经穿了同一件**，就不能再拼一遍。
+ * 实测 `look_painter`（自带 beret）+ `prop_beret`（beret, wearing beret, knitted beret）
+ * 拼出来正向里 beret 出现三次 —— 模型会画出三顶帽子叠在一起。全库 23 组这种重复。
+ * 同槽位互斥，按「造型卡是底装、道具是追加」的语义，删掉道具那一份并报 autofix。
+ *
  * 上限 4 件：超过 4 件模型必然漏画，宁可少选。
  */
 const PROP_MAX = 4
 
-function propsSegment(props) {
+const WEAR_PREFIX_RE = /^(wearing|holding)\b/i
+
+function propMainTokens(tags) {
+  return clean(tags)
+    .split(',')
+    .map((t) => t.trim().toLowerCase())
+    .filter((t) => t && !WEAR_PREFIX_RE.test(t))
+}
+
+/**
+ * 造型段里是否已经出现了这个名词。
+ *
+ * 不能只做整串相等 —— `look_flower_field` 写的是 `flower crown`，道具写的是 `crown`，
+ * 整串比对会漏（实测王冠就是这么漏过去的）。所以按词边界比：
+ * `flower crown` 含 `crown`、`fingerless gloves` 含 `gloves`。
+ *
+ * 反过来 `earring` 不会被 `ring` 命中（前面是字母不是空格），这个必须靠词边界保。
+ */
+function lookHasNoun (lookTokens, noun) {
+  if (!noun) return false
+  const n = noun.toLowerCase().trim()
+  if (!n) return false
+  for (const t of lookTokens) {
+    if (t === n) return true
+    if (t.startsWith(n + ' ') || t.endsWith(' ' + n)) return true
+    if (t.includes(' ' + n + ' ')) return true
+  }
+  return false
+}
+
+function propsSegment(props, lookText) {
   const list = (props || []).filter(Boolean).slice(0, PROP_MAX)
-  if (!list.length) return ''
+  if (!list.length) return { text: '', dropped: [] }
+  const lookTokens = propMainTokens(lookText || '')
   const held = []
   const worn = []
+  const dropped = []
   for (const p of list) {
     const tags = clean(p.prop_tags || '')
     if (!tags) continue
@@ -380,6 +417,11 @@ function propsSegment(props) {
       const nouns = tokens.filter((t) => !/^holding\b/i.test(t) && !/^wearing\b/i.test(t))
       held.push((nouns[0] || tokens[0] || '').trim())
     } else {
+      const main = propMainTokens(tags)
+      if (main.length && main.some((t) => lookHasNoun(lookTokens, t))) {
+        dropped.push(p)
+        continue
+      }
       worn.push(tags)
     }
   }
@@ -388,7 +430,7 @@ function propsSegment(props) {
   if (heldClean.length === 1) parts.push('holding ' + heldClean[0])
   else if (heldClean.length > 1) parts.push('holding ' + heldClean.join(' and '))
   parts.push(...worn)
-  return parts.join(', ')
+  return { text: parts.join(', '), dropped }
 }
 
 /** 多道具的冲突检测（只说真会画坏的那几种）。 */
@@ -403,16 +445,20 @@ function propConflicts(props) {
     out.push(`手里同时拿了 ${held.length} 件东西 —— 两只手画不下，模型会丢一两件`)
   }
   // 同部位饰品：项链 + 项圈 / 耳饰 + 耳饰
+  //
+  // v10 修：原来写 `/ring\b|bracelet|.../` —— 少了左边界，`wear**ing**` 里的 ring
+  // 被它命中，124 张道具里 33 张被误判成「手部饰品」，于是围巾+王冠也报
+  // 「都占手部饰品」。全部改成 `\b...\b`，并用「去掉 wearing/holding 后的主名词」去匹配。
   const SLOT_RE = [
-    [/necklace|choker|necktie|bowtie|scarf|brooch/i, '颈部饰品'],
-    [/earring/i, '耳饰'],
-    [/ring\b|bracelet|wristwatch|armlet/i, '手部饰品'],
-    [/crown|tiara|halo|beret|beanie|headband|hairclip|veil/i, '头部饰品'],
-    [/boots|slippers/i, '鞋'],
+    [/\bnecklace\b|\bchoker\b|\bnecktie\b|\bbowtie\b|\bscarf\b|\bbrooch\b/i, '颈部饰品'],
+    [/\bearring/i, '耳饰'],
+    [/\bring\b|\bbracelet\b|\bwristwatch\b|\barmlet\b/i, '手部饰品'],
+    [/\bcrown\b|\btiara\b|\bhalo\b|\bberet\b|\bbeanie\b|\bheadband\b|\bhairclip\b|\bveil\b/i, '头部饰品'],
+    [/\bboots\b|\bslippers\b/i, '鞋'],
   ]
   const seen = new Map()
   for (const p of list) {
-    const t = clean(p.prop_tags || '')
+    const t = propMainTokens(p.prop_tags || '').join(', ')
     for (const [re, label] of SLOT_RE) {
       if (!re.test(t)) continue
       if (seen.has(label)) {
@@ -1204,7 +1250,9 @@ function compose(input) {
   const lookSeg = joinSeg(lookCloth, actSegForRecipe)
 
   // 道具跟在动作后面：先说明「在做什么」，再说明「手里拿着什么」
-  const propSeg = propsSegment(props)
+  // v10：穿戴类道具若造型卡已经穿了同一件，就删掉道具那一份（否则同一件东西进正向两三次）
+  const propFix = propsSegment(props, lookCloth)
+  const propSeg = propFix.text
   const viewSeg = viewSegments(view)
   // 景别裁决（v6）：视角 > 动作卡 > 环境卡。
   // 没选视角时动作卡的 shot_size 才有机会进正向 —— 早先它被整个丢掉，
@@ -1350,6 +1398,17 @@ function compose(input) {
       kind: 'facefocus',
       auto: true,
       message: '环境卡要求「对焦在脸上」，但动作卡说头不在画框里 —— 已撤掉这条对焦（否则它会把镜头拉回来找脸）',
+    })
+  }
+  // 穿戴道具重复（v10）：造型卡已经穿了同一件，道具卡又声明一次。
+  // 实测 look_painter（自带 beret）+ prop_beret 拼出来 beret 出现三次 —— 模型会画三顶帽子。
+  // 同槽位互斥，按「造型卡是底装、道具是追加」删掉道具那一份。
+  if (propFix.dropped.length) {
+    const names = propFix.dropped.map((p) => p.name || p.id).join(' / ')
+    autofixes.push({
+      kind: 'propdup',
+      auto: true,
+      message: `「${names}」造型卡已经穿了 —— 已撤掉道具那一份（否则同一件东西会进正向两三次，模型画出双份）`,
     })
   }
 
