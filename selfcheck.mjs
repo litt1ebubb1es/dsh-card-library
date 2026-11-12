@@ -1087,6 +1087,89 @@ check('道具主名词：candlelight 不被当成 candle 的具体形式',
   /holding candle\b/i.test(propCandle.json?.positive || '') && !/candlelight/i.test(propCandle.json?.segments?.prop || ''),
   propCandle.json?.segments?.prop)
 
+// ── v18：景深裁决（动作卡 dof 进正向 / 冲突时环境卡让位）+ 构图裁决（comp）──
+const dofDeep = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { styleId: 'style_wlop_warm_soft', characterId: 'crab_vampire', poseId: 'pose_pose_seiza_front' },
+})
+check('景深：动作卡 deep focus 进正向',
+  /deep focus/i.test(dofDeep.json?.positive || ''), dofDeep.json?.segments?.dof)
+check('景深：环境卡没 dof 时不报冲突',
+  !(dofDeep.json?.autofixes || []).some((a) => a.kind === 'dof'))
+
+const dofSoft = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { styleId: 'style_wlop_warm_soft', characterId: 'crab_vampire', poseId: 'pose_cafe_window_rain' },
+})
+check('景深：动作卡虚化（depth of field / blurry background）进正向',
+  /depth of field/i.test(dofSoft.json?.positive || '') && /blurry background/i.test(dofSoft.json?.positive || ''),
+  dofSoft.json?.segments?.dof)
+
+const dofClash = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { styleId: 'style_wlop_warm_soft', characterId: 'crab_vampire', poseId: 'pose_pose_seiza_front', sceneId: 'sc_cafe_window_rain' },
+})
+check('景深冲突：动作卡 deep focus 保留',
+  /deep focus/i.test(dofClash.json?.positive || ''), dofClash.json?.segments?.dof)
+check('景深冲突：环境卡的 blurry background 被撤',
+  !/blurry background/i.test(dofClash.json?.positive || ''), dofClash.json?.segments?.scene)
+check('景深冲突：报 dof autofix',
+  (dofClash.json?.autofixes || []).some((a) => a.kind === 'dof'),
+  JSON.stringify((dofClash.json?.autofixes || []).map((a) => a.kind)))
+
+const dofFace = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { styleId: 'style_wlop_warm_soft', characterId: 'crab_vampire', poseId: 'pose_pose_seiza_front', sceneId: 'sc_bathroom_mirror' },
+})
+check('景深不冲突：动作卡 deep focus 与环境卡 focus on face 共存',
+  /deep focus/i.test(dofFace.json?.positive || '') && /focus on face/i.test(dofFace.json?.positive || ''))
+check('景深不冲突：不报 dof',
+  !(dofFace.json?.autofixes || []).some((a) => a.kind === 'dof'))
+
+const dofSame = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { styleId: 'style_wlop_warm_soft', characterId: 'crab_vampire', poseId: 'pose_cafe_window_rain', sceneId: 'sc_sock_cafe_crossed' },
+})
+check('景深两边同族：不报冲突、不撤环境卡',
+  !(dofSame.json?.autofixes || []).some((a) => a.kind === 'dof') && /blurry background/i.test(dofSame.json?.positive || ''))
+
+const compNs = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { styleId: 'style_wlop_warm_soft', characterId: 'crab_vampire', poseId: 'pose_wide_lighthouse' },
+})
+check('构图：comp 的 negative space 进正向',
+  /negative space/i.test(compNs.json?.positive || ''), compNs.json?.segments?.comp)
+
+const compSym = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { styleId: 'style_wlop_warm_soft', characterId: 'crab_vampire', poseId: 'pose_elevator_ride' },
+})
+check('构图：comp 的 symmetry 进正向',
+  /symmetry/i.test(compSym.json?.positive || ''), compSym.json?.segments?.comp)
+
+const compAspect = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { styleId: 'style_wlop_warm_soft', characterId: 'crab_vampire', poseId: 'pose_wide_beach_dusk' },
+})
+check('构图：comp 里的画幅词（landscape）不进正向',
+  !/\blandscape\b/i.test(compAspect.json?.positive || ''), compAspect.json?.segments?.comp)
+
+const compProfile = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { styleId: 'style_wlop_warm_soft', characterId: 'crab_vampire', poseId: 'pose_near_face_backlight' },
+})
+check('构图：pose_tags 已有的词不重复加（profile 只出现一次）',
+  ((compProfile.json?.positive || '').match(/\bprofile\b/gi) || []).length === 1,
+  compProfile.json?.segments?.comp)
+
+const noDof = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { styleId: 'style_wlop_warm_soft', characterId: 'crab_vampire', poseId: 'pose_ballet' },
+})
+check('景深/构图：动作卡没声明时两段都为空',
+  !noDof.json?.segments?.dof && !noDof.json?.segments?.comp,
+  JSON.stringify({ dof: noDof.json?.segments?.dof, comp: noDof.json?.segments?.comp }))
+
 // ── 存卡规则：路由 + 工具 ──────────────────────────────────────────
 const rulesRes = await call('/dsh-card-library/rules')
 check('规则路由可用', rulesRes.status === 200 && rulesRes.json?.ok === true, rulesRes.status)

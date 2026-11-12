@@ -752,6 +752,9 @@ function sceneSegment(scene, opts) {
   // dropFaceFocus：头不在画框里（v9）。只丢「对焦在脸上」那一档 dof，
   // 其余 dof（景深虚化 / deep focus）照旧 —— 那些跟脸没关系。
   const dropFaceFocus = opts && opts.dropFaceFocus
+  // dropDof：景深被动作卡接管（v18）。只在「动作卡要虚化、环境卡要深焦」（或反之）时置位，
+  // 两边不冲突就共存 —— 环境卡的景深常常是场景本身的性质，能留就留。
+  const dropDof = opts && opts.dropDof
   const tags = scene.tags || {}
   const camera = scene.camera || {}
   const parts = []
@@ -767,6 +770,7 @@ function sceneSegment(scene, opts) {
     const v = clean(camera[slot])
     if (!v) continue
     if (dropFaceFocus && slot === 'dof' && isFaceFocus(v)) continue
+    if (dropDof && slot === 'dof') continue
     parts.push(v)
   }
   const extra = clean(scene.extra)
@@ -777,7 +781,7 @@ function sceneSegment(scene, opts) {
   // 于是「环境卡近景 × 动作卡全身」还是会在 extra_camera 里残留一份 —— 现在统一走
   // shotWordLevel()，不再手写。
   if (extraCam) {
-    if (skipCam || dropShot || dropViewpoint || dropFaceFocus) {
+    if (skipCam || dropShot || dropViewpoint || dropFaceFocus || dropDof) {
       let kept = extraCam.split(',')
         .map((t) => t.trim())
         .filter((t) => t && !(skipCam && /^(from behind|from above|from below|from side|from front)$/i.test(t)))
@@ -787,6 +791,9 @@ function sceneSegment(scene, opts) {
       }
       if (dropFaceFocus) {
         kept = kept.filter((t) => !isFaceFocus(t))
+      }
+      if (dropDof) {
+        kept = kept.filter((t) => dofFamilies(t).size === 0)
       }
       if (kept.length) parts.push(kept.join(', '))
     } else {
@@ -884,6 +891,98 @@ const FACE_FOCUS_RE = /\bfocus on (?:the )?face\b|\bface focus\b|\bfacial focus\
 
 function isFaceFocus(text) {
   return FACE_FOCUS_RE.test(String(text || ''))
+}
+
+/* ════════════════════════════════════════════════════════════════
+   景深裁决（v18）：动作卡的 camera.dof 从来没进过配方
+   ════════════════════════════════════════════════════════════════
+
+   这是 v6（景别）/ v7（机位）/ v11（画幅）之后的第四个同族毛病：
+   `poseSegment()` 只返回 pose_tags，动作卡的 camera.dof 一个词都没进过正向。
+   全库 23 张动作卡写了 dof（`focus on face` 11 / `depth of field, blurry background` 9 /
+   `deep focus` 3），全部静默丢弃；而环境卡的 dof 会照常进 —— 等于环境卡单方面说了算。
+
+   三族里只有「虚化 ⇄ 深焦」是互斥的：
+   - 虚化（`depth of field` / `blurry background` / `bokeh`）要背景糊
+   - 深焦（`deep focus` / `everything in focus`）要背景清
+   - `focus on face` 与它们都不冲突 —— 「对焦在脸 + 背景虚化」是标准电影语法
+   所以 `focus on face` 只受 headless 管（v9 同族，只是这次是动作卡自己写的）。
+*/
+const DOF_SOFT_RE = /\b(depth of field|blurry background|shallow depth of field|bokeh)\b/i
+const DOF_DEEP_RE = /\b(deep focus|everything in focus|sharp background)\b/i
+
+/** 把一段 dof 文本归成 {soft, deep, face} 三个族。 */
+function dofFamilies(text) {
+  const out = new Set()
+  for (const t of String(text || '').split(',').map((x) => x.trim()).filter(Boolean)) {
+    if (DOF_SOFT_RE.test(t)) out.add('soft')
+    else if (DOF_DEEP_RE.test(t)) out.add('deep')
+    else if (isFaceFocus(t)) out.add('face')
+  }
+  return out
+}
+
+/**
+ * 动作卡的 dof 要不要进正向、环境卡的 dof 要不要撤。
+ *
+ * 优先级跟 v6/v7 一致：动作卡说了算（它是在说「这个镜头怎么拍」）。
+ * 只有「虚化 ⇄ 深焦」这一对互斥；其余两边共存，joinSeg 自己去重。
+ */
+function resolveDof(pose, scene, poseSegText, headless) {
+  const raw = clean(pose?.camera?.dof || '')
+  if (!raw) return { pos: '', sceneDrop: false, conflict: false, dropped: [], poseFams: [], sceneFams: [] }
+  const seg = String(poseSegText || '').toLowerCase()
+  const kept = []
+  const dropped = []
+  for (const t of raw.split(',').map((x) => x.trim()).filter(Boolean)) {
+    // 动作标签里本来就写了这个词 → 不重复加
+    if (seg.indexOf(t.toLowerCase()) >= 0) continue
+    // 头都不在画框里，还要求「对焦在脸」→ 只能靠塞一个头来满足（v9 同族）
+    if (headless && isFaceFocus(t)) { dropped.push(t); continue }
+    kept.push(t)
+  }
+  const poseFams = dofFamilies(kept.join(', '))
+  const sceneFams = dofFamilies(clean(scene?.camera?.dof || ''))
+  const clash = (poseFams.has('soft') && sceneFams.has('deep')) || (poseFams.has('deep') && sceneFams.has('soft'))
+  return {
+    pos: kept.join(', '),
+    sceneDrop: clash,
+    conflict: clash,
+    dropped,
+    poseFams: [...poseFams],
+    sceneFams: [...sceneFams],
+  }
+}
+
+/* ════════════════════════════════════════════════════════════════
+   构图裁决（v18）：动作卡的 camera.comp 同样从来没进过配方
+   ════════════════════════════════════════════════════════════════
+
+   32 张动作卡写了 comp，其中：
+   - 16 个是**构图词**（`negative space` 14 / `symmetry` 1 / `profile` 1）→ 该进正向
+   - 16 个是**画幅词**（`landscape` / `portrait`）→ 那不是构图，是 aspect 的重复声明，
+     归 v11 的画幅裁决管（14 张与 aspect 同值；2 张 aspect=both 只有 comp 声明了 portrait，
+     恰恰是面部特写卡，丢掉会让竖图变横图）。
+*/
+const COMP_ASPECT_RE = /^(landscape|portrait)$/i
+
+function resolveComp(pose, poseSegText) {
+  const raw = clean(pose?.camera?.comp || '')
+  if (!raw) return { pos: '', dropped: [], aspect: '' }
+  const seg = String(poseSegText || '').toLowerCase()
+  const kept = []
+  const dropped = []
+  let aspect = ''
+  for (const t of raw.split(',').map((x) => x.trim()).filter(Boolean)) {
+    if (COMP_ASPECT_RE.test(t)) {
+      if (!aspect) aspect = t.toLowerCase()
+      dropped.push(t)
+      continue
+    }
+    if (seg.indexOf(t.toLowerCase()) >= 0) continue
+    kept.push(t)
+  }
+  return { pos: kept.join(', '), dropped, aspect }
 }
 
 /**
@@ -1618,12 +1717,21 @@ function compose(input) {
   // 视角接管时动作段会被剥掉视线/机位词，但 `head out of frame` 不在剥离名单里，所以照样能判。
   // v9 起这个判定要提前到 sceneSegment 之前 —— 场景段的 dof 也得跟着让位。
   const headless = isHeadless(actSegForRecipe) || isHeadless(viewSeg.pos)
+  // 景深裁决（v18）：动作卡的 camera.dof 早先也没进正向（23 张全丢），
+  // 而环境卡的 dof 照常进 —— 等于环境卡单方面说了算。
+  const dofFix = resolveDof(pose, scene, poseSeg, headless)
+  const poseDofSeg = dofFix.pos
+  // 构图裁决（v18）：动作卡的 camera.comp 里的构图词（negative space / symmetry / profile）
+  // 同样从来没进过正向。里面的画幅词（landscape / portrait）不进正向，交给画幅裁决。
+  const compFix = resolveComp(pose, poseSeg)
+  const poseCompSeg = compFix.pos
   // 选了视角时，环境卡的机位/景别让位给视角，只保留 comp / dof
   const sceneSeg = sceneSegment(scene, {
     skipCamera: !!viewSeg.pos,
     dropShot: !!(shotFix && shotFix.sceneDrop),
     dropViewpoint: !!(viewFix && viewFix.sceneDrop),
     dropFaceFocus: headless,
+    dropDof: !!(dofFix && dofFix.sceneDrop),
   })
   // 脸光：归画风卡。视角只提供 faceMode（正常 / 远景降级 / 背影清空），不提供词。
   // 景别被动作卡接管后，远景判定也要跟着改 —— 否则动作卡要全身、环境卡写 upper body，
@@ -1661,7 +1769,7 @@ function compose(input) {
   // 拼装顺序：视角段紧跟在场景之后 —— 场景说明「在哪」，视角说明「从哪儿看、往哪儿看」。
   // 放在场景之前会被场景的 camera 词盖掉，放在最后又压不住 render 段的 detailed eyes。
   // 动作卡景别/机位跟在动作段后面（它是在说「这个动作要拍多宽、从哪边拍」）。
-  const positive = joinSeg(q, art, charSeg, lookSeg, poseShotSeg, poseViewSeg, propSeg, sceneSeg, viewSeg.pos, faceLight, render)
+  const positive = joinSeg(q, art, charSeg, lookSeg, poseShotSeg, poseViewSeg, poseCompSeg, poseDofSeg, propSeg, sceneSeg, viewSeg.pos, faceLight, render)
   // 画幅裁决（v11）：环境卡 > 动作卡 > 画风卡参数。
   // 动作卡的 aspect 早先从来没读过 —— 74 张横构图动作卡（all fours / cowgirl position）
   // 没配环境卡时被塞进 832x1216 竖画布，左右两侧直接裁掉。
@@ -1795,6 +1903,28 @@ function compose(input) {
       kind: 'viewpoint',
       auto: true,
       message: `机位冲突：环境卡是「${a}」，动作卡是「${b}」—— 按动作卡取「${b}」，已撤掉环境卡的机位词（否则动作被拍变形）`,
+    })
+  }
+
+  // 景深让位（v18）：动作卡的 camera.dof 进正向；只有「虚化 ⇄ 深焦」互斥时
+  // 才撤掉环境卡的 dof。两边不冲突就共存（环境卡的景深常常是场景性质）。
+  if (dofFix && dofFix.conflict) {
+    const a = dofFix.sceneFams.includes('deep') ? '深焦（背景清晰）' : '虚化（背景糊）'
+    const b = dofFix.poseFams.includes('deep') ? '深焦（背景清晰）' : '虚化（背景糊）'
+    autofixes.push({
+      kind: 'dof',
+      auto: true,
+      message: `景深冲突：环境卡是「${a}」，动作卡是「${b}」—— 按动作卡取「${b}」，已撤掉环境卡的景深词（背景不能同时既糊又清晰）`,
+    })
+  }
+  // 头出画时动作卡自己的「对焦在脸」（v18，v9 的同族另一侧）：
+  // 早先只查环境卡那一份，动作卡写的 focus on face 从来没进过正向，所以看不见；
+  // 现在动作卡 dof 进正向，就必须同样让位，否则等于把 v9 修过的坑从另一边开回来。
+  if (dofFix && dofFix.dropped.length && dofFix.dropped.some((t) => isFaceFocus(t))) {
+    autofixes.push({
+      kind: 'facefocus',
+      auto: true,
+      message: '动作卡自己写了「对焦在脸上」，但它也说头不在画框里 —— 已撤掉这条对焦（否则它会把镜头拉回来找脸）',
     })
   }
 
@@ -1946,6 +2076,8 @@ function compose(input) {
       scene: sceneSeg,
       shot: clean(poseShotSeg),
       viewpoint: clean(poseViewSeg),
+      dof: clean(poseDofSeg),
+      comp: clean(poseCompSeg),
       view: clean(viewSeg.pos),
       view_negative: clean(viewSeg.neg),
       view_notes: viewSeg.notes,
