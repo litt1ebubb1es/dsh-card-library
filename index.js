@@ -686,8 +686,11 @@ function faceLightFor(faceLight, scene) {
  * 那里必须让位给降级版或清空，否则模型强行拉脸部特写（n64 实测）。
  * 这个例外是有意保留的，不是漏改。
  */
-function resolveFaceLight(styleFaceLight, scene, viewSeg) {
+function resolveFaceLight(styleFaceLight, scene, viewSeg, headless) {
   const styleFace = styleFaceLight || ''
+  // 画面里根本没有头（动作卡写了 head out of frame）—— 任何脸光词都是纯噪音。
+  // 「catchlight in both eyes」在一条只拍腿的构图里只会把模型逼出一个头来（n100）。
+  if (headless) return ''
   if (!viewSeg || !viewSeg.pos) return faceLightFor(styleFace, scene)
   if (viewSeg.faceMode === 'none') return ''
   if (viewSeg.faceMode === 'far') {
@@ -696,6 +699,22 @@ function resolveFaceLight(styleFaceLight, scene, viewSeg) {
   }
   // 正常景别：画风卡说什么就是什么；画风卡没写才用通用兜底
   return styleFace || 'face fully lit, catchlight in both eyes, gentle highlight on cheek'
+}
+
+/**
+ * 「头不在画框里」的动作卡（v8）。
+ *
+ * `head out of frame` 是 danbooru 原生构图标签，库里 25 张近景卡在用它
+ * （feet focus / legs focus / ass focus 那一族）。这类卡一旦配上脸光词，
+ * 模型会为了画「catchlight in both eyes」硬塞一个头进来，把构图毁掉。
+ *
+ * 只认显式声明 —— 光有 `legs focus` / `lower body` 不算：那 6 张卡是
+ * 「拍腿但头可能入画」的中景，脸光还得留（n100 实测）。
+ */
+const HEADLESS_RE = /\bhead out of frame\b|\bhead not (?:visible|in frame)\b|\bno head\b|\bheadless\b|\bhead cropped\b/i
+
+function isHeadless(text) {
+  return HEADLESS_RE.test(String(text || ''))
 }
 
 /**
@@ -1194,7 +1213,11 @@ function compose(input) {
       extra_camera: stripShotWords(stripViewpointWords(clean(scene?.extra_camera))),
     }
   })()
-  const faceLight = resolveFaceLight(style?.face_light || '', sceneForFace, viewSeg)
+  // 头在不在画框里（v8）：看真正进正向的动作段 + 视角。
+  // 动作卡写了 `head out of frame`，脸光就该清空 —— 否则模型为了画眼睛硬塞一个头。
+  // 视角接管时动作段会被剥掉视线/机位词，但 `head out of frame` 不在剥离名单里，所以照样能判。
+  const headless = isHeadless(actSegForRecipe) || isHeadless(viewSeg.pos)
+  const faceLight = resolveFaceLight(style?.face_light || '', sceneForFace, viewSeg, headless)
   const render = style?.render || ''
 
   // 拼装顺序：视角段紧跟在场景之后 —— 场景说明「在哪」，视角说明「从哪儿看、往哪儿看」。
@@ -1281,6 +1304,16 @@ function compose(input) {
       kind: 'viewpoint',
       auto: true,
       message: `机位冲突：环境卡是「${a}」，动作卡是「${b}」—— 按动作卡取「${b}」，已撤掉环境卡的机位词（否则动作被拍变形）`,
+    })
+  }
+
+  // 头出画（v8）：动作卡写了 head out of frame，脸光整段清空。
+  // 必须报出来 —— 「已自动处理」块的作用就是让用户看见配方和卡里不一样了。
+  if (headless && (style?.face_light || '').trim()) {
+    autofixes.push({
+      kind: 'headless',
+      auto: true,
+      message: '动作卡写了「头不在画框里」—— 已清空脸光段（否则模型为了画眼睛会硬塞一个头进来，把构图毁掉）',
     })
   }
 

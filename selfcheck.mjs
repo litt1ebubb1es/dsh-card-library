@@ -548,6 +548,51 @@ check('机位：选视角后不报机位冲突',
   !(vpView.json?.autofixes || []).some((a) => a.kind === 'viewpoint'),
   (vpView.json?.autofixes || []).map((a) => a.kind))
 
+// ── v8：头不在画框里 → 脸光清空 ────────────────────────────────────
+const hdA = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { styleId: 'style_gothic_baroque', characterId: 'crab_vampire', poseId: 'pose_near_hip_back_stand' },
+})
+check('头出画：脸光清空', String(hdA.json?.segments?.face_light || '').trim() === '',
+  hdA.json?.segments?.face_light)
+check('头出画：报 headless autofix',
+  (hdA.json?.autofixes || []).some((a) => a.kind === 'headless'),
+  (hdA.json?.autofixes || []).map((a) => a.kind))
+const hdB = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { styleId: 'style_gothic_baroque', characterId: 'crab_vampire', poseId: 'pose_near_foot_bare' },
+})
+check('头出画：feet focus 也清空', String(hdB.json?.segments?.face_light || '').trim() === '',
+  hdB.json?.segments?.face_light)
+// 只有 focus 词、没有显式 head out of frame 的中景必须保住脸光
+const hdC = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { styleId: 'style_gothic_baroque', characterId: 'crab_vampire', poseId: 'pose_near_foot_heel' },
+})
+check('只有 focus 词：脸光保留', String(hdC.json?.segments?.face_light || '').trim() !== '',
+  hdC.json?.segments?.face_light)
+check('只有 focus 词：不报 headless',
+  !(hdC.json?.autofixes || []).some((a) => a.kind === 'headless'),
+  (hdC.json?.autofixes || []).map((a) => a.kind))
+// 选视角也压不回头出画
+const hdD = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: {
+    styleId: 'style_gothic_baroque', characterId: 'crab_vampire', poseId: 'pose_near_leg_hem',
+    view: { angle: 'front', gaze: 'front', shot: 2 },
+  },
+})
+check('头出画：选视角后仍清空', String(hdD.json?.segments?.face_light || '').trim() === '',
+  hdD.json?.segments?.face_light)
+// 画风卡本来就没脸光时不该空报
+const hdE = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { styleId: 'style_manga_ink_v1', characterId: 'crab_vampire', poseId: 'pose_near_hip_back_stand' },
+})
+check('无脸光画风：不空报 headless',
+  !(hdE.json?.autofixes || []).some((a) => a.kind === 'headless'),
+  (hdE.json?.autofixes || []).map((a) => a.kind))
+
 // ── 存卡规则：路由 + 工具 ──────────────────────────────────────────
 const rulesRes = await call('/dsh-card-library/rules')
 check('规则路由可用', rulesRes.status === 200 && rulesRes.json?.ok === true, rulesRes.status)
