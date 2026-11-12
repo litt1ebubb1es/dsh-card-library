@@ -1451,6 +1451,31 @@ function resolveAspect(pose, scene) {
 const ASPECT_CN = { portrait: '竖构图', landscape: '横构图' }
 const ASPECT_RES = { portrait: '832x1216', landscape: '1216x832' }
 
+// ── v16：params 只收「采样键」 ────────────────────────────────────
+// 卡里的 params 混着元数据：safe_composition（一句提示词）、denoise_note / note
+// （中文说明）、seed（和顶层 seed 打架）。这些键混进 params 后，下游按「键=值」
+// 喂采样器时会被中文长句噎住，也会让 params.seed 和顶层 seed 说两套话。
+const PARAM_KEYS = ['model', 'lora', 'clip', 'vae', 'steps', 'cfg', 'sampler', 'scheduler', 'resolution', 'denoise']
+
+/** 只挑采样键，其余（元数据 / 说明）一律不搬。 */
+function pickSamplingParams(src) {
+  const out = {}
+  if (!src || typeof src !== 'object') return out
+  for (const k of PARAM_KEYS) {
+    const v = src[k]
+    if (v === undefined || v === null || v === '') continue
+    out[k] = v
+  }
+  return out
+}
+
+/** 列出某个 params 里被丢弃的键名（给 autofix 用）。 */
+function nonSamplingKeys(src) {
+  if (!src || typeof src !== 'object') return []
+  return Object.keys(src).filter((k) => PARAM_KEYS.indexOf(k) < 0)
+}
+
+
 /** 按槽位剔负面词，返回 { kept, dropped }。 */
 function dropNegativeSlots(negSeg, shouldDrop) {
   const out = []
@@ -1589,6 +1614,39 @@ function compose(input) {
   // 没配环境卡时被塞进 832x1216 竖画布，左右两侧直接裁掉。
   // 声明必须在这里：下面 autofix 与 warning 两段都要用 aspectFix。
   const aspectFix = resolveAspect(pose, scene)
+  // 参数优先级：画风卡最硬。
+  //
+  // 底模 + 加速 LoRA + steps/cfg 是画风卡的采样档（miaomiaoHarem 8step 必须配
+  // 12步 cfg2.0），角色卡里存的是老底模 anima-base 的 45步 cfg4.5 —— 那个一旦
+  // 盖过来，8step 模型就跑废了。所以只拿画风卡当基座，别的卡只补它没有的键。
+  //
+  // v16：只搬「采样键」。卡里的 params 混着元数据 —— `safe_composition`
+  // （"sitting, upper body, cowboy shot" 一句提示词）、`denoise_note`（一段中文说明）、
+  // `note`、`seed`。之前无条件 copy，结果是下游按「键=值」喂采样器时被中文长句噎住，
+  // 而且 seed 会和顶层 seed 打架（params 里 650000、顶层 null）。
+  // 声明必须在这里：下面 autofix 段要用 droppedParamKeys。
+  const params = Object.assign({}, pickSamplingParams(style?.params))
+  const droppedParamKeys = []
+  for (const [src, extra] of [['look', look?.params], ['character', character?.params]]) {
+    if (!extra || typeof extra !== 'object') continue
+    for (const k of Object.keys(extra)) {
+      if (!PARAM_KEYS.includes(k) && !droppedParamKeys.some((d) => d.key === k)) {
+        droppedParamKeys.push({ key: k, from: src })
+      }
+    }
+    for (const [k, v] of Object.entries(pickSamplingParams(extra))) {
+      if (params[k] === undefined || params[k] === null || params[k] === '') params[k] = v
+    }
+  }
+  // 画幅落到参数上（v11）。放在 params 合并之后 —— 画风卡参数里也有 resolution，
+  // 合并时会被 look/character 的 params 补空，画幅裁决必须最后拍板。
+  if (aspectFix.aspect) {
+    params.resolution = ASPECT_RES[aspectFix.aspect]
+    // img2img 专用画风卡的分辨率是「必须这么高」的硬约束（1280x1807 才能保住分镜框），
+    // 不能被横构图改成 1216x832 —— 那会同时把分镜和长宽比一起毁掉。
+    if (style && style.mode === 'img2img') params.resolution = style?.params?.resolution || params.resolution
+  }
+
   // ── 自动冲突处理：负面按语义槽位让位 ────────────────────────────
   //
   // 顺序要紧：先做「裸露让位」，再做「光照让位」，最后才 minusPositive。
@@ -1718,6 +1776,19 @@ function compose(input) {
     })
   }
 
+  // 参数元数据（v16）：卡里的 params 除了采样键还混着元数据 ——
+  // `safe_composition`（"sitting, upper body, cowboy shot" 一句提示词）、
+  // `denoise_note`（一段中文说明）、`note`、`seed`。无条件 copy 的后果是
+  // 下游按「键=值」喂采样器时被中文长句噎住，且 params.seed 与顶层 seed 说两套话。
+  if (droppedParamKeys.length) {
+    const desc = droppedParamKeys.map((d) => `${d.key}（来自 ${d.from} 卡）`).join(' / ')
+    autofixes.push({
+      kind: 'param',
+      auto: true,
+      message: `参数里混进了非采样键：${desc} —— 已从采样参数里剔掉（它们不是采样值，下游按「键=值」喂采样器会被中文长句噎住；seed 也改由顶层 seed 统一管）`,
+    })
+  }
+
   // 闭眼 / 睡着（v13）：眼睛专属词在角色段、脸光段、render 段里都作废。
   // 这三段都是「必须睁眼才成立」的描述，留着只会把脸拽正 / 逼角色睁眼。
   if (eyesShut) {
@@ -1780,28 +1851,6 @@ function compose(input) {
   // 最后一道保险：负向里凡是正向已经写了的词，全部剔除。
   // 两段有交集时模型会二选一，「正面看镜头」比「背影回头」强势，实测直接翻脸。
   const negative = minusPositive(negAfterNude, positive)
-
-  // 参数优先级：画风卡最硬。
-  //
-  // 底模 + 加速 LoRA + steps/cfg 是画风卡的采样档（miaomiaoHarem 8step 必须配
-  // 12步 cfg2.0），角色卡里存的是老底模 anima-base 的 45步 cfg4.5 —— 那个一旦
-  // 盖过来，8step 模型就跑废了。所以只拿画风卡当基座，别的卡只补它没有的键。
-  const params = Object.assign({}, style?.params || {})
-  for (const extra of [look?.params, character?.params]) {
-    if (!extra || typeof extra !== 'object') continue
-    for (const [k, v] of Object.entries(extra)) {
-      if (params[k] === undefined || params[k] === null || params[k] === '') params[k] = v
-    }
-  }
-  // 画幅落到参数上（v11）。放在 params 合并之后 —— 画风卡参数里也有 resolution，
-  // 合并时会被 look/character 的 params 补空，画幅裁决必须最后拍板。
-  // （aspectFix 在 positive 之后、autofix 之前就已算好。）
-  if (aspectFix.aspect) {
-    params.resolution = ASPECT_RES[aspectFix.aspect]
-    // img2img 专用画风卡的分辨率是「必须这么高」的硬约束（1280x1807 才能保住分镜框），
-    // 不能被横构图改成 1216x832 —— 那会同时把分镜和长宽比一起毁掉。
-    if (style && style.mode === 'img2img') params.resolution = style?.params?.resolution || params.resolution
-  }
 
   const seed = Number.isFinite(input.seed) ? Math.trunc(input.seed) : null
 

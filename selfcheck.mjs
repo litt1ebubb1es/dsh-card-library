@@ -960,6 +960,59 @@ for (const [styleId, sceneId] of [
     (r.json?.autofixes || []).map((a) => a.kind).join(','))
 }
 
+// ── v16：params 只收采样键（元数据不许混进采样参数） ────────────────
+// 卡里的 params 混着 safe_composition（一句提示词）/ denoise_note / note（中文说明）
+// / seed（和顶层 seed 打架）。之前无条件 copy，下游按「键=值」喂采样器会被噎住。
+const PARAM_KEYS = ['model', 'lora', 'clip', 'vae', 'steps', 'cfg', 'sampler', 'scheduler', 'resolution', 'denoise']
+const nonSampling = (p) => Object.keys(p || {}).filter((k) => PARAM_KEYS.indexOf(k) < 0)
+
+const pmA = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { styleId: 'style_wlop_warm_soft', characterId: 'crab_vampire' },
+})
+check('参数元数据：crab_vampire 的 safe_composition 不进 params',
+  !('safe_composition' in (pmA.json?.params || {})), JSON.stringify(nonSampling(pmA.json?.params)))
+check('参数元数据：params 里没有任何非采样键',
+  nonSampling(pmA.json?.params).length === 0, JSON.stringify(nonSampling(pmA.json?.params)))
+check('参数元数据：报了 param autofix',
+  (pmA.json?.autofixes || []).some((a) => a.kind === 'param'),
+  (pmA.json?.autofixes || []).map((a) => a.kind).join(','))
+check('参数元数据：文案点名「非采样键」',
+  (pmA.json?.autofixes || []).some((a) => a.kind === 'param' && /非采样键/.test(a.message)))
+check('参数元数据：采样键本身没被误删（12步 cfg2 832x1216）',
+  pmA.json?.params?.steps === 12 && pmA.json?.params?.cfg === 2 && pmA.json?.params?.resolution === '832x1216',
+  JSON.stringify({ steps: pmA.json?.params?.steps, cfg: pmA.json?.params?.cfg, res: pmA.json?.params?.resolution }))
+
+const pmB = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { styleId: 'style_manga_ink_v1', characterId: 'crab_vampire' },
+})
+check('参数元数据：style 的 denoise_note 不进 params',
+  !('denoise_note' in (pmB.json?.params || {})))
+check('参数元数据：img2img 分辨率硬约束仍是 1280x1807',
+  pmB.json?.params?.resolution === '1280x1807', String(pmB.json?.params?.resolution))
+check('参数元数据：img2img 仍是 30步 cfg4.5',
+  pmB.json?.params?.steps === 30 && pmB.json?.params?.cfg === 4.5,
+  JSON.stringify({ steps: pmB.json?.params?.steps, cfg: pmB.json?.params?.cfg }))
+
+const pmC = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { styleId: 'style_wlop_warm_soft', characterId: 'crab_vampire', lookId: 'look_alchemist' },
+})
+check('参数元数据：look 的 params.seed 不被搬进 params',
+  !('seed' in (pmC.json?.params || {})), String(pmC.json?.params?.seed))
+check('参数元数据：顶层 seed 仍为 null（没有被 params.seed 顶替）',
+  pmC.json?.seed === null, String(pmC.json?.seed))
+const pmD = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { styleId: 'style_wlop_warm_soft', characterId: 'crab_vampire', lookId: 'look_alchemist', seed: 123456 },
+})
+check('参数元数据：显式 seed 走顶层，params 里不出现第二个 seed',
+  pmD.json?.seed === 123456 && !('seed' in (pmD.json?.params || {})),
+  JSON.stringify({ top: pmD.json?.seed, inParams: pmD.json?.params?.seed }))
+check('参数元数据：配方文本的参数行不含中文说明',
+  !/保原图|结构稳|分镜溶解/.test((pmB.json?.text || '').split('\n').find((l) => l.startsWith('参数：')) || ''))
+
 // ── 存卡规则：路由 + 工具 ──────────────────────────────────────────
 const rulesRes = await call('/dsh-card-library/rules')
 check('规则路由可用', rulesRes.status === 200 && rulesRes.json?.ok === true, rulesRes.status)
