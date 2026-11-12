@@ -747,6 +747,53 @@ const aspE = await call('/dsh-card-library/compose', {
 check('画幅：img2img 画风卡的分辨率是硬约束，不被画幅改掉',
   aspE.json?.params?.resolution === '1280x1807', aspE.json?.params?.resolution)
 
+// ── v12：画法让位 —— 非画风卡的负面不许压画风卡主张的画法 ──────────────
+// style_mochizuki_cel 主张「赛璐璐 + 平涂 + 线稿」，它自己的负面里没有 cel shading / flat colors。
+const medA = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { styleId: 'style_mochizuki_cel', characterId: 'crab_vampire', lookId: 'look_alchemist' },
+})
+const medNegA = String(medA.json?.negative || '').toLowerCase()
+check('画法：角色卡负面里的 cel shading 被剔掉（画风卡主张赛璐璐）',
+  !medNegA.includes('cel shading'), medNegA.includes('cel shading'))
+check('画法：角色卡负面里的 flat colors 被剔掉（画风卡主张平涂）',
+  !medNegA.includes('flat colors'), medNegA.includes('flat colors'))
+check('画法：剔了要报 medium autofix',
+  (medA.json?.autofixes || []).some((a) => a.kind === 'medium'),
+  (medA.json?.autofixes || []).map((a) => a.kind).join(','))
+check('画法：文案说明是角色/造型卡在压画风卡',
+  (medA.json?.autofixes || []).some((a) => a.kind === 'medium' && /压制画风卡要的画法/.test(String(a.message))))
+
+// 反向：画风卡没主张的族不许动 —— 造型卡负面里的 painterly 必须留着
+const medB = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { styleId: 'style_mochizuki_cel', characterId: 'crab_vampire', lookId: 'look_flower_field' },
+})
+check('画法：画风卡没主张的族（厚涂）负面照旧保留',
+  String(medB.json?.negative || '').toLowerCase().includes('painterly'),
+  String(medB.json?.negative || '').toLowerCase().includes('painterly'))
+
+// 画风卡自己的负面一律不动：shadowverse 自己把 flat colors 压掉，这是它的取舍
+const medC = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { styleId: 'style_shadowverse_crisp', characterId: 'crab_vampire', lookId: 'look_alchemist' },
+})
+check('画法：画风卡自己的负面不被改（shadowverse 仍压 flat colors）',
+  String(medC.json?.negative || '').toLowerCase().includes('flat colors'),
+  String(medC.json?.negative || '').toLowerCase().includes('flat colors'))
+
+// 画风卡不主张任何画法族时，一个词都不该动
+const medD = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { styleId: 'style_wlop_warm_soft', characterId: 'crab_vampire', lookId: 'look_alchemist' },
+})
+check('画法：画风卡不主张该族时不出 medium autofix',
+  !(medD.json?.autofixes || []).some((a) => a.kind === 'medium'),
+  (medD.json?.autofixes || []).map((a) => a.kind).join(','))
+check('画法：画风卡不主张该族时 cel shading 仍留在负面',
+  String(medD.json?.negative || '').toLowerCase().includes('cel shading'),
+  String(medD.json?.negative || '').toLowerCase().includes('cel shading'))
+
 // ── 存卡规则：路由 + 工具 ──────────────────────────────────────────
 const rulesRes = await call('/dsh-card-library/rules')
 check('规则路由可用', rulesRes.status === 200 && rulesRes.json?.ok === true, rulesRes.status)

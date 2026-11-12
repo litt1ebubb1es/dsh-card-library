@@ -936,6 +936,72 @@ const LIGHT_RULES = [
   },
 ]
 
+/**
+ * 画法族（v12）：同一族里的词指向同一种画法。
+ *
+ * 造型卡的 negative_extra 是历史遗留 —— 19 张「柔光半写实 (基准)」卡共用同一段
+ * 样板负面，开头 12 词一字不差：`… cel shading, flat colors, painterly, 3d render …`
+ * 这段是给柔光厚涂配的（那时候只有一档画风），可一旦换上赛璐璐 / 平涂 / 水彩画风卡，
+ * 负面里这几个词就等于「不要你这种画法」。
+ *
+ * 为什么 minusPositive 救不了：它只按整串包含剔。负面 `flat colors` 与正向
+ * `flat color areas` 差一个 s，剔不掉；负面 `painterly` 碰上正向 `painterly rendering`
+ * 才碰巧命中。实测 38 组合里只有 2 个冲突对会被它处理。
+ *
+ * 判定原则（关键）：**只有画风卡自己主张的族才剔**。
+ * 画风卡正向里没有的那一族，负面留着是对的 —— `style_shadowverse_crisp`
+ * 正向写 `cel shading` 却把 `flat colors` 写进自己的负面，意思是「要赛璐璐的
+ * 分色、但不要平涂」，这是它刻意的取舍，不能碰。
+ * 所以：只剔造型卡那一侧的负面，且只剔画风卡主张的族。
+ */
+const MEDIUM_FAMILIES = [
+  { label: '赛璐璐', words: ['cel shading', 'cel shaded', 'anime cel', 'cel style', 'cel coloring', 'cel outline'] },
+  { label: '平涂', words: ['flat colors', 'flat color', 'flat color areas', 'crisp flat colors', 'flat colouring', 'flat color with soft airbrush'] },
+  { label: '厚涂', words: ['painterly', 'painterly rendering', 'painterly style', 'painted look', 'brush strokes', 'visible brush strokes', 'brushwork', 'visible brushwork', 'impasto', 'thick paint'] },
+  { label: '线稿', words: ['lineart', 'line art', 'thin lineart', 'crisp lineart', 'colored lineart', 'thin sharp lineart', 'clean lineart', 'black lineart', 'fine ink lineart'] },
+  { label: '水彩', words: ['watercolor', 'watercolor (medium)', 'wet on wet', 'color bleeding', 'gouache'] },
+  { label: '半调', words: ['halftone', 'halftone dots', 'screentone', 'screen print', 'silkscreen print'] },
+  { label: '版画', words: ['ukiyo-e', 'woodblock print', 'woodcut'] },
+  { label: '渐变', words: ['gradient', 'pastel gradient', 'color gradient', 'gradient shading'] },
+]
+
+/** 这个词属于哪个画法族（精确 token 匹配，不做包含）。 */
+function mediumFamilyOf(token) {
+  const t = String(token || '').trim().toLowerCase()
+  if (!t) return null
+  for (const fam of MEDIUM_FAMILIES) if (fam.words.indexOf(t) >= 0) return fam
+  return null
+}
+
+/** 画风卡主张了哪些画法族（正向任一变体出现即算主张）。 */
+function mediumFamiliesClaimed(style) {
+  const pos = [style?.artist_segment, style?.render, style?.face_light, style?.quality_prefix]
+    .filter(Boolean).join(', ').toLowerCase()
+  const out = new Set()
+  if (!pos) return out
+  for (const fam of MEDIUM_FAMILIES) {
+    if (fam.words.some((w) => pos.indexOf(w) >= 0)) out.add(fam.label)
+  }
+  return out
+}
+
+/**
+ * 剔掉造型卡负面里「压制画风卡主张画法」的裸词。返回 { kept, dropped, families }。
+ * 只喂造型卡自己的 negative_extra —— 画风卡的负面是它自己的取舍，一律不动。
+ */
+function dropMediumConflicts(negSeg, style) {
+  const claimed = mediumFamiliesClaimed(style)
+  if (!claimed.size) return { kept: String(negSeg || ''), dropped: [], families: [] }
+  const families = []
+  const r = dropNegativeSlots(negSeg, (t) => {
+    const fam = mediumFamilyOf(t)
+    if (!fam || !claimed.has(fam.label)) return false
+    if (families.indexOf(fam.label) < 0) families.push(fam.label)
+    return true
+  })
+  return { kept: r.kept, dropped: r.dropped, families }
+}
+
 /** 视线词分两组：看镜头 / 回头。同一张动作卡里两组并存 = 互斥。 */const GAZE_VIEWER_RE = /^(looking at viewer|eye contact)$/i
 const GAZE_BACK_RE = /^(looking back|looking over shoulder|looking back over shoulder)$/i
 
@@ -1357,11 +1423,26 @@ function compose(input) {
     if (rule.scene.test(sceneLightText)) lightDrops.push(rule)
   }
 
+  // 画法让位（v12）：非画风卡的负面里，那些「裸类目词」在压制画风卡主张的画法。
+  //
+  // 真凶不只是造型卡 —— 角色卡 `crab_vampire` 的 negative 也带着
+  // `cel shading, flat colors, painterly`（早期从柔光厚涂那套复制来的）。
+  // 所以这里清的是「角色 + 造型 + 视角」这一整串，画风卡自己那份一律不动：
+  // 它的负面是它刻意的取舍（shadowverse 要赛璐璐分色、却把 flat colors 压掉）。
+  const mediumFix = dropMediumConflicts(
+    joinSeg(character?.negative || '', look?.negative_extra || '', viewSeg.neg),
+    style
+  )
+  if (mediumFix.dropped.length) {
+    autofixes.push({
+      kind: 'medium',
+      auto: true,
+      message: `角色/造型卡的负面在压制画风卡要的画法（${mediumFix.families.join(' / ')}），已剔掉：${mediumFix.dropped.join(' / ')}`,
+    })
+  }
   const negParts = [
     style?.negative || '',
-    character?.negative || '',
-    look?.negative_extra || '',
-    viewSeg.neg,
+    mediumFix.kept,
   ]
   const negJoined = joinSeg(...negParts)
   const nudeFixed = dropNegativeSlots(negJoined, (t) => wantsNude && NUDE_NEG_RE.test(t))
