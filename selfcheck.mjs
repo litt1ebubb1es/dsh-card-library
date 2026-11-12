@@ -1286,6 +1286,72 @@ check('人数：动作卡没说时按单人，环境卡人数不构成冲突',
   !(cSceneOnly.json?.warnings || []).some((w) => w.includes('人数冲突')),
   JSON.stringify({ tier: cSceneOnly.json?.segments?.count_tier, w: cSceneOnly.json?.warnings }))
 
+// ── v21：脚上穿不穿（动作卡赤足 × 造型卡鞋）────────────────────────
+const SHOE_RE_SC = /\b(boots?|shoes?|sneakers?|mary janes|loafers|oxfords|slippers|geta|zouri|uwabaki|sandals|pointe shoes|ballet slippers|cloth shoes|dress shoes|military boots|hiking boots|snow boots|fur boots|wrapped boots|platform shoes|school shoes|high heels|chunky heels|stiletto heels|ankle boots|thigh boots|knee boots|lace-up boots|fur-trimmed boots)\b/i
+
+const footA = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { styleId: 'style_anime_cel', characterId: 'crab_vampire', lookId: 'look_alchemist', poseId: 'pose_beach_midsummer' },
+})
+check('脚上穿不穿：赤足动作时造型段的鞋被撤',
+  !SHOE_RE_SC.test(footA.json?.segments?.look_cloth || ''),
+  String(footA.json?.segments?.look_cloth || '').slice(0, 120))
+check('脚上穿不穿：正向里没有鞋', !SHOE_RE_SC.test(footA.json?.positive || ''),
+  (String(footA.json?.positive || '').match(SHOE_RE_SC) || [])[0])
+check('脚上穿不穿：正向里 bare feet 仍在', /bare feet/i.test(footA.json?.positive || ''))
+check('脚上穿不穿：报 footwear autofix',
+  (footA.json?.autofixes || []).some((a) => a.kind === 'footwear'),
+  (footA.json?.autofixes || []).map((a) => a.kind).join(','))
+check('脚上穿不穿：衣服本体不受影响', /long coat/i.test(footA.json?.positive || ''))
+
+const footB = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { styleId: 'style_anime_cel', characterId: 'crab_vampire', lookId: 'look_alchemist', poseId: 'pose_near_foot_bare' },
+})
+check('脚上穿不穿：脚部特写时鞋保留（不动配方）',
+  SHOE_RE_SC.test(footB.json?.segments?.look_cloth || ''),
+  String(footB.json?.segments?.look_cloth || '').slice(0, 120))
+check('脚上穿不穿：脚部特写不出 footwear autofix',
+  !(footB.json?.autofixes || []).some((a) => a.kind === 'footwear'))
+check('脚上穿不穿：脚部特写只 warn',
+  (footB.json?.warnings || []).some((w) => w.includes('脚上穿不穿')),
+  JSON.stringify((footB.json?.warnings || []).slice(0, 3)))
+
+const footC = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { styleId: 'style_anime_cel', characterId: 'crab_vampire', lookId: 'look_pajama_block', poseId: 'pose_sock_cafe_crossed' },
+})
+check('脚上穿不穿：造型卡赤足 × 动作卡带鞋 → 赤足被撤',
+  !/bare feet/i.test(footC.json?.segments?.look_cloth || ''),
+  String(footC.json?.segments?.look_cloth || '').slice(0, 120))
+check('脚上穿不穿：动作卡的鞋还在', /mary janes/i.test(footC.json?.positive || ''))
+
+const footD = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { styleId: 'style_anime_cel', characterId: 'crab_vampire', lookId: 'look_gothic_candle', poseId: 'pose_poolside_summer' },
+})
+check('脚上穿不穿：无鞋造型不出 footwear autofix',
+  !(footD.json?.autofixes || []).some((a) => a.kind === 'footwear'),
+  (footD.json?.autofixes || []).map((a) => a.kind).join(','))
+check('脚上穿不穿：无鞋造型时 bare feet 保留', /bare feet/i.test(footD.json?.positive || ''))
+
+const footE = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { styleId: 'style_anime_cel', characterId: 'crab_vampire', lookId: 'look_gothic_candle', poseId: 'pose_near_leg_kneel' },
+})
+check('脚上穿不穿：sitting on heels 不算鞋（不触发）',
+  !(footE.json?.autofixes || []).some((a) => a.kind === 'footwear'),
+  (footE.json?.autofixes || []).map((a) => a.kind).join(','))
+
+const footF = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { styleId: 'style_anime_cel', characterId: 'crab_vampire', lookId: 'look_alchemist', poseId: 'pose_sock_cafe_crossed' },
+})
+check('脚上穿不穿：两边都带鞋不报冲突',
+  !(footF.json?.autofixes || []).some((a) => a.kind === 'footwear'))
+check('脚上穿不穿：两边都带鞋时造型卡的鞋保留',
+  SHOE_RE_SC.test(footF.json?.segments?.look_cloth || ''))
+
 // ── 存卡规则：路由 + 工具 ──────────────────────────────────────────
 const rulesRes = await call('/dsh-card-library/rules')
 check('规则路由可用', rulesRes.status === 200 && rulesRes.json?.ok === true, rulesRes.status)

@@ -1013,6 +1013,92 @@ function resolveComp(pose, poseSegText) {
   return { pos: kept.join(', '), dropped, aspect }
 }
 
+/* ════════════════════════════════════════════════════════════════
+   脚上穿不穿（v21）：动作卡说「赤足」，造型卡说「靴子」
+   ════════════════════════════════════════════════════════════════
+
+   和 v10（道具重名）/ v19（人数）同一个形状：两张卡在同一个槽位上给了
+   互斥值。脚上要么穿鞋要么赤着，没有第三种。
+
+   实测：25 张动作卡写 `bare feet` / `barefoot`，34 张造型卡写具体鞋款
+   （`leather boots` / `mary janes` / `pointe shoes` …），交叉 850 组。
+
+   分两档，因为「脚是不是画面主体」决定删错的代价：
+   - **脚不是主体**（19 张：`pose_beach_midsummer` / `pose_poolside_summer` /
+     `pose_ccc_cowgirl` …，`bare feet` 只是顺带一句）→ 撤掉造型卡的鞋。
+     鞋子在这些构图里只是边角，撤掉不会伤画面；留着反而让模型在脚上
+     画出一双靴子，把「沙滩赤脚」这个信息毁掉。
+   - **脚是主体**（2 张：`pose_near_foot_bare` / `pose_near_nsfw_soles`，
+     带 `feet focus` + `head out of frame`）→ **只 warn 不动配方**。
+     这种构图里鞋可能是有意为之（穿鞋的特写也有），撤错了整张图就废，
+     和 v5 定的分寸一致：没有唯一正确答案的事只提醒。
+
+   反向（造型卡赤足 × 动作卡带鞋，12 组）：动作卡点名的鞋更具体
+   （`pose_sock_*` 那一族就是「袜子/鞋」主题卡），造型卡的赤足让位。
+
+   词表必须排除 `sitting on heels`（跪坐坐在脚跟上）—— `heels` 在这里是
+   身体部位不是鞋。n102 的 `ring\b` 栽过一次同样的跟头。
+ */
+const SHOE_WORD_RE = /\b(boots?|shoes?|sneakers?|mary janes|loafers|oxfords|slippers|geta|zouri|uwabaki|sandals|pointe shoes|ballet slippers|cloth shoes|dress shoes|military boots|hiking boots|snow boots|fur boots|wrapped boots|platform shoes|school shoes|high heels|chunky heels|stiletto heels|ankle boots|thigh boots|knee boots|lace-up boots|fur-trimmed boots)\b/i
+const BAREFOOT_WORD_RE = /\b(barefoot|bare feet|bare foot)\b/i
+const FOOT_FOCUS_RE = /\b(foot focus|feet focus|footjob|soles|curled toes|toes)\b/i
+
+function hasShoe(text) { return SHOE_WORD_RE.test(String(text || '')) }
+function hasBarefoot(text) { return BAREFOOT_WORD_RE.test(String(text || '')) }
+function isFootFocus(text) { return FOOT_FOCUS_RE.test(String(text || '')) }
+
+/**
+ * 返回 { text, dropped, warn }：
+ * - text 是剥过鞋的造型段（或原样）
+ * - dropped 是被撤掉的词（给 autofix 用）
+ * - warn 非空表示「脚是主体，只提醒不动配方」
+ */
+function resolveFootwear(lookText, pose, poseSegText) {
+  const look = String(lookText || '')
+  const poseText = String(poseSegText || '')
+  const camText = pose && pose.camera ? Object.values(pose.camera).join(', ') : ''
+  if (!look) return { text: look, dropped: [], warn: '' }
+
+  const poseBare = hasBarefoot(poseText)
+  const lookShoe = hasShoe(look)
+
+  // 方向一：动作卡赤足 × 造型卡带鞋 → 撤鞋
+  if (poseBare && lookShoe) {
+    const footFocus = isFootFocus(poseText) || isFootFocus(camText) || isFootFocus(pose && pose.id)
+    if (footFocus) {
+      return {
+        text: look,
+        dropped: [],
+        warn: '动作卡是脚部特写（`feet focus`）且写着赤足，但造型卡配了鞋 —— 两边都可能是你要的（穿鞋的特写也成立），没有替你决定，请自己选一边',
+      }
+    }
+    const kept = []
+    const dropped = []
+    for (const raw of look.split(',')) {
+      const t = raw.trim()
+      if (!t) continue
+      if (hasShoe(t)) { dropped.push(t); continue }
+      kept.push(t)
+    }
+    return { text: kept.join(', '), dropped, warn: '' }
+  }
+
+  // 方向二：造型卡赤足 × 动作卡带鞋 → 撤造型卡的赤足
+  if (hasBarefoot(look) && hasShoe(poseText)) {
+    const kept = []
+    const dropped = []
+    for (const raw of look.split(',')) {
+      const t = raw.trim()
+      if (!t) continue
+      if (hasBarefoot(t)) { dropped.push(t); continue }
+      kept.push(t)
+    }
+    return { text: kept.join(', '), dropped, warn: '' }
+  }
+
+  return { text: look, dropped: [], warn: '' }
+}
+
 /**
  * 「画面里没有场景」—— 和 headless / 对焦脸是同一族冲突（v14）。
  *
@@ -1800,7 +1886,13 @@ function compose(input) {
   // 视角选了之后由视角段说了算：把动作段里的视线/机位/景别词剥掉，避免两套指令打架
   const viewTakeover = !!(input.view && typeof input.view === 'object' && input.view.angle)
   const actSegForRecipe = viewTakeover ? stripViewTakeover(actSeg) : actSeg
-  const lookSeg = joinSeg(lookCloth, actSegForRecipe)
+
+  // 脚上穿不穿（v21）：动作卡说赤足、造型卡配了鞋 → 同槽位互斥，只能二选一。
+  // 脚不是画面主体时撤鞋（鞋只是边角，留着会把「赤脚」毁掉）；
+  // 脚是主体（feet focus）时只 warn，因为穿鞋的特写也成立。
+  const footFix = resolveFootwear(lookCloth, pose, actSegForRecipe)
+  const lookClothFixed = footFix.text
+  const lookSeg = joinSeg(lookClothFixed, actSegForRecipe)
 
   // 人数裁决（v19）：档位统一由动作卡说话（pose_tags > count_lock > 环境卡 count_lock）。
   // 非单人档时，角色段里钉死的 `1girl, solo` 必须剥掉 —— 它和 `2girls, yuri` /
@@ -2106,6 +2198,16 @@ function compose(input) {
     })
   }
 
+  // 脚上穿不穿（v21）：动作卡写 `bare feet`、造型卡配了靴子 → 同槽位互斥。
+  // 撤掉造型卡的鞋（脚不是画面主体时鞋只是边角，留着会把「赤脚」毁掉）。
+  if (footFix.dropped.length) {
+    autofixes.push({
+      kind: 'footwear',
+      auto: true,
+      message: `动作卡写着赤足（${hasBarefoot(actSegForRecipe) ? 'bare feet' : 'barefoot'}），造型卡却配了鞋：${footFix.dropped.join(' / ')} —— 已撤掉造型卡的鞋（脚上要么穿要么不穿，留着模型会在赤脚上画出一双靴子）`,
+    })
+  }
+
   // 参数元数据（v16）：卡里的 params 除了采样键还混着元数据 ——
   // `safe_composition`（"sitting, upper body, cowboy shot" 一句提示词）、
   // `denoise_note`（一段中文说明）、`note`、`seed`。无条件 copy 的后果是
@@ -2196,6 +2298,12 @@ function compose(input) {
     )
   }
 
+  // 脚部特写 × 赤足 × 造型卡配了鞋（v21）：脚是画面主体，穿鞋的特写也成立，
+  // 没有唯一正确答案 → 只 warn 不动配方（与 v5 的分寸一致）。
+  if (footFix.warn) {
+    aspectWarnings.push(`脚上穿不穿：${footFix.warn}`)
+  }
+
   // 最后一道保险：负向里凡是正向已经写了的词，全部剔除。
   // 两段有交集时模型会二选一，「正面看镜头」比「背影回头」强势，实测直接翻脸。
   const negative = minusPositive(negAfterNude, positive)
@@ -2223,7 +2331,7 @@ function compose(input) {
       count: clean(countFix.pos),
       count_tier: countFix.tier || '',
       look: clean(lookSeg),
-      look_cloth: clean(lookCloth),
+      look_cloth: clean(lookClothFixed),
       look_pose: clean(lookPose),
       pose: clean(poseSeg),
       action: clean(actSegForRecipe),
