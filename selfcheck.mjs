@@ -1426,6 +1426,46 @@ check('整套装束：动作卡没装束词时不报 outfit',
   !(outfitF.json?.autofixes || []).some((a) => a.kind === 'outfit'))
 check('整套装束：军装不受影响', /military uniform/i.test(outfitF.json?.segments?.look_cloth || ''))
 
+// ── v23：环境卡 comp 槽里的画幅词不许当构图词 ───────────────────────
+// 病根：comp 槽不过景别过滤，而 `portrait` 在 shotWordLevel() 里是「特写」档，
+// 于是「环境卡 portrait + 动作卡 cowboy shot」在正向里并存，模型两边都听。
+const SHOT_WORD_V23 = /^(wide shot|small figure|full body|cowboy shot|upper body|close-up|portrait|bust shot|extreme close-up|very close-up)$/i
+const shotWordsOfV23 = (pos) => String(pos || '').toLowerCase().split(/[,\n]+/).map((t) => t.trim()).filter((t) => SHOT_WORD_V23.test(t))
+
+const compA = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { styleId: 'style_amano_softfog', characterId: 'blue_fat_fish', sceneId: 'sc_near_face_classroom', poseId: 'pose_ccc_pov_oral' },
+})
+check('环境卡 comp 画幅词：portrait 不进正向',
+  !/,\s*portrait\s*,|^portrait\s*,|,\s*portrait$/i.test(String(compA.json?.segments?.scene || '')),
+  String(compA.json?.segments?.scene || '').slice(0, 160))
+check('环境卡 comp 画幅词：正向只剩一个景别词',
+  shotWordsOfV23(compA.json?.positive).length === 1,
+  JSON.stringify(shotWordsOfV23(compA.json?.positive)))
+check('环境卡 comp 画幅词：景别以动作卡为准（cowboy shot）',
+  shotWordsOfV23(compA.json?.positive)[0] === 'cowboy shot')
+check('环境卡 comp 画幅词：报 warn 说明画幅归画幅裁决',
+  (compA.json?.warnings || []).some((w) => w.includes('构图槽里写着画幅词')))
+check('环境卡 comp 画幅词：场景其它内容不受影响', /classroom/i.test(String(compA.json?.segments?.scene || '')))
+
+const compB = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { styleId: 'style_amano_softfog', characterId: 'blue_fat_fish', sceneId: 'sc_wide_beach_dusk', poseId: 'pose_ccc_pov_oral' },
+})
+check('环境卡 comp 画幅词：landscape 同样不进正向',
+  shotWordsOfV23(compB.json?.positive).length === 1,
+  JSON.stringify(shotWordsOfV23(compB.json?.positive)))
+check('环境卡 comp 画幅词：landscape 时画幅走 1216x832',
+  String(compB.json?.params?.resolution || '') === '1216x832',
+  String(compB.json?.params?.resolution || ''))
+
+const compC = await call('/dsh-card-library/compose', {
+  method: 'POST',
+  body: { styleId: 'style_amano_softfog', characterId: 'blue_fat_fish', sceneId: 'sc_forest_fog', poseId: 'pose_ccc_pov_oral' },
+})
+check('环境卡 comp 画幅词：没有画幅词的 comp 一个字不动（negative space）',
+  (compC.json?.warnings || []).every((w) => !w.includes('构图槽里写着画幅词')))
+
 // ── 存卡规则：路由 + 工具 ──────────────────────────────────────────
 const rulesRes = await call('/dsh-card-library/rules')
 check('规则路由可用', rulesRes.status === 200 && rulesRes.json?.ok === true, rulesRes.status)

@@ -67,7 +67,8 @@
 | 道具重复 id | 同一个 `propId` 被传了两次（面板 toggle 不会，但 API / 模型工具 / 手写脚本会） | **按一件处理** —— 否则拼出 `holding uchiwa and uchiwa`，三件时更荒谬，还会误报「手里同时拿了 3 件东西」 |
 | 道具泛名 | 道具卡写着更具体的名词（`prop_mask_oni` 的 `mask, fox mask, kitsune mask`、`prop_cake` 的 `cake, … , strawberry shortcake`），老逻辑只取第一个 | **取最具体的那个名词** —— 否则狐面退化成普通面具、草莓蛋糕退化成一块蛋糕；顺带解决 `prop_mask` + `prop_mask_oni` 同时选中时拼出 `holding mask and mask` |
 | 画幅 | 动作卡声明 `landscape`（`all fours` / `cowgirl position` 这类横向体位，全库 74 张），没配环境卡 | **按动作卡给 1216x832** —— 早先只有环境卡的 `aspect` 被读过，这些姿势被硬塞进竖画布，两侧直接裁掉 |
-| 画法 | 角色卡 / 造型卡的负面里写着画风卡自己主张的画法词（`cel shading` / `flat colors` / `painterly` …） | **剔掉那一条** —— 19 张造型卡共用一段「柔光半写实」样板负面，换赛璐璐 / 平涂 / 水彩画风卡时等于一边要一边不要 |
+| 画法 | 角色卡 / 造型卡的负面里写着画风卡自己主张的画法词（`cel shading` / `flat colors` / `painterly` …） | **从角色 / 造型 / 视角那一段剔掉** —— 19 张造型卡共用一段「柔光半写实」样板负面，换赛璐璐 / 平涂 / 水彩画风卡时等于一边要一边不要。画风卡自己那份负面一个字都不动（`style_anime_cel` 主张赛璐璐、负面却也压 `cel shading` 防糊成一片，是刻意取舍），所以 autofix 文案会写明「还留着 XX —— 那是它刻意的取舍」 |
+| 构图槽画幅词 | 环境卡的 `camera.comp` 里写着 `portrait` / `landscape`（15 张：`sc_near_face_classroom` / `sc_rooftop_stretch` / `sc_sock_home_sofa` + 12 张 `sc_wide_*`） | **不把它当构图词用** —— 画幅归「画幅裁决」管（`aspect` → `resolution`）；留在正向里 `portrait` 会被读成「特写」档，和动作卡的景别（如 `cowboy shot`）同时生效，模型两边都听 |
 | 闭眼 | 动作卡写 `closed eyes` / `sleeping`（全库 13 张），正向却带着 `heterochromia` / `symbol-shaped pupils` / `blue eyes` / `red eyes` / `catchlight in both eyes` | **撤掉眼睛专属词**（角色段、脸光、render 三处一起剥）—— 闭着眼画不出异色瞳和瞳孔高光，留着只会把脸拽回正面、逼角色睁眼 |
 | 闭眼 × 视角 | 动作卡写闭眼 / 睡着，同时又选了视角（`gaze` 会拼出 `looking at viewer, eye contact` 或 `looking back`） | **撤掉视角段的视线词** —— 闭着眼做不到「看镜头 / 回头」，模型唯一的满足方式是把眼睛睁开，于是 v13 剥掉的眼睛词又从这条缝漏回来 |
 | 空白背景 | 选了环境卡（140 张全部带 `place`），画风卡的 `render` 却写着 `simple background` / `white background` / `empty background` / `pale gradient background`（6 张） | **从 render 段撤掉空白背景词** —— 场景段要森林/街道、渲染段同时要求白底，等于一边要背景一边不要 |
@@ -106,6 +107,9 @@
 **鞋词表必须排除 `sitting on heels`**（跪坐坐在脚跟上）—— `heels` 在这里是身体部位不是鞋，同 n102 的 `ring\b` 把 `wear·ing` 当成戒指那个坑。
 
 **画幅冲突是唯一一个不动配方的画幅情况**：环境卡说横、动作卡说竖（或反之）时，**按环境卡取**并只报 warn —— 换画布会毁掉环境构图，跟特殊机位同一档处理。另外 img2img 专用画风卡的分辨率（`1280x1807`，保住分镜框用）是硬约束，不参与画幅裁决。
+
+**环境卡的构图槽只滤画幅词，构图词一个字不动**：`camera.comp` 这个槽在卡库里混着两种东西 —— 真正的构图词（`negative space` / `symmetry` / `profile`）和画幅声明（`portrait` / `landscape`）。画幅归「画幅裁决」管，不该以构图词的身份进正向；更糟的是 `portrait` 在景别词表里是「特写」档，混进 comp 槽后会和动作卡的景别在正向里并存（15 张环境卡 × 238 张有景别的动作卡 = 3570 组）。所以只滤这两个词，`negative space` / `symmetry` / `profile` 照旧进正向。
+配套的 warn 文案要报「实际取哪个画幅」，而这个值必须读 `aspectFix` 的结果 —— 不能拿 comp 槽里的词去推：环境卡 `aspect="both"` 时画幅由动作卡决定，按 comp 槽猜会给出自相矛盾的提示（说走 832x1216、实际 1216x832）。
 
 **画法让位只剔「画风卡自己主张的那一族」**：八族是赛璐璐 / 平涂 / 厚涂 / 线稿 / 水彩 / 半调 / 版画 / 渐变。`style_shadowverse_crisp` 正向写 `cel shading`、负面却压 `flat colors` —— 意思是「要赛璐璐分色、但不要平涂」，这是它刻意的取舍，动了就把画风改掉了，所以**画风卡自己的负面一个字都不动**。清的只是角色卡 / 造型卡 / 视角那一串：`crab_vampire` 的 negative 也带着 `cel shading, flat colors, painterly`，19 张造型卡只是复制了同一段样板。
 
@@ -236,7 +240,7 @@ cd _dsh_plugin/dsh-card-library
 node selfcheck.mjs
 ```
 
-301 项断言：六类 counts、卡片字段、缩略图、越界防护、compose 正/负面、参数优先级、动作卡开关、道具卡、外域 Host 403、脸光归属、景别裁决、机位裁决、头出画清脸光、对焦脸让位、道具重名去重、画幅裁决、画法让位、景深裁决、构图补全、人数裁决、闭眼让位、闭眼×视角视线、脚上穿不穿、整套装束、场景让位、地点让位、参数元数据、道具泛名、道具 id 去重、存卡规则、全库体检、模型工具输出。
+309 项断言：六类 counts、卡片字段、缩略图、越界防护、compose 正/负面、参数优先级、动作卡开关、道具卡、外域 Host 403、脸光归属、景别裁决、机位裁决、头出画清脸光、对焦脸让位、道具重名去重、画幅裁决、画法让位、景深裁决、构图补全、人数裁决、闭眼让位、闭眼×视角视线、脚上穿不穿、整套装束、场景让位、地点让位、参数元数据、道具泛名、道具 id 去重、存卡规则、全库体检、模型工具输出。
 
 ## 路由
 

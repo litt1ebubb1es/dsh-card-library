@@ -799,6 +799,18 @@ function sceneSegment(scene, opts) {
     if (!v) continue
     if (dropFaceFocus && slot === 'dof' && isFaceFocus(v)) continue
     if (dropDof && slot === 'dof') continue
+    // v23：comp 槽里的「画幅词」必须滤掉（portrait / landscape）。
+    // 画幅归 v11 的画幅裁决管（aspect → resolution），不该以构图词的身份进正向；
+    // 更糟的是 `portrait` 在 shotWordLevel() 里是「特写」档，混进 comp 槽后会和
+    // 动作卡的景别（如 cowboy shot）在正向里并存，模型两边都听 → 构图被撕成两半。
+    // 实测：15 张环境卡的 comp 是画幅词（portrait 3 / landscape 12），
+    // 交叉 238 张有景别的动作卡 = 3570 组。
+    if (slot === 'comp') {
+      const keptComp = v.split(',').map((t) => t.trim()).filter((t) => t && !COMP_ASPECT_RE.test(t))
+      if (!keptComp.length) continue
+      parts.push(keptComp.join(', '))
+      continue
+    }
     parts.push(v)
   }
   const extra = clean(scene.extra)
@@ -2126,10 +2138,18 @@ function compose(input) {
     style
   )
   if (mediumFix.dropped.length) {
+    // v23：文案要分清「从哪一段剔的」。画风卡自己那份 negative 是刻意的取舍
+    // （style_anime_cel 主张赛璐璐、负面却也压 cel shading 来防「糊成一片」），
+    // 一个字都不动。但早先文案只说「已剔掉：cel shading」，用户去负面里一搜
+    // 发现还在，会以为规则没生效 —— 必须写明「剔的是角色/造型/视角那一份」。
+    const stillInStyle = mediumFix.dropped.filter((t) => new RegExp(`(^|,\\s*)${t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}(\\s*,|$)`, 'i').test(String(style?.negative || '')))
+    const tail = stillInStyle.length
+      ? `（画风卡自己的负面里还留着 ${stillInStyle.join(' / ')} —— 那是它刻意的取舍，不动）`
+      : ''
     autofixes.push({
       kind: 'medium',
       auto: true,
-      message: `角色/造型卡的负面在压制画风卡要的画法（${mediumFix.families.join(' / ')}），已剔掉：${mediumFix.dropped.join(' / ')}`,
+      message: `角色/造型卡的负面在压制画风卡要的画法（${mediumFix.families.join(' / ')}），已从角色 / 造型 / 视角那一段剔掉：${mediumFix.dropped.join(' / ')}${tail}`,
     })
   }
   const negParts = [
@@ -2394,6 +2414,21 @@ function compose(input) {
   // 没有唯一正确答案 → 只 warn 不动配方（与 v5 的分寸一致）。
   if (footFix.warn) {
     aspectWarnings.push(`脚上穿不穿：${footFix.warn}`)
+  }
+
+  // 环境卡 comp 槽里的画幅词（v23）：已在 sceneSegment 里滤掉，这里报一声。
+  // 画幅归画幅裁决管，但环境卡把它写在「构图」槽里 —— 用户看不出来为什么
+  // 正向少了一个词，得说清楚。
+  // 注意：实际画幅要看 aspectFix 的结果（环境卡 aspect=both 时由动作卡决定），
+  // 不能拿 comp 槽里的词去推 —— 那是两套声明，会给出自相矛盾的提示。
+  const sceneCompAspect = clean((scene?.camera && scene.camera.comp) || '')
+    .split(',').map((t) => t.trim()).filter((t) => t && COMP_ASPECT_RE.test(t))
+  if (sceneCompAspect.length) {
+    const realAspect = aspectFix.aspect ? `${ASPECT_CN[aspectFix.aspect]} ${ASPECT_RES[aspectFix.aspect]}` : '按画风卡默认'
+    aspectWarnings.push(
+      `环境卡的构图槽里写着画幅词（${sceneCompAspect.join(' / ')}）—— 已不把它当构图词用` +
+      `（画幅归「画幅裁决」管，实际取 ${realAspect}）；留在正向会变成景别词，和动作卡的景别打架`,
+    )
   }
 
   // 最后一道保险：负向里凡是正向已经写了的词，全部剔除。
